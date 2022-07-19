@@ -94,6 +94,8 @@ https://www.markdownguide.org/cheat-sheet/
 
 * git diff == 두 commit 간 차이
 
+* git stash == 수정 사항을 stash 공간으로 이동하고, 가장 최근버전으로 복원
+
 ---
 
 ## Github
