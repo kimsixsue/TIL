@@ -103,6 +103,8 @@ https://www.markdownguide.org/cheat-sheet/
   * remote_repo는 repository 주소
 * git **push** <repo_name> <local branch>
   * local -> remote 업로드
+* git **pull** <repo_name> <local branch>
+  * git에 버전을 맞춥니다.
 * git **clone** {remote_repo}를 통해 최초로 local 복사
   * .git 설정 (remote 주소 포함) 포함 복제
 
