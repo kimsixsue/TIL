@@ -7,3 +7,5 @@
 ## Python 정리
 
 1. [[2022-07-18] Python basic 정리](/Python/Python%20basic.md)
+
+2. [[2022-07-20] Python control statement](/Python/control_statement.md)
