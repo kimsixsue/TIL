@@ -209,4 +209,3 @@ function('argument') # call
        * `$ source venv/Scripts/activate`
        * `$ deactive` # 가상환경 비활성화
   3. 해당 폴더에 있는 패키지를 관리/이용
-  4. 

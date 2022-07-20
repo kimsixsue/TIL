@@ -48,7 +48,7 @@
 
 * **None** 타입은 값이 없음을 표현합니다.
   
-  ### Boolean
+### Boolean
 
 * Falsy : False로 취급되는 값들
   
@@ -68,13 +68,13 @@
   
   * ex) list, tuple, range 및 set, dictionary
     
-    ### list
+### list
 
 * mutable하며 순서가 있는 시퀀스로 index로 접근
   
   * list_name[index]
     
-    ### tuple
+### tuple
 
 * immutable하며 순서가 있는 시퀀스
   
@@ -86,11 +86,11 @@
     
     * ex) tuple_name = (1, 2, )
       
-      ### range
+### range
       
       > `range(n, m, s)` # n 이상 m 미만까지 s씩 증가하는 시퀀스
       
-      ### 시퀀스 Slicing
+### 시퀀스 Slicing
       
       > `sequence_name[n, m, s]` # n 이상 m 미만 index, 간격은 s 시퀀스
 
@@ -102,7 +102,7 @@
 
 * |는 합집합, &는 교집합, -는 차집합
   
-  ### Dictionary
+### Dictionary
 
 * key-value쌍이며, **순서가 있음** (단, Python 3.7>=)
   
