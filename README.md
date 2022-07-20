@@ -8,4 +8,4 @@
 
 1. [[2022-07-18] Python basic 정리](/Python/Python%20basic.md)
 
-2. [[2022-07-20] Python control statement](/Python/control_statement.md)
+2. [[2022-07-20] Python control statement](/Python/control statement.md)
