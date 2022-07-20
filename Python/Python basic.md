@@ -106,7 +106,19 @@
 
 * key-value쌍이며, **순서가 있음** (단, Python 3.7>=)
   
-  * ex) dict_name{'key1': 'value1', 'key2': 'value2'}
+  ```python
+  dict_name{'key1': 'value1', 'key2': 'value2'}
+  dict_name.keys() # key들 포함, 리스트 아님
+  dict_name.values() # values 포함, 리스트 아님
+  dict_name.items() # 튜플꼴로 key-value쌍이 들어있음, 리스트 아님
+  ```
+### 정리
+* **dictionary**: mutable, unordered
+* **list**: mutable, sequence
+* **range**: immutable, sequence
+* **set**: mutable, unordered
+* **string**: immutable, sequence
+* **tuple**: immutable, sequence
 
 ---
 
@@ -116,4 +128,23 @@
 * int + float => float로 변환
 * int('정수 형태 문자열') 변환 가능
 * float('float 형식 문자열') 변환 가능
-* int, float, list, tuple, dict 모두, str 변환 가능
+* int, float, list, tuple, dict => str 변환 가능
+
+---
+
+## 프로그램 구성 단위
+
+* **identifier**
+  * 예약어를 제외한, 변수, 함수, 클래스 등 다양한 값을 가질 수 있는 이름
+
+* **literal**
+  * 값 그 자체 
+  
+* **expression**
+  * 새로운 데이터 **값을 생성**하거나 계산하는 코드 조각, **일부분**
+  
+* **statement**
+  * **특정한 작업을 수행하는 코드 전체**
+  * **executable**한 최소한의 코드 단위
+    * ex) 문자열 **value** 1개
+    * ex) expression
