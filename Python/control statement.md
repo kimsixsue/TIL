@@ -61,9 +61,9 @@
 * Decomposition, Abstraction
 
 * 기본 구조
-  
-* **def**ine&call, input, docstring, scope, output
 
+* **def**ine&call, input, docstring, scope, output
+  
   ```python
   def func_name(parameter):
   """
@@ -74,24 +74,29 @@
   ```
 
 ### 함수 Output
+
 * Void function : 명시적인 return 값이 없는 경우 None 반환
   * 주로 **테스트**를 위해 print 이용 *<-> 데이터 처리는 return*
 * return 값은 언제나 1개 (튜플 1개도 1개로 취급)
 
 ### 함수 Input
+
 ```python
 def function(parameter): # def
   return 0
 function('argument') # call
 ```
+
 * 선택 argument: 입력하지 않으면 기본값으로
 * **Positional Arguments**: 호출 시 위치에 따라 전달
 * Keyword Argument: 변수명으로 argument 전달 가능
   * 다음에 Positional Argument를 넣으면 Error 발생.
-  ```python
-  function(a = 1, 2) # 키워드는 보통 마지막에 몰아서 씀
-  ```
+    
+    ```python
+    function(a = 1, 2) # 키워드는 보통 마지막에 몰아서 씀
+    ```
 * Default Arguments Values
+  
   ```python
   def function(a, b=0): # 기본값 지정
     return 0
@@ -110,7 +115,8 @@ function('argument') # call
   * *dictionary*로 묶여 처리
   * 호출 시 변수처럼, string처럼하면 안됨
 
-### Python의 Scope (범위) 
+### Python의 Scope (범위)
+
 * global scope: 어디서나 참조 가능한 공간
   * global variable
 * local scope: 함수 내부에서만 참조 가능
@@ -141,7 +147,8 @@ function('argument') # call
   * 가급적 쓰지 않는 것을 권장하며, 값을 수정하려면 항상 argument로 넘기고 return 값을 쓰는 것을 권장
 
 ### 함수 응용
-* **Built-in Functions**: 함수와 type 내장
+
+* [**Built-in Functions**](https://docs.python.org/ko/3/library/functions.html): 함수와 type 내장
   * map(function, iterable)
     * iterable 요소 모두 function 적용, **map** object 반환
   * filter(function, iterable)
@@ -162,12 +169,13 @@ function('argument') # call
       * 입력 값과 연산 속도가 반비례
       * maximum recursion depth가 1000번으로, 호출 횟수가 넘어가면 Recursion Error
       * stack overflow 시 프로그램 동작않음
+
 ---
 
 ## module
 
-
 ### 모듈과 패키지
+
 * module == 다양한 기능을 하나의 파일로
   * 특정 기능을 하는 코드를 **.py** 단위로 작성
 * package == 다양한 파일을 하나의 폴더로
@@ -176,13 +184,16 @@ function('argument') # call
 * library == 다양한 package를 하나의 묶음으로
 * pip == 이것을 관리하는 관리자
 * 가상환경 == package의 활용 공간
+  
   ```python
   import module
   from module import var, function, Class
   from package import module
   ```
-### 파이썬 표준 라이브러리
-**[파이썬 표준 라이브러리](https://docs.python.org/ko/3/library/index.html)** : 기본적으로 설치된 모듈과 내장 함수
+  
+  ### 파이썬 표준 라이브러리
+  
+  **[파이썬 표준 라이브러리](https://docs.python.org/ko/3/library/index.html)** : 기본적으로 설치된 모듈과 내장 함수
 * **pip**(파이썬 패키지 관리자)
   * [**Py**thon **P**ackage **I**ndex](https://pypi.org/) 에 저장된 외부 패키지들을 설치하도록 도와주는 패키지 관리 시스템
   * [버전 명시 시] 패키지 설치 가능
@@ -194,18 +205,20 @@ function('argument') # call
     * $ pip install -r requirements.txt 설치
 
 ### 사용자 모듈과 패키지
+
 * 패키지 : 여러 모듈, 하위 패키지로 구조화
   * 모든 폴더에는 ____init__.py__를 만들어 패키지로 인식
 
 ### 가상환경
+
 * 외부 패키지와 모듈은 **pip**를 통해 설치
 * 프로젝트들이 버전이 다를 수 있음
 * 가상환경을 만들면, 프로젝트 별로 독립적으로 패키지를 관리 가능
 * 특정 디렉토리에 가상 환경을 만들고, 고유한 파이썬 패키지 집합을 가질 수 있음
   1. 가상환경 생성
-       * `$ python -m venv <디렉토리>`
-       * 해당 디렉토리에 별도 파이썬 패키지가 설치
+     * `$ python -m venv <디렉토리>`
+     * 해당 디렉토리에 별도 파이썬 패키지가 설치
   2. 실행 환경에서 가상환경 활성화
-       * `$ source venv/Scripts/activate`
-       * `$ deactive` # 가상환경 비활성화
+     * `$ source venv/Scripts/activate`
+     * `$ deactive` # 가상환경 비활성화
   3. 해당 폴더에 있는 패키지를 관리/이용
