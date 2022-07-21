@@ -88,32 +88,49 @@ function('argument') # call
 ```
 
 * 선택 argument: 입력하지 않으면 기본값으로
+
 * **Positional Arguments**: 호출 시 위치에 따라 전달
+  
+  * 부족하면 문제 생김
+
 * Keyword Argument: 변수명으로 argument 전달 가능
+  
   * 다음에 Positional Argument를 넣으면 Error 발생.
     
     ```python
     function(a = 1, 2) # 키워드는 보통 마지막에 몰아서 씀
     ```
+
 * Default Arguments Values
   
   ```python
   def function(a, b=0): # 기본값 지정
     return 0
   ```
+
 * **Asterisk(*)** == [시퀀스] 언패킹 연산자
+  
   * 정해지지 않은 arguments들을 처리
   * *tuple*이나 *list*를 언패킹
+
 * 가변 인자(*args)
+  
   * **positional argument**가 몇개인지 모를 때
+  * args는 tuple
+    *  return 값 초기화를 tuple[0]으로 하면 오류 방지
+
 * packing == 데이터들을 묶어서 변수에 할당
+
 * unpacking == 요소들을 변수들에 배분 할당
+  
   * 변수 개수와 할당할 요소 개수 동일해야
-    * 변수에 asterisk를 붙이면, 할당 후 남은 요소들을 몰아넣음
+    * 변수에 asterisk를 붙이면, **할당 후 남은 요소**들을 몰아넣음
+
 * 가변 키워드 인자(**kwargs)
+  
   * **keyword argument** 수를 알 수 없을 때
   * *dictionary*로 묶여 처리
-  * 호출 시 변수처럼, string처럼하면 안됨
+  * 호출 시 string처럼하면 안됨, *변수나 키워드 인자*처럼
 
 ### Python의 Scope (범위)
 
@@ -149,26 +166,45 @@ function('argument') # call
 ### 함수 응용
 
 * [**Built-in Functions**](https://docs.python.org/ko/3/library/functions.html): 함수와 type 내장
-  * map(function, iterable)
-    * iterable 요소 모두 function 적용, **map** object 반환
-  * filter(function, iterable)
-    * iterable 요소 모두 function 적용, **filter** object 반환
-  * zip(*iterables)
+  * **map**(function, iterable)
+    * iterable 요소 모두 function 적용, 그 결과를 반환
+    * **map** object 반환
+  * **filter**(function, iterable)
+    * iterable 요소 모두 function 적용, 반환 결과가 **True**인 것들만 반환
+    * **filter** object 반환
+  * **zip**(*iterables)
     * iterable들을 모아 tuple을 원소로하는 zip object 반환
-    * 같은 index끼리 모아 tuple로. 가로 세로 바꿈
+    * 같은 index끼리 모아 tuple로
+      * 2차원 리스트, 가로 세로 바꿈
   * **lambda [parameter] : 표현식**
     * 표현식 계산 결과를 반환
+      * return 문 없음
+        
+        ```python
+        def func(a, b)
+            return a + b
+        
+        lambda a, b: a - b if a > b else b - a
+        lambda a, b: func(a, b, 100) # 인자 : 표현
+        ```
     * 이름이 없어서 익명함수로도 불림
     * *간편 조건문* 가질 수 있음
     * 한번 쓰고 말 것을 간결하게 쓸 수 있음
   * **recursive function**: 스스로를 호출
-    * 점화식 등 알고리즘 설계 구현에 유용
-    * 변수, 변수 사용이 적어져, 가독성이 높아짐
-    * base case(종료 상황) 존재, 수렴하도록 작성
+    * **점화식** 등 알고리즘 설계 구현에 유용
+      * 팩토리얼, 피보나치
+    * 변수 이용이 적어져, 함수 이용, **가독성**이 좋아짐
+    * **base case**(종료 상황) 존재, 수렴하도록 작성
     * *주의 사항*
-      * 입력 값과 연산 속도가 반비례
-      * maximum recursion depth가 1000번으로, 호출 횟수가 넘어가면 Recursion Error
+      * 입력 값과 연산 속도가 반비례 (예외 있기도 함)
       * stack overflow 시 프로그램 동작않음
+      * maximum recursion depth가 1000번으로, 호출 횟수가 넘어가면 Recursion Error
+      * ```python
+        import sys
+        print(sys.getrecursionlimit()) # 1000
+        sys.setrecursionlimit(31415)
+        print(sys.getrecursionlimit())
+        ```
 
 ---
 
@@ -176,25 +212,40 @@ function('argument') # call
 
 ### 모듈과 패키지
 
-* module == 다양한 기능을 하나의 파일로
+* module == 다양한 기능을 하나의 파일(스크립트)로
+  
   * 특정 기능을 하는 코드를 **.py** 단위로 작성
-* package == 다양한 파일을 하나의 폴더로
+  * *import*문을 통해 내장 모듈을 namespace로 가져와야
+  
+  - import 문이 쓰인 코드의 위치에 따라 namespace가 결정
+  
+  - 코드 최상단에 import문을 작성할 경우, Global namespace에 import
+
+* package == 다양한 파일을 하나의 폴더(디렉토리)로
+  
   * 특정 기능과 연관있는 module들의 집합
   * 패키지 안에 서브 패키지 포함
-* library == 다양한 package를 하나의 묶음으로
-* pip == 이것을 관리하는 관리자
-* 가상환경 == package의 활용 공간
+  * *package.module* 형태로 모듈을 구조화할 수 있음
   
   ```python
   import module
   from module import var, function, Class
-  from package import module
+  from package import module as alias 
+  import * # 무거울 수 있으니, 지양해야
   ```
-  
-  ### 파이썬 표준 라이브러리
-  
-  **[파이썬 표준 라이브러리](https://docs.python.org/ko/3/library/index.html)** : 기본적으로 설치된 모듈과 내장 함수
+
+* library == 다양한 package를 하나의 묶음으로
+
+* pip == 이것을 관리하는 관리자
+
+* 가상환경 == package의 활용 공간
+
+### 파이썬 표준 라이브러리
+
+**[파이썬 표준 라이브러리](https://docs.python.org/ko/3/library/index.html)** : 기본적으로 설치된 모듈과 내장 함수
+
 * **pip**(파이썬 패키지 관리자)
+  
   * [**Py**thon **P**ackage **I**ndex](https://pypi.org/) 에 저장된 외부 패키지들을 설치하도록 도와주는 패키지 관리 시스템
   * [버전 명시 시] 패키지 설치 가능
   * $ pip **uninstall** some_package : 특정 패키지 삭제
