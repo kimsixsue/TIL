@@ -95,6 +95,10 @@ https://www.markdownguide.org/cheat-sheet/
 * git diff == 두 commit 간 차이
 
 * git stash == 수정 사항을 stash 공간으로 이동하고, 가장 최근버전으로 복원
+  
+  * .gitignore 파일은 일종의 블랙리스트를 작성
+    
+    * 그러나 이미 git에서 관리중인 경우, 해당 파일에 작동하지 않음
 
 ---
 
