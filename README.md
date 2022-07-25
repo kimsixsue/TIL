@@ -10,6 +10,8 @@
 
 2. [[2022-07-20] Python control statement](/Python/control%20statement.md)
 
+3. [[2022-07-25] Python data structure](/Python/data%20structure.md)
+
 ## 예정
 
 - 파이썬과 다른 고급언어 비교 -> 실수를 줄이기 위함
