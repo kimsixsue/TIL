@@ -157,15 +157,15 @@
 
 - Shallow copy
   
-  - 같은 원소를 가진, 다른 주소를 복사
-    - **copy** module의 copy
-  - 리스트 내 리스트를 복사하면, **주소를 복사하는 것이라 같이 변함**
+  - 같은 원소를 가진, **다른 주소**를 복사
+    1. **슬라이싱**
+    2. b = **list**(a)
+    3. **copy** module의 copy
+  - 리스트 내 리스트를 복사하면, 주소를 복사하는 것이라 **같이 변함**
 
 - **Deep copy**
   
   - 독립적
-    - **슬라이싱**
-    - b = **list**(a)
     ```python
     import copy
     list_b = copy.deepcopy(list_a)
