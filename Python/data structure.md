@@ -153,7 +153,7 @@
   
   - 해당 객체에 대한 객체 참조를 복사
   - 해당 주소의 일부 값을 변경하는 경우 이를 **참조하는 모든 변수에 영향**
-  - shallow copy
+  - 
 
 - Shallow copy
   
@@ -166,6 +166,7 @@
 - **Deep copy**
   
   - 독립적
+    
     ```python
     import copy
     list_b = copy.deepcopy(list_a)
