@@ -149,23 +149,23 @@
 
 ### 복사 방법
 
-- Assignment 대입 연산자 =
+- Assignment 할당 = 대입 연산자
   
   - 해당 객체에 대한 객체 참조를 복사
   - 해당 주소의 일부 값을 변경하는 경우 이를 **참조하는 모든 변수에 영향**
+  - shallow copy
 
 - Shallow copy
   
   - 같은 원소를 가진, 다른 주소를 복사
-    1. **슬라이싱**
-    2. b = **list**(a)
-    3. **copy** module
+    - **copy** module의 copy
   - 리스트 내 리스트를 복사하면, **주소를 복사하는 것이라 같이 변함**
 
 - **Deep copy**
   
   - 독립적
-    
+    - **슬라이싱**
+    - b = **list**(a)
     ```python
     import copy
     list_b = copy.deepcopy(list_a)
