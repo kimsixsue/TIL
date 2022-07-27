@@ -75,9 +75,9 @@
 
 ### 함수 Output
 
-* Void function : 명시적인 return 값이 없는 경우 None 반환
+* Void function : 명시적인 return 값이 없는 경우 return None
   * 주로 **테스트**를 위해 print 이용 *<-> 데이터 처리는 return*
-* return 값은 언제나 1개 (튜플 1개도 1개로 취급)
+* 언제나 하나의 객체만 return (튜플 1개도 1개로 취급)
 
 ### 함수 Input
 
@@ -116,7 +116,7 @@ function('argument') # call
 * 가변 인자(*args)
   
   * **positional argument**가 몇개인지 모를 때
-  * args는 tuple
+  * 함수 선언 시 매개변수 앞에 * 를 붙이고, args는 함수 내에서 tuple로 처리된다.
     *  return 값 초기화를 tuple[0]으로 하면 오류 방지
 
 * packing == 데이터들을 묶어서 변수에 할당
@@ -166,6 +166,9 @@ function('argument') # call
 ### 함수 응용
 
 * [**Built-in Functions**](https://docs.python.org/ko/3/library/functions.html): 함수와 type 내장
+  * sorted()
+    * sequence를 정렬하지 않고, sequence를 정렬한 값을 return
+      * .sort()는 sequence를 정렬하지만, return None
   * **map**(function, iterable)
     * iterable 요소 모두 function 적용, 그 결과를 반환
     * **map** object 반환

@@ -26,6 +26,7 @@
   - **method**: 어떤 행위(기능, 함수)를 할 수 있는가
 
 - **Class**: object들의 분류. 단어들의 첫글자가 대문자(Upper Camel case = Pascal case)
+  - 기본적으로 정의되어 있는 클래스: list, int, tuple, set, dictionary 등
 
 - **Instance**: Class로 만든 Object. 하나하나의 실체
 
@@ -55,25 +56,27 @@
 
 - 메서드: 특정 데이터 타입/**클래스**의 객체에 공통적으로 적용 가능한 행위(**함수**)
 
-- **인스턴스 메서드**
+- **Instance Method 인스턴스 메서드**
   - *인스턴스 변수*를 처리. 개별행동.
     - 클래스 변수, 인스턴스 변수 둘 다 사용이 가능
   - 클래스 내부에 정의되는 메서드의 기본
+    - .pop(), .clear(), .copy(), .index(), .remove(), .update() 등
   - 항상 첫 인자로 **self**가 전달
     - self: 파이썬의 암묵적인 규칙
-  - 생성자 constructor 메서드
-    - 인스턴스 객체가 생성될 때 자동으로 호출되는 메서드
-    - 인스턴스 변수들의 초기값을 설정
-  -  **매직 메서드**(=스페셜 메서드)
+  -  **Magic Method 매직 메서드**(=스페셜 메서드)
     - Double underscore(= 던더)가 있는 메서드
     - 특정 상황에 자동으로 불리는 메서드
     - 객체의 특수 조작 행위를 지정(함수, 연산자 등)
-      - __ str __ : 해당 객체의 출력 형태를 지정
-        - print 함수를 호출할 때, 자동으로 호출
-        - 어떤 인스턴스를 출력하면 __ str __의 return 값이 출력
-      - __ gt __ : greater than 부등호 연산자
-  - 소멸자 destructor 메서드
-    - 인스턴스 객체가 소멸(파괴)되기 직전에 호출되는 메서드
+    - **__ init __** 생성자 constructor 메서드
+      - 인스턴스 변수들의 초기값을 설정
+      - 인스턴스 객체가 생성될 때 자동으로 호출되는 메서드
+    - **__ del __** 소멸자 destructor 메서드
+      - 인스턴스 객체가 소멸(파괴)되기 직전에 호출되는 메서드
+    - **__ str __** : 해당 객체의 출력 형태를 문자열 return 값으로 지정
+      - print 함수를 호출할 때, 자동으로 호출
+      - 어떤 인스턴스를 출력하면 __ str __의 return 값이 출력
+    - **__ repr __** : 객체 표현을 return
+    - __ gt __ : greater than 부등호 연산자
 
 - **클래스 메서드**
   - 클래스는 클래스 변수만 사용
@@ -244,33 +247,33 @@
     - KeyboardInterrupt
       - 임의로 프로그램을 종료하였을 때
 
-    - ZeroDivisionError
+    - **ZeroDivisionError**
       - division by zero
 
-    - ImportError
+    - **ImportError**
       - cannot import name from (/usr/lib/python3.9/ .py)
-    - ModuleNotFoundError
+    - **ModuleNotFoundError**
       - No module named
 
-    - IndexError
+    - **IndexError**
       - index out of range
-    - KeyError
+    - **KeyError**
       - 해당 키가 존재하지 않는 경우
 
-    - NameError
+    - **NameError**
       - name is not defined
 
     - IndentationError
       - expected an indented block
       - unexpected indent
 
-    - TypeError
+    - **TypeError**
       - unsupported operand type(s) for
       - type doesn't define method
       - expected arguments, got
       - missing required positional arguments
       - takes positional arguments but were given
-      - Population must be a sequence. For dicts or sets, use sorted(d).
+      - must be a sequence. For dicts or sets, use sorted(d).
     - ValueError
       - invalid literal for with base 10:
       - is not in range
