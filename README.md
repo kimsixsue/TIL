@@ -11,6 +11,7 @@
 2. [[2022-07-20] Python control statement](/Python/control%20statement.md)
 
 3. [[2022-07-25] Python data structure](/Python/data%20structure.md)
+4. [[2022-07-27] Python OOP](/Python/OOP.md)
 
 ## 예정
 
