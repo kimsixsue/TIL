@@ -24,30 +24,33 @@
 
 * **할당 연산자 =** 좌변에 우변을 할당합니다.
   
-  > `a = b = 10`       # a는 10, b는 10
-  
-  > `a, b = 20, 30`   # a는 20, b는 30
-  
-  > `a, b = b, a`    # a, b를 교환합니다. 임시변수가 필요없습니다.
+  ```python
+  a = b = 10      # a는 10, b는 10
+  a,  b = 20, 30  # a는 20, b는 30
+  a,  b = b , a   # a, b를 교환합니다. 임시변수가 필요없습니다.
+  ```
 
 ---
 
 ## Datatype
 
 * float point(부동 소수점) rounding error
+  
   * 컴퓨터가 2진수를 쓰기 때문에 정확히 처리 못할 수 있습니다.
-
-> ```python
-> import math # 단, Python 3.5 >=
-> math.isclose(a, b) # 실수 값 비교
-> ```
+  
+  ```python
+  import math # 단, Python 3.5 >=
+  math.isclose(a, b) # 실수 값 비교
+  ```
 
 * f-strings # 단, Python 3.6 >=
   
-  > `print(f'Hello, {변수명}!')` # 변수명 값이 들어간 형태로 출력
+  ```python
+  print(f'Hello, {변수명}!') # 변수명 값이 들어간 형태로 출력
+  ```
 
 * **None** 타입은 값이 없음을 표현합니다.
-  
+
 ### Boolean
 
 * Falsy : False로 취급되는 값들
@@ -67,58 +70,69 @@
 * 서로 다른 자료형을 여러 개 담을 수 있는 객체
   
   * ex) list, tuple, range 및 set, dictionary
+  
+  ### list
+  
+  * mutable하며 순서가 있는 시퀀스로 index로 접근
     
-### list
-
-* mutable하며 순서가 있는 시퀀스로 index로 접근
+    * list_name[index]
   
-  * list_name[index]
+  ### tuple
+  
+  * immutable하며 순서가 있는 시퀀스
     
-### tuple
-
-* immutable하며 순서가 있는 시퀀스
-  
-  * tuple_name[index]
-  
-  * ex) a, b = (1, 2)
-  
-  * 주의사항: 마지막 항목에 쉼표 권장
+    * tuple_name[index]
     
-    * ex) tuple_name = (1, 2, )
+    * ex) a, b = (1, 2)
+    
+    * 주의사항: 마지막 항목에 쉼표 권장
       
-### range
-      
-      > `range(n, m, s)` # n 이상 m 미만까지 s씩 증가하는 시퀀스
-      
-### 시퀀스 Slicing
-      
-      > `sequence_name[n, m, s]` # n 이상 m 미만 index, 간격은 s 시퀀스
-
-### Set
-
-* 순서가 없으며 mutable, 집합 연산 가능, 중복 없음
+      * ex) tuple_name = (1, 2, )
   
-  * ex) set_name{1, 2, 3, 4}
-
-* |는 합집합, &는 교집합, -는 차집합
-  
-### Dictionary
-
-* key-value쌍이며, **순서가 있음** (단, Python 3.7>=)
+  ### range
   
   ```python
-  dict_name{'key1': 'value1', 'key2': 'value2'}
-  dict_name.keys() # key들 포함, 리스트 아님
-  dict_name.values() # values 포함, 리스트 아님
-  dict_name.items() # 튜플꼴로 key-value쌍이 들어있음, 리스트 아님
+  range(n, m, s) # n 이상 m 미만까지 s씩 증가하는 시퀀스
   ```
-### 정리
-* **dictionary**: mutable, unordered
-* **list**: mutable, sequence
-* **range**: immutable, sequence
-* **set**: mutable, unordered
-* **string**: immutable, sequence
-* **tuple**: immutable, sequence
+  
+  ### 시퀀스 Slicing
+  
+  ```python
+  sequence_name[n, m, s] # n 이상 m 미만 index, 간격은 s 시퀀스
+  ```
+  
+  ### Set
+  
+  * 순서가 없으며 mutable, 집합 연산 가능, 중복 없음
+    
+    * ex) set_name{1, 2, 3, 4}
+  
+  * |는 합집합, &는 교집합, -는 차집합
+  
+  ### Dictionary
+  
+  * key-value쌍이며, **순서가 있음** (단, Python 3.7>=)
+    
+    ```python
+    dict_name{'key1': 'value1', 'key2': 'value2'}
+    dict_name.keys() # key들 포함, 리스트 아님
+    dict_name.values() # values 포함, 리스트 아님
+    dict_name.items() # 튜플꼴로 key-value쌍이 들어있음, 리스트 아님
+    ```
+  
+  ### 정리
+  
+  * **dictionary**: mutable, unordered
+  
+  * **list**: mutable, sequence
+  
+  * **range**: immutable, sequence
+  
+  * **set**: mutable, unordered
+  
+  * **string**: immutable, sequence
+  
+  * **tuple**: immutable, sequence
 
 ---
 
@@ -135,6 +149,7 @@
 ## 프로그램 구성 단위
 
 * **identifier**
+  
   * 예약어를 제외한, 변수, 함수, 클래스 등 다양한 값을 가질 수 있는 이름
     * 영문, 숫자, _만 가능.
     * 숫자로 시작 불가
@@ -142,12 +157,15 @@
     * 내장함수, 모듈, 예약어 불가
 
 * **literal**
+  
   * 값 그 자체 
-  
+
 * **expression**
-  * 새로운 데이터 **값을 생성**하거나 계산하는 코드 조각, **일부분**
   
+  * 새로운 데이터 **값을 생성**하거나 계산하는 코드 조각, **일부분**
+
 * **statement**
+  
   * **특정한 작업을 수행하는 코드 전체**
   * **executable**한 최소한의 코드 단위
     * ex) 문자열 **value** 1개

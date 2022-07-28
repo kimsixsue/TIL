@@ -31,7 +31,7 @@
 
 ## Markdown
 
-https://www.markdownguide.org/cheat-sheet/
+> https://www.markdownguide.org/cheat-sheet/
 
 * README.md 파일
 
@@ -75,34 +75,34 @@ https://www.markdownguide.org/cheat-sheet/
   3. Repository
      * **커밋**들이 저장되는 곳
 
-* git **status** == Git으로 관리중인 파일 상태
+---
 
+## Git 실전
+
+* 처음 Git 이용 시, Run
+ 
+  ```python
+  git config --global user.email "깃메일" # 주로 지메일
+  git config --global user.name "깃닉네임"
+  ```
 * git init
+
+* git **status** == Git으로 관리중인 파일 상태
 
 * git add . == 끝에 붙은 .은 모든 것을 의미
 
 * git **commit -m** "*자세한* commit_message"
-
-* 처음 Git 이용 시, Run
-  
-  ```git
-  git config --global user.email "깃메일" # 주로 지메일
-  git config --global user.name "깃닉네임"
-  ```
 
 * git **log** == Git commit history
 
 * git diff == 두 commit 간 차이
 
 * git stash == 수정 사항을 stash 공간으로 이동하고, 가장 최근버전으로 복원
-  
-  * .gitignore 파일은 일종의 블랙리스트를 작성
-    
-    * 그러나 이미 git에서 관리중인 경우, 해당 파일에 작동하지 않음
+ 
+ * .gitignore 파일은 일종의 블랙리스트를 작성
+   
+   * 그러나 이미 git에서 관리중인 경우, 해당 파일에 작동하지 않음
 
----
-
-## Github
 
 * git **remote add** <repo_name> {remote_repo}
   * name은 별명, convention = origin
