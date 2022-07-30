@@ -9,7 +9,7 @@
     ```python
     true value if condition else false value
     ```
-  
+---
   ### 반복문
   
   >  **[visualization - https://pythontutor.com/](https://pythontutor.com/)**
@@ -24,15 +24,15 @@
       ```
   
   * List Comprehension
-
-      ```python
-      code for variable in iterable [if conditional statement]
-      list_2 = []
-      list_2 = i * 2 for number in range(5) # 2, 4, 6, 8
-      ```
+    
+    ```python
+    code for variable in iterable [if conditional statement]
+    list_2 = []
+    list_2 = i * 2 for number in range(5) # 2, 4, 6, 8
+    ```
 
 * Dictionary Comprehension
-
+  
       ```python
       {key: value for variable in iterable [if conditional statement]}
       dict_2 = {}
@@ -211,14 +211,31 @@ function('argument') # call
   * 한번 쓰고 말 것을 간결하게 쓸 수 있음
 
 * **recursive function**: 스스로를 호출
-  
+
   * **점화식** 등 알고리즘 설계 구현에 유용
-    * 팩토리얼, 피보나치
-  * 변수 이용이 적어져, 함수 이용, **가독성**이 좋아짐
-  * **base case**(종료 상황) 존재, 수렴하도록 작성
+  
+  * 변수 사용을 줄여줘, 함수 이용. 직관적이고 이해하기 쉬워, **가독성**이 좋아짐
+  
+  * **base case**(종료 상황) 반드시 존재, 최종적으로 도달하는 곳
+  
+    ```python
+    def recursive(num):  # 팩토리얼
+        if n == 1:
+            return 1
+        return num * recursive(n - 1)
+
+    def recursive(num):  # 피보나치
+        if num < number:
+            return num
+        else:
+            return recursive(n - 1) + recursive(n - 2)
+    ```
   * *주의 사항*
+    
     * 입력 값과 연산 속도가 반비례 (예외 있기도 함)
+    
     * stack overflow 시 프로그램 동작않음
+    
     * maximum recursion depth가 1000번으로, 호출 횟수가 넘어가면 Recursion Error
       
       ```python
@@ -255,15 +272,19 @@ function('argument') # call
   from package import module as alias 0
   import * # 무거울 수 있으니, 지양해야
   ```
+  
   ```python
   # 예시
   import json
-
-
   opened_json = open('file_name.json', encoding='utf-8')
   data = json.load(opened_json)
-
-  print(data)
+  
+  import requests
+  URL = 'Uniform Resource Locator'
+  params = {
+  'key': 'value',
+  }
+  response = requests.get(URL, params=params).json()
   ```
 
 * library == 다양한 package를 하나의 묶음으로
