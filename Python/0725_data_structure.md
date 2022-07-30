@@ -51,8 +51,6 @@
 
 - isdecimal() ≤ isdigit() ≤ isnumeric()
 
----
-
 ### List
 
 - list.index(a)
@@ -100,15 +98,13 @@
   
   - 모든 항목을 삭제
 
----    
-
 ### Tuple
 
 - extend는 값을 변경하기 때문에 지원하지 않음
 
-------------------------------------------
+---
 
-## Unordered
+## Non-Sequence
 
 ### Set
 
@@ -152,8 +148,6 @@
   
   - set가 t의 상위 set인 경우, True
 
----    
-
 ### Dictionary
 
 - dictionary.clear()
@@ -179,11 +173,11 @@
   
   - dictionary의 여러 key value 추가(덮어쓰기)
 
-------------------------------------------
+---
 
 ## Shallow Copy & Deep Copy
 
-### 복사 방법
+- 복사 방법
 
 - Assignment 할당 = 대입 연산자
   
@@ -204,5 +198,6 @@
     
     ```python
     import copy
+    
     list_b = copy.deepcopy(list_a)
     ```

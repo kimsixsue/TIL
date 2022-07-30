@@ -79,18 +79,18 @@
 
 ## Git 실전
 
-
-  
 ```python
 # 처음 Git 이용 시, Run
 git config --global user.email "깃메일" # 주로 지메일
 git config --global user.name "깃닉네임"
-  ```
+```
+
 ```python
 git clone {remote_repo} # 최초로 local 복사. 설정 (remote 주소 포함) 포함 복제
 git commit -m "add something"
 git push origin master
 ```
+
 ```python
 git init # name convention = origin
 git remote add <repo_name> {remote_repo} # remote_repo는 repository 주소
@@ -98,27 +98,30 @@ git add . # 끝에 붙은 .은 모든 것을 의미
 git commit -m "commit_message" # 자세하게
 git push <repo_name> <local branch> # local -> remote 업로드
 ```
+
 ```python
 git pull <repo_name> <local branch> # git에 버전을 맞춥니다.
 ```
+
 ```python
 git status # Git으로 관리중인 파일 상태
 ```
+
 ```python
 git log # Git commit history
 ```
+
 ```python
 git diff # 두 commit 간 차이
 ```
+
 ```python
 git stash # 수정 사항을 stash 공간으로 이동하고, 가장 최근버전으로 복원
 ```
+
 * .gitignore 파일은 일종의 블랙리스트를 작성
-
+  
   * 그러나 이미 git에서 관리중인 경우, 해당 파일에 작동하지 않음
-
-
-
 
 ----
 

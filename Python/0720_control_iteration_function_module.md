@@ -1,43 +1,51 @@
-# Control Statement
+# Condition, Iteration, Function, Module
 
 ## Control statement
 
 * flowchart로 표현 가능
+
+## 조건문
+
+* Conditional Expression (== Ternary Operator)
   
-  * Conditional Expression (== Ternary Operator)
-    
-    ```python
-    true value if condition else false value
-    ```
+  ```python
+  true value if condition else false value
+  ```
+
 ---
-  ### 반복문
+
+## 반복문
+
+>  **[visualization - https://pythontutor.com/](https://pythontutor.com/)**
+
+### for 문
+
+* enumerate()는 iterable 함수
   
-  >  **[visualization - https://pythontutor.com/](https://pythontutor.com/)**
+  * (index, value) 쌍 tuple 객체 반환
   
-  * enumerate()는 iterable 함수
-    
-    * (index, value) 쌍 tuple 객체 반환
-      
-      ```python
-      for index, value in enumerate(iterable, start=0): # start부터 index값 시작
-          print(index, value)
-      ```
+  ```python
+  for index, value in enumerate(iterable, start=0): # start부터 index값 시작
+    print(index, value)
+  ```
+
+* List Comprehension
   
-  * List Comprehension
-    
-    ```python
-    code for variable in iterable [if conditional statement]
-    list_2 = []
-    list_2 = i * 2 for number in range(5) # 2, 4, 6, 8
-    ```
+  ```python
+  code for variable in iterable [if conditional statement]
+  list_2 = []
+  list_2 = i * 2 for number in range(5) # 2, 4, 6, 8
+  ```
 
 * Dictionary Comprehension
   
-      ```python
-      {key: value for variable in iterable [if conditional statement]}
-      dict_2 = {}
-      dict_2 = {'k': k *2 for k in range(5)} # 1: 2, 2: 4, 3: 6, 4: 8
-      ```
+  ```python
+  {key: value for variable in iterable [if conditional statement]}
+  dict_2 = {}
+  dict_2 = {'k': k *2 for k in range(5)} # 1: 2, 2: 4, 3: 6, 4: 8
+  ```
+
+### 반복문 제어
 
 * for-else
   
@@ -64,11 +72,11 @@
   
   ```python
   def func_name(parameter):
-  """
-  Documentation String
-  """
-  # code block
-  return return_value
+      """
+      Documentation String
+      """
+      # code block
+      return return_value
   ```
 
 ### 함수 Output
@@ -82,6 +90,8 @@
 ```python
 def function(parameter): # def
   return 0
+
+
 function('argument') # call
 ```
 
@@ -94,16 +104,16 @@ function('argument') # call
 * Keyword Argument: 변수명으로 argument 전달 가능
   
   * 다음에 Positional Argument를 넣으면 Error 발생.
-    
-    ```python
-    function(a = 1, 2) # 키워드는 보통 마지막에 몰아서 씀
-    ```
+  
+  ```python
+  function(a = 1, 2) # 키워드는 보통 마지막에 몰아서 씀
+  ```
 
 * Default Arguments Values
   
   ```python
-  def function(a, b=0): # 기본값 지정
-    return 0
+    def function(a, b=0): # 기본값 지정
+      return 0
   ```
 
 * **Asterisk(*)** == [시퀀스] 언패킹 연산자
@@ -129,8 +139,6 @@ function('argument') # call
   * **keyword argument** 수를 알 수 없을 때
   * *dictionary*로 묶여 처리
   * 호출 시 string처럼하면 안됨, *변수나 키워드 인자*처럼
-
----
 
 ### Python의 Scope (범위)
 
@@ -162,8 +170,6 @@ function('argument') # call
     * *이미 존재하는* 식별자와 연결만 가능
 * **주의**
   * 가급적 쓰지 않는 것을 권장하며, 값을 수정하려면 항상 argument로 넘기고 return 값을 쓰는 것을 권장
-
----
 
 ### 함수 응용
 
@@ -211,25 +217,26 @@ function('argument') # call
   * 한번 쓰고 말 것을 간결하게 쓸 수 있음
 
 * **recursive function**: 스스로를 호출
-
+  
   * **점화식** 등 알고리즘 설계 구현에 유용
   
   * 변수 사용을 줄여줘, 함수 이용. 직관적이고 이해하기 쉬워, **가독성**이 좋아짐
   
   * **base case**(종료 상황) 반드시 존재, 최종적으로 도달하는 곳
-  
+    
     ```python
     def recursive(num):  # 팩토리얼
         if n == 1:
             return 1
         return num * recursive(n - 1)
-
+    
     def recursive(num):  # 피보나치
         if num < number:
             return num
         else:
             return recursive(n - 1) + recursive(n - 2)
     ```
+  
   * *주의 사항*
     
     * 입력 값과 연산 속도가 반비례 (예외 있기도 함)
@@ -240,6 +247,7 @@ function('argument') # call
       
       ```python
       import sys
+      
       print(sys.getrecursionlimit()) # 1000
       sys.setrecursionlimit(31415)
       print(sys.getrecursionlimit())
@@ -276,10 +284,14 @@ function('argument') # call
   ```python
   # 예시
   import json
+  
   opened_json = open('file_name.json', encoding='utf-8')
   data = json.load(opened_json)
+  ```
   
+  ```python
   import requests
+  
   URL = 'Uniform Resource Locator'
   params = {
   'key': 'value',
