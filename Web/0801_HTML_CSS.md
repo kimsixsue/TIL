@@ -331,21 +331,21 @@
 
 ### CSS Selectors
 
-- Selectors 선택자 유형
+- **Selectors 선택자 유형**
   
   - 기본 선택자
     
     - 전체 선택자, **요소 선택자**
       
-      - 요소 선택자: HTML 태그를 직접 선택
+      - **요소 선택자**: HTML 태그를 직접 선택
     
     - **클래스 선택자, 아이디 선택자**, 속성 선택자
       
-      - class 클래스 선택자: .(마침표) 문자로 시작하며, 해당 클래스가 적용된 항목을 선택
+      - **class 클래스 선택자: .(마침표) 문자로 시작**하며, 해당 클래스가 적용된 항목을 선택
       
-      - id 아이디 선택자
+      - **id 아이디 선택자**
         
-        - \# 문자로 시작하며, 해당 아이디가 적용된 항목을 선택
+        - **\# 문자로 시작**하며, 해당 아이디가 적용된 항목을 선택
         
         - 일반적으로 하나의 문서에 1번만 사용
         
@@ -363,33 +363,29 @@
     
     - 구조적 의사 클래스, 기타 의사 클래스, 의사 엘리먼트, 속성 선택자
 
-- CSS cascading order 적용 우선순위
+- **CSS cascading order 적용 우선순위**
   
   - CSS 우선순위를 아래와 같이 그룹을 지어볼 수 있다.
     
     1. Importance 중요도 - 사용시 주의
-       
        - !important
-    
-    2- Specificity 우선 순위
-    
-    - 인라인 > id > class, 속성, pseudo-class > 요소, pseudo-element
-    
-    3- CSS 파일 로딩 순서
+    2. Specificity 우선 순위
+       - 인라인 > id > class, 속성, pseudo-class > 요소, pseudo-element
+    3. CSS 파일 로딩 순서
 
-- CSS 상속
+- **CSS 상속**
   
   - CSS는 상속을 통해 부모 요소의 속성을 자식에게 상속한다.
     
     - 속성(프로퍼티) 중에는 상속이 되는 것과 되지 않는 것들이 있다.
     
-    - 상속 되는 것 예시
+    - **상속 되는 것 예시**
       
-      - Text 관련 요소(font, color, text-align), opacity, visibility 등
+      - **Text 관련 요소**(font, color, text-align), opacity, visibility 등
     
     - 상속 되지 않는 것 예시
       
-      - Box model 관련 요소(width, height, margin, padding, border, box-sizing, display), position 관련 요소(position, top/right/bottom/left, z-index) 등
+      - **Box model** 관련 요소(width, height, margin, padding, border, box-sizing, display), position 관련 요소(position, top/right/bottom/left, z-index) 등
 
 ### CSS 기본 스타일
 
@@ -413,13 +409,13 @@
     
     - (바로 위, **부모** 요소에 대한) 상속의 영향을 받음
     
-    - 배수 단위, 요소에 지정된 사이즈에 상대적인 사이를 가짐
+    - **배수** 단위, 요소에 지정된 사이즈에 상대적인 사이를 가짐
   
   - rem
     
     - (바로 위, **부모** 요소에 대한) 상속의 영향을 받지 않음
     
-    - 최상위 요소(html)의 사이즈를 기준으로 배수 단위를 가짐
+    - 최상위 요소(html)의 사이즈를 기준으로 **배수** 단위를 가짐
 
 - 크기 단위(**viewport**)
   
@@ -427,7 +423,7 @@
   
   - 디바이스의 **viewport**를 기준으로 **상대적인 사이즈가 결정됨**
   
-  - vw, vh, vmin, vmax
+  - **vw, vh**, vmin, vmax
   
   - px는 브라우저의 크기를 변경해도 그대로
   
@@ -439,21 +435,21 @@
     
     - 대소문자를 구분하지 않음
     
-    - red, black 과 같은 특정 색을 직접 글자로 나타냄
+    - **red, black** 과 같은 특정 색을 직접 글자로 나타냄
   
-  - RGB 색상(background-color: rgb(0, 255, 0);)
+  - **RGB 색상**(background-color: rgb(0, 255, 0);)
     
     - 16진수 표기법 혹은 함수형 표기법을 사용해서 특정 색을 표현하는 방식
     
     - **'#' + 16진수 표기법**
     
     - rgb() 함수형 표기법
+    
+    - a는 alpha(투명도)
   
   - HSL 색상(background-color: hsl(0, 100%, 50%);)
     
     - 색상, 채도, 명도를 통해 특정 색을 표현하는 방식
-  
-  - a는 alpha(투명도)
 
 - CSS 문서 표현
   
@@ -473,21 +469,21 @@
 
 - Combinators 결합자
   
-  - **자손** 결합자(공백)
+  - **자손 결합자**(공백)
     
-    - selectorA 하위의 모든 selectorB 요소
+    - selectorA **하위의** 모든 selectorB 요소
   
-  - **자식** 결합자(>)
+  - **자식 결합자**(>)
     
-    - selectorA 바로 아래의 모든 sectorB 요소
+    - selectorA **바로 아래의** 모든 sectorB 요소
   
-  - 일반 형제 결합자(~)
+  - **일반 형제 결합자**(~)
     
-    - selectorA의 형제 요소 중 뒤에 위치하는 selectorB 요소를 모두 선택
+    - selectorA의 형제 요소 중 뒤에 위치하는 selectorB 요소를 **모두** 선택
   
-  - 인접 형제 결합자(+)
+  - **인접 형제 결합자**(+)
     
-    - selectorA의 형제 요소 중 바로 뒤에 위치하는 selectorB 요소를 선택
+    - selectorA의 형제 요소 중 **바로** 뒤에 위치하는 selectorB 요소를 선택
 
 -----
 
@@ -495,7 +491,7 @@
 
 - CSS 원칙
   
-  - 모든 요소는 **네모**(**박스모델**)이고, 위에서부터 아래로, 왼쪽에서 오른쪽으로 쌓인다. (좌측 상단에 배치)
+  - 모든 요소는 **네모**(**박스모델**)이고, **위에서부터 아래로**, **왼쪽에서 오른쪽으로** **쌓인다**. (좌측 상단에 배치)
 
 - Box model
   
@@ -503,48 +499,48 @@
   
   - 하나의 박스는 네 부분(영역)으로 이루어짐
 
-- Box model 구성
+- **Box model 구성**
   
   - margin
     
-    - 테두리 바깥의 외부 여백
+    - 테두리 **바깥**의 외부 **여백**
     
     - 배경색을 지정할 수 없다
     
     - -top -right -bottom -left
     
-    - shorthand 표현
+    - **shorthand 표현**
       
       - 10px 상우하좌
       
-      - 10px 20px 상하 좌우
+      - 10px 20px **상하 좌우**
       
-      - 10px 20px 30px 상 좌우 하
+      - 10px 20px 30px **상 좌우 하**
       
-      - 10px 20px 30px 40px 상 우 하 좌
+      - 10px 20px 30px 40px **상 우 하 좌**
   
   - border
     
-    - 테두리 영역
+    - **테두리** 영역
     - -width -style -color
-    - shorthand 표현
+    - **shorthand 표현**
       - border: 2px dashed black;
   
   - padding
     
-    - 테두리 안쪽의 내부 여백 요소에 적용된 배경색
+    - 테두리 안쪽의 **내부 여백** 요소에 적용된 배경색
     
     - 이미지는 padding 까지 적용
   
   - content
     
-    - 글이나 이미지 등 요소의 실제 내용
+    - **글이나 이미지 등 요소의 실제 내용**
 
-- box-sizing
+- **box-sizing**
   
   - 기본적으로 모든 요소의 box-sizing은 **content-box**
-    - Padding을 제외한 순수 contents 영역만을 box로 지정
-  - 다만, 우리가 일반적으로 영역을 볼 때는 border까지의 너비를 100px 보는 것을 원함
+    - Padding을 제외한 **순수 contents 영역만**을 box로 지정
+  - 다만, 우리가 일반적으로 영역을 볼 때는 **border까지**의 너비를 100px 보는 것을 원함
     - 그 경우 box-sizing을 **border-box**로 설정
 
 ### CSS Display
@@ -577,28 +573,28 @@
   
   * 대표적인 블록 레벨 요소
     
-    * div / ul, ol li / p / hr / form 등
+    * **div** / ul, ol li / p / hr / form 등
   
   * 대표적인 인라인 레벨 요소
     
-    * span / a / img / input, label / b, em, i, strong 등
+    * **span** / a / img / input, label / b, em, i, strong 등
 
 * block
   
   * 기본 너비는 가질 수 있는 너비의 100%
   
-  * 너비를 가질 수 없다면 자동으로 부여되는 margin
+  * **너비를 가질 수 없다면 자동으로 부여되는 margin**
 
 * inline
   
-  * 기본 너비는 컨텐츠 영역만큼
+  * **기본 너비는 컨텐츠 영역만큼**
 - 속성에 따른 수평 정렬
   
-  - margin-right: auto; 글자가 오른쪽
+  - margin-right: auto; 글자가 왼쪽
   
-  - margin-left: auto; 글자가 왼쪽
+  - margin-left : auto; 글자가 오른쪽
   
-  - margin-left: auto; margin-right: auto; 글자가 가운데
+  - margin-lef t: auto; margin-right: auto; 글자가 가운데
   
   - text-align은 div 등 블럭 부모 요소에 넣어줘야
 
@@ -610,11 +606,11 @@
     
     - inline처럼 한 줄에 표시할 수 있고, block처럼 width, height, margin 속성을 모두 지정할 수 있음
   
-  - display: none
+  - display: **none**
     
-    - 해당 요소를 화면에 표시하지 않고, 공간조차 부여되지 않음
+    - **해당 요소를 화면에 표시하지 않고, 공간조차 부여되지 않음**
     
-    - 이와 비슷한 visibility: hidden은 해당 요소가 공간은 차지하나 화면에 표시만 하지 않는다.
+    - 이와 비슷한 **visibility: hidden**은 해당 요소가 **공간은 차지**하나 화면에 표시만 하지 않는다.
   
   - 이외 다양한 display 속성은 [display - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/ko/docs/Web/CSS/display)
 
