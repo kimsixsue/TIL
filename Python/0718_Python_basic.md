@@ -120,8 +120,8 @@
     
     ```python
     # and 연산에서 첫 값이 False면, 첫 값 return
-    False & True  # False
-    False & False # False
+    False and True  # False
+    False and False # False
     
     # or 연산에서 첫 값이 True면, 첫 값 return
     True or False # True
