@@ -71,6 +71,8 @@
   
   - 마크업 스타일 가이드(**2 space**)
 
+-----
+
 ### HTML 기본구조
 
 - **html** : 문서의 최상위(root) 요소
@@ -325,6 +327,8 @@
   
   - computed : 해당 요소에 최종 계산된 CSS
 
+-------
+
 ### CSS Selectors
 
 - Selectors 선택자 유형
@@ -485,6 +489,8 @@
     
     - selectorA의 형제 요소 중 바로 뒤에 위치하는 selectorB 요소를 선택
 
+-----
+
 ### CSS Box model
 
 - CSS 원칙
@@ -611,6 +617,8 @@
     - 이와 비슷한 visibility: hidden은 해당 요소가 공간은 차지하나 화면에 표시만 하지 않는다.
   
   - 이외 다양한 display 속성은 [display - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/ko/docs/Web/CSS/display)
+
+-----------
 
 ### CSS Position
 
