@@ -68,12 +68,12 @@
 
 * 기본 구조
 
-* **def**ine&call, input, docstring, scope, output
+* **def**ine&call, docstring, output, input, scope
   
   ```python
-  def func_name(parameter):
+  def func_name(parameter):  # define
       """
-      Documentation String
+      Documentation String  # docstring
       """
       # code block
       return return_value

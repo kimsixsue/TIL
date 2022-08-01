@@ -82,7 +82,7 @@
 
 ### Numeric Type
 
-* **float point 부동 소수점
+* float point 부동 소수점
   
   * Floating point rounding error
     * 실수 값을 처리할 때 정확하지 않은 값이 나올 수 있음
@@ -103,7 +103,10 @@
   ```python
   print(f'Hello, {변수명}!') # 변수명 값이 들어간 형태로 출력
   ```
-* **None** 타입은 값이 없음을 표현합니다.
+
+### None
+
+- 값이 없음을 표현합니다.
 
 ### Boolean
 
