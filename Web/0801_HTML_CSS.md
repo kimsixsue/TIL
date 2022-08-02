@@ -23,6 +23,8 @@
 
 - 어떤 브라우저든 웹 페이지가 동일하게 보이도록 함(**크로스 브라우징**)
 
+- W3C, WHATWG
+
 ### 개발 환경 설정
 
 - Visual Studio Code
@@ -53,7 +55,7 @@
 
 - **Hyper Text**
   
-  - 참조(하이퍼링크)를 통해 사용자가 한 문서에서 다른 문서로 즉시 접근할 수 있는 텍스트
+  - **참조(하이퍼링크)를 통해** 사용자가 **한 문서에서 다른 문서로** 즉시 접근할 수 있는 텍스트
 
 - **Markup Language**
   
@@ -90,44 +92,44 @@
   
   - 실제 화면 구성과 관련된 내용
 
-- element(요소)
+- **element(요소)**
   
   - HTML의 요소는 태그와 contents(내용)로 구성되어 있다.
-  - HTML 요소는 시작 태그와 종료 태그 그리고 태그 사시에 위치한 내용으로 구성
+  - HTML 요소는 **시작 태그와 종료** 태그 그리고 태그 사이에 위치한 내용으로 구성
     - 요소는 태그로 컨텐츠(내용)을 감싸는 것으로 그 정보의 성격과 의미를 정의
-    - 내용이 없는 태그들도 존재(닫는 태그가 없음)
+    - **내용이 없는 태그**들도 존재(닫는 태그가 없음)
       - br, hr, img, input, link, meta
   - 요소는 **nested**(**중첩**)될 수 있음
     - 요소의 중첩을 통해 하나의 문서를 구조화
     - 여는 태그와 닫는 태그의 쌍을 잘 확인해야함
       - 오류를 반환하는 것이 아닌 그냥 레이아웃이 깨진 상태로 출력되기 때문에, 디버깅이 힘들어 질 수 있음
 
-- attribute(속성)
+- **attribute(속성)**
   
-  - 태그 별로 사용할 수 있는 속성은 다르다.
+  - **태그 별로 사용할 수 있는 속성은 다르다.**
   - **공백은 No**, **쌍따옴표 사용**
-  - 속성을 통해 태그의 부가적인 정보를 설정할 수 있음
-  - 요소는 속성을 가질 수 있으며, 경로나 크기와 같은 추가적인 정보를 제공
-  - 요소의 시작 태그에 작성하며 보통 이름과 값이 하나의 쌍으로 존재
+  - 속성을 통해 태그의 **부가적인 정보를 설정**할 수 있음
+  - **요소**는 속성을 가질 수 있으며, 경로나 크기와 같은 추가적인 정보를 제공
+  - 요소의 **시작 태그에 작성**하며 **보통 이름과 값이 하나의 쌍으로 존재**
   - 태그와 상관없이 사용 가능한 속성(HTML Gloabl Attribute)들도 있음
   - HTML Global Attribute
     - 모든 HTML요소가 공통으로 사용할 수 있는 대표적인 속성 (몇몇 요소에는 아무 효과가 없을 수 있음)
       - id : 문서 전체에서 유일한 고유 식별자 지정
       - **class** : 공백으로 구분된 해당 요소의 클래스의 목록 (CSS, JS에서 요소를 선택하거나 접근)
-      - data-* : 페이지에 개인 사용자 정의 데이터를 저장하기 위해 사용
+      - **data-*** : 페이지에 개인 사용자 정의 데이터를 저장하기 위해 사용
       - style : inline 스타일
-      - title : 요소에 대한 추가 정보 지정
+      - title : 요소에 대한 **추가 정보 지정**
       - tabindex : 요소의 탭 순서
 
-- 시맨틱 태그
+- **시맨틱 태그**
   
   - HTML 태그가 특정 목적, 역할 및 semantic value(**의미**적 가치)를 가지는 것
     
     - 예를 들어 **h1** 태그는 "이 페이지에서 최상위 제목"인 텍스트를 감싸는 역할(또는 의미)을 나타냄
   
-  - Non semantic 요소로는  div, span 등이 있으며 a, form, table 태그들도 시맨틱 태그로 볼 수 있음
+  - Non semantic 요소로는  div, span 등이 있으며 a, form, **table** 태그들도 시맨틱 태그로 볼 수 있음
   
-  - HTML5에서는 기존에 단순히 콘텐츠의 구획을 나타내기 위해 사용한 *div* 태그를 대체하여 사용하기 위해 **의미**론적 요소를 담은 태그들이 추가됨
+  - **HTML5**에서는 기존에 단순히 콘텐츠의 구획을 나타내기 위해 사용한 *div* 태그를 대체하여 사용하기 위해 **의미론적 요소**를 담은 **태그**들이 추가됨
   
   - 대표적인 시맨틱 태그 목록
     
@@ -148,7 +150,7 @@
       
       - 요소의 의미가 명확해지기 때문에 코드의 가독성을 높이고 유지보수를 쉽게 함
       
-      - **SEO**(**검색엔진최적화**)를 위해서 메타태그, 시맨틱 태그 등을 통한 마크업을 효과적으로 활용 해야함
+      - **SEO**(**검색엔진최적화**)를 위해서 메타태그, 시맨틱 태그 등을 통한 **마크업을 효과적으로 활용 해야함**
 
 - Rendering(렌더링)
   
@@ -160,7 +162,7 @@
     
     - HTML 문서에 대한 모델을 구성함
     
-    - HTML 문서 내의 각 요소에 접근 / 수정에 필요한 프로퍼티와 메서드를 제공함
+    - HTML 문서 내의 각 요소에 접근 / 수정에 필요한 **프로퍼티와 메서드**를 제공함
 
 ---
 
@@ -174,7 +176,7 @@
   
   - 블록 요소는 **한 줄** 모두 사용
 
-- **인라인 요소**
+- **인라인 요소 / 텍스트 요소**
   
   | 태그                                          | 설명                                                |
   | ------------------------------------------- | ------------------------------------------------- |
@@ -185,7 +187,7 @@
   | < **img** >                                 | src 속성을 활용하여 이미지 표현                               |
   | <**span**></**span**>                       | 의미 없는 인라인 컨테이너                                    |
 
-- 블록 요소
+- **블록 요소 / 그룹 컨텐츠**
   
   | 태그                                      | 설명                                                             |
   | --------------------------------------- | -------------------------------------------------------------- |
@@ -198,15 +200,15 @@
 
 - **form**
   
-  - 정보(데이터)를 서버에 **제출**하기 위해 사용하는 태그
+  - **정보(데이터)를 서버에 제출하기 위해 사용하는 태그**
   
   - 기본 속성
     
-    - action : form을 처리할 서버의 URL(**데이터를 보낼 곳**)
+    - **action**: form을 처리할 서버의 URL(**데이터를 보낼 곳**)
     
-    - method : form을 제출할 때 사용할 HTTP 메서드 (GET 혹은 **POST**)
+    - **method**: form을 제출할 때 사용할 HTTP 메서드 (GET 혹은 **POST**)
     
-    - enctype : method가 post인 경우 데이터의 유형
+    - **enctype**: method가 post인 경우 데이터의 유형
       
       - application/x-www-form-urlencoded : **기본값**
       
@@ -216,7 +218,7 @@
 
 - **input**
   
-  - 다양한 타입을 가지는 입력 데이터 유형과 위젯이 제공됨
+  - 다양한 타입을 가지는 입력 데이터 유형과 **위젯**이 제공됨
   
   - 대표적인 속성
     
@@ -224,9 +226,9 @@
     
     - value : form control에 적용되는 값 (이름/값 페어로 전송됨)
     
-    - required, readonly, autofocus, autocom plete, disabled 등
+    - **단일 속성** required, readonly, autofocus, autocom plete, disabled 등 
   
-  - input label
+  - input **label**
     
     - label을 클릭하여 input 자체의 초점을 맞추거나 활성화 시킬 수 있음
       
@@ -236,7 +238,7 @@
     
     - input 에 id 속성을, label 에는 for 속성을 활용하여 상호 연관을 시킴
   
-  - input 유형 - 일반
+  - **input 유형** - 일반
     
     - 일반적으로 유형을 입력받기 위하여 제공되며 타입별로 HTML 기본 검증 혹은 추가 속성을 활용할 수 있음
       
@@ -250,7 +252,7 @@
       
       - file : accept 속성을 활용하여 파일 타입 지정 가능
   
-  - input 유형 - 항목 중 선택
+  - **input 유형** - 항목 중 선택
     
     - 일반적으로 label 태그와 함께 사용하여 선택 항목을 작성함
     
@@ -260,7 +262,7 @@
       
       - radio : 단일 선택
   
-  - input 유형 - 기타
+  - **input 유형** - 기타
     
     - 다양한 종류의 input을 위한 picker를 제공
       
@@ -272,7 +274,7 @@
       
       - hidden : 사용자에게 보이지 않는 input
   
-  - input 유형 - 종합
+  - **input 유형** - 종합
     
     - input 요소의 동작은 type에 따라 달라지므로, 각각의 내용을 숙지할 것
       
@@ -282,7 +284,7 @@
 
 ## CSS
 
-* Cascading Style Sheets
+* **Cascading Style Sheets**
 
 * 스타일을 **지정하기 위한 언어**
 
@@ -320,6 +322,11 @@
   - 외부 참조(**link** file) - 분리된 CSS 파일
     
     - 가장 많이 쓰는 방식
+      
+      ```html
+      <!-- html head -->
+      <link rel="stylesheet" href="경로">
+      ```
 
 - CSS with 개발자 도구
   
@@ -333,11 +340,11 @@
 
 - **Selectors 선택자 유형**
   
-  - 기본 선택자
+  - **기본 선택자**
     
     - 전체 선택자, **요소 선택자**
       
-      - **요소 선택자**: HTML 태그를 직접 선택
+      - **요소 선택자**: HTML **태그를 직접 선택**
     
     - **클래스 선택자, 아이디 선택자**, 속성 선택자
       
@@ -347,11 +354,11 @@
         
         - **\# 문자로 시작**하며, 해당 아이디가 적용된 항목을 선택
         
-        - 일반적으로 하나의 문서에 1번만 사용
+        - **일반적으로 하나의 문서에 1번만 사용**
         
         - 여러 번 사용해도 동작하지만, 단일 id를 사용하는 것을 권장
   
-  - Combinators 결합자
+  - **Combinators 결합자**
     
     - 자손 결합자, 자식 결합자
     
@@ -362,16 +369,18 @@
     - 링크, 동적 의사 클래스
     
     - 구조적 의사 클래스, 기타 의사 클래스, 의사 엘리먼트, 속성 선택자
+      
+      - [:nth-child()](https://developer.mozilla.org/ko/docs/Web/CSS/:nth-child), [:nth-of-type()]([:nth-of-type() - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-of-type)) 등 
 
 - **CSS cascading order 적용 우선순위**
   
   - CSS 우선순위를 아래와 같이 그룹을 지어볼 수 있다.
     
-    1. Importance 중요도 - 사용시 주의
-       - !important
+    1. Importance **중요도** - 사용시 주의
+       - **!important**
     2. Specificity 우선 순위
-       - 인라인 > id > class, 속성, pseudo-class > 요소, pseudo-element
-    3. CSS 파일 로딩 순서
+       - **Inline Style** > **id 선택자** > **class 선택자**, 속성, pseudo-class > **요소 선택자**, pseudo-element
+    3. **CSS 파일 로딩 순서, 소스 순서**
 
 - **CSS 상속**
   
@@ -385,7 +394,7 @@
     
     - 상속 되지 않는 것 예시
       
-      - **Box model** 관련 요소(width, height, margin, padding, border, box-sizing, display), position 관련 요소(position, top/right/bottom/left, z-index) 등
+      - **Box model** 관련 요소(width, height, margin, padding, border, box-sizing, display), **position** 관련 요소(position, top/right/bottom/left, z-index) 등
 
 ### CSS 기본 스타일
 
@@ -405,13 +414,13 @@
     
     - 가변적인 레이아웃에서 자주 사용
   
-  - em
+  - **em**
     
     - (바로 위, **부모** 요소에 대한) 상속의 영향을 받음
     
     - **배수** 단위, 요소에 지정된 사이즈에 상대적인 사이를 가짐
   
-  - rem
+  - **rem**
     
     - (바로 위, **부모** 요소에 대한) 상속의 영향을 받지 않음
     
@@ -419,9 +428,9 @@
 
 - 크기 단위(**viewport**)
   
-  - 웹 페이지를 방문한 유저에게 바로 보이게 되는 웹 컨텐츠의 영역 (디바이스 화면)
+  - 웹 페이지를 방문한 유저에게 바로 보이게 되는 웹 컨텐츠의 영역 (**디바이스 화면**)
   
-  - 디바이스의 **viewport**를 기준으로 **상대적인 사이즈가 결정됨**
+  - **디바이스**의 **viewport**를 기준으로 **상대적인 사이즈가 결정됨**
   
   - **vw, vh**, vmin, vmax
   
@@ -429,7 +438,7 @@
   
   - vw는 브라우저의 크기에 따라 크기가 변함
 
-- 색상 단위
+- 색상 단위 
   
   - **색상 키워드**(background-color: red;)
     
@@ -467,23 +476,47 @@
 
 ### Selectors 심화
 
-- Combinators 결합자
+- **Combinators 결합자**
   
   - **자손 결합자**(공백)
     
-    - selectorA **하위의** 모든 selectorB 요소
+    - selectorA **하위의 모든** selectorB 요소
+      
+      ```css
+      div span {
+          color: black;
+      }
+      ```
   
   - **자식 결합자**(>)
     
-    - selectorA **바로 아래의** 모든 sectorB 요소
+    - selectorA **바로 아래의 모든** sectorB 요소
+      
+      ```css
+      div > span {
+          color : black;
+      }
+      ```
   
   - **일반 형제 결합자**(~)
     
-    - selectorA의 형제 요소 중 뒤에 위치하는 selectorB 요소를 **모두** 선택
+    - selectorA의 형제 요소 중 **뒤에 위치하는** selectorB 요소를 **모두** 선택
+      
+      ```css
+      p ~ span {
+          color: black;
+      }
+      ```
   
   - **인접 형제 결합자**(+)
     
-    - selectorA의 형제 요소 중 **바로** 뒤에 위치하는 selectorB 요소를 선택
+    - selectorA의 형제 요소 중 **바로 뒤에 위치하는** selectorB **요소를** 선택
+      
+      ```css
+      p + span {
+          color: black;
+      }
+      ```
 
 -----
 
@@ -491,7 +524,7 @@
 
 - CSS 원칙
   
-  - 모든 요소는 **네모**(**박스모델**)이고, **위에서부터 아래로**, **왼쪽에서 오른쪽으로** **쌓인다**. (좌측 상단에 배치)
+  - 모든 요소는 **네모**(**박스모델**)이고, **위에서부터 아래로**, **왼쪽에서 오른쪽으로** **쌓인다**. **Normal Flow** (좌측 상단에 배치) 
 
 - Box model
   
@@ -503,26 +536,16 @@
   
   - margin
     
-    - 테두리 **바깥**의 외부 **여백**
+    - 테두리 **바깥**의 **외부 여백**
     
     - 배경색을 지정할 수 없다
     
     - -top -right -bottom -left
-    
-    - **shorthand 표현**
-      
-      - 10px 상우하좌
-      
-      - 10px 20px **상하 좌우**
-      
-      - 10px 20px 30px **상 좌우 하**
-      
-      - 10px 20px 30px 40px **상 우 하 좌**
   
-  - border
+  - **border**
     
     - **테두리** 영역
-    - -width -style -color
+    - **-color -style -width**
     - **shorthand 표현**
       - border: 2px dashed black;
   
@@ -532,6 +555,16 @@
     
     - 이미지는 padding 까지 적용
   
+  - margin/padding **shorthand 표현**
+    
+    - 10px 상우하좌
+    
+    - 10px 20px **상하 좌우**
+    
+    - 10px 20px 30px **상 좌우 하**
+    
+    - 10px 20px 30px 40px **상 우 하 좌**
+  
   - content
     
     - **글이나 이미지 등 요소의 실제 내용**
@@ -539,9 +572,26 @@
 - **box-sizing**
   
   - 기본적으로 모든 요소의 box-sizing은 **content-box**
+    
     - Padding을 제외한 **순수 contents 영역만**을 box로 지정
-  - 다만, 우리가 일반적으로 영역을 볼 때는 **border까지**의 너비를 100px 보는 것을 원함
+      
+      ```css
+      .box-sizning {
+          width: 100px;
+          box-sizing: content-box;
+      }
+      ```
+  
+  - 다만, 우리가 일반적으로 영역을 볼 때는 **border까지**의 **너비**를 100px 보는 것을 원함
+    
     - 그 경우 box-sizing을 **border-box**로 설정
+      
+      ```css
+      .box-sizing {
+          width: 100px;
+          box-sizing: border-box;
+      }
+      ```
 
 ### CSS Display
 
@@ -549,23 +599,23 @@
 
 * 대표적으로 활용되는 display
   
-  * display: block
+  * display: **block**
     
     * **줄 바꿈이 일어나는 요소**
     
-    * 화면 크기 전체의 가로 폭을 차지한다.
+    * 화면 크기 전체의 **가로 폭**을 차지한다.
     
-    * 블록 레벨 요소 안에 인라인 레벨 요소가 들어갈 수 있음.
+    * 블록 레벨 요소 안에 인라인 레벨 요소가 **들어갈 수 있음.**
   
-  * display: inline
+  * display: **inline**
     
-    * 줄 바꿈이 일어나지 않는 행의 일부 요소
+    * 줄 바꿈이 일어나지 않는 행의 **일부 요소**
     
-    * content 너비만큼 가로 폭을 차지한다.
+    * content **너비**만큼 가로 폭을 차지한다.
     
-    * width, height, margin-top, margin-bottom을 지정할 수 없다.
+    * width, height, **margin-top, margin-bottom**을 지정할 수 **없다.**
     
-    * 상하 여백은 line-height로 지정한다.
+    * 상하 여백은 **line-height로 지정**한다.
 
 * 블록 레벨 요소와 인라인 레벨 요소
   
@@ -575,9 +625,9 @@
     
     * **div** / ul, ol li / p / hr / form 등
   
-  * 대표적인 인라인 레벨 요소
+  * 대표적인 **인라인 레벨 요소**
     
-    * **span** / a / img / input, label / b, em, i, strong 등
+    * **span / a / img / input, label / b, em, i, strong** 등
 
 * block
   
@@ -590,27 +640,27 @@
   * **기본 너비는 컨텐츠 영역만큼**
 - 속성에 따른 수평 정렬
   
-  - margin-right: auto; 글자가 왼쪽
+  - margin-right: auto; text-align: left;
   
-  - margin-left : auto; 글자가 오른쪽
+  - margin-left : auto; text-align: right;
   
-  - margin-lef t: auto; margin-right: auto; 글자가 가운데
+  - margin-lef t: auto; margin-right: auto; text-align: center;
   
   - text-align은 div 등 블럭 부모 요소에 넣어줘야
 
 - display
   
-  - display: inline-block
+  - display: **inline-block**
     
     - block과 inline 레벨 요소의 특징을 모두 가짐
     
-    - inline처럼 한 줄에 표시할 수 있고, block처럼 width, height, margin 속성을 모두 지정할 수 있음
+    - inline처럼 한 줄에 표시할 수 있고, block처럼 **width, height, margin** 속성을 **모두 지정**할 수 있음
   
-  - display: **none**
+  - **display: none**
     
     - **해당 요소를 화면에 표시하지 않고, 공간조차 부여되지 않음**
     
-    - 이와 비슷한 **visibility: hidden**은 해당 요소가 **공간은 차지**하나 화면에 표시만 하지 않는다.
+    - 이와 비슷한 **visibility: hidden**은 해당 요소가 **공간은 차지**하나 **화면**에 표시만 하지 않는다.
   
   - 이외 다양한 display 속성은 [display - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/ko/docs/Web/CSS/display)
 
@@ -620,37 +670,63 @@
 
 - 문서 상에서 요소의 위치를 지정
 
-- static : 모든 태그의 기본 값(기본 위치)
+- **static** : 모든 태그의 기본 값(기본 위치)
   
-  - 일반적인 요소의 배치 순서에 따름(좌측 상단)
+  - **일반적인 요소의 배치 순서에 따름**(좌측 상단)
   
   - 부모 요소 내에서 배치될 때는 부모 요소의 위치를 기준으로 배치 됨
 
-- 아래는 좌표 프로퍼티(top, bottom, left, right)를 사용하여 이동 가능
+- 아래는 **좌표 프로퍼티**(**top, bottom, left, right**)를 **사용하여 이동 가능**
   
   1. **relative 상대 위치**
      
-     - 자기 자신의 static 위치를 기준으로 이동 (normal flow 유지)
+     - **자기 자신**의 static **위치를 기준으로 이동** (normal flow **유지**)
      
-     - 레이아웃에서 요소가 차지하는 공간은 static일 때와 같음 (**normal position 대비 offset**)
+     - **레이아웃에서 요소가 차지하는 공간**은 static일 때와 **같음** (**normal position 대비 offset**)
+       
+       ```css
+       .relative {
+           position: relative;
+       }
+       ```
   
   2. **absolute 절대 위치**
      
-     - 요소를 일반적인 문서 흐름에서 제거 후 레이아웃에 공간을 차지하지 않음 (**normal flow에서 벗어남**)
+     - 요소를 **일반적인 문서 흐름에서 제거**(**내 위치 X**) 후 레이아웃에 **공간을 차지하지 않음 (normal flow에서 벗어남)**
      
-     - static이 아닌 가장 가까이 있는 **부모/조상 요소를 기준으로 이동** (없는 경우 브라우저 화면 기준으로 이동)
+     - **static이 아닌** 가장 가까이 있는 **부모/조상 요소를 기준으로 이동** (없는 경우 브라우저 화면 body tag 기준으로 이동)
+     
+     - 특정 영역에 존재 - 부모를 기준으로 위치
+       
+       - 부모를 **relative**로 만들고 이동
+         
+         ```css
+         .parent {
+             position: relative;
+         }
+         
+         .absolute-child {
+             position: absolute;
+         }
+         ```
   
   3. **fixed 고정 위치**
      
-     - 요소를 일반적인 문서 흐름에서 제거 후 레이아웃에 공간을 차지하지 않음 (**normal flow에서 벗어남**)
+     - 요소를 **일반적인 문서 흐름에서 제거** 후 레이아웃에 공간을 차지하지 않음 (**normal flow에서 벗어남**)
      
      - 부모 요소와 관계없이 **viewport를 기준으로 이동**
        
-       - 스크롤 시에도 항상 같은 곳에 위치함
+       - **스크롤 시에도 항상 같은 곳에 위치함**
+         
+         ```css
+         .fixed {
+             position: fixed;
+         }
+         ```
   
   4. **sticky 스크롤에 따라 static -> fixed로 변경**
      
-     - 속성을 적용한 박스는 평소에 문서 안에서 position: static 상태와 같이 일반적인 흐름에 따르지만 스크롤 위치가 임계점에 이르면 position: fixed와 같이 박스를 화면에 고정할 수 있는 속성
+     - 속성을 적용한 박스는 평소에 문서 안에서 position: static 상태와 같이 **일반적인 흐름**에 따르지만 **스크롤 위치가 임계점에 이르면 position: fixed와 같이** 박스를 **화면에 고정할** 수 있는 속성
 
 - **CSS 원칙**
   
