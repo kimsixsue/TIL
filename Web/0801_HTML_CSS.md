@@ -638,13 +638,13 @@
 * inline
   
   * **기본 너비는 컨텐츠 영역만큼**
-- 속성에 따른 수평 정렬
+- *속성에 따른 수평 정렬 - 제대로 작동하지 않는 경우 있음*
   
-  - margin-right: auto; text-align: left;
+  - *margin-right: auto; text-align: left;* 
   
-  - margin-left : auto; text-align: right;
+  - *margin-left : auto; text-align: right;*
   
-  - margin-lef t: auto; margin-right: auto; text-align: center;
+  - margin-left: auto; margin-right: auto; text-align: center;
   
   - text-align은 div 등 블럭 부모 요소에 넣어줘야
 
