@@ -370,7 +370,7 @@
     
     - 구조적 의사 클래스, 기타 의사 클래스, 의사 엘리먼트, 속성 선택자
       
-      - [:nth-child()](https://developer.mozilla.org/ko/docs/Web/CSS/:nth-child), [:nth-of-type()]([:nth-of-type() - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-of-type)) 등 
+      - [:nth-child()](https://developer.mozilla.org/ko/docs/Web/CSS/:nth-child), [:nth-of-type()](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-of-type) 등 
 
 - **CSS cascading order 적용 우선순위**
   
@@ -494,7 +494,7 @@
       
       ```css
       div > span {
-          color : black;
+          color: black;
       }
       ```
   
@@ -640,13 +640,13 @@
   * **기본 너비는 컨텐츠 영역만큼**
 - *속성에 따른 수평 정렬 - 제대로 작동하지 않는 경우 있음*
   
-  - *margin-right: auto; text-align: left;* 
+  - *margin-right: auto; text-align: left; *
   
   - *margin-left : auto; text-align: right;*
   
-  - margin-left: auto; margin-right: auto; text-align: center;
+  - *margin-left: auto; margin-right: auto; text-align: center;*
   
-  - text-align은 div 등 블럭 부모 요소에 넣어줘야
+  - *text-align은 div 등 블럭 부모 요소에 넣어줘야*
 
 - display
   

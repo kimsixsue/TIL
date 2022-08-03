@@ -110,7 +110,7 @@
     
     - **justify-content** (**main axis**)
       
-      - **Main axis**를 기준으로 **공간 배분
+      - **Main axis**를 기준으로 공간 배분
     
     - **align-content** (**cross axis**)
       
@@ -247,25 +247,25 @@
   
   - 기본 제공된 Components를 변환해서 활용
   
+  - [Form controls](https://getbootstrap.com/docs/5.2/forms/form-control/)
+    
+    - form-control 클래스를 사용해 \<input> 및 \<form> 태그를 스타일링할 수 있습니다.
+  
   - [Buttons](https://getbootstrap.com/docs/5.2/components/buttons/)
     
     - 클릭 했을 때 어떤 동작이 일어나도록 하는 요소
   
-  - [Dropdowns](https://getbootstrap.com/docs/5.2/components/dropdowns/)
-    
-    - dropdown, dropdown-menu, dropdown-item 클래스를 활용해 옵션 메뉴를 만들 수 있습니다.
+  - [Cards](https://getbootstrap.com/docs/5.2/components/card/#grid-cards)
   
-  - [Form controls](https://getbootstrap.com/docs/5.2/forms/form-control/)
-    
-    - form-control 클래스를 사용해 <input> 및 <form> 태그를 스타일링할 수 있습니다.
-  
-  - [Navbar](https://getbootstrap.com/docs/5.2/components/navbar/)
-    
-    - navbar 클래스르 활용하면 네비게이션 바를 제작할 수 있습니다.
+    - 화면이 작아지면 1줄에 표시되는 카드의 개수가 줄어듬
   
   - [Carousel](https://getbootstrap.com/docs/5.2/components/carousel/)
     
     - 콘텐츠(사진)을 순환시키기 위한 슬라이드쇼
+  
+  - [Dropdowns](https://getbootstrap.com/docs/5.2/components/dropdowns/)
+    
+    - dropdown, dropdown-menu, dropdown-item 클래스를 활용해 옵션 메뉴를 만들 수 있습니다.
   
   - [Modal](https://getbootstrap.com/docs/5.2/components/modal/)
     
@@ -275,9 +275,9 @@
     
     - 페이지를 이동하면 자연스럽게 사라짐(제거를 하지 않고도 배경 클릭시 사라짐)
   
-  - [Cards](https://getbootstrap.com/docs/5.2/components/card/#grid-cards)
+  - [Navbar](https://getbootstrap.com/docs/5.2/components/navbar/)
     
-    - 화면이 작아지면 1줄에 표시되는 카드의 개수가 줄어듬
+    - navbar 클래스르 활용하면 네비게이션 바를 제작할 수 있습니다.
 
 - Flexbox in Bootstrap
 
