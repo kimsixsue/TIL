@@ -78,7 +78,7 @@
   
   - 배치 설정
     
-    - **flex-direciton**
+    - **flex-direction**
       
       - Main axis 기준 방향을 설정
       
@@ -256,7 +256,7 @@
     - 클릭 했을 때 어떤 동작이 일어나도록 하는 요소
   
   - [Cards](https://getbootstrap.com/docs/5.2/components/card/#grid-cards)
-  
+    
     - 화면이 작아지면 1줄에 표시되는 카드의 개수가 줄어듬
   
   - [Carousel](https://getbootstrap.com/docs/5.2/components/carousel/)

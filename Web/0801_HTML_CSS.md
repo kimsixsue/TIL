@@ -597,59 +597,30 @@
 
 * **display에 따라 크기와 배치가 달라진다.**
 
-* 대표적으로 활용되는 display
+* 블록 레벨 요소와 인라인 레벨 요소 구분 (HTML 4.1까지)
+- 대표적으로 활용되는 display
   
   * display: **block**
     
     * **줄 바꿈이 일어나는 요소**
     
-    * 화면 크기 전체의 **가로 폭**을 차지한다.
-    
+    * 기본 너비는 가질 수 있는 너비의 100%
+    - **너비를 가질 수 없다면 자동으로 부여되는 margin**
     * 블록 레벨 요소 안에 인라인 레벨 요소가 **들어갈 수 있음.**
+    
+    * **div** / ul, ol li / p / hr / form 등
   
   * display: **inline**
     
     * 줄 바꿈이 일어나지 않는 행의 **일부 요소**
     
-    * content **너비**만큼 가로 폭을 차지한다.
+    * **기본 너비는 컨텐츠 영역만큼**
     
     * width, height, **margin-top, margin-bottom**을 지정할 수 **없다.**
     
     * 상하 여백은 **line-height로 지정**한다.
-
-* 블록 레벨 요소와 인라인 레벨 요소
-  
-  * 블록 레벨 요소와 인라인 레벨 요소 구분 (HTML 4.1까지)
-  
-  * 대표적인 블록 레벨 요소
-    
-    * **div** / ul, ol li / p / hr / form 등
-  
-  * 대표적인 **인라인 레벨 요소**
     
     * **span / a / img / input, label / b, em, i, strong** 등
-
-* block
-  
-  * 기본 너비는 가질 수 있는 너비의 100%
-  
-  * **너비를 가질 수 없다면 자동으로 부여되는 margin**
-
-* inline
-  
-  * **기본 너비는 컨텐츠 영역만큼**
-- *속성에 따른 수평 정렬 - 제대로 작동하지 않는 경우 있음*
-  
-  - *margin-right: auto; text-align: left; *
-  
-  - *margin-left : auto; text-align: right;*
-  
-  - *margin-left: auto; margin-right: auto; text-align: center;*
-  
-  - *text-align은 div 등 블럭 부모 요소에 넣어줘야*
-
-- display
-  
   - display: **inline-block**
     
     - block과 inline 레벨 요소의 특징을 모두 가짐
@@ -663,6 +634,16 @@
     - 이와 비슷한 **visibility: hidden**은 해당 요소가 **공간은 차지**하나 **화면**에 표시만 하지 않는다.
   
   - 이외 다양한 display 속성은 [display - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/ko/docs/Web/CSS/display)
+
+- 속성에 따른 수평 정렬 - 제대로 작동하지 않는 경우 있음*
+  
+  - *margin-right: auto; text-align: left; *
+  
+  - *margin-left : auto; text-align: right;*
+  
+  - *margin-left: auto; margin-right: auto; text-align: center;*
+  
+  - *text-align은 div 등 블럭 부모 요소에 넣어줘야*
 
 -----------
 
@@ -727,21 +708,3 @@
   4. **sticky 스크롤에 따라 static -> fixed로 변경**
      
      - 속성을 적용한 박스는 평소에 문서 안에서 position: static 상태와 같이 **일반적인 흐름**에 따르지만 **스크롤 위치가 임계점에 이르면 position: fixed와 같이** 박스를 **화면에 고정할** 수 있는 속성
-
-- **CSS 원칙**
-  
-  - Normal flow
-    
-    - 모든 요소는 네모(박스모델), 좌측상단에 배치
-    
-    - display에 따라 크기와 배치가 달라짐
-  
-  - **position으로 위치의 기준을 변경**
-    
-    - relative : 본인의 원래 위치
-    
-    - absolute : 특정 부모의 위치
-    
-    - fixed : 화면의 위치
-    
-    - sticky : 기본적으로 static이나 스크롤 이동에 따라 fixed로 변경
