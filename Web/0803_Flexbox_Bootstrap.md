@@ -97,6 +97,8 @@
         - nowrap(기본 값): 한 줄에 배치
         
         - **wrap**: 넘치면 그 다음 줄로 배치
+        
+        - wrap-reverse
     
     - flex-flow
       
@@ -154,8 +156,19 @@
   - 기타 속성
     
     - flex-grow: **남은 영역을 아이템에 분배**
+      
+      - grow-숫자 크기에 비례해서
     
-    - order: 배치 순서 
+    - order: 배치 순서(integer, 기본값은 0)
+      
+      - 크기 작으면(음수 포함) 앞으로, 크면 뒤로
+      
+      ```html
+      <div class="flex_item grow-1 order-3">1</div>
+      <div class="flex_item grow-1">2</div>
+      <div class="flex_item order-1">3</div>
+      <div class="flex_item order-2">4</div>
+      ```
 
 ## [Bootstrap v5.2](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
 
@@ -163,7 +176,7 @@
 
 - The world most popular front-end open source
 
-- CDN
+- **CDN**
   
   - Content Delivery(distribution) Network
   
@@ -205,11 +218,11 @@
   
   - y - for classes that set both `*-top` and `*-bottom`
   
-  - blank - for classes that set a margin or padding on all 4 sides of the element
+  - blank - for classes that set a margin or padding on all **4 sides** of the element
 
 - where *size* is one of:
   
-  - 0 - for classes that eliminate the margin or pading by setting it to 0
+  - **0** - for classes that eliminate the margin or pading by setting **it to 0**
   
   - 1 - (by default) for classes that set the margin or padding to `$spacer * .25`
   
@@ -221,7 +234,7 @@
   
   - 5 - (by default) for classes that set the margin or padding to `$spacer * 3`
   
-  - auto - for classes that set the margin to auto
+  - **auto** - for classes that set the margin to auto
 
 - 브라우저 <html>의 root 글꼴 크기는 16px
   
@@ -258,6 +271,7 @@
   - [Cards](https://getbootstrap.com/docs/5.2/components/card/#grid-cards)
     
     - 화면이 작아지면 1줄에 표시되는 카드의 개수가 줄어듬
+    - **Grid Card**
   
   - [Carousel](https://getbootstrap.com/docs/5.2/components/carousel/)
     
@@ -274,6 +288,8 @@
     - 현재 열려 있는 페이지 위에 또 다른 레이어를 띄움
     
     - 페이지를 이동하면 자연스럽게 사라짐(제거를 하지 않고도 배경 클릭시 사라짐)
+    
+    - body 자식으로 넣기. button의 형제임
   
   - [Navbar](https://getbootstrap.com/docs/5.2/components/navbar/)
     
@@ -289,11 +305,11 @@
   
   - 예시
     
-    - Media Queries, Flexbox, Bootstrap Grid System, The viewport meta tag
+    - **Media Queries(@media)**, Flexbox, **Bootstrap Grid System**, The viewport meta tag
 
 ### Bootstrap Grid System
 
-- **Grid system (web design)**
+- **Grid system** (web design)
   
   - 요소들의 디자인과 배치에 도움을 주는 시스템
   
@@ -310,6 +326,10 @@
     - Bootstrap Grid system은 flexbox로 제작됨
     
     - container, **rows, column**으로 컨텐츠를 배치하고 정렬
+      
+      - 부모 row, 자식 col
+        
+        - 자식 .w-100은 부모 .row width의 100%
     
     - 반드시 기억해야 할 2가지 !
       
@@ -317,4 +337,8 @@
       
       - **6개의 grid system breakpoints**
         
-        - sm, md, lg, xl, xxl
+        - none, sm, md, lg, xl, xxl
+    
+    - nesting은 해당 그리드를 12등분
+    
+    - .offset-4는 앞 4칸 비우고 이동
