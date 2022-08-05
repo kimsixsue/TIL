@@ -4,13 +4,13 @@
 
 - CSS layout techniques
   
-  - Display, Position, **Float, Flexbox, Grid**, **Responsive Web Design, Media Queries**
+  - [display](https://developer.mozilla.org/ko/docs/Web/CSS/display), Position, Float, [Flexbox](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Flexible_Box_Layout), [Grid](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Grid_Layout)**, Responsive Web Design, [Media Queries](https://developer.mozilla.org/ko/docs/Web/CSS/Media_Queries)**
 
 ### Float
 
 - CSS 원칙
   
-  - Normal Flow: 모든 요소는 **네모**(**박스모델**)이고, 위에서부터 아래로, 왼쪽에서 오른쪽으로 **쌓인다**. (**좌측 상단에 배치**)
+  - Normal [Flow](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Flow_Layout): 모든 요소는 **네모**(**박스모델**)이고, 위에서부터 아래로, 왼쪽에서 오른쪽으로 **쌓인다**. (**좌측 상단에 배치**)
   
   - 어떤 요소를 감싸는 형태로 배치는? 혹은 좌/우측에 배치는?
 
@@ -28,47 +28,47 @@
   
   - right: 요소를 오른쪽으로 띄움
 
---- 
+---     
 
-### Flexbox
+### [Flexbox](https://developer.mozilla.org/ko/docs/Glossary/Flexbox)
 
-- CSS Flexible Box Layout
+#### [CSS Flexible Box Layout](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Flexible_Box_Layout)
+
+- 행과 열 형태로 아이템들을 배치하는 1차원 레이아웃 모델
+
+- **축**
   
-  - 행과 열 형태로 아이템들을 배치하는 1차원 레이아웃 모델
+  - **main axis (메인 축)**
   
-  - **축**
-    
-    - **main axis (메인 축)**
-    
-    - **cross axis (교차 축)**
+  - **cross axis (교차 축)**
+
+- Flexbox 구성 요소
   
-  - Flexbox 구성 요소
+  - [Flex container](https://developer.mozilla.org/ko/docs/Glossary/Flex_Container) (**부모 요소**)
     
-    - **Flex** Container (**부모 요소**)
+    - flexbox 레이아웃을 형성하는 가장 기본적인 모델
+    - Flex Item들이 놓여있는 영역
+    - **display** 속성을 **flex** 또는 **inline-flex**로 지정
+  
+  - [Flex item](https://developer.mozilla.org/ko/docs/Glossary/Flex_Item) (**자식 요소**)
+    
+    - 컨테이너에 속해 있는 컨텐츠(박스)
+
+- Flexbox 축
+  
+  - [flex-direction](https://developer.mozilla.org/ko/docs/Web/CSS/flex-direction): row
+
+- 왜 Flexbox를 사용해야 할까?
+  
+  - 이전까지 Normal Flow를 벗어나는 수단은 Float 혹은 Position
+  
+  - 하기 어려웠던 것?
+    
+    - (수동 값 부여 없이)
       
-      - flexbox 레이아웃을 형성하는 가장 기본적인 모델
-      - Flex Item들이 놓여있는 영역
-      - **display** 속성을 **flex** 또는 **inline-flex**로 지정
-    
-    - Flex Item (**자식 요소**)
+      1. 수직 정렬
       
-      - 컨테이너에 속해 있는 컨텐츠(박스)
-  
-  - Flexbox 축
-    
-    - flex-direction: row
-  
-  - 왜 Flexbox를 사용해야 할까?
-    
-    - 이전까지 Normal Flow를 벗어나는 수단은 Float 혹은 Position
-    
-    - 하기 어려웠던 것?
-      
-      - (수동 값 부여 없이)
-        
-        1. 수직 정렬
-        
-        2. 아이템의 너비와 높이 혹은 간격을 동일하게 배치
+      2. 아이템의 너비와 높이 혹은 간격을 동일하게 배치
 
 - Flexbox 시작
   
@@ -78,15 +78,15 @@
   
   - 배치 설정
     
-    - **flex-direction**
+    - **[flex-direction](https://developer.mozilla.org/ko/docs/Web/CSS/flex-direction)**
       
       - Main axis 기준 방향을 설정
       
       - 역방향의 경우 **HTML 태그 선언 순서와 시각적으로 다르니 유의** (웹 접근성에 영향)
       
-      - row, row-reverse, column, column-reverse
+      - **row, row-reverse, column, column-reverse**
     
-    - flex-wrap
+    - [flex-wrap](https://developer.mozilla.org/ko/docs/Web/CSS/flex-wrap)
       
       - 요소들이 강제로 한 줄에 배치 되게 할 것인지 여부 설정
       
@@ -100,9 +100,9 @@
         
         - wrap-reverse
     
-    - flex-flow
+    - [flex-flow](https://developer.mozilla.org/ko/docs/Web/CSS/flex-flow)
       
-      - flex-direction과 flex-wrap의 shorthand
+      - **flex-direction과 flex-wrap**의 shorthand
       
       - flex-direction과 flex-wrap에 대한 설정 값을 차례로 작성
       
@@ -114,7 +114,7 @@
       
       - **Main axis**를 기준으로 공간 배분
     
-    - **align-content** (**cross axis**)
+    - [align-content](https://developer.mozilla.org/ko/docs/Web/CSS/align-content) (**cross axis**)
       
       - **Cross** axis를 기준으로 공간 배분(아이템이 한 줄로 배치되는 경우 확인할 수 없음)
     
@@ -148,18 +148,18 @@
     
     - Cross axis를 중심으로
       
-      - stretch (기본 값): 컨테이너를 가득 채움
-      - flex-start: 위
-      - flex-end: 아래
-      - center: 가운데
+      - **stretch (기본 값): 컨테이너를 가득 채움**
+      - **flex-start: 위**
+      - **flex-end: 아래**
+      - **center: 가운데**
   
   - 기타 속성
     
-    - flex-grow: **남은 영역을 아이템에 분배**
+    - [flex-grow](https://developer.mozilla.org/ko/docs/Web/CSS/flex-grow): **남은 영역을 아이템에 분배**
       
       - grow-숫자 크기에 비례해서
     
-    - order: 배치 순서(integer, 기본값은 0)
+    - [order](https://developer.mozilla.org/ko/docs/Web/CSS/order): 배치 순서(integer, 기본값은 0)
       
       - 크기 작으면(음수 포함) 앞으로, 크면 뒤로
       
@@ -317,7 +317,7 @@
     
     - Column: 실제 컨텐츠를 포함하는 부분
     
-    - Gutter: 칼럼과 칼럼 사이의 공간 (사이 간격)
+    - [Gutter](https://getbootstrap.com/docs/5.2/layout/gutters/): 칼럼과 칼럼 사이의 공간 (사이 간격)
     
     - Container: Column들을 담고 있는 공간
   
@@ -325,9 +325,9 @@
     
     - Bootstrap Grid system은 flexbox로 제작됨
     
-    - container, **rows, column**으로 컨텐츠를 배치하고 정렬
+    - [Container](https://getbootstrap.com/docs/5.2/layout/containers/), rows, [columns](https://getbootstrap.com/docs/5.2/layout/columns/)으로 컨텐츠를 배치하고 정렬
       
-      - 부모 row, 자식 col
+      - 부모 **row**, 자식 col
         
         - 자식 .w-100은 부모 .row width의 100%
     
@@ -335,10 +335,16 @@
       
       - **12개의 column**
       
-      - **6개의 grid system breakpoints**
+      - **6개의 grid system [breakpoints](https://getbootstrap.com/docs/5.2/layout/breakpoints/)**
         
         - none, sm, md, lg, xl, xxl
     
     - nesting은 해당 그리드를 12등분
     
     - .offset-4는 앞 4칸 비우고 이동
+
+|                      | xs         | **sm**       | **md**       | **lg**       | **xl**       | **xxl**       |
+| -------------------- | ---------- | ------------ | ------------ | ------------ | ------------ | ------------- |
+|                      | <576px     | >=576px      | >=768px      | >=992px      | >=1200px     | >=1400px      |
+| Container(max-width) | None(auto) | 540px        | 720px        | 960px        | 1140px       | 1320px        |
+| **Class prefix**     | .col-      | .col-**sm**- | .col-**md**- | .col-**lg**- | .col-**xl**- | .col-**xxl**- |

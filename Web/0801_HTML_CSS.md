@@ -242,15 +242,15 @@
     
     - 일반적으로 유형을 입력받기 위하여 제공되며 타입별로 HTML 기본 검증 혹은 추가 속성을 활용할 수 있음
       
-      - text : **일반 텍스트** 입력
+      - [text](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text) : **일반 텍스트** 입력
       
-      - password : 입력 시 값이 보이지 않고 문자를 특수기호(*)로 표현
+      - [password](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password) : 입력 시 값이 보이지 않고 문자를 특수기호(*)로 표현
       
-      - email : 이메일 형식이 아닌 경우 form 제출 불가
+      - [email](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email) : 이메일 형식이 아닌 경우 form 제출 불가
       
-      - number : min, max, step 속성을 활용하여 숫자 범위 설정 가능
+      - [number](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/number) : min, max, step 속성을 활용하여 숫자 범위 설정 가능
       
-      - file : accept 속성을 활용하여 파일 타입 지정 가능
+      - [file](https://developer.mozilla.org/ko/docs/Web/HTML/Element/Input/file) : accept 속성을 활용하여 파일 타입 지정 가능
   
   - **input 유형** - 항목 중 선택
     
@@ -258,21 +258,21 @@
     
     - 동일 항목에 대하여는 name을 지정하고 선택된 항목에 대한 value를 지정해야 함
       
-      - checkbox : 다중 선택
+      - [checkbox](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox) : 다중 선택
       
-      - radio : 단일 선택
+      - [color](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/color): 단일 선택
   
   - **input 유형** - 기타
     
     - 다양한 종류의 input을 위한 picker를 제공
       
-      - color : color picker
+      - [color](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/color) : color picker
       
-      - date : date picker
+      - [date](https://developer.mozilla.org/ko/docs/Web/HTML/Element/Input/date): date picker
     
     - hidden input을 활용하여 사용자 입력을 받지 않고 서버에 전송되어야 하는 값을 설정
       
-      - hidden : 사용자에게 보이지 않는 input
+      - [hidden](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/hidden) : 사용자에게 보이지 않는 input
   
   - **input 유형** - 종합
     
@@ -284,7 +284,7 @@
 
 ## CSS
 
-* **Cascading Style Sheets**
+* [Cascading Style Sheets](https://developer.mozilla.org/ko/docs/Web/CSS)
 
 * 스타일을 **지정하기 위한 언어**
 
@@ -336,7 +336,7 @@
 
 -------
 
-### CSS Selectors
+### [CSS Selectors](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Selectors)
 
 - **Selectors 선택자 유형**
   
@@ -364,7 +364,7 @@
     
     - 일반 형제 결합자, 인접 형제 결합자
   
-  - Pseudo Class 의사 클래스/요소
+  - [Pseudo Class](https://developer.mozilla.org/ko/docs/Web/CSS/Pseudo-classes) 의사 클래스/요소
     
     - 링크, 동적 의사 클래스
     
@@ -398,7 +398,7 @@
 
 ### CSS 기본 스타일
 
-#### CSS 단위
+#### [CSS 단위](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Values_and_Units)
 
 - 크기 단위
   
@@ -635,15 +635,15 @@
   
   - 이외 다양한 display 속성은 [display - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/ko/docs/Web/CSS/display)
 
-- 속성에 따른 수평 정렬 - 제대로 작동하지 않는 경우 있음*
+- 속성에 따른 수평 정렬 - 제대로 작동하지 않는 경우 있음
   
-  - *margin-right: auto; text-align: left; *
+  - margin-right: auto; text-align: left; 
   
-  - *margin-left : auto; text-align: right;*
+  - margin-left : auto; text-align: right;
   
-  - *margin-left: auto; margin-right: auto; text-align: center;*
+  - margin-left: auto; margin-right: auto; text-align: center;
   
-  - *text-align은 div 등 블럭 부모 요소에 넣어줘야*
+  - text-align은 div 등 블럭 부모 요소에 넣어줘야
 
 -----------
 
