@@ -28,7 +28,7 @@
   
   - right: 요소를 오른쪽으로 띄움
 
----     
+---------
 
 ### [Flexbox](https://developer.mozilla.org/ko/docs/Glossary/Flexbox)
 
