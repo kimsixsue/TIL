@@ -190,7 +190,7 @@ print(arr)
   
   - for i는 1부터 N-1까지
   
-  - counts[i] == counts[i-1]
+  - counts[i] += counts[i-1]
 
 - counts[마지막 Data]을 감소시키고 Temp에 마지막 Data를 삽입한다.
 
