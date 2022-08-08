@@ -3,6 +3,7 @@
 ## Git 정리
 
 1. [[2022-07-15 금] Git basic 정리](/Git/0715_Git_basic.md)
+2. [[2022-08-07 일] Git Book 정리](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Git_GitHub.md)
 
 ## Python 정리
 
@@ -19,3 +20,7 @@
 1. [[2022-08-01 월] HTML/CSS](/Web/0801_HTML_CSS.md)
 
 2. [[2022-08-03 수] Flexbox/Bootstrap](/Web/0803_Flexbox_Bootstrap.md)
+
+## Algorithm 정리
+
+1. [[2022-08-08 월] Array](/Algorithm/0808_Array.md)
