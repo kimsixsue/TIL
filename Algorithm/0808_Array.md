@@ -4,9 +4,10 @@
 
 ```python
 import sys
-sys.stdin = open('input.txt')
-# 표준 입력에 input.txt 에서 연 파일을 넣겠다.
-print(input())
+sys.stdin = open('input.txt')  # 표준 입력에 input.txt 파일을 대입
+
+input()  # 호출 때마다 한 줄씩 꺼냅니다.
+input()  # 이전 input()과 내용이 다릅니다.
 ```
 
 ---
