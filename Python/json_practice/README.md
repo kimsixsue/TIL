@@ -12,3 +12,4 @@ C:\Users\kimsi\AppData\Local\Programs\Python\Python39\python.exe C:/Users/kimsi/
 Process finished with exit code 0
 
 ```
+https://developers.themoviedb.org/3/movies/get-movie-details
