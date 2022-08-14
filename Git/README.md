@@ -1,3 +1,4 @@
+# Today I Learned
 ## Git 정리
 
 1. [[2022-07-15 금] Git basic](/Git/0715_Git_basic.md)
