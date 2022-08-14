@@ -32,4 +32,4 @@
 
 3. [[2022-08-12 금] String](/Algorithm/0812_String.md)
 
-4. [[2022-08-14 일] Tree] (https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Tree.md)
+4. [[2022-08-14 일] Tree](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Tree.md)
