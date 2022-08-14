@@ -1,3 +1,4 @@
+# [Today I Learned](/../..)
 ## Web 정리
 
 1. [[2022-08-01 월] HTML/CSS](/Web/0801_HTML_CSS.md)
