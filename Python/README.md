@@ -1,4 +1,5 @@
-## [Python](/Python) 정리
+# [Today I Learned](/../..)
+## Python 정리
 
 1. [[2022-07-18 월] Python basic](/Python/0718_Python_basic.md)
 
