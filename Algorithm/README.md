@@ -1,4 +1,4 @@
-# Today I Learned
+# [Today I Learned](/../..)
 ## 자료구조 + 알고리즘 정리
 
 1. [[2022-08-08 월] Array](/Algorithm/0808_Array.md)
