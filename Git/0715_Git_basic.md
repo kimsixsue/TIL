@@ -90,6 +90,9 @@ git clone {remote_repo} # 최초로 local 복사. 설정 (remote 주소 포함) 
 git commit -m "add something"
 git push origin master
 ```
+> 주의사항: git에서는 master가 기본값이지만, github에서는 main이 기본값입니다.
+
+> github에서 생성한 repository를 clone하면 main을 씀을 기억해둡시다.
 
 ```python
 git init # name convention = origin
