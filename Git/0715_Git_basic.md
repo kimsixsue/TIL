@@ -1,131 +1,112 @@
 # Git basic
 
-* Git은 분산 **버전 관리** 프로그램
-* 특정 상태들을 관리하는 것
-* 최종본과 변경사항만을 관리
-  * 언제 어디가 어떻게 바뀐지를 commit message에 기록
-* 한 곳이 아닌 각 컴퓨터에서 버전 관리 Sync
-  * 버전 관리 기준은 Git
-* Git기반의 저장소 서비스: GitLab, GitHub, Bitbucket
-
-------
-
-## Git bash 기본 명령어
-
-* touch == 파일 생성
-* mkdir == make directory
-* ls == show list
-* cd == change directory
-* start == 폴더/파일을 여는 명령어
-* rm == 파일 삭제
-  * -rf 옵션을 주면 폴더 삭제 가능
-
------
-
 ## 상대 경로
 
-* ./ == 현재 작업중인 폴더
-* ../ == 현재 작업중인 폴더의 상위 경로
+  `./` 현재 작업중인 폴더
 
------
+`../` 현재 작업중인 폴더의 상위 경로
 
 ## Markdown
 
+다양한 에디터가 지원함
+
 > https://www.markdownguide.org/cheat-sheet/
 
-* README.md 파일
-
-* 다양한 에디터가 지원함
-
-* h1은 #로 시작
-
-* 리스트는 *로 시작
-  
-  ```
-  코드블럭은 
-  ```을 
-  씀
-  ```
-
-* 링크는 [title] (https://www.example.com)
-
-* 구분선은 ---
-
-----
+| Element         | Markdown Syntax                    |
+| :-------------- | ---------------------------------- |
+| Heading         | `#`                                |
+| Unordered List  | `-`                                |
+| Horizontal Rule | `---`                              |
+| Link            | `[title](https://www.example.com)` |
 
 ## Git 기본기
 
-* README.md
-  
-  * 프로젝트에서 가장 먼저 보는 문서
+Git은 분산 **버전 관리** 프로그램
 
-* Repository : 특정 디렉토리를 버전 관리하는 **저장소**
-  
-  * **git init** 명령어로 로컬 저장소를 생성
-  * .git 디렉토리에 **버전 관리에 필요한 모든 것**이 들어있음
-  * remote : Github, Gitlab
-  * local : PC
+- 특정 상태들을 관리하는 것
 
-* Commit은 3가지 영역을 바탕으로 동작
-  
-  1. Workig Directory
-     * 작업중인 실제 디렉토리
-  2. Staging Area
-     * **커밋**으로 남기고 싶은 **특정 버전으로** 관리하고 싶은 파일이 있는 곳
-  3. Repository
-     * **커밋**들이 저장되는 곳
+- 최종본과 변경사항만을 관리, 언제 어디가 어떻게 바뀐지를 commit message에 기록
 
----
+- 한 곳이 아닌 각 컴퓨터에서 버전 관리 Sync, 버전 관리 기준은 Git
+
+Git 기반의 저장소 서비스
+
+- [GitHub](https://github.com/), [GitLab](https://gitlab.com/), [Bitbucket](https://bitbucket.org/)
+
+**3가지 영역**을 바탕으로 Commit이 동작
+
+1. Workig Directory: 작업중인 실제 디렉토리
+
+2. Staging Area: **커밋**으로 남기고 싶은 **특정 버전으로** 관리하고 싶은 파일이 있는 곳
+
+3. Repository: **커밋**들이 저장되는 곳
+
+
+Repository : 특정 디렉토리를 버전 관리하는 **저장소**
+
+* `.git` 디렉토리에 **버전 관리에 필요한 모든 것**이 들어있음
+
+* remote : Github, Gitlab
+
+* local : PC
+
+`README.md` 는 프로젝트에서 가장 먼저 보는 Markdown 문서
+
+`.gitignore` 파일은 일종의 블랙리스트를 작성
+
+* 그러나 이미 git에서 관리중인 경우, 해당 파일에 작동하지 않음
+
+## Git bash 기본 명령어
+
+| 명령어   |                         |
+| :------- | ----------------------- |
+| `touch`  | 파일 생성               |
+| `mkdir`  | make directory          |
+| `ls`     | show list               |
+| `cd`     | change directory        |
+| `start`  | 폴더/파일을 여는 명령어 |
+| `rm`     | 파일 삭제               |
+| `rm -rf` | 폴더 삭제 가능          |
 
 ## Git 실전
-
 ```python
 # 처음 Git 이용 시, Run
-git config --global user.email "깃메일" # 주로 지메일
-git config --global user.name "깃닉네임"
+git config --global user.email "git@mail"   # gmail
+git config --global user.name "git nickname"
+# 만약 프로젝트마다 다른 이름과 이메일 주소를 사용하고 싶으면
+git config user.email "git@mail"
+git config user.name "git nickname"
 ```
-
 ```python
-git clone {remote_repo} # 최초로 local 복사. 설정 (remote 주소 포함) 포함 복제
-git commit -m "add something"
-git push origin master
+# 최초로 local 복사. 설정 (remote 주소 포함) 포함 복제
+git clone {url}  # {remote_repository_name} 기본값은 origin
+git commit -m "commit_message"  # ex) 'add something'
+git push {remote_repository_name} {branch_name}  # 서버에 Push
+# github에서 생성한 repository의 {branch_name} 기본값은 main
 ```
-> 주의사항: git에서는 master가 기본값이지만, github에서는 main이 기본값입니다.
-
-> github에서 생성한 repository를 clone하면 main을 씀을 기억해둡시다.
-
 ```python
-git init # name convention = origin
-git remote add <repo_name> {remote_repo} # remote_repo는 repository 주소
-git add . # 끝에 붙은 .은 모든 것을 의미
-git commit -m "commit_message" # 자세하게
-git push <repo_name> <local branch> # local -> remote 업로드
+# git에서 생성한 repository의 {branch_name} 기본값은 master
+git init  # name convention = origin
+git remote add <단축이름> <url>  # name, remote repository
+git add *  # 끝에 붙은 *은 모든 것을 의미
+git commit -m "commit_message"  # ex) 'initial project version'
+git push <remote_repository_name> <branch_name>  # local -> remote 업로드
 ```
 
-```python
-git pull <repo_name> <local branch> # git에 버전을 맞춥니다.
-```
+| 명령어                                            |                                                              |
+| ------------------------------------------------- | ------------------------------------------------------------ |
+| `git clone <url>`                                 | 기존 저장소를 Clone해서 Git 저장소를 쓰기 시작한다. remote name은 origin |
+| `git init`                                        | 로컬 저장소를 생성, master branch가 자동으로 만들어진다.     |
+| `git remote add <단축이름> <url>`                 | 기존 워킹 디렉토리에 새 리모트 저장소를 추가할 수 있다.      |
+| `git add`                                         | 워킹 디렉토리에서 Staging Area(“index”)로 컨텐트를 추가      |
+| `git commit`                                      | `git add`로 Staging Area에 넣은 모든 파일을 커밋한다.        |
+| `git push {remote_repository_name} {branch_name}` | 서버에 Push                                                  |
 
-```python
-git status # Git으로 관리중인 파일 상태
-```
+| 명령어                                |                                                             |
+| ------------------------------------- | ----------------------------------------------------------- |
+| `git pull <repo_name> <local branch>` | Git에 버전을 맞춥니다.                                      |
+| `git status`                          | 파일 상태를 확인할 수 있다.                                 |
+| `git log`                             | 저장소의 히스토리를 조회한다.                               |
+| `git diff`                            | 어떤 라인을 추가했고 삭제했는지 알 수 있다.                 |
+| `git stash`                           | 수정 사항을 stash 공간으로 이동하고, 가장 최근버전으로 복원 |
 
-```python
-git log # Git commit history
-```
-
-```python
-git diff # 두 commit 간 차이
-```
-
-```python
-git stash # 수정 사항을 stash 공간으로 이동하고, 가장 최근버전으로 복원
-```
-
-* .gitignore 파일은 일종의 블랙리스트를 작성
-  
-  * 그러나 이미 git에서 관리중인 경우, 해당 파일에 작동하지 않음
-
-----
-
-![토끼 사진](./img/Oryctolagus_cuniculus_Tasmania_2.jpg)
