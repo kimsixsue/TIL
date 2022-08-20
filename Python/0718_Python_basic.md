@@ -36,8 +36,6 @@
 
 ## Python Development Environment
 
- ![Python IDLE Shell](./img/idle.png)
-
 **IDLE**은 Python을 설치하면 기본적으로 제공됩니다. 코드를 한줄씩 실행해볼 수 있습니다.
 
 **IDE**는 대표적으로 [PyCharm](https://www.jetbrains.com/ko-kr/pycharm/)과 [Visual Studio Code](https://code.visualstudio.com/)가 있습니다.
