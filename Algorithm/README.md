@@ -16,7 +16,8 @@
 
 
 5. [[2022-08-17 수] Stack](/Algorithm/0817_Stack.md)
+5. [[2022-08-22 월] Stack_2](/Algorithm/0822_Stack_2.md)
 
 
 
-6. [[2022-08-28 일 예정] Hash Table - Resolve Collision - Open Addressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
+[[2022-08-28 일 예정] Hash Table - Resolve Collision - Open Addressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
