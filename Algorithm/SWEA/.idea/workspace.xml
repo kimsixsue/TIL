@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c902297-0e85-4047-97a8-fd87f13622fc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../0817_Stack.md" beforeDir="false" afterPath="$PROJECT_DIR$/../0817_Stack.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BOJ/09095_123더하기.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BOJ/09655_돌게임.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BOJ/star/02523_별찍기_13.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
