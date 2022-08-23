@@ -110,3 +110,7 @@ git push <remote_repository_name> <branch_name>  # local -> remote 업로드
 | `git diff`                            | 어떤 라인을 추가했고 삭제했는지 알 수 있다.                 |
 | `git stash`                           | 수정 사항을 stash 공간으로 이동하고, 가장 최근버전으로 복원 |
 
+## Contribution activity
+> https://github.com/kimsixsue?tab=overview&from=2022-08-14&to=2022-08-20
+
+와 같은 주소를 통해, 해당 기간의 Contribution activity를 확인할 수 있다.
