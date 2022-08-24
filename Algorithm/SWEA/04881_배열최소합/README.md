@@ -1,3 +1,10 @@
+# 4881. 배열 최소 합 `D2`
+
+> https://swexpertacademy.com/main/learn/course/subjectDetail.do?subjectId=AWOVIc7KqfQDFAWg
+>
+> 7차시 5일차 - 배열 최소 합
+
+```python
 def f(i, N, v):
     global min_total
     if min_total < v:
@@ -14,15 +21,14 @@ def f(i, N, v):
 
 T = int(input())
 for t in range(1, T + 1):
-
     N = int(input())
-
     array = [[0] * N for _ in range(N)]
     for _ in range(N):
         array[_] = list(map(int, input().split()))
     min_total = 25000  # (행과 열이 모두 다른) 최소 합
     P = list(range(N))
-
     f(0, N, 0)
-
     print(f'#{t} {min_total}')
+```
+
+![4881](README.assets/4881.png)

@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c902297-0e85-4047-97a8-fd87f13622fc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/D2/01974_스도쿠검증.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/D2/01979_어디에단어가들어갈수있을까.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/D2/04836_색칠하기.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/D2/04861_회문.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/D2/04865_글자수.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/D2/04869_종이붙이기.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/D2/04871_그래프경로.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/D2/04881_배열최소합.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/D3/01234_비밀번호.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/D4/05432_쇠막대기자르기.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

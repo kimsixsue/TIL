@@ -1,8 +1,15 @@
+# 4861. 회문 `D2`
+
+> https://swexpertacademy.com/main/learn/course/subjectDetail.do?subjectId=AWOVGOEKqeoDFAWg
+>
+> 4차시 3일차 - 회문
+
+```python
 def return_p(matrix):
     para = ''  # 길이가 M인 회문 1개
     if M == N:  # 5 ≤ M ≤ N, 10 ≤ N ≤ 100
         for _ in range(N):
-            if matrix[_] == matrix[_][:: -1]:
+            if matrix[_] == matrix[_][::-1]:
                 return matrix[_]
     else:
         for n in range(N):
@@ -22,8 +29,9 @@ for T in range(1, TestCase + 1):
     vertical_lines = [''] * N  # 세로
     for row in range(N):  # 행/열 바꿈
         for col in range(N):
-            if row >= col:
-                vertical_lines[row] += lines[col][row]
-            if row < col:
-                vertical_lines[row] += lines[col][row]
+            vertical_lines[row] += lines[col][row]
+
     print(f'#{T} {return_p(lines) + return_p(vertical_lines)}')
+```
+
+![4861](README.assets/4861.png)

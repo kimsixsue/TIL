@@ -1,3 +1,6 @@
+import sys
+
+sys.stdin = open('./input.txt')
 T = int(input())  # 총 테스트 케이스의 개수
 for t in range(1, T + 1):
 
