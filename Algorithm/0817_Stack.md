@@ -162,13 +162,17 @@ def fibo(n):
 # memo를 위한 배열을 할당하고, 모두 0으로 초기화 한다;
 # memo[0]을 0으로 memo[1]는 1로 초기화 한다;
 
-def fibo1(n):
-    if n>=2 and len(memo) <= n:
-        memo.append(fibo(n - 1) + fibo1(n - 2))
+def fibo(n):
+    if memo[n] == -1:
+        memo[n] = fibo(n - 1) + fibo(n - 2)
     return memo[n]
 
 
-memo = [0, 1]  # append 대신 고정배열 쓰면 빠름
+memo = [-1] * 101
+memo[0] = 0
+memo[1] = 1
+for i in range(100):
+    print(i, fibo(i))
 ```
 
 ## Dynamic Programming
@@ -202,11 +206,21 @@ Dynamic Programming 동적 계획 알고리즘은 그리디 알고리즘과 같�
 **피보나치 수 DP 적용 알고리즘**
 
 ```python
-def fibo2(n):
-    f = [0, 1]
+def fibo_dp(n):
+    table[0] = 0
+    table[1] = 1
     for i in range(2, n + 1):
-        f.append(f[i - 1] + f[i - 2])
-    return f[n]
+        table[i] = table[i - 1] + table[i - 2]
+    return
+
+
+table = [0] * 101
+fibo_dp(100)
+
+T = int(input())
+for tc in range(1, T + 1):
+    N = int(input())
+    print(f'#{tc} {table[N]}')
 ```
 
 **DP의 구현 방식**
@@ -265,99 +279,191 @@ end DFS()
 
 #### DFS 예
 
-**초기상태 : 배열 visited를 False로 초기화하고, 공백 스택을 생성**
+```python
+# A~G -> 0~6
+adjList = [[1, 2],     # 0
+           [0, 3, 4],  # 1
+           [0, 4],     # 2
+           [1, 5],     # 3
+           [1, 2, 5],  # 4
+           [3, 4, 6],  # 5
+           [5]]        # 6
 
-1) **정점 A를 시작으로 깊이 우선 탐색을 시작**
 
-   ```python
-   A 방문;
-   visited[A] <- true;
-   ```
+def dfs(v, n):
+    top = -1
+    print(v)           # 방문
+    visited[v] = 1     # 시작점 방문 표시
+    while True:
+        for w in adjList[v]:     # if ( v의 인접 정점 중 방문 안 한 정점 w가 있으면)
+            if visited[w] == 0:
+                top += 1         # push(v);
+                stack[top] = v
+                v = w            # visited[w] <- true;
+                print(v)         # 방문
+                visited[w] = 1   # v <- w; (w에 방문)
+                break
+        else:                    # w가 없으면
+            if top != -1:        # 스택이 비어있지 않은 경우
+                v = stack[top]   # pop
+                top -= 1
+            else:                # 스택이 비어있으면
+                break            # while
 
-2) **정점 A에 방문하지 않은 정점 B, C가 있으므로 A를 스택에 `push` 하고, 인접정점 B와 C 중에서 오름차순에 따라 B를 선택하여 탐색을 계속한다.**
 
-   ```python
-   push(A);
-   B 방문;
-   visited[B] <- true;
-   ```
+N = 7
+visited = [0] * N  # visited 생성
+stack = [0] * N    # stack 생성
+dfs(0, N)
+```
 
-3) **정점 B에 방문하지 않은 정점 D, E가 있으므로 B를 스택에 `push` 하고, 인접정점 D와 E 중에서 오름차순에 따라 D를 선택하여 탐색을 계속한다.**
+```python
+V = 7  # 정점의 개수
+# 모든 경로를 받기
+edge_list = list(map(int, input().split(', ')))
+E = len(edge_list) // 2  # 간선의 개수
 
-   ```python
-   push(B);
-   D 방문;
-   visited[D] <- true;
-   ```
+# 인접 행렬
+# graph = ([0] * (V + 1) ) * (V + 1)
+graph = [[0] * (V + 1) for _ in range(V + 1)]
+for idx in range(E):
+    # graph[시작점][끝점] = 1
+    # graph[끝점][시작점] = 1
+    frm = edge_list[idx * 2]
+    to = edge_list[idx * 2 + 1]
+    graph[frm][to] = 1
+    graph[to][frm] = 1
 
-4) **정점 D에 방문하지 않은 정점 F가 있으므로 D를 스택에 `push` 하고, 인접정점 F를 선택하여 탐색을 계속한다.**
+visited = [False] * (V + 1)
+now = 1
+stack = [now]
+result = [now]
+while stack:
+    # 1. 방문 한다.
+    visited[now] = 1
+    # 2. 인접 정점을 확인한다.
+    for nxt in range(V + 1):
+        # 3. 인접 정점을 이미 방문했는지 확인한다.
+        if graph[now][nxt] == 1 and visited[nxt] == 0:
+            # 4. 이동한다.
+            # 4-1. 이전 경로를 stack 넣는다.
+            stack.append(now)
+            # 4-2. 방문 정점을 변경한다.
+            now = nxt
+            result.append(nxt)  # 방문정점을 추가
+            break
+    else:  # 모든 정점이 방문되었다면 stack에서 pop
+        now = stack.pop()
 
-   ```python
-   push(D);
-   F 방문;
-   visited[F] <- true;
-   ```
+print('-'.join(map(str, result)))
+```
 
-5) **정점 F에 방문하지 않은 정점 E, G가 있으므로 F를 스택에 `push` 하고, 인접정점 E와 G 중에서 오름차순에 따라 E를 선택하여 탐색을 계속한다.**
+```python
+def DFS(now):
+    # 1. 방문표시
+    visited[now] = 1
+    result.append(now)  # 방문 경로 체크
+    # 2. 인접 정점 확인
+    for nxt in range(V + 1):
+        if graph[now][nxt] == 1 and visited[nxt] == 0:
+            # 3. 이동가능하다면 이동
+            DFS(nxt)
 
-   ```python
-   push(F);
-   E 방문;
-   visited[E] <- true;
-   ```
 
-6) **정점 E에 방문하지 않은 정점 C가 있으므로 E를 스택에 `push` 하고, 인접정점 C를 선택하여 탐색을 계속한다.**
+V = 7  # 정점의 개수
+# 모든 경로를 받기
+edge_list = list(map(int, input().split(', ')))
+E = len(edge_list) // 2  # 간선의 개수
 
-   ```python
-   push(E);
-   C 방문;
-   visited[C] <- true;
-   ```
+# 인접 행렬
+# graph = ([0] * (V + 1) ) * (V + 1)
+graph = [[0] * (V + 1) for _ in range(V + 1)]
+for idx in range(E):
+    # graph[시작점][끝점] = 1
+    # graph[끝점][시작점] = 1
+    frm = edge_list[idx * 2]
+    to = edge_list[idx * 2 + 1]
+    graph[frm][to] = 1
+    graph[to][frm] = 1
 
-7) **정점 C에서 방문하지 않은 인접정점이 없으므로, 마지막 정점으로 돌아가기 위해 스택을 `pop` 하여 받은 정점 E에 대해서 방문하지 않은 인접정점이 있는지 확인한다.** `pop`하여 되돌아 감
+visited = [False] * (V + 1)
+result = []
+DFS(1)
 
-   ```python
-   pop(stack);
-   ```
+print('-'.join(map(str, result)))
+```
 
-8) **정점 E는 방문하지 않은 인접정점이 없으므로, 다시 스택을 `pop` 하여 받은 정점 F에 대해서 방문하지 않은 인접정점이 있는지 확인한다.** `pop`하여 되돌아 감
+```python
+def dfs(i, j, N):
+    global answer
+    if maze[i][j] == 3:
+        answer += 1
+        return
+    else:
+        visited[i][j] = 1
+        for di, dj in [[0, 1], [1, 0], [0, -1], [-1, 0]]:
+            ni, nj = i + di, j + dj
+            if maze[ni][nj] != 1 and visited[ni][nj] == 0:  # 벽으로 둘러쌓인 미로
+                dfs(ni, nj, N)
+        visited[i][j] = 0
+        return
 
-   ```python
-   pop(stack);
-   ```
 
-9) **정점 F에 방문하지 않은 정점 G가 있으므로 F를 스택에 `push` 하고, 인접정점 G를 선택하여 탐색을 계속한다.**
+T = int(input())
+for tc in range(1, T + 1):
+    N = int(input())
+    maze = [list(map(int, input())) for _ in range(N)]
+    sti = -1
+    stj = -1
+    for i in range(N):
+        for j in range(N):
+            if maze[i][j] == 2:  # '2'
+                sti, stj = i, j
+                break
+        if sti != -1:
+            break
+    answer = 0  # 경로의 수
+    visited = [[0] * N for _ in range(N)]
+    dfs(sti, stj, N)
+    print(answer)
+```
 
-   ```python
-   push(F);
-   G 방문;
-   visited[G] <- true;
-   ```
+```python
+def dfs(i, j, s, N):
+    global minV
+    if maze[i][j] == 3:
+        if minV > s + 1:
+            minV = s + 1
+        return
+    else:
+        visited[i][j] = 1
+        for di, dj in [[0, 1], [1, 0], [0, -1], [-1, 0]]:
+            ni, nj = i + di, j + dj
+            if maze[ni][nj] != 1 and visited[ni][nj] == 0:  # 벽으로 둘러쌓인 미로
+                dfs(ni, nj, s + 1, N)
+        visited[i][j] = 0
+        return
 
-10) **정점 G에서 방문하지 않은 인접정점이 없으므로, 마지막 정점으로 돌아가기 위해 스택을 `pop` 하여 받은 정점 F에 대해서 방문하지 않은 인접정점이 있는지 확인한다.** `pop`하여 되돌아 감 
 
-    ```python
-    pop(stack);
-    ```
+T = int(input())
+for tc in range(1, T + 1):
+    N = int(input())
+    maze = [list(map(int, input())) for _ in range(N)]
+    sti = -1
+    stj = -1
+    for i in range(N):
+        for j in range(N):
+            if maze[i][j] == 2:  # '2'
+                sti, stj = i, j
+                break
+        if sti != -1:
+            break
+    answer = 0  # 경로의 수
+    minV = N * N
+    visited = [[0] * N for _ in range(N)]
+    dfs(sti, stj, 0, N)
+    if minV == N * N:
+        minV = -1
+    print(f'#{tc} {minV}')
+```
 
-11) **정점 F에서 방문하지 않은 인접정점이 없으므로, 다시 마지막 정점으로 돌아가기 위해 스택을 `pop` 하여 받은 정점 D에 대해서 방문하지 않은 인접정점이 있는지 확인한다.** `pop`하여 되돌아 감
-
-    ```python
-    pop(stack);
-    ```
-
-12) **정점 D에서 방문하지 않은 인접정점이 없으므로, 다시 마지막 정점으로 돌아가기 위해 스택을 `pop` 하여 받은 정점 B에 대해서 방문하지 않은 인접정점이 있는지 확인한다.** `pop`하여 되돌아 감
-
-    ```python
-    pop(stack);
-    ```
-
-13) **정점 B에서 방문하지 않은 인접정점이 없으므로, 다시 마지막 정점으로 돌아가기 위해 스택을 `pop` 하여 받은 정점 A에 대해서 방문하지 않은 인접정점이 있는지 확인한다.** `pop`하여 되돌아 감
-
-    ```python
-    pop(stack);
-    ```
-
-14) **현재 정점 A에서 방문하지 않은 인접 정점이 없으므로 마지막 정점으로 돌아가기 위해 스택을 `pop`하는데, 스택이 공백이므로 깊이 우선 탐색을 종료한다.**
-
->  **깊이 우선 탐색 경로: A-B-D-F-E-C-G**
