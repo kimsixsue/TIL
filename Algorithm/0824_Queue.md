@@ -461,6 +461,8 @@ def BFS(G, v) :  # 그래프 G, 탐색 시작점 v
 
 **Q가 비었으므로 탐색 종료**
 
+
+
 ```python
 def bfs(v, N):  # v 시작정점, N 마지막 정점
     visited = [0] * (N + 1)   # visited 생성
