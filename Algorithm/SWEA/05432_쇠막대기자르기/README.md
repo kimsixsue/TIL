@@ -31,4 +31,4 @@ for testcase in range(1, T + 1):
     print(f'#{testcase} {piece}')
 ```
 
-![5432](README.assets/5432.png)
+![05432.png](./05432.png)

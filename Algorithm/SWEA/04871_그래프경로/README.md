@@ -35,4 +35,4 @@ for testcase in range(1, T + 1):
     print(f'#{testcase} {answer}')
 ```
 
-![input](README.assets/input.png)
+![04871.png](./04871.png)

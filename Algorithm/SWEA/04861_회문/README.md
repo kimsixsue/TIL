@@ -34,4 +34,4 @@ for T in range(1, TestCase + 1):
     print(f'#{T} {return_p(lines) + return_p(vertical_lines)}')
 ```
 
-![4861](README.assets/4861.png)
+![04861.png](./04861.png)
