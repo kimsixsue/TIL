@@ -26,4 +26,4 @@ for T in range(1, TestCase + 1):
     print(f'#{T} {count}')  # 0 ~ 1000
 ```
 
-![](04865.png)
+![](README.assets/04865.png)

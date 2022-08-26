@@ -33,4 +33,4 @@ for testcase in range(1, T + 1):
     print(f'#{testcase} {count}')
 ```
 
-![](01979.png)
+![](README.assets/01979.png)

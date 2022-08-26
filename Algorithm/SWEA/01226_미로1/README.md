@@ -39,4 +39,4 @@ for _ in range(10):
     print(f'#{tcn} {bfs(start_row, start_col, 16)}')
 ```
 
-![](01226.png)
+![](README.assets/01226.png)

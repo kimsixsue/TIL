@@ -42,4 +42,4 @@ for t in range(1, T + 1):
     print(f'#{t} {answer}')
 ```
 
-![](01974.png)
+![](README.assets/01974.png)

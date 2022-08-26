@@ -40,4 +40,4 @@ for tcn in range(1, T + 1):
 
 ```
 
-![](05102.png)
+![](README.assets/05102.png)
