@@ -37,6 +37,5 @@
 5. [[2022-08-22 월] Stack_2](./Algorithm/0822_Stack_2.md)
 6. [[2022-08-24 수] Queue](./Algorithm/0824_Queue.md)
 7. [[2022-08-14 일] Tree basic](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Tree.md)
-8. [[2022-08-26 금] Tree](./Algorithm/0826_Tree.md)
 
 [[2022-08-28 일 예정] Hash Table - Resolve Collision - Open Addressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)

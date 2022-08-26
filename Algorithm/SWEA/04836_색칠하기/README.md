@@ -31,4 +31,4 @@ for testcase in range(1, int(input()) + 1):
     print(f'#{testcase} {hap}')
 ```
 
-![](./04836.png)
+![](04836.png)

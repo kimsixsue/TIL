@@ -31,4 +31,4 @@ for t in range(1, T + 1):
     print(f'#{t} {min_total}')
 ```
 
-![](./04881.png)
+![](04881.png)

@@ -23,4 +23,4 @@ for testcase in range(1, T + 1):
     print(f'#{testcase} {top + 1}')
 ```
 
-![](./04873.png)
+![](04873.png)

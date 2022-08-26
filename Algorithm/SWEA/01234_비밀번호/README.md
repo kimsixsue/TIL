@@ -22,4 +22,4 @@ for testcase in range(1, 11):  # 테스트 케이스 10개
     print(f'#{testcase}', ''.join(password))
 ```
 
-![](./01234.png)
+![](01234.png)
