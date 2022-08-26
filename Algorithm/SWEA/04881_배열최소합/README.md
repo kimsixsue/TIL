@@ -31,4 +31,4 @@ for t in range(1, T + 1):
     print(f'#{t} {min_total}')
 ```
 
-![](README.assets/04881.png)
+![](https://github.com/kimsixsue/TIL/blob/master/Algorithm/SWEA/04881_%EB%B0%B0%EC%97%B4%EC%B5%9C%EC%86%8C%ED%95%A9/README.assets/04881.png?raw=true)

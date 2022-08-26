@@ -23,4 +23,4 @@ for testcase in range(1, T + 1):
     print(f'#{testcase} {top + 1}')
 ```
 
-![](README.assets/04873.png)
+![](https://github.com/kimsixsue/TIL/blob/master/Algorithm/SWEA/04873_%EB%B0%98%EB%B3%B5%EB%AC%B8%EC%9E%90%EC%A7%80%EC%9A%B0%EA%B8%B0/README.assets/04873.png?raw=true)

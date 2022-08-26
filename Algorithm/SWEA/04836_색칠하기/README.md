@@ -31,4 +31,4 @@ for testcase in range(1, int(input()) + 1):
     print(f'#{testcase} {hap}')
 ```
 
-![](README.assets/04836.png)
+![](https://github.com/kimsixsue/TIL/blob/master/Algorithm/SWEA/04836_%EC%83%89%EC%B9%A0%ED%95%98%EA%B8%B0/README.assets/04836.png?raw=true)

@@ -42,4 +42,4 @@ for t in range(1, T + 1):
     print(f'#{t} {answer}')
 ```
 
-![](README.assets/01974.png)
+![](https://github.com/kimsixsue/TIL/blob/master/Algorithm/SWEA/01974_%EC%8A%A4%EB%8F%84%EC%BF%A0%EA%B2%80%EC%A6%9D/README.assets/01974.png?raw=true)

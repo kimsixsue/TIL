@@ -34,4 +34,4 @@ for T in range(1, TestCase + 1):
     print(f'#{T} {return_p(lines) + return_p(vertical_lines)}')
 ```
 
-![](README.assets/04861.png)
+![](https://github.com/kimsixsue/TIL/blob/master/Algorithm/SWEA/04861_%ED%9A%8C%EB%AC%B8/README.assets/04861.png?raw=true)

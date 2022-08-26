@@ -17,4 +17,4 @@ for testcase in range(1, T + 1):
     print(f'#{testcase} {cases[N]}')
 ```
 
-![](README.assets/04869.png)
+![](https://github.com/kimsixsue/TIL/blob/master/Algorithm/SWEA/04869_%EC%A2%85%EC%9D%B4%EB%B6%99%EC%9D%B4%EA%B8%B0/README.assets/04869.png?raw=true)
