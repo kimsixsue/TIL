@@ -14,8 +14,10 @@
 
 2. [[2022-08-03 수] Flexbox/Bootstrap](./Web/0803_Flexbox_Bootstrap.md)
 
+3. [[2022-08-30 화] Django](./Web/0830_Django.md)
 
-3. [[2022-07-31 일] REST[ful]_API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
+
+4. [[2022-07-31 일] REST[ful]_API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
 
 ## [Python](/Python) 정리
 
