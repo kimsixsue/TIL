@@ -1,6 +1,6 @@
 # Django
 
-## Django Intro
+## 1. Django Intro
 
 ### Django 시작하기
 
@@ -64,13 +64,13 @@
 
 **정리**
 
-- 결국 우리가 인터넷을 이용한다는 건, 전세계의 컴퓨터가 연결되어 있는 하나의 인프라를 이용하는 것   
+- 결국 인터넷을 이용한다는 건, 전세계의 컴퓨터가 연결되어 있는 하나의 인프라를 이용하는 것   
 
 ### 클라이언트와 서버
 
 **클라이언트-서버 구조**
 
-- 오늘날 우리가 사용하는 대부분의 웹 서비스는 **클라이언트-서버 구조**를 기반으로 동작
+- 오늘날 사용하는 대부분의 웹 서비스는 **클라이언트-서버 구조**를 기반으로 동작
 
 - **클라이언트**와 **서버** 역시 하나의 컴퓨터이며 이들이 상호작용. CLIENT 클라이언트가 requests 요청하면, SERVER 서버가 responses 응답
 
@@ -92,7 +92,7 @@
 
 **정리**
 
-- 우리가 사용하는 웹은 클라이언트-서버 구조로 이루어져 있음
+- 사용하는 웹은 클라이언트-서버 구조로 이루어져 있음
 
 - 앞으로 배우는 것도 이 클라이언트-서버 구조를 만드는 것
 
@@ -104,13 +104,13 @@
 
 - 웹에서 페이지를 찾아 보여주고, 사용자가 하이퍼링크를 통해 다른 페이지로 이동할 수 있도록 하는 프로그램
 
-- 웹 페이지 파일을 우리가 보는 화면으로 바꿔주는(rendering 렌더링) 프로그램
+- 웹 페이지 파일을 보는 화면으로 바꿔주는(rendering 렌더링) 프로그램
 
 **웹 페이지란?**
 
 - 웹에 있는 문서
   
-  - 우리가 보는 화면 각각 한 장 한 장이 웹 페이지
+  - 보는 화면 각각 한 장 한 장이 웹 페이지
 
 - 웹 페이지 종류
   
@@ -124,7 +124,7 @@
 
 - 있는 그대로를 제공하는 것(served as-is)을 의미
 
-- 우리가 지금까지 작성한 웹 페이지이며 한 번 작성된 HTML 파일의 내용이 변하지 않고 모든 사용자에게 동일한 모습으로 전달되는 것
+- 한 번 작성된 HTML 파일의 내용이 변하지 않고 모든 사용자에게 동일한 모습으로 전달되는 것
   
   == 서버에 미리 저장된 HTML 파일 그대로 전달된 웹 페이지
   
@@ -148,7 +148,7 @@
 
 - 이 중에서 Python을 이용해서 개발할 수 있는 프레임워크인 Django를 학습하는 것
 
-## Django 구조 이해하기 (MTV Design Pattern)
+## 2. Django 구조 이해하기 (MTV Design Pattern)
 
 ### Design Pattern
 
@@ -186,13 +186,13 @@
 
 ### Django's Design Pattern
 
-**Django에서의 디자인 패턴**
+#### Django에서의 디자인 패턴
 
 - Django에 적용된 디자인 패턴은 **MTV 패턴**이다.
 
 - MTV 패턴은 **MVC 디자인 패턴**을 기반으로 조금 변형된 패턴이다.
 
-**MVC 소프트웨어 디자인 패턴**
+#### MVC 소프트웨어 디자인 패턴
 
 - Model - View - Controller
 
@@ -206,7 +206,7 @@
 
     3. Controller : 명령을 model과 view 부분으로 연결
 
-**MVC 소프트웨어 디자인 패턴의 목적**
+#### MVC 소프트웨어 디자인 패턴의 목적
 
 - "관심사 분리"
 
@@ -218,7 +218,7 @@
   
   == 다수의 멤버로 개발하기 용이함
 
-**Django에서의 디자인 패턴**
+#### Django에서의 디자인 패턴
 
 - Django는 MVC 패턴을 기반으로 한 MTV 패턴을 사용
 
@@ -230,7 +230,7 @@
 | View       | Template |
 | Controller | View     |
 
-**MTV 디자인 패턴**
+#### MTV 디자인 패턴
 
 - Model
   
@@ -273,14 +273,14 @@
 7. Template (`<filename>`.html 데이터 + 템플릿
 8. HTTP Response (HTML) 응답
 
-**정리**
+#### ****정리****
 
 - Django는 MTV 디자인 패턴을 가지고 있음
   - Model : 데이터 관련
   - Template : 화면 관련
   - View : Model & Template 중간 처리 및 응답 반환
 
-## Django Quick Start
+## 3. Django Quick Start
 
 ### 기본 설정
 
@@ -483,7 +483,7 @@ render(request, template_name, context)
   | Template  | articles/templates/index.html                                |
   
 
-## Django Template
+## 4. Django Template
 
 - **"데이터 표현을 제어하는 도구이자 표현에 관련된 로직"**
 - Django Template을 이용한 HTML 정적 부분과 동적 콘텐츠 삽입
@@ -557,14 +557,14 @@ render(request, template_name, context)
 
 ### Template inheritance
 
-**템플릿 상속**
+#### 템플릿 상속
 
 - 템플릿 상속은 기본적으로 코드의 재사용성에 초점을 맞춤
 - 템플릿 상속을 사용하면 사이트의 모든 공통 요소를 포함하고, 하위 템플릿이 override 재정의 할 수 있는 블록을 정의하는 기본 'skeleton' 템플릿을 만들 수 있음
 - 만약 모든 템플릿에 부트스트랩을 적용하려면 어떻게 해야 할까?
   - 모든 템플릿에 부트스트랩 CDN을 작성해야 할까?
 
-**템플릿 상속에 관련된 태그**
+#### 템플릿 상속에 관련된 태그
 
 `{% extends '' %}`
 
@@ -579,22 +579,23 @@ render(request, template_name, context)
 - 즉, 하위 템플릿이 채울 수 있는 공간
 - 가독성을 높이기 위해 선택적으로 endblock 태그에 이름을 지정할 수 있음
 
-**추가 템플릿 경로 추가하기**
+#### 추가 템플릿 경로 추가하기
 
-* base.html의
+* `base.html`의 위치를 앱 안의 template 디렉토리가 아닌 프로젝트 최상단의 templates 디렉토리 안에 위치하고 싶다면 어떻게 해야 할까?
 
-* 기본
+* 기본 template 경로가 아닌 다른 경로를 추가하기위해 다음과 같은 코드를 작성
 
   ``` python
+  # settings.py
   
+  TEMPLATES = [
+      {
+          'DIRS': [BASE_DIR / 'templates',],
+      }
+  ]
   ```
 
-**추가 템플릿 경로**
-
-- 
-- 
-
-## Sending and Retrieving form data
+## 5. Sending and Retrieving form data
 
 - "데이터를 보내고 가져오기"
 - HTML form element를 통해 사용자와 애플리케이션 간의 상호작용 이해하기
@@ -608,7 +609,7 @@ render(request, template_name, context)
 
 ### Sending from data (Client)
 
-HTML `<form>` element
+#### HTML `<form>` element
 
 - 데이터가 전송되는 방법을 정의
 - 웹에서 사용자 정보를 입력하는 여러 방식(text, button, submit  등)을 제공하고, **사용자로부터 할당된 데이터를 서버로 전송**하는 역할을 담당
@@ -617,7 +618,7 @@ HTML `<form>` element
   - action
   - method
 
-**HTML form's attributes**
+#### HTML form's attributes
 
 action
 
@@ -631,20 +632,184 @@ method
 - 입력 데이터의 HTTP request methods를 지정
 - HTML form 데이터는 오직 2가지 방법으로만 전송 할 수 있는데 바로 GET 방식과 POST 방식
 
-HTML `<form>` element 작성
+```python
+# urls.py
 
+urlpatterns = [
+    path('throw', view.throw),
+]
+```
 
+```python
+# articles/views.py
+
+def throw(request):
+    return render(request, 'throw.html')
+```
+
+#### HTML `<input>` element
+
+- 사용자로부터 데이터를 입력 받기 위해 사용
+- “type” 속성에 따라 동작 방식이 달라진다.
+  - input 요소의 동작 방식은 type 특성에 따라 현격히 달라지므로 각각의 type은 별도로 MDN 문서에서 참고하여 사용하도록 함
+  - type을 지정하지 않은 경우, 기본값은 “text”
+- 핵심 속성
+  - name
+
+#### HTML input’s attribute
+
+**name**
+
+- form을 통해 데이터를 submit 제출했을 때 name 속성에 설정된 값을 서버로 전송하고, 서버는 name 속성에 설정된 값을 통해 사용자가 입력한 데이터 값에 접근할 수 있음
+- 주요 용도는 GET/POST 방식으로 서버에 전달하는 파라미터(name은 key, value는 value)로 매핑하는 것
+  - GET 방식에서는 URL에서 `‘?key=value&key=value/’` 형식으로 데이터를 전달
+
+#### HTTP request methods
+
+HTTP
+
+- HTML 문서와 같은 리소스(데이터, 자원)들을 가져올 수 있도록 해주는 프로토콜(규칙, 규약)
+
+웹에서 이루어지는 모든 데이터 교환의 기초
+
+HTTP는 주어진 리소스가 수행 할 원하는 작업을 나타내는 request methods를 정의
+
+자원에 대한 행위(수행하고자 하는 동작)을 정의
+
+주어진 리소스(자원)에 수행하길 원하는 행동을 나타냄
+
+HTTP Method 예시
+
+- GET, POST, PUT, DELETE
+
+#### GET
+
+서버로부터 정보를 조회하는 데 사용
+
+- 즉, 서버에게 리소스를 요청하기 위해 사용
+
+데이터를 가져올 때만 사용해야 함
+
+데이터를 서버로 전송할 때 Query String Parameters를 통해 전송
+
+- 데이터는 URL에 포함되어 서버로 보내짐
+
+#### GET 메서드 작성
+
+- GET과 get 모두 대소문자 관계없이 동일하게 동작하지만 명시적 표현을 위해 대문자 사용을 권장
+- 데이터를 입력 후 submit 버튼을 누르고 URL의 변화를 확인한다.
+
+#### Query String Parameters
+
+사용자가 입력 데이터를 전달하는 방법 중 하나로, url 주소에 데이터를 파라미터를 통해 넘기는 것
+
+이러한 문자열은 &(앰퍼샌드)로 연결된 key=value 쌍으로 구성되며 기본 URL과 ?(물음표)로 구분됨
+
+- http://host:port/path`?key=value&key=value`
+
+Query String이라고도 함
+
+정해진 주소 이후에 물음표를 쓰는 것으로 Query String이 시작함을 알림
+
+“key=value”로 필요한 파라미터의 값을 적음
+
+- “=”로 key와 value가 구분됨
+
+파라미터가 여러 개일 경우 “&”를 붙여 여러 개의 파라미터를 넘길 수 있음
+
+그런데 아직 어디로 action(보내야) 할 지 작성하지 않았다.
 
 ### Retrieving the data (Server)
 
-## Django URLs
+“데이터 가져오기(검색하기)”
 
-### Trailing URL Slashes
+서버는 클라이언트로 받은 key-value 쌍의 목록과 같은 데이터를 받게 됨
 
-### Variable routing
+이러한 목록에 접근하는 방법은 사용하는 특정 프레임워크에 따라 다름
 
-### App URL mapping
+우리는 Django 프레임워크에서 어떻게 데이터를 가져올 수 있을지 알아볼 것
 
-### Naming URL patterns
+- throw가 보낸 데이터를 catch에서 가져오기
 
-## 마무리
+#### catch 작성
+
+```python
+# urls.py
+
+urlpatterns = [
+    path('catch/', views.catch),
+]
+```
+
+#### action 작성
+
+```django
+<!-- articles/templates/throw.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Throw</h1>
+  <form action="/catch/" method="GET">
+    <label for="message">Throw</label>
+    <input type="text" id="message" name="message">
+    <input type="submit">
+  </form>
+{% endblock content %}
+```
+
+```django
+<!-- articles/templates/index.html -->
+
+{% extends 'base.html' %}
+{% block cotent %}
+  <a href="/throw/">throw<a>
+{% endblock %}
+```
+
+#### 데이터 가져오기
+
+catch 페이지가 잘 응답되어 출력됨을 확인
+
+그런데 throw 페이지의 form이 보낸 데이터는 어디에 들어 있는걸까?
+
+- catch 페이지의 url 확인 `http://127.0.0.1:8000/catch/?message=데이터`
+- GET method로 보내고 있기 때문에 데이터를 서버로 전송할 때 Query String Parameters를 통해 전송
+- 즉, 데이터는 URL에 포함되어 서버로 보내짐
+
+그러면 작성해야 하는 view 함수에서는 해당 데이터에 어떻게 접근 가능할까?
+
+“모든 요청 데이터는 view 함수의 첫번째 인자 `request`에 들어있다.”
+
+request가 어떤 객체인지 확인해보기
+
+#### catch 작성 마무리
+
+```python
+# articles/views.py
+
+def catch(request):
+    message = request.GET.get('message')
+    context = {
+        'message': message,
+    }
+    return render(request, 'catch.html', context) 
+```
+
+```django
+<!-- articles/templates/catch.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Catch</h1>
+  <h2>여기서 {{ message }}를 받았어!!</h2>
+  <a href="/throw/">다시 던지러</a>
+{% endblock content %}
+```
+
+#### Request and Response objects
+
+요청과 응답 객체 흐름
+
+- 페이지가 요청되면 Django는 요청에 대한 메타데이터를 포함하는 HttpRequest object를 생성
+- 그리고 해당하는 적절한 view 함수를 로드하고 HttpRequest를 첫번째 인자로 전달
+- 마지막으로 view 함수는 HttpRespones object를 반환
