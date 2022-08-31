@@ -500,6 +500,15 @@ Create / Read / Update / Delete
    - 인스턴스로 save 메서드 호출
    - 비로소 DB에 데이터가 저장된다. (레코드 생성)
 
+```python
+article = Article()
+article.title = '제목'
+article.content = '내용'
+article.save()
+```
+
+
+
 #### 두번째 방법
 
 인스턴스 생성 시 초기 값을 함께 작성하여 생성
