@@ -262,18 +262,18 @@
   
   - MVC 패턴에서 Controller의 역할에 해당 
 
-장고 흐름
+#### 장고 서비스 흐름
 
-1. HTTP Request. 사용자 요청 URL
-2. URLS (urls.py). 서버. 어떤 요청인지 확인
-3. Forward request to appropriate view. 요청 처리
-4. View (views.py)
-5. read/write data 필요한 데이터
-6. Model (models.py) 데이터 전달
-7. Template (`<filename>`.html 데이터 + 템플릿
-8. HTTP Response (HTML) 응답
+1. HTTP Request. 사용자 요청 **URL**
+2. URLS (**urls.py**). 서버. 어떤 요청인지 확인
+3. Forward **request** to appropriate view. **요청 처리**
+4. **V**iew (**views.py**)
+5. read/write data 필요한 **데이터**
+6. **M**odel (**models.py**) DB **데이터** 전달
+7. **T**emplate (`<filename>`.html 데이터 + 템플릿
+8. HTTP **Response** (HTML) 응답
 
-#### ****정리****
+#### 정리
 
 - Django는 MTV 디자인 패턴을 가지고 있음
   - Model : 데이터 관련
@@ -300,12 +300,14 @@
 
   ```bash
   $ pip install django==3.2
+  # 파일에 있는 패키지를 자동으로 설치
+  $ pip install -r requirements.txt
   ```
 
 - 패키지 목록 생성
 
   ```bash
-  $ pip freeze > requirements.txt12
+  $ pip freeze > requirements.txt
   ```
 
 #### Django Project
@@ -581,7 +583,7 @@ render(request, template_name, context)
 
 #### 추가 템플릿 경로 추가하기
 
-* `base.html`의 위치를 앱 안의 template 디렉토리가 아닌 프로젝트 최상단의 templates 디렉토리 안에 위치하고 싶다면 어떻게 해야 할까?
+* `base.html`의 위치를 앱 안의 templates 디렉토리가 아닌 프로젝트 최상단의 templates 디렉토리 안에 위치하고 싶다면 어떻게 해야 할까?
 
 * 기본 template 경로가 아닌 다른 경로를 추가하기위해 다음과 같은 코드를 작성
 
@@ -591,9 +593,20 @@ render(request, template_name, context)
   TEMPLATES = [
       {
           'DIRS': [BASE_DIR / 'templates',],
-      }
+      }  # BASE_DIR은 전체 폴더 경로
   ]
   ```
+
+```python
+# config/urls.py
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('articles/', include('articles.urls'))
+]
+```
 
 ## 5. Sending and Retrieving form data
 
@@ -634,6 +647,8 @@ method
 
 ```python
 # urls.py
+from django.urls import path
+from . import views
 
 urlpatterns = [
     path('throw', view.throw),
@@ -735,6 +750,8 @@ Query String이라고도 함
 
 ```python
 # urls.py
+from django.urls import path
+from . import views
 
 urlpatterns = [
     path('catch/', views.catch),

@@ -7,17 +7,18 @@
 
 2. [[2022-08-07 일] Git Book 요약 정리](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Git_GitHub.md)
 
-
 ## [Web](/Web) 정리
 
 1. [[2022-08-01 월] HTML/CSS](./Web/0801_HTML_CSS.md)
 
 2. [[2022-08-03 수] Flexbox/Bootstrap](./Web/0803_Flexbox_Bootstrap.md)
 
-3. [[2022-08-30 화] Django](./Web/0830_Django.md)
+3. [[2022-08-30 화] Django_Template_Controller](./Web/0830_Django_Template_Controller.md)
+
+4. [[2022-08-31 수] Django_Model](./Web/0831_Django_Model.md)
 
 
-4. [[2022-07-31 일] REST[ful]_API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
+5. [[2022-07-31 일] REST[ful]_API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
 
 ## [Python](/Python) 정리
 
