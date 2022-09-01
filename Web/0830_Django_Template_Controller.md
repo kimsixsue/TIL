@@ -766,7 +766,8 @@ urlpatterns = [
 {% extends 'base.html' %}
 {% block content %}
   <h1>Throw</h1>
-  <form action="/catch/" method="GET">
+  <form action="/catch/" method="POST">
+    {% csrf_token %}
     <label for="message">Throw</label>
     <input type="text" id="message" name="message">
     <input type="submit">
@@ -805,7 +806,7 @@ request가 어떤 객체인지 확인해보기
 # articles/views.py
 
 def catch(request):
-    message = request.GET.get('message')
+    message = request.POST.get('message')
     context = {
         'message': message,
     }
@@ -830,3 +831,132 @@ def catch(request):
 - 페이지가 요청되면 Django는 요청에 대한 메타데이터를 포함하는 HttpRequest object를 생성
 - 그리고 해당하는 적절한 view 함수를 로드하고 HttpRequest를 첫번째 인자로 전달
 - 마지막으로 view 함수는 HttpRespones object를 반환
+
+## 6. Django URLs
+
+"Dispatcher 운행 관리원 로서의 URL 이해하기"
+
+웹 어플리케이션은 URL을 통한 클라이언트의 요청에서부터 시작함
+
+### Trailing URL Slashes
+
+#### Trailing Slashes
+
+Django는 URL 끝에 `/`(Trailing slash)가 없다면 자동으로 붙여주는 것이 기본 설정
+
+- 그래서 모든 주소가 '/'로 끝나도록 구성 되어있음
+- 그러나 모든 프레임워크가 이렇게 동작하는 것은 아님
+
+ Django의 url 설계 철학을 통해 먼저 살펴보면 다음과 같이 설명함
+
+"기술적인 측면에서, **foo.com/bar** 와 **foo.com/bar/**는 서로 다른 URL이다."
+
+- 검색 엔진 로봇이나 웹 트래픽 분석 도구에서는 그 둘을 서로 다른 페이지로 봄
+- 그래서 Django는 URL을 정규화하여 검색 엔진 로봇이 혼동하지 않게 해야 함
+
+#### [참고] URL 정규화
+
+정규 URL(=오리지널로 평가되어야 할 URL)을 명시하는 것
+
+복수의 페이지에서 같은 콘텐츠가 존재하는 것을 방지하기 위함
+
+"Django에서는 trailing slash가 없는 요청에 대해 자동으로 slash를 추가하여 통합된 하나의 콘텐츠로 볼 수 있도록 한다."
+
+### Variable routing
+
+#### Variable routing의 필요성
+
+템플릿의 많은 부분이 중복되고, 일부분만 변경되는 상황에서 비슷한 URL과 템플릿을 계속해서 만들어야 할까?
+
+#### Variable routing
+
+URL 주소를 변수로 사용하는 것을 의미
+
+URL의 일부를 변수로 지정하여 view 함수의 인자로 넘길 수 있음
+
+즉, 변수 값에 따라 하나의 path()에 여러 페이지를 연결 시킬 수 있음
+
+#### Variable routing 작성
+
+변수는 "<>"에 정의하며 view 함수의 인자로 할당됨
+
+기본 타입은 string이며 5가지 타입으로 명시할 수 있음
+
+- str
+  - '/' 를 제외하고 비어 있지 않은 모든 문자열
+  - 작성하지 않을 경우 기본 값
+- int
+  - 0 또는 양의 정수와 매치
+
+``` python
+# urls.py
+
+urlpatterns = [
+    # path('hello/<str:name>/', views.hello),
+    path('hello/<name>/', views.hello),
+]
+```
+
+#### View 함수 작성
+
+variable routing으로 할당된 변수를 인자로 받고 템플릿 변수로 사용할 수 있음
+
+```python
+# articles/view.py
+
+def hello(request, name):
+    context = {
+        'name': name,
+    }
+    return render(request, 'hello.html', context)
+```
+
+#### [참고] Routing 라우팅
+
+어떤 네트워크 안에서 통신 데이터를 보낼 때 최적의 경로를 선택하는 과정을 뜻함
+
+### App URL mapping
+
+앱이 많아졌을 때 urls.py를 각 app에 매핑하는 방법을 이해하기
+
+두번째 app인 **pages**를 생성 및 등록 하고 진행
+
+app의 vies 함수가 많아지면서 사용하는 path() 또한 많아지고, app 또한 더 많이 작성되기 때문에 프로젝트의 urls.py에서 모두 관리하는 것은 프로젝트 유지보수에 좋지 않음
+
+각 앱의 view 함수를 다른 이름으로 import 할 수 있음
+
+하나의 프로젝트의 여러 앱이 존재한다면, 각각의 앱 안에 urls.py를 만들고 프로젝트 urls.py에서 각 앱의 urls.py 파일로 URL 매핑을 위탁할 수 있음
+
+#### Including other URLconfs
+
+urlpattern은 언제든지 다른 URLconf 모듈을 include 포함 할 수 있음
+
+**include되는 앱의 url.py에 urlpatterns가 작성되어 있지 않다면 에러가 발생**
+
+**예를 들어, pages 앱의 urlpatterns가 빈 리스트라도 작성되어 있어야 함**
+
+#### include()
+
+다른 URLconf(app1/urls.py)들을 참조할 수 있도록 돕는 함수
+
+함수 include()를 만나게 되면 URL의 그 시점까지 일치하는 부분을 잘라내고, 남은 문자열 부분을 후속 처리를 위해 include된 URLconf로 전달
+
+### Naming URL patterns
+
+링크에 URL을 직접 작성하는 것이 아니라 "path()" 함수의 name 인자를 정의해서 사용
+
+DTL의 Tag 중 하나인 **URL 태그**를 사용해서 "path()" 함수에 작성한 name을 사용할 수 있음
+
+이를 통해 URL 설정에 정의된 특정한 경로들의 의존성을 제거할 수 있음
+
+Django는 URL에 이름을 지정하는 방법을 제공함으로써 view 함수와 템플릿에서 특정 주소를 쉽게 참조할 수 있도록 도움
+
+#### Built-in tag - "url"
+
+```django
+{% url '' %}
+```
+
+주어진 URL 패턴 이름 및 선택적 매개 변수와 일치하는 절대 경로 주소를 반환
+
+템플릿에 URL을 하드 코딩하지 않고도 링크를 출력하는 방법
