@@ -687,6 +687,10 @@ Django shell에서 변화된 출력 확인
 
 - Variable Routing
 
+  ```django
+  {% url 'app_name:path_name' 주소로전달값 %}
+  ```
+
 ### CREATE
 
 CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할까?
@@ -789,6 +793,8 @@ POST
 - 리소스를 생성/변경하기 위해 데이터를 HTTP body에 담아 전송
 - GET의 쿼리 스트링 파라미터와 다르게 URL로 보내지지 않음
 - CRUD에서 C/U/D 역할을 담당
+- **DB에 영향을 미치는 요청은 전부 POST 요청**
+- **csrf_token**
 
 #### [참고] 403 Forbidden
 

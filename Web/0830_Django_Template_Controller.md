@@ -895,6 +895,10 @@ urlpatterns = [
     # path('hello/<str:name>/', views.hello),
     path('hello/<name>/', views.hello),
 ]
+# Variable routing 사용시 주의점
+# 1. 변수명과 views.py의 함수 매개변수의 이름이 같아야 한다
+# 2. variable routing이 설정되면 반드시 매개변수로 받아야 한다
+# 3. variable routing이 적용된 주소에는 반드시 값이 들어가 있어야 한다
 ```
 
 #### View 함수 작성
