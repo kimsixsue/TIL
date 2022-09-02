@@ -2,20 +2,20 @@
 
 ## 자료구조 + 알고리즘 정리
 
-1. [[2022-08-08 월] Array](./0808_Array.md)
+1. [[2022-08-08 월] Array_Sort](./0808_Array_Sort.md)
 
-2. [[2022-08-10 수] Array_2](./0810_Array_2.md)
-
-
-3. [[2022-08-12 금] String](./0812_String.md)
+2. [[2022-08-10 수] Array_SubsetSum_Search_Selection](./0810_Array_SubsetSum_Search_Selection.md)
 
 
-4. [[2022-08-17 수] Stack](./0817_Stack.md)
-
-5. [[2022-08-22 월] Stack_2](./0822_Stack_2.md)
+3. [[2022-08-12 금] String_PatternMatching](./0812_String_PatternMatching.md)
 
 
-6. [[2022-08-24 수] Queue](./0824_Queue.md)
+4. [[2022-08-17 수] Stack_DP_DFS](./0817_Stack_DP_DFS.md)
+
+5. [[2022-08-22 월] Stack_Backtracking](./Stack_Backtracking.md)
+
+
+6. [[2022-08-24 수] Queue_BFS](./0824_Queue_BFS.md)
 
 
 7. [[2022-08-14 일] Tree basic](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Tree.md)

@@ -1,4 +1,4 @@
-# Django_Model
+# Django_Model_QuerySet_CRUD
 
 ## 1. Namespace
 

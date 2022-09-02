@@ -1,4 +1,4 @@
-# Condition, Iteration, Function, Module
+# Control, Function, Module
 
 ## Control statement
 

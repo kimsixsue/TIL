@@ -1,4 +1,4 @@
-# Stack2
+# Stack_Backtracking
 
 ## 계산기 1
 

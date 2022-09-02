@@ -1,4 +1,4 @@
-#  Array_2
+#  Array_SubsetSum_Search_Selection
 
 ## 배열 : 2차원 배열
 

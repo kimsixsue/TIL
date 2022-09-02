@@ -1,4 +1,4 @@
-## Stack
+## Stack_DP_DFS
 
 **stack 스택의 특성**
 

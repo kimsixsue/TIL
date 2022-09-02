@@ -9,44 +9,46 @@
 
 ## [Web](/Web) 정리
 
-1. [[2022-08-01 월] HTML/CSS](./Web/0801_HTML_CSS.md)
+1. [[2022-08-01 월] HTML/CSS](./0801_HTML_CSS.md)
 
-2. [[2022-08-03 수] Flexbox/Bootstrap](./Web/0803_Flexbox_Bootstrap.md)
+2. [[2022-08-03 수] Flexbox/Bootstrap](./0803_Flexbox_Bootstrap.md)
 
-3. [[2022-08-30 화] Django_Template_Controller](./Web/0830_Django_Template_Controller.md)
+3. [[2022-08-30 화] Django_Template_VariableRouting](./0830_Django_Template_VariableRouting.md)
 
-4. [[2022-08-31 수] Django_Model](./Web/0831_Django_Model.md)
+4. [[2022-08-31 수] Django_Model_QuerySet_CRUD](./0831_Django_Model_QuerySet_CRUD.md)
 
 
 5. [[2022-07-31 일] REST[ful]_API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
 
 ## [Python](/Python) 정리
 
-1. [[2022-07-18 월] Python basic](./Python/0718_Python_basic.md)
+1. [[2022-07-18 월] Python_basic](/Python/0718_Python_basic.md)
 
-2. [[2022-07-20 수] Python control iteration function module](./Python/0720_control_iteration_function_module.md)
 
-3. [[2022-07-25 월] Python data structure](./Python/0725_data_structure.md)
+2. [[2022-07-20 수] Control_Function_Module](/Python/0720_control_function_module.md)
 
-4. [[2022-07-27 수] Python OOP](./Python/0727_OOP.md)
 
+3. [[2022-07-25 월] DataStructure_Copy](/Python/0725_data_structure_copy.md)
+
+
+4. [[2022-07-27 수] OOP_Error_Excpetion](/Python/0727_OOP_error_exception.md)
 
 ## [자료구조 + 알고리즘](/Algorithm) 정리
 
-1. [[2022-08-08 월] Array](./Algorithm/0808_Array.md)
+1. [[2022-08-08 월] Array_Sort](./0808_Array_Sort.md)
 
-2. [[2022-08-10 수] Array_2](./Algorithm/0810_Array_2.md)
-
-
-3. [[2022-08-12 금] String](./Algorithm/0812_String.md)
+2. [[2022-08-10 수] Array_SubsetSum_Search_Selection](./0810_Array_SubsetSum_Search_Selection.md)
 
 
-4. [[2022-08-17 수] Stack](./Algorithm/0817_Stack.md)
-
-5. [[2022-08-22 월] Stack_2](./Algorithm/0822_Stack_2.md)
+3. [[2022-08-12 금] String_PatternMatching](./0812_String_PatternMatching.md)
 
 
-6. [[2022-08-24 수] Queue](./Algorithm/0824_Queue.md)
+4. [[2022-08-17 수] Stack_DP_DFS](./0817_Stack_DP_DFS.md)
+
+5. [[2022-08-22 월] Stack_Backtracking](./Stack_Backtracking.md)
+
+
+6. [[2022-08-24 수] Queue_BFS](./0824_Queue_BFS.md)
 
 
 7. [[2022-08-14 일] Tree basic](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Tree.md)

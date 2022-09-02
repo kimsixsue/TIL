@@ -1,4 +1,4 @@
-# Queue 큐
+# Queue_BFS
 
 **Queue큐의 특성**
 
