@@ -11,21 +11,25 @@ for m in range(1, M + 1):  # 간선들
     edge[t].append(s)
 for _ in edge:  # 오름차순
     _.sort()
-# DFS
-visited = [False for _ in range(N + 1)]
-node = [0 for _ in range(N)]  # 방문 순서
+
+# DFS_stack_append_pop
+visited = [False] * (N + 1)
 now = V
-idx = -1
-while idx < N - 1:
-    idx += 1
-    node[idx] = now
+order = [now]
+stack = [now]
+while stack:
     visited[now] = True
-    for _ in edge[now]:
-        if not visited[_]:
-            now = _
+    for nxt in range(N + 1):
+        if not visited[nxt] and nxt in edge[now]:
+            stack.append(now)
+            now = nxt
+            order.append(nxt)
             break
-print(*node)
-# BFS
+    else:
+        now = stack.pop()
+print(*order)
+
+# BFS_queue_append_pop
 order = list()
 queue = [V]
 while queue:
