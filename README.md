@@ -9,13 +9,13 @@
 
 ## [Web](/Web) 정리
 
-1. [[2022-08-01 월] HTML/CSS](./0801_HTML_CSS.md)
+1. [[2022-08-01 월] HTML/CSS](./Web/0801_HTML_CSS.md)
 
-2. [[2022-08-03 수] Flexbox/Bootstrap](./0803_Flexbox_Bootstrap.md)
+2. [[2022-08-03 수] Flexbox/Bootstrap](./Web/0803_Flexbox_Bootstrap.md)
 
-3. [[2022-08-30 화] Django_Template_VariableRouting](./0830_Django_Template_VariableRouting.md)
+3. [[2022-08-30 화] Django_Template_VariableRouting](./Web/0830_Django_Template_VariableRouting.md)
 
-4. [[2022-08-31 수] Django_Model_QuerySet_CRUD](./0831_Django_Model_QuerySet_CRUD.md)
+4. [[2022-08-31 수] Django_Model_QuerySet_CRUD](./Web/0831_Django_Model_QuerySet_CRUD.md)
 
 
 5. [[2022-07-31 일] REST[ful]_API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
@@ -35,20 +35,20 @@
 
 ## [자료구조 + 알고리즘](/Algorithm) 정리
 
-1. [[2022-08-08 월] Array_Sort](./0808_Array_Sort.md)
+1. [[2022-08-08 월] Array_Sort](./Algorithm/0808_Array_Sort.md)
 
-2. [[2022-08-10 수] Array_SubsetSum_Search_Selection](./0810_Array_SubsetSum_Search_Selection.md)
-
-
-3. [[2022-08-12 금] String_PatternMatching](./0812_String_PatternMatching.md)
+2. [[2022-08-10 수] Array_SubsetSum_Search_Selection](./Algorithm/0810_Array_SubsetSum_Search_Selection.md)
 
 
-4. [[2022-08-17 수] Stack_DP_DFS](./0817_Stack_DP_DFS.md)
-
-5. [[2022-08-22 월] Stack_Backtracking](./Stack_Backtracking.md)
+3. [[2022-08-12 금] String_PatternMatching](./Algorithm/0812_String_PatternMatching.md)
 
 
-6. [[2022-08-24 수] Queue_BFS](./0824_Queue_BFS.md)
+4. [[2022-08-17 수] Stack_DP_DFS](./Algorithm/0817_Stack_DP_DFS.md)
+
+5. [[2022-08-22 월] Stack_Backtracking](./Algorithm/Stack_Backtracking.md)
+
+
+6. [[2022-08-24 수] Queue_BFS](./Algorithm/0824_Queue_BFS.md)
 
 
 7. [[2022-08-14 일] Tree basic](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Tree.md)
