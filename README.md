@@ -54,4 +54,7 @@
 7. [[2022-08-14 일] Tree basic](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Tree.md)
 
 
-8. [[2022-08-28 일] Hash Table - Resolve Collision - Open Addressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
+8. [[2022-08-28 일] HashTable_ ResolveCollision_OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
+
+
+9. [[2022-09-04 일] Graph_Representations_Traversal](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Graph_Representations_Traversal.md)

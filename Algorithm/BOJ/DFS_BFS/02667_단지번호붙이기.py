@@ -11,6 +11,7 @@ delta = [[0, 1], [1, 0], [0, -1], [-1, 0]]
 comp_num = list()  # 각 단지내 집 수
 comp = -1
 queue = deque()
+
 while True:
     for row in range(N):
         for col in range(N):
@@ -28,6 +29,7 @@ while True:
                             visited[nr][nc] = True
                             comp_num[comp] += 1  # 새 단지내 집의 수 증가
     break  # 순회 완료
+
 print(len(comp_num))  # 총 단지 수
 comp_num.sort()  # 오름차순으로 정렬
 for _ in comp_num:  # 각 단지내 집의 수
