@@ -17,8 +17,9 @@
 
 4. [[2022-08-31 수] Django_Model_QuerySet_CRUD](./Web/0831_Django_Model_QuerySet_CRUD.md)
 
+5. [[2022-09-06 화] Django_Form_ModelForm](./Web/0906_Django_Form_ModelForm.md)
 
-5. [[2022-07-31 일] REST[ful]_API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
+6. [[2022-07-31 일] REST[ful]_API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
 
 ## [Python](/Python) 정리
 
