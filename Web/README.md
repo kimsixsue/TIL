@@ -11,4 +11,6 @@
 
 5. [[2022-09-06 화] Django_Form_ModelForm](./0906_Django_Form_ModelForm.md)
 
-6. [[2022-07-31 일] REST[ful]_API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
+6. [[2022-09-07 수] Django_Auth](./0907_Django_Auth.md)
+
+7. [[2022-07-31 일] REST[ful]_API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)

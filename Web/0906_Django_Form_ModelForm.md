@@ -145,7 +145,7 @@ class ArticleForm(forms.Form):
         (NATION_C, '일본'),
     ]
     title = forms.CharField(max_length=10)
-    content = forms.CharField(widget=forms.Textarea
+    content = forms.CharField(widget=forms.Textarea)
     nation = forms.ChoiceField(choices=NATIONS_CHOICES)
     # nation = forms.ChoiceField(choices=NATIONS_CHOICES, widget=forms.RadioSelect)
 ```
@@ -172,7 +172,7 @@ ModelForm을 사용하면 Form을 더 쉽게 작성할 수 있음
   from django import forms
   from .models import Article
   
-  class ArticleForm(form.ModelForm):
+  class ArticleForm(forms.ModelForm):
       
       class Meta:
           model = Article  # 어떤 모델을 기반으로 할지
@@ -226,7 +226,7 @@ ModelForm으로 인한 view 함수의 구조 변화 알아보기
 **CREATE**
 
 ```python
-# articles/vies.py
+# articles/views.py
 def create(request):
     form = Article(request.POST)
     if form.is_valid():  # 유효성 검사를 통과하면
@@ -349,6 +349,10 @@ def create(request):
 
 ### Widgets 활용하기
 
+> https://getbootstrap.com/docs/5.2/forms/overview/#overview
+>
+> https://django-bootstrap-v5.readthedocs.io/en/latest/
+
 ```python
 # articles/forms.py
 
@@ -357,7 +361,7 @@ class ArticleForm(forms.ModelForm):
     	label='제목',
         widget=forms.TextInput(
         	attrs={
-                'class': 'my-title',
+                'class': 'my-title form-control',
                 'placeholder': 'Enter the title',
             }
         ),
@@ -366,7 +370,7 @@ class ArticleForm(forms.ModelForm):
     	label='내용',
         widget=forms.Textarea(
         	attrs={
-                'class': 'my-content',
+                'class': 'my-content form-control',
                 'placeholder': 'Enter the content',
                 'rows': 5,
                 'cols': 50,
@@ -381,8 +385,6 @@ class ArticleForm(forms.ModelForm):
         model = Article
         fields = '__all__'
 ```
-
-
 
 ## Handling HTTP requests
 
@@ -411,22 +413,36 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
 
   ```python
   # articles/views.py
+  from .forms import ArticleForm  # Article Model을 바탕으로 만들어진 Form
+  
   def create(request):
   
-      if request.method == 'POST':  # CREATE  # DB
+      if request.method == 'POST':  # CREATE  # DB의 내용 변경
+          # 게시글을 DB에 저장하기 위한 단계
+          # ModelForm 에 전달 받은 데이터를 넣어서 인스턴스를 생성한다.
           form = ArticleForm(request.POST)
-          if form.is_valid():
-              article = form.save()
+          # 인스턴스에 담긴 데이터가 저장해도 되는 데이터인지 검수한다. (유효성 검사)
+          if form.is_valid():  # 유효성 검사를 통과하면 True, 실패하면 False
+              # 유효성 검사를 통과 했다면?
+              article = form.save()  # 필요하다면 저장되는 데이터를 인스턴스로 받아서 사용한다.
+              # 저장이 완료 되었으면 디테일 페이지로 이동한다.
               return redirect('articles:detail', article.pk)
+          # 유효성 검사를 통과하지 못했다면? 에러 메세지를 보여줘야 한다. 에러페이지 X
+          # 유효성 검사를 통과하지 못하면 error 메시지가 form에 알아서 담긴다.
+          # error message가 담긴 담긴 form 을 딕셔너리로 담아서 렌더링 해준다.
           # else: 갈 곳이 없으면, context로
           
-      else:  # GET NEW
+      else:  # NEW / GET / 데이터를 조회, page를 요청
+          # 게시글을 작성할 수 있는 페이지를 보여줘야 할 필요가 있음
+          # 게시글 요청은 GET method 로 요청된다
+          # ModelForm을 이용해서 빈 인스턴스를 생성한다.
           form = ArticleForm()
-          
+      # GET , POST 요청의 공통된 내용
+      # 빈 인스턴스를 딕셔너리 형태로 담아서 html로 렌더링해준다.
       context = {
           'form': form,
       }
-      return render(request, 'articles/new.html', context)     
+      return render(request, 'articles/create.html', context)     
   ```
 
 - 불필요해진 new의 view 함수와 url path를 삭제
@@ -572,6 +588,34 @@ django.views.decorators.http 의 데코레이터를 사용하여 요청 메서�
   def detail(request, pk):
       pass
   ```
+
+## [Working with form templates](https://docs.djangoproject.com/en/3.2/topics/forms/)
+
+- `{{ form.as_p }}` will render them wrapped in `<p>` tag
+
+### Rendering fields manually
+
+```django
+<div class="fieldWrapper">
+    {{ form.subject.errors }}
+    {{ form.subject.label_tag }}
+    {{ form.subject }}
+</div>
+```
+
+### Looping over the form’s fields
+
+```django
+{% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+        {% if field.help_text %}
+        <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+    </div>
+{% endfor %}
+```
 
 ## 마무리
 
