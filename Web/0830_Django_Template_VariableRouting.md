@@ -452,6 +452,9 @@
   urlpatterns = [
       path('admin/', admin.site.urls),
       path('index/', views.index),
+      # 사용자가 index 라는 주소로 요청을 보낸다면
+      # articles에 있는 views 파일에서 index 함수를 실행할거야
+      # 함수명만 작성, 함수 정의 위치 전달
   ]
   ```
 
@@ -506,7 +509,6 @@ render(request, template_name, context)
   </html>
   ```
 
-  
 
 **코드 작성 순서**
 
@@ -520,6 +522,25 @@ render(request, template_name, context)
   | View      | def `index`(request):<br />    return render(request, '**index.html**') |
   | Template  | articles/templates/`index.html`                              |
   
+
+**[참고] 추가 설정**
+
+- **LANGUAGE_CODE**
+
+  - 모든 사용자에게 제공되는 번역을 결정
+
+  - 이 설정이 적용 되려면 USE_I18N 이 True 활성화 되어 있어야 함
+
+    > http://www.i18nguy.com/unicode/language-identifiers.html
+
+    ```python
+    # settings.py
+    LANGUAGE_CODE = 'ko-kr'
+    ```
+
+- **USE_I18N**
+
+  - Django의 번역 시스템을 활성화해야 하는지 여부를 지정
 
 ## 4. Django Template
 

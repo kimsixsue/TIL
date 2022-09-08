@@ -1,6 +1,6 @@
 # Django_Form_ModelForm
 
-## Django Form
+## 1. Django Form
 
 사용자가 입력한 데이터가 우리가 원하는 데이터 형식이 맞는지에 대한 **유효성 검증**이 반드시 필요
 
@@ -162,7 +162,7 @@ class ArticleForm(forms.Form):
     # nation = forms.ChoiceField(choices=NATIONS_CHOICES, widget=forms.RadioSelect)
 ```
 
-## Django ModelForm
+## 2. Django ModelForm
 
 ModelForm을 사용하면 Form을 더 쉽게 작성할 수 있음
 
@@ -451,7 +451,7 @@ class ArticleForm(forms.ModelForm):
         fields = '__all__'
 ```
 
-## Handling HTTP requests
+## 3. Handling HTTP requests
 
 “HTTP requests 처리에 따른 view 함수 구조 변화”
 
@@ -552,7 +552,7 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
       return redirect('articles:index')
   ```
 
-## View decorators
+## 4. View decorators
 
 View decorators 를 사용해 view 함수를 단단하게 만들기
 
@@ -653,7 +653,7 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
       pass
   ```
 
-## [Working with form templates](https://docs.djangoproject.com/en/3.2/topics/forms/)
+## 5. [Working with form templates](https://docs.djangoproject.com/en/3.2/topics/forms/)
 
 - `{{ form.as_p }}` will render them wrapped in `<p>` tag
 

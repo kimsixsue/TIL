@@ -865,7 +865,10 @@ def index(request):
 from .models import Article
 
 def index(request):
+    # 1. 모든 데이터를 확보
     articles = Article.objects.all()
+    # 2. 확보한 데이터를 template 에 보여줘야 한다.
+    # 확보한 데이터를 템플릿으로 전달할 필요가 있다.
     context = {
         'articles': articles,
     }
@@ -910,8 +913,11 @@ def index(request):
 
   ```python
   # articles/views.py
+  # 글 내용 조회 (하나의 글 데이터 필요)
   def detail(request, pk):
+      # query api 에서 get 메소드는 유일한 값을 이용해서 데이터를 찾음
       article = Article.objects.get(pk=pk)
+      # 전달 받은 아이디로 데이터를 가져온다. (데이터 확보)
       context = {
           'article': article,
       }
@@ -955,6 +961,7 @@ def index(request):
 ```python
 # articles/views.py
 def create(request):
+    # 글 작성을 완료하고 나면 다음 뜨는 페이지
     return redirect('articels:detail', article.pk)
 ```
 
@@ -977,6 +984,8 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
 
   ```python
   # articles/views.py
+  # 글 쓰기 버튼을 눌렀을 때
+  # 사용자 입력 페이지 (글쓰기 페이지) 응답으로 전달
   def new(request):
       return render(request, 'articles/new.html')
   ```
@@ -1026,20 +1035,22 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   ```
 
   ```python
+  # 사용자가 작성한 데이터를 받아서 DB에 저장하는 역할
   def create(request):
+      # 데이터 저장하기 위해서는 사용자의 데이터를 확보
       title = request.POST.get('title')
       content = request.POST.get('content')
-      
+      # Post 클래스의 인스턴스를 생성 (클래스 변수를 같이 줘야 함)
       article = Article(title=title, content=content)
-      article.save()
+      article.save()  # 확보한 데이터를 DB에 저장
       
       return render(request, 'articles/create.html')
   ```
-
+  
   - create 메서드가 더 간단해 보이지만 추후 데이터가 저장되기 전에 유효성 검사 과정을 거치게 될 예정
   - 유효성 검사가 진행된 후에 save 메서드가 호출되는 구조를 택하기 위함
   - 게시글 작성 후 확인
-
+  
   ```django
   <!-- templates/articles/create.html -->
   {% extends 'base.html' %}
@@ -1047,7 +1058,7 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
     <h1>성공적으로 글이 작성되었습니다.</h1>
   {% endblock content %}
   ```
-
+  
   ```django
   <!-- templates/articles/new.html -->
   {% extends 'base.html' %}
@@ -1068,7 +1079,7 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   ```
 
   - 게시글 작성 후 index 페이지로 돌아고도록 함
-
+  
   ```python
   # articles/view.py
   def create(request):
@@ -1085,6 +1096,8 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
 from django.shortcuts import redirect
 
 def create(request):
+    # 글 작성을 완료하고 나면 다음 뜨는 페이지
+    # index 페이지로 이동해서 전체 데이터 목록
      return redirect('articles:index')
 ```
 
@@ -1230,8 +1243,11 @@ def create(request):
 
 ```python
 # articles/views.py
+
 def delete(request, pk):
+    # 1. 삭제할 데이터를 가져온다
     article = Article.objects.get(pk=pk)
+    # 2. 삭제한다.
     article.delete()
     return redirect('articles:index')
 ```
@@ -1339,13 +1355,17 @@ def delete(request, pk):
     ```python
     # articles/view.py
     def update(request, pk):
+        # 1. 수정할 글 데이터를 찾아온다.
         article = Article.objects.get(pk=pk)
+        # 2. 수정한다.
         article.title = request.POST.get('title')
         article.content = request.POST.get('content')
+        # 3. 저장한다.
         article.save()
+        # 글 수정 완료, 글 디테일 페이지로 가서 글을 확인
         return redirect('articles:detail', article.pk)
     ```
-
+    
     ```django
     <!-- articles/edit.html -->
     {% extends 'base.html' %}
