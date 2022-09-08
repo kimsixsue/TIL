@@ -1,6 +1,7 @@
-- [Array_Sort](#array-sort)
+- [Array_Sort](#array_sort)
   
   * [Algorithm 알고리즘](#Algorithm-알고리즘)
+      
       - [알고리즘의 성능은 무엇으로 측정하는가](#알고리즘의-성능은-무엇으로-측정하는가)
       
   * [Array 배열](#Array-배열)
