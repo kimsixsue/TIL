@@ -1,14 +1,14 @@
 - [Stack_DP_DFS](#Stack_DP_DFS)
-    + [스택의 구현](#스택의 구현)
-    + [스택 구현 고려 사항](#스택 구현 고려 사항)
-  * [스택의 응용1: 괄호검사](#스택의 응용1: 괄호검사)
-  * [스택의 응용2: function call](#스택의 응용2: function call)
+    + [스택의 구현](#스택의-구현)
+    + [스택 구현 고려 사항](#스택-구현-고려-사항)
+  * [스택의 응용1: 괄호검사](#스택의-응용1-괄호검사)
+  * [스택의 응용2: function call](#스택의-응용2-function-call)
 - [재귀호출](#재귀호출)
 - [Memoization](#memoization)
 - [Dynamic Programming](#dynamic-programming)
-- [DFS 깊이우선탐색](#DFS 깊이우선탐색)
-    + [DFS 알고리즘](#DFS 알고리즘)
-    + [DFS 예](#DFS 예)
+- [DFS 깊이우선탐색](#DFS-깊이우선탐색)
+    + [DFS 알고리즘](#DFS-알고리즘)
+    + [DFS 예](#DFS-예)
 
 ## Stack_DP_DFS
 

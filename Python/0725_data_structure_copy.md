@@ -6,7 +6,7 @@
   * [Non-Sequence](#non-sequence)
     + [Set](#set)
     + [Dictionary](#dictionary)
-  * [Shallow Copy & Deep Copy](#shallow-copy---deep-copy)
+  * [Shallow Copy & Deep Copy](#shallow-copy--deep-copy)
 
 # Data Structure
 
