@@ -208,7 +208,7 @@ WWW 웹에서 이루어지는 모든 데이터 교환의 기초
 **어떻게 로그인 상태를 유지할까?**
 
 - 로그인을 하고 웹 사이트를 사용할 때 페이지를 이동해도 로그인 “상태”가 유지됨
-- 서버와 클라이언트 간 지속적인 상태 유지를 위해 **“쿠키와 세션”**이 존재
+- 서버와 클라이언트 간 지속적인 상태 유지를 위해 “**쿠키와 세션**”이 존재
 
 ### Cookie 쿠키
 
@@ -301,12 +301,20 @@ from django.contrib.auth.forms import AuthenticationForm  # 일반 폼
 from django.contrib.auth import login as auth_login  # 재귀 방지
 
 def login(request):
+    # 실제 로그인이 일어날 때
+    # session 이 create 되어 DB에 저장
+    # POST 요청일 때 로그인 동작을 처리해야 함
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)  # request를 첫번째 인자로 취함
+        # 사용자의 입력 데이터가 채워진 form 을 생성
+        form = AuthenticationForm(request, data=request.POST)
+        # 입력이 잘 되었는지 그리고 회원인지 확인
         if form.is_vaild():  # 유효성 검사 이후
-            # 로그인
+            # 우리 회원이라면 로그인 처리(session 생성해서 DB에 저장)
+            # 유저 인스턴스가 필요한데 AithenticationForm의 메소드를 이용
+            # form.get_user() 의 반환값은 form에 담긴 user 인스턴스
             auth_login(request, form.get_user())  # 유저 정보
             return redirect('articles:index')
+    # 로그인 입력 페이지를 띄울 때는 GET 요청
     else:
         form = AuthenticationForm()
     context = {
@@ -320,6 +328,9 @@ def login(request):
 {% extends 'base.html' %}
 {% block content %}
   <h1>LOGIN</h1>  <!-- LOGIN을 Base.html에 만들기 권장 -->
+  {% comment %} 
+  action 의 값이 비어있으면 현재 페이지로 요청을 보냄
+  {% endcomment %}
   <form action="{% url 'accounts:login' %}" method="POST">
 	{% csrf_token %}
     {{ form.as_p }}1
@@ -355,6 +366,7 @@ AuthenticationForm의 인스턴스 메서드
 ```django
 <!-- base.html -->
 {{ user }}
+{{ user.username }}  <!-- 로그인 시만 출력 -->
 ```
 
 어떻게 base 템플릿에서 context 데이터 없이 user 변수를 사용할 수 있는 걸까?
@@ -420,7 +432,12 @@ urlpatterns = [
 from django.contrib.auth import logout as auth_logout
 
 def logout(request):
-    auth_logout(request)
+    # 로그아웃은 사용자로부터 입력 받는 것이 없기에
+    # GET 요청에 대한 처리는 필요없음
+    if request.method == 'POST':
+        # 로그아웃을 처리하는 내용
+        # session 을 DB에서 삭제
+        auth_logout(request)
     return redirect('articles:index')
 ```
 
@@ -473,7 +490,10 @@ urlpatterns = [
 
 ```python
 # accounts/views.py
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import (
+    AuthenticationForm, 
+    UserCreationForm,
+)
 
 def signup(request):
     if request.method == 'POST':
@@ -570,8 +590,9 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 class CustomUserCreationForm(UserCreationForm):
     
     class Meta(UserCreationForm.Meta):
+        # get_user_model => 현재 활성화된 User class를 반환
         model = get_user_model()
-        # fields = ('email', 'first_name', 'ast_name',)
+        # fields = ('email', 'first_name', 'last_name',)
         
 class CustomUserChangeForm(UserChangeForm):
     
@@ -581,16 +602,16 @@ class CustomUserChangeForm(UserChangeForm):
 
 **get_user_model()**
 
-- **“현재 프로젝트에서 active user model 활성화된 사용자 모델”**을 반환
+- “**현재 프로젝트에서 active user model 활성화된 사용자 모델**”을 반환
 - 직접 참조하지 않는 이유
   - 기존 User 모델이 아닌 User 모델을 커스텀 한 상황에서는 커스텀 User 모델을 자동으로 반환해주기 때문
-- Django는 User 클래스를 직접 참조하는 대신 **get_user_model()**을 사용해 참조해야 한다고 강조하고 있음
+- Django는 User 클래스를 직접 참조하는 대신 `get_user_model()`을 사용해 참조해야 한다고 강조하고 있음
 
 **CustomUserCreationForm() 으로 대체하기**
 
 ```python
 # accounts/views.py
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 def signup(request):
@@ -617,7 +638,7 @@ def signup(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # 회원가입 후 로그인
+            # 회원 가입 후 로그인 처리
             auth_login(request, user)
             return redirect('articles:index')
     else:
@@ -662,7 +683,11 @@ urlpatterns = [
 # accounts/views.py
 
 def delete(request):
-    request.user.delete()
+    # 회원 탈퇴는 DB를 수정하는 것이기에 POST일 때만 동작
+    if request.method == 'POST':
+        # user 정보는 request 내부에 가지고 있어서
+        # 따로 DB에서 불러올 필요없음
+        request.user.delete()
     return redirect('articles:index')
 ```
 
@@ -687,8 +712,16 @@ def delete(request):
 # accounts/views.py
 
 def delete(request):
-    request.user.delete()
-    auth_logout(request)
+    # 회원 탈퇴는 DB를 수정하는 것이기에 POST일 때만 동작
+    if request.method == 'POST':
+        # user 정보는 request 내부에 가지고 있어서
+        # 따로 DB에서 불러올 필요없음
+        request.user.delete()
+        # 회원 탈퇴하면 로그인되어있을 필요가 없기 때문에 로그아웃
+        # 탈퇴 전에 로그아웃을 하게되면 request 에 유저정보가 사라지므로
+        # 탈퇴 후에 로그아웃을 해야한다
+        auth_logout(request)
+    return redirect('articles:index')
 ```
 
 ### 회원정보 수정
@@ -697,11 +730,15 @@ def delete(request):
 
 **UserChangeForm**
 
-사용자의 정보 및 권한을 변경하기 위해 admin 인터페이스에서 사용되는 ModelForm
+- 사용자의 정보 및 권한을 변경하기 위해 admin 인터페이스에서 사용되는 ModelForm
 
-UserChangeForm 또한 ModelForm이기 때문에 instance 인자로 기존 user 데이터 정보를 받는 구조 또한 동일함
+- UserChangeForm 또한 ModelForm이기 때문에
 
-이미 이전에 CustomUserChangeForm으로 확장했기 때문에 CustomUserChangeForm을 사용하기
+  instance 인자로 기존 user 데이터 정보를 받는 구조 또한 동일함
+
+- 이미 이전에 CustomUserChangeForm으로 확장했기 때문에
+
+  CustomUserChangeForm을 사용하기
 
 **회원정보 수정 페이지 작성**
 
@@ -720,12 +757,13 @@ from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 def update(request):
     if request.method == 'POST':
-        form = CustomUserChangeForm(data=request.POST, instance=request.user)
+        # instance 값이 없으면 새로 생성하는 로직이 되어버림
+        form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
             return redirect('articles:index')
     else:
-        form = CustomUserChangeForm(instance=request.user)
+        form = CustomUserChangeForm(instance = request.user)
     context = {
         'form': form,
     }
@@ -781,10 +819,14 @@ def update(request):
 # accounts/forms.py
 
 class CustomUserChangeForm(UserChangeForm):
-    
+
     class Meta(UserChangeForm.Meta):
+        # get_user_model => 현재 활성화된 User class를 반환
         model = get_user_model()
-        fields = ('email', 'first_name', 'ast_name',)
+        # fields 정보를 UserChangeForm 것을 그대로 사용하면
+        # 유저 관련 모든 데이터를 수정할 수 있기 때문에 보안에 위험
+        # 그래서 유저들이 접근 가능한 필드들을 제한해야 한다.
+        fields = ('email', 'first_name', 'last_name',)
 ```
 
 User 모델의 fields명은 어떻게 알 수 있을까?
@@ -840,14 +882,18 @@ urlpatterns = [  # 경로가 아닌 부분을 password 로 하면 문제 생길 
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 
 def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(user=request.user, data=request.POST)
+    if request.method == "POST":
+        form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
+            # 일반 form 을 상속받았지만
+            # save 메서드가 정의되어 있다.
             form.save()
             return redirect('articles:index')
     else:
+        # 로그인한 유저의 비밀번호를 저장해야 하기에
+        # 첫 번째 인자로 User 정보를 넣어야 한다.
         form = PasswordChangeForm(request.user)
-    conetxt = {
+    context = {
         'form': form,
     }
     return render(request, 'accounts/change_password.html', context)
@@ -895,16 +941,22 @@ current request 현재 요청과 새 session data가 파생 될 업데이트 된
 # accounts/views.py
 from django.contrib.auth import update_session_auth_hash
 
-def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(user=request.user, data=request.POST)
+def password(request):
+    if request.method == "POST":
+        form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
-            form.save()  # 공식 문서 방식
+            # 일반 form 을 상속받았지만
+            # save 메서드가 정의되어 있다.
+            form.save()  # 공식 문서 방식  
+            # 비밀번호가 변경되면 session의 유저데이터와 일치하지 않게 되는 상황이 발생
+            # 그렇기 때문에 session의 유저정보를 업데이트 시켜줘야 한다.
             update_session_auth_hash(request, form.user)
             return redirect('articles:index')
     else:
+        # 로그인한 유저의 비밀번호를 저장해야 하기에
+        # 첫 번째 인자로 User 정보를 넣어야 한다.
         form = PasswordChangeForm(request.user)
-    conetxt = {
+    context = {
         'form': form,
     }
     return render(request, 'accounts/change_password.html', context)
@@ -996,6 +1048,7 @@ class AbstractBaseUser(models.Model):
 # accounts/views.py
 
 def login(request):
+    # 로그인 한 사용자가 로그인 페이지를 볼 필요는 없음
     if request.user.is_authenticated:
         return redirect('articles:index')
 ```
@@ -1052,14 +1105,21 @@ def login(request):
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_user())
-            return redirect(request.GET.get('next') or 'articles:index')
+            # QueryStringParameter 로 전달되는 데이터를 가져오는 방법
+            # 데이터가 있으면 next에 값이 들어감
+            # 데이터가 없으면 next는 빈 값이 들어있음
+            next = request.GET.get('next')
+            # 단축 평가를 통해서 최종적으로 선택되는 값이 정해짐
+            return redirect(next or 'articles:index')
 ```
 
 **“next” query string parameter 주의사항**
 
-만약 login 템플릿에서 form action이 작성되어 있다면 동작하지 않음
+- 만약 login 템플릿에서 form action이 작성되어 있다면 동작하지 않음
 
-해당 action 주소 next 파라미터가 작성 되어있는 현재 url이 아닌 /accounts/login/으로 요청을 보내기 때문
+- 해당 action 주소 next 파라미터가 작성 되어있는 현재 url이 아닌
+
+  /accounts/login/으로 요청을 보내기 때문
 
 ```django
 <!-- accounts/login.html -->
@@ -1098,8 +1158,9 @@ def login(request):
 - 해결방안
 
   - **@login_required**는 GET request method를 처리할 수 있는 View 함수 에서만 사용해야함
+  - 둘 중 하나만 남기기
 
-- POST method만 허용하는 delete 같은 함수는 내부에서는 is_authenticated 속성 값을 사용햇 ㅓ처리
+- POST method만 허용하는 delete 같은 함수는 내부에서는 is_authenticated 속성 값을 사용 해서 처리
 
   ```python
   # articles/views.py

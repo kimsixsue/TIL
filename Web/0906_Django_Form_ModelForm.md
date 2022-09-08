@@ -14,9 +14,11 @@
 
 **Django는 Form에 관련된 작업의 세 부분을 처리**
 
-- 렌더링을 위한 데이터 준비 및 재구성
-- 데이터에 대한 HTML forms 생성
-- 클라이언트로부터 받은 데이터 수신 및 처리
+1. 렌더링을 위한 데이터 준비 및 재구성
+
+2. 데이터에 대한 HTML forms 생성
+
+3. 클라이언트로부터 받은 데이터 수신 및 처리
 
 ### The Django Form Class
 
@@ -28,9 +30,13 @@ Form Class
 
 - Form Class를 선언하는 것은 Model Class를 선언하는 것과 비슷하다.
 
-  비슷한 이름의 필드 타입을 많이 가지고 있다. (다만 이름만 같은 뿐 같은 필드는 아님)
+  비슷한 이름의 필드 타입을 많이 가지고 있다. 
 
-- Model과 마찬가지로 상속을 통해 선언 (forms 라이브러리의 Form 클래스를 상속받음)
+  (다만 이름만 같은 뿐 같은 필드는 아님)
+
+- Model과 마찬가지로 상속을 통해 선언 
+
+  (forms 라이브러리의 Form 클래스를 상속받음)
 
 - 앱 폴더에 forms.py 를 생성 후  ArticleForm Class 선언
 
@@ -46,6 +52,8 @@ Form Class
 - form 에는 model field와 달리 TextField가 존재하지 않음
 
 - **Form Class를 forms.py 파일 안에 작성하는 것을 권장**
+
+**'new' 업데이트**
 
 ```python
 # articles/views.py
@@ -88,27 +96,31 @@ def new(request):
 
 **Django의 2가지 HTML input 요소 표현**
 
-Form Fields
+1. Form Fields
 
-- 입력에 대한 유효성 검사 로직을 처리
+   - 입력에 대한 유효성 검사 로직을 처리
 
-- 템플릿에서 직접 사용됨
 
-  ```python
-  forms.CharField()
-  ```
+   - 템플릿에서 직접 사용됨
 
-Widgets
+     ```python
+     forms.CharField()
+     ```
 
-- 웹 페이지의 HTML input 요소 렌더링을 담당
 
-  - input 요소의 단순한 출력 부분을 담당
+2. Widgets
 
-- Widget은 반드시 form fields에 할당 됨
+   - 웹 페이지의 HTML input 요소 렌더링을 담당
 
-  ```python
-  forms.CharField(widget=forms.Textarea)
-  ```
+     - input 요소의 단순한 출력 부분을 담당
+
+
+   - Widget은 반드시 form fields에 할당 됨
+
+     ```python
+     forms.CharField(widget=forms.Textarea)
+     ```
+
 
 ### Widgets
 
@@ -195,13 +207,23 @@ ModelForm을 사용하면 Form을 더 쉽게 작성할 수 있음
 
 **[참고] 참조 값과 반환 값**
 
-- 호출하지 않고 이름만 작+성하는 방식은 어떤 의미일까
+- 호출하지 않고 이름만 작성하는 이 방식은 어떤 의미일까
 
-- 이름은 참조 값을 출력, 호출은 반환 값을 출력
+  ```python
+  # articles/forms.py
+  class ArticleForm(forms.ModelForm):
+      
+      class Meta:
+          model = Article  # 어떤 모델을 기반으로 할지
+  ```
+
+- 이름은 함수의 **참조 값**을 출력, 호출은 함수의 **반환 값**을 출력
 
 - 언제 참조 값을 사용할까?
 
-  - 함수를 호출하지 않고 함수 자체를 그대로 전달하여 다른 함수에서 **“필요한 시점에”** 호출하는 경우
+  - **함수를 호출하지 않고 함수 자체를 그대로 전달하여,**
+
+    **다른 함수에서 "`필요한 시점에`" 호출하는 경우**
 
     ```python
     urlpatterns = [
@@ -209,11 +231,15 @@ ModelForm을 사용하면 Form을 더 쉽게 작성할 수 있음
     ]
     ```
 
-  - view 함수의 참조 값을 그대로 넘김으로써, path 함수가 내부적으로 해당 view 함수를 “필요한 시점에” 사용하기 위해서
+  - view 함수의 참조 값을 그대로 넘김으로써,
+
+    path 함수가 내부적으로 해당 view 함수를 “필요한 시점에” 사용하기 위해서
 
 - 결국 클래스도 마찬가지
 
-- Article이라는 클래스를 “호출하지 않고 (== model을 인스턴스로 만들지 않고)” 작성하는 이유는 ArticleForm이 해당 클래스를 필요한 시점에 사용하기 위함
+- Article이라는 클래스를 “호출하지 않고 (== model을 인스턴스로 만들지 않고)”
+
+  작성하는 이유는 ArticleForm이 해당 클래스를 필요한 시점에 사용하기 위함
 
 - 더불어 이 경우에는 인스턴스가 필요한 것이 아닌, 실제 Article 모델의 참조 값을 통해 해당 클래스의 필드나 속성 등을 내부적으로 참조하기 위한 이유도 있음
 
@@ -243,11 +269,40 @@ def create(request):
 **“is_vaild()” method**
 
 - 유효성 검사를 실행하고, 데이터가 유효한지 여부를 boolean으로 반환
-- 데이터 유효성 검사를 보장하기 위한 많은 테스트에 대해 Django는 is_valid()를 제공하여 개발자의 편의를 도움
+
+- 데이터 유효성 검사를 보장하기 위한 많은 테스트에 대해
+
+  Django는 is_valid()를 제공하여 개발자의 편의를 도움
 
 **form 인스턴스의 errors 속성**
 
 - is_valid()의 반환 값이 False인 경우 form 인스턴스의 errors 속성에 값이 작성되는데, 유효성 검증을 실패한 원인이 딕셔너리 형태로 저장됨
+
+  ```python
+  # articles/views.py
+  def create(request):
+      form = ArticleForm(request.POST)
+      if form.is_valid():
+          article = form.save()
+          return redirect('articles:detail', article.pk)
+      print(f'에러: {form.error}')
+      return redirect('articles:new')
+  ```
+
+- 유효성 검증을 실패했을 때 사용자에게 실패 결과 메세지를 출력해줄 수 있음
+
+  ```python
+  # articles/views.py
+  def create(request):
+      form = ArticleForm(request.POST)
+      if form.is_valid():
+          article = form.save()
+          return redirect('articles:detail', article.pk)
+  	context = {
+          'form': form,
+      }
+      return render(request, 'articles/new.html', context)
+  ```
 
 **The “save()” method**
 
@@ -273,11 +328,11 @@ def create(request):
 
 - ModelForm의 인자 instance는 수정 대상이 되는 객체(기존 객체)를 지정
 
-1. request.POST
+1. **request.POST**
 
    - 사용자가 form을 통해 전송한 데이터 (새로운 데이터)
 
-2. instance
+2. **instance**
 
    - 수정이 되는 대상
 
@@ -292,6 +347,7 @@ def create(request):
        }
        return render(request, 'articles/edit.html', context)
    
+   
    def update(request, pk):
        article = Article.objects.get(pk=pk)
        form = ArticleForm(request.POST, instance=article)
@@ -303,7 +359,7 @@ def create(request):
        }  # 유효성 검증을 실패했을 때 사용자에게 실패 결과 메세지를 출력해줄 수 있음
        return render(request, 'articles/edit.html', context)
    ```
-
+   
    ```django
    <!-- articles/edit.html -->
    {% extends 'base.html' %}
@@ -321,29 +377,37 @@ def create(request):
 
 **[참고] ModelForm 키워드 인자 data와 instance**
 
-- data는 생략 가능, instance는 생략 불가
+> https://github.com/django/django/blob/main/django/forms/models.py#L332
 
-  > https://github.com/django/django/blob/main/django/forms/models.py#L332
+```python
+class BaseModelForm(BaseForm):
+    def __init__(self,
+                 data=None,  # data는 생략 가능
+                 files=None,
+                 auto_id="id_%s",
+                 prefix=None, initial=None,
+                 error_class=ErrorList,
+                 label_suffix=None,
+                 empty_permitted=False,
+                 instance=None,  # instance는 생략 불가
+                 use_required_attribute=None, renderer=None,):
+```
 
 **Form과 ModelForm**
 
-- 사용자의 요청을 처리하는 것
-
 - ModelForm이 Form보다 더 좋은 것이 아니라 각자 역할이 다른 것
 
-- Form
+- **Form**
 
-  - 사용자로부터 받는 데이터가 DB와 연관되어 있지 않는 경우에 사용
+  - 사용자의 입력을 필요로 하며 직접 입력 데이터가 DB 저장에 사용되지 않거나
 
-  - DB에 영향을 미치지 않고 단순 데이터만 사용되는 경우
+    일부 데이터만 사용될 때
 
     (예시 - 로그인, 사용자의 데이터를 받아 인증 과정에서만 사용 후 별도로 DB에 저장하지 않음) 
 
-- ModelForm
+- **ModelForm**
 
-  - 사용자로부터 받는 데이터가 DB와 연관되어 있는 경우에 사용
-
-    (예시 - 회원가입, 게시판)
+  - 사용자의 입력을 필요로 하며 입력을 받은 것을 그대로 DB 필드에 맞춰 저장할 때
 
   - 데이터의 유효성 검사가 끝나면 데이터를 각각 어떤 레코드에 맵핑해야 할지 이미 알고 있기 때문에 곧바로 save() 호출이 가능
 
@@ -355,8 +419,8 @@ def create(request):
 
 ```python
 # articles/forms.py
-
 class ArticleForm(forms.ModelForm):
+    
     title = forms.CharField(
     	label='제목',
         widget=forms.TextInput(
@@ -366,6 +430,7 @@ class ArticleForm(forms.ModelForm):
             }
         ),
     )
+    
     content = forms.CharField(
     	label='내용',
         widget=forms.Textarea(
@@ -392,12 +457,12 @@ class ArticleForm(forms.ModelForm):
 
 new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공통점과 하나의 차이점이 있음
 
-공통점
+**공통점**
 
 - new-create는 모두 CREATE 로직을 구현하기 위한 공통 목적
 - edit-update는 모두 UPDATE 로직을 구현하기 위한 공통 목적
 
-차이점
+**차이점**
 
 - new와 edit는 GET 요청에 대한 처리만을, ( 페이지 렌더링 )
 
@@ -409,14 +474,13 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
 
 - new와 create view 함수를 합침
 
-- 각각의 역할은 request.method 값을 기준으로 나뉨
+- 각각의 역할은 **request.method** 값을 기준으로 나뉨
 
   ```python
   # articles/views.py
   from .forms import ArticleForm  # Article Model을 바탕으로 만들어진 Form
   
   def create(request):
-  
       if request.method == 'POST':  # CREATE  # DB의 내용 변경
           # 게시글을 DB에 저장하기 위한 단계
           # ModelForm 에 전달 받은 데이터를 넣어서 인스턴스를 생성한다.
@@ -431,7 +495,6 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
           # 유효성 검사를 통과하지 못하면 error 메시지가 form에 알아서 담긴다.
           # error message가 담긴 담긴 form 을 딕셔너리로 담아서 렌더링 해준다.
           # else: 갈 곳이 없으면, context로
-          
       else:  # NEW / GET / 데이터를 조회, page를 요청
           # 게시글을 작성할 수 있는 페이지를 보여줘야 할 필요가 있음
           # 게시글 요청은 GET method 로 요청된다
@@ -444,8 +507,8 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
       }
       return render(request, 'articles/create.html', context)     
   ```
-
-- 불필요해진 new의 view 함수와 url path를 삭제
+  
+- 이제는 불필요해진 new의 view 함수와 url path를 삭제
 - new.html -> create.html 이름변경 및 action 속성 값 수정
 - new.html -> create.html 이름변경으로 인한 템플릿 경로 수정
 - index   페이지에 있던 new 관련 링크 수정
@@ -458,23 +521,20 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
   # articles/views.py
   def update(request, pk):
       article = Article.objects.get(pk=pk)
-      
       if request.method == 'POST':  # DB
           form = ArticleForm(request.POST, instance=article)
           if form.is_vaild():
               form.save()
               return redirect('articles:detail', article.pk)
-  
       else:  # GET, EDIT
   		form = ArticleForm(instance=article)
-      
       context = {
           'form': form,
           'article': article,
       }
       return render(request, 'articles/update.html', context)
   ```
-
+  
 - 불필요해진 edit의 view 함수와 url path를 삭제
 
 - edit.html -> update.html 이름변경으로 인한 관련 정보 수정
@@ -519,15 +579,19 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
 
 ### Allowed HTTP methods
 
-django.views.decorators.http 의 데코레이터를 사용하여 요청 메서드를 기반으로 접근을 제한할 수 있음
+- django.views.decorators.http 의 데코레이터를 사용하여
 
-일치하지 않는 메서드 요청이라면 405 Method Not Allowed를 반환
+  요청 메서드를 기반으로 접근을 제한할 수 있음
 
-메서드 목록
+- 일치하지 않는 메서드 요청이라면 405 Method Not Allowed를 반환
 
-- require_http_methods()
-- require_POST()
-- require_safe()
+- 메서드 목록
+
+  1. require_http_methods()
+
+  2. require_POST()
+
+  3. require_safe()
 
 **[참고] 405 Method Not Allowed**
 
