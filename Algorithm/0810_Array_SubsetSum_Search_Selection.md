@@ -1,4 +1,4 @@
-- [Array_SubsetSum_Search_Selection](#array-subsetsum-search-selection)
+- [Array_SubsetSum_Search_Selection](#array_subsetsum_search_selection)
   * [배열 : 2차원 배열](#배열--2차원-배열)
     + [2차원 배열의 접근](#2차원-배열의-접근)
   * [Subset Sum 부분집합 합 문제](#Subset-Sum-부분집합-합-문제)

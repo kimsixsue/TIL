@@ -1,17 +1,27 @@
 - [Django_Form_ModelForm](#Django_Form_ModelForm)
-  * [1. Django Form](#1.-Django-Form)
-    + [The Django Form Class](#The-Django-Form-Class)
-    + [Widgets](#widgets)
-  * [2. Django ModelForm](#2.-Django-ModelForm)
-    + [ModelForm with view functions](#ModelForm-with-view-functions)
-    + [Widgets 활용하기](#Widgets-활용하기)
-  * [3. Handling HTTP requests](#3.-Handling-HTTP-requests)
-  * [4. View decorators](#4.-View-decorators)
-    + [Allowed HTTP methods](#Allowed-HTTP-methods)
-  * [5. Working with form templates](#5.-Working-with-form-templates)
-    + [Rendering fields manually](#Rendering-fields-manually)
-    + [Looping over the form’s fields](#Looping-over-the form’s-fields)
-  * [마무리](#마무리)
+  
+  [1. Django Form](#1-django-form)
+  
+  + [The Django Form Class](#The-Django-Form-Class)
+  + [Widgets](#widgets)
+  
+  [2. Django ModelForm](#2-django-modelform)
+  
+  + [ModelForm with view functions](#ModelForm-with-view-functions)
+  + [Widgets 활용하기](#Widgets-활용하기)
+  
+  [3. Handling HTTP requests](#3-handling-http-requests)
+  
+  [4. View decorators](#4-view-decorators)
+  
+  + [Allowed HTTP methods](#Allowed-HTTP-methods)
+  
+  [5. Working with form templates](#5-working-with-form-templates)
+  
+  + [Rendering fields manually](#Rendering-fields-manually)
+  + [Looping over the form’s fields](#looping-over-the-forms-fields)
+  
+  [마무리](#마무리)
 
 # Django_Form_ModelForm
 

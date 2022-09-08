@@ -12,10 +12,11 @@
       - [원형 큐의 구현](#원형-큐의-구현)
   * [Priority Queue 우선순위 큐](#Priority-Queue-우선순위-큐)
       - [배열을 이용한 우선순위 큐](#배열을-이용한-우선순위-큐)
-  * [큐의 활용 : Buffer 버퍼](#큐의-활용-:-Buffer-버퍼)
-      - [키보드 버퍼](#키보드-버퍼)
+  * [큐의 활용 : Buffer 버퍼](#큐의-활용--buffer-버퍼)
+      
+    - [키보드 버퍼](#키보드-버퍼)
     + [Revisit to 사탕](#Revisit-to-사탕)
-  * [BFS (Breadth First Search)](#BFS-(Breadth-First-Search))
+  * [BFS (Breadth First Search)](#bfs-breadth-first-search)
       - [BFS 알고리즘](#BFS-알고리즘)
       - [BFS 예제](#BFS-예제)
 

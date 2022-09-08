@@ -1,22 +1,32 @@
 - [Django_Auth](#Django_Auth)
-  * [1. The Django authentication system](#1.-The-Django-authentication-system)
-    + [Substituting a custom User model](#substituting-a-custom-user-model)
-    + [How to substituting a custom User model](#how-to-substituting-a-custom-user-model)
-  * [2. HTTP Cookies](#2.-HTTP-Cookies)
-    + [HTTP](#http)
-    + [Cookie 쿠키](#Cookie-쿠키)
-  * [3. Authentication in Web requests](#3.-Authentication-in-Web-requests)
-    + [Login](#login)
-    + [Authentication with User](#authentication-with-user)
-    + [Logout](#logout)
-  * [4. Authentication with User](#4.-Authentication-with-User)
-    + [회원 가입](#회원-가입)
-    + [Custom user & Built-in auth forms](#Custom-user-&-Built-in-auth-forms)
-    + [회원 탈퇴](#회원-탈퇴)
-    + [회원정보 수정](#회원정보-수정)
-    + [비밀번호 변경](#비밀번호-변경)
-  * [5. Limiting access to logged-in users](#5.-Limiting-access-to-logged-in-users)
-  * [마무리](#마무리)
+  
+  [1. The Django authentication system](#1-the-django-authentication-system)
+  
+  + [Substituting a custom User model](#substituting-a-custom-user-model)
+  + [How to substituting a custom User model](#how-to-substituting-a-custom-user-model)
+  
+  [2. HTTP Cookies](#2-http-cookies)
+  
+  + [HTTP](#http)
+  + [Cookie 쿠키](#Cookie-쿠키)
+  
+  [3. Authentication in Web requests](#3-authentication-in-web-requests)
+  
+  + [Login](#login)
+  + [Authentication with User](#authentication-with-user)
+  + [Logout](#logout)
+  
+  [4. Authentication with User](#4-authentication-with-user)
+  
+  + [회원 가입](#회원-가입)
+  + [Custom user & Built-in auth forms](#custom-user--built-in-auth-forms)
+  + [회원 탈퇴](#회원-탈퇴)
+  + [회원정보 수정](#회원정보-수정)
+  + [비밀번호 변경](#비밀번호-변경)
+  
+  [5. Limiting access to logged-in users](#5-limiting-access-to-logged-in-users)
+  
+  [마무리](#마무리)
 
 # Django_Auth
 

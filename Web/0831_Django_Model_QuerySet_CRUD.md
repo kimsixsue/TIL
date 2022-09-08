@@ -1,19 +1,28 @@
 - [Django_Model_QuerySet_CRUD](#Django_Model_QuerySet_CRUD)
-  * [1. Namespace](#1.-Namespace)
-    + [URL namespace](#url-namespace)
-    + [Template namespace](#template-namespace)
-  * [2. Django Model](#2.-Django-Model)
-    + [Database](#database)
-    + [Model](#model)
-    + [Migrations](#migrations)
-    + [추가 필드 정의](#추가-필드-정의)
-    + [ORM](#orm)
-  * [3. QuerySet API](#3.-QuerySet-API)
-    + [QuerySet API](#queryset-api)
-    + [QuerySet API 익히기](#QuerySet-API-익히기)
-  * [4. CRUD with view functions](#4.-CRUD-with-view-functions)
-    + [Admin site](#admin-site)
-  * [마무리](#마무리)
+  
+  [1. Namespace](#1-namespace)
+  
+  + [URL namespace](#url-namespace)
+  + [Template namespace](#template-namespace)
+  
+  [2. Django Model](#2-django-model)
+  
+  + [Database](#database)
+  + [Model](#model)
+  + [Migrations](#migrations)
+  + [추가 필드 정의](#추가-필드-정의)
+  + [ORM](#orm)
+  
+  [3. QuerySet API](#3-queryset-api)
+  
+  + [QuerySet API](#queryset-api)
+  + [QuerySet API 익히기](#QuerySet-API-익히기)
+  
+  [4. CRUD with view functions](#4-crud-with-view-functions)
+  
+  + [Admin site](#admin-site)
+  
+  [마무리](#마무리)
 
 # Django_Model_QuerySet_CRUD
 
