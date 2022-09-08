@@ -848,7 +848,7 @@ def update(request):
             form.save()
             return redirect('articles:index')
     else:
-        form = CustomUserChangeForm(instance = request.user)
+        form = CustomUserChangeForm(instance=request.user)
     context = {
         'form': form,
     }
@@ -1275,6 +1275,14 @@ def login(request):
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_http_methods
 
+@require_safe
+def index(request):
+    pass
+    
+@require_http_methods(['GET', 'POST'])
+def signup(request):
+    pass
+
 @require_http_methods(['GET', 'POST'])
 def login(request):
     pass
@@ -1283,14 +1291,14 @@ def login(request):
 def logout(request):
     if request.user.is_authenticated:
         pass
-    
-@require_http_methods(['GET', 'POST'])
-def signup(request):
-    pass
 
 @login_required
 @require_http_methods(['GET', 'POST'])
 def update(request):
+    pass
+
+@require_POST
+def delete(request):
     pass
 
 @login_required
