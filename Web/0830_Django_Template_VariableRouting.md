@@ -1,3 +1,27 @@
+- [Django_Template_VariableRouting](#Django_Template_VariableRouting)
+  * [1. Django Intro](#1. Django Intro)
+    + [Django 시작하기](#Django 시작하기)
+    + [Web 이해하기](#Web 이해하기)
+    + [클라이언트와 서버](#클라이언트와 서버)
+    + [Web browser와 Web page](#Web browser와 Web page)
+  * [2. Django 구조 이해하기 (MTV Design Pattern)](#2. Django 구조 이해하기 (MTV Design Pattern))
+    + [Design Pattern](#design-pattern)
+    + [Django's Design Pattern](#Django's Design Pattern)
+  * [3. Django Quick Start](#3. Django Quick Start)
+    + [기본 설정](#기본 설정)
+    + [요청과 응답](#요청과 응답)
+  * [4. Django Template](#4. Django Template)
+    + [Template inheritance](#template-inheritance)
+  * [5. Sending and Retrieving form data](#5. Sending and Retrieving form data)
+    + [Sending from data (Client)](#Sending from data (Client))
+    + [Retrieving the data (Server)](#Retrieving the data (Server))
+      - [action 작성](#action 작성)
+  * [6. Django URLs](#6. Django URLs)
+    + [Trailing URL Slashes](#trailing-url-slashes)
+    + [Variable routing](#variable-routing)
+    + [App URL mapping](#app-url-mapping)
+    + [Naming URL patterns](#naming-url-patterns)
+
 # Django_Template_VariableRouting
 
 ## 1. Django Intro
@@ -465,7 +489,7 @@
 - Template에게 HTTP 응답 서식을 맡김
 
   ```python
-  # aticles/views.py
+  # articles/views.py
   def index(request):
       return render(request, 'index.html')
   ```

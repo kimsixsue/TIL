@@ -1,3 +1,27 @@
+- [Python basic](#python-basic)
+  * [Programming](#programming)
+    + [프로그램 구성 단위](#프로그램 구성 단위)
+  * [Python Development Environment](#python-development-environment)
+  * [기초 문법](#기초 문법)
+    + [코드 작성법](#코드 작성법)
+    + [Variable](#variable)
+    + [Operator](#operator)
+  * [Datatype](#datatype)
+    + [Numeric Type](#numeric-type)
+    + [string](#string)
+    + [None](#none)
+    + [Boolean](#boolean)
+  * [Container](#container)
+    + [Sequence](#sequence)
+      - [list](#list)
+      - [tuple](#tuple)
+      - [range](#range)
+      - [Sequence Slicing](#sequence-slicing)
+    + [Non-Sequence](#non-sequence)
+      - [Set](#set)
+      - [Dictionary](#dictionary)
+  * [Typecasting](#typecasting)
+
 # Python basic
 
 ## Programming

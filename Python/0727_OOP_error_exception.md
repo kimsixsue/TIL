@@ -1,8 +1,22 @@
+- [OOP](#oop)
+  * [Object-Oriented Programming](#object-oriented-programming)
+    + [OOP 기초](#OOP 기초)
+      - [Instance](#instance)
+      - [Class](#class)
+      - [Object](#object)
+      - [OOP method](#oop-method)
+  * [OOP의 핵심 개념](#OOP의 핵심 개념)
+    + [Abstraction 추상화](#Abstraction 추상화)
+    + [Inheritance 상속](#Inheritance 상속)
+    + [Polymorphism 다형성](#Polymorphism 다형성)
+    + [Encapsulation 캡슐화](#Encapsulation 캡슐화)
+  * [에러/예외 처리 Error/Exception Handling](#에러/예외 처리 Error/Exception Handling)
+    + [에러와 예외](#에러와 예외)
+    + [예외 처리](#예외 처리)
+
 # OOP
 
 ## Object-Oriented Programming
-
-### OOP?
 
 정보와 행동을 가진(묶은) Object들과 object 간의 소통
 
@@ -148,7 +162,7 @@ OOP 속성
 - **비교 정리**
   
     - **instance가 할 행동은 모두 instance method**로 한정 지어서 설계
-  
+    
   - 호출한 인스턴스를 의미하는 self 매개 변수를 통해 인스턴스 (변수)를 조작. 개인용.
   
   - instance에서 클래스 메서드와 스태틱 메서드는 호출하지 않음
