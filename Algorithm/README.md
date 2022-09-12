@@ -2,27 +2,26 @@
 
 ## 자료구조 + 알고리즘 정리
 
-1. [[2022-08-08 월] Array_Sort](./0808_Array_Sort.md)
+1. [2022-08-08 월] [Array_Sort](./0808_Array_Sort.md)
 
-2. [[2022-08-10 수] Array_SubsetSum_Search_Selection](./0810_Array_SubsetSum_Search_Selection.md)
-
-
-3. [[2022-08-12 금] String_PatternMatching](./0812_String_PatternMatching.md)
+2. [2022-08-10 수] [Array_SubsetSum_Search_Selection](./0810_Array_SubsetSum_Search_Selection.md)
 
 
-4. [[2022-08-17 수] Stack_DP_DFS](./0817_Stack_DP_DFS.md)
-
-5. [[2022-08-22 월] Stack_Backtracking](./Stack_Backtracking.md)
+3. [2022-08-12 금] [String_PatternMatching](./0812_String_PatternMatching.md)
 
 
-6. [[2022-08-24 수] Queue_BFS](./0824_Queue_BFS.md)
+4. [2022-08-17 수] [Stack_DP_DFS](./0817_Stack_DP_DFS.md)
+
+5. [2022-08-22 월] [Stack_Backtracking](./Stack_Backtracking.md)
 
 
-7. [[2022-08-14 일] Tree basic](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Tree.md)
+6. [2022-08-24 수] [Queue_BFS](./0824_Queue_BFS.md)
 
 
-8. [[2022-08-28 일] HashTable_ ResolveCollision_OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
+7. [2022-08-14 일] [Tree basic](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Tree.md)
 
 
-9. [[2022-09-04 일] Graph_Representations_Traversal](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Graph_Representations_Traversal.md)
+8. [2022-09-04 일] [Graph_Representations_Traversal](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Graph_Representations_Traversal.md)
 
+
+9. [2022-08-28 일] [HashTable_ ResolveCollision_OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
