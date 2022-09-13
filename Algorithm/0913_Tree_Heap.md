@@ -232,32 +232,51 @@ def find_root(V):
         	break
 
 def preorder(n):
+    global cnt
     if n:
-        print(n)
-        preorder(1)
+        cnt += 1
+        # cnt = n
+        print(n, end=' ')
+        preorder(ch1[n])
+        preorder(ch2[n])
         
 def inorder(n):
+    global cnt
     if n:
         inorder(ch1[n])
-        print(n)
+        cnt += 1
+        # cnt = n
+        print(n, end=' ')
         inorder(ch2[n])
 
 def postorder(n):
+    global cnt
     if n:
         postorder(ch1[n])
         postorder(ch2[n])
-        print(n)
-        
+        cnt += 1
+        # cnt = n
+        print(n, end=' ')
+
+def f(n):            # global cnt 없이 순회한 정점 수를 return하는 함수
+    if not n:        # 서브트리가 비어있으면
+       	return 0
+    else:
+        L = f(ch1[n])
+        R = f(ch2[n])
+        return L + R + 1
+
 E = int(input())
 arr = list(map(int, input().split()))
 V = E + 1
-
+# V = int(input())   # 정점 개수, 마지막 정점 번호
+# E = V - 1
 ch1 = [0] * (V + 1)  # 부모를 인덱스로 자식 번호 저장
 ch2 = [0] * (V + 1)
 par = [0] * (V + 1)  # 자식을 인덱스로 부모 번호 저장
 for i in range(E):
     p, c = arr[i * 2], arr[i * 2 + 1]
-    if not ch1[i]:
+    if not ch1[p]:
         ch1[p] = c
     else:
         ch2[p] = c
@@ -344,9 +363,10 @@ key(왼쪽 서브트리)<key(루트 노드)<key(오른쪽 서브트리)
   1. 먼저 탐색 연산을 수행
      - 삽입할 원소와 같은 원소가 트리에 있으면 삽입할 수 없으므로, 같은 원소가 트리에 있는지 탐색하여 확인한다.
      - 탐색에서 탐색 실패가 결정되는 위치가 삽입 위치가 된다.
-
-
-  2. 탐색 실패한 위치에 원소를 삽입한다.
+  
+  
+    2. 탐색 실패한 위치에 원소를 삽입한다.
+  
 
 **이진 탐색 트리 - 성능**
 
@@ -409,11 +429,51 @@ key(왼쪽 서브트리)<key(루트 노드)<key(오른쪽 서브트리)
 3. 자리바꾸기
 4. 자리 확정 
 
+```python
+# 최대힙
+
+def enq(n):
+    global last
+    last += 1       # 마지막 정점 추가
+    heap[last] = n  # 마지막 정점에 key 추가
+    c = last
+    p = c // 2      # 완전이진트리에서 부모 정점 번호
+    while p and heap[p] < heap[c]:  # 부모가 있고, 부모 < 자식 인경우, 자리 교환
+        heap[p], heap[c] = heap[c], heap[p]
+        c = p
+        p = c // 2
+
+def deq(q):
+    global last
+    tmp = heap[1]         # root 백업
+    heap[1] = heap[last]  # 삭제할 node의 key를 root에 복사
+    last -= 1             # 마지막 node 삭제
+    p = 1                 # root에 옮긴 값을 자식과 비교
+    c = p * 2             # 왼쪽 자식
+    while c <= last:           # 자식이 하나라도 있으면
+        if c + 1 <= last and heap[c] < heap[c+1]: # 오른쪽 자식도 있고, 오른쪽 자식이 더 크면
+            c += 1             # 비교 대상을 오른쪽 자식으로 정함
+        if heap[p] < heap[c]:  # 자식이 더 크면 최대힙 규칙에 어긋나므로
+            heap[p], heap[c] = heap[c], heap[p]
+            p = c              # 자식을 새로운 부모로
+            c = p * 2          # 왼쪽 자식 번호를 계산
+        else:                  # 부모가 더 크면
+            break			   # 비교 중단,
+    return tmp
+    
+heap = [0] * 100
+last = 0
+enq(2)  # 숫자들 계속 넣어보기
+
+while last:
+    print(deq())
+```
+
 **힙을 이용한 우선순위 큐**
 
 - Heap 힙
 
-  - 완전 이진 트리로 구현된 자료구조로서, 키값이 가장 큰 노드나 가장 작은 노드를 찾기에 용한 자료구조
+  - 완전 이진 트리로 구현된 자료구조로서, 키값이 가장 큰 노드나 가장 작은 노드를 찾기에 용이한 자료구조
 
   - 힙의 키를 우선순위로 활용하여 우선순위 큐를 구현할 수 있다.
 
