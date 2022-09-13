@@ -1,3 +1,10 @@
+- [Tree](#tree)
+  * [BinaryTree](#binarytree)
+    + [Representation](#representation)
+    + [ExpressionTree](#expressiontree)
+  * [BinarySearchTree](#binarysearchtree)
+  * [Heap](#heap)
+
 # Tree
 
 **트리의 개념**
@@ -225,65 +232,64 @@ root = c
 ```
 
 ```python
-def find_root(V):
-    for i in range(1, V + 1):
-	    if not par[i]:
-    	    root = i
-        	break
-
+def find_root(v):
+    for _ in range(1, v + 1):
+        if not par[_]:
+            return _
+	    
 def preorder(n):
     global cnt
     if n:
         cnt += 1
-        # cnt = n
-        print(n, end=' ')
-        preorder(ch1[n])
-        preorder(ch2[n])
+        tree[cnt] = n  # append 대신
+        preorder(c_left[n])
+        preorder(c_right[n])
         
 def inorder(n):
     global cnt
     if n:
-        inorder(ch1[n])
+        inorder(c_left[n])
         cnt += 1
-        # cnt = n
-        print(n, end=' ')
-        inorder(ch2[n])
+        tree[cnt] = n  # append 대신
+        inorder(c_right[n])
 
 def postorder(n):
     global cnt
     if n:
-        postorder(ch1[n])
-        postorder(ch2[n])
+        postorder(c_left[n])
+        postorder(c_right[n])
         cnt += 1
-        # cnt = n
-        print(n, end=' ')
+        tree[cnt] = n  # append 대신
 
 def f(n):            # global cnt 없이 순회한 정점 수를 return하는 함수
     if not n:        # 서브트리가 비어있으면
        	return 0
     else:
-        L = f(ch1[n])
-        R = f(ch2[n])
+        L = f(c_left[n])
+        R = f(c_right[n])
         return L + R + 1
 
-E = int(input())
+V = int(input())   # 정점 개수, 마지막 정점 번호
+E = V - 1
+# E = int(input())
+# V = E + 1
 arr = list(map(int, input().split()))
-V = E + 1
-# V = int(input())   # 정점 개수, 마지막 정점 번호
-# E = V - 1
-ch1 = [0] * (V + 1)  # 부모를 인덱스로 자식 번호 저장
-ch2 = [0] * (V + 1)
-par = [0] * (V + 1)  # 자식을 인덱스로 부모 번호 저장
+cnt = -1
+tree = [0] * V
+par = [0] * (V + 1)     # 자식을 인덱스로 부모 번호 저장
+c_left = [0] * (V + 1)  # 부모를 인덱스로 자식 번호 저장
+c_right = [0] * (V + 1)
 for i in range(E):
     p, c = arr[i * 2], arr[i * 2 + 1]
-    if not ch1[p]:
-        ch1[p] = c
-    else:
-        ch2[p] = c
     par[c] = p
+    if not c_left[p]:
+        c_left[p] = c
+    else:
+        c_right[p] = c
 
 root = find_root(V)    
 XXXorder(root)
+print(*tree)
 ```
 
 ```python
