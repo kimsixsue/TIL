@@ -56,9 +56,10 @@
 
 7. [2022-08-14 일] [Tree basic](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Tree.md)
 
+8. [2022-09-13 화] [Tree Heap](./0913_Tree_Heap.md)
 
-8. [2022-09-04 일] [Graph_Representations_Traversal](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Graph_Representations_Traversal.md)
+9. [2022-09-04 일] [Graph_Representations_Traversal](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Graph_Representations_Traversal.md)
 
 
-9. [2022-08-28 일] [HashTable_ ResolveCollision_OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
+10. [2022-08-28 일] [HashTable_ ResolveCollision_OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
 
