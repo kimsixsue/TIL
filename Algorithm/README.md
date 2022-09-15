@@ -10,7 +10,7 @@
 
 4. [2022-08-17 수] [Stack_DP_DFS](./0817_Stack_DP_DFS.md)
 
-5. [2022-08-22 월] [Stack_Backtracking](./Stack_Backtracking.md)
+5. [2022-08-22 월] [Stack_Backtracking](./0822_Stack_Backtracking.md)
 
 6. [2022-08-24 수] [Queue_BFS](./0824_Queue_BFS.md)
 
