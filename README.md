@@ -14,6 +14,8 @@
 
 3. [2022-07-31 일] [REST[ful]_API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
 
+4. [2022-09-18 일] [Round robin DNS](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Round_robin_DNS.md)
+
 ## [Django](/Django) 정리
 
 1. [2022-08-30 화] [Template_VariableRouting](./Django/0830_Django_Template_VariableRouting.md)
