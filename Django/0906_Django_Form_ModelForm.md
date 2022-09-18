@@ -16,8 +16,9 @@
 
   3. [Handling HTTP requests](#3-handling-http-requests)
   
-    4. [View decorators](#4-view-decorators)
-         + [Allowed HTTP methods](#Allowed-HTTP-methods)
+  4. [View decorators](#4-view-decorators)
+  
+       + [Allowed HTTP methods](#Allowed-HTTP-methods)
 
 
   5. [Working with form templates](#5-working-with-form-templates)

@@ -27,8 +27,8 @@
        + [QuerySet API 익히기](#QuerySet-API-익히기)
 
 
-    4. [CRUD with view functions](#4-crud-with-view-functions)
-         + [Admin site](#admin-site)
+  4. [CRUD with view functions](#4-crud-with-view-functions)
++ [Admin site](#admin-site)
 
 
   [마무리](#마무리)
