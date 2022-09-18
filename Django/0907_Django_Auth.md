@@ -1,31 +1,43 @@
-- [Django_Auth](#Django_Auth)
-  
-  [1. The Django authentication system](#1-the-django-authentication-system)
-  
-  + [Substituting a custom User model](#substituting-a-custom-user-model)
-  + [How to substituting a custom User model](#how-to-substituting-a-custom-user-model)
-  
-  [2. HTTP Cookies](#2-http-cookies)
-  
-  + [HTTP](#http)
-  + [Cookie 쿠키](#Cookie-쿠키)
-  
-  [3. Authentication in Web requests](#3-authentication-in-web-requests)
-  
-  + [Login](#login)
-  + [Authentication with User](#authentication-with-user)
-  + [Logout](#logout)
-  
-  [4. Authentication with User](#4-authentication-with-user)
-  
-  + [회원 가입](#회원-가입)
-  + [Custom user & Built-in auth forms](#custom-user--built-in-auth-forms)
-  + [회원 탈퇴](#회원-탈퇴)
-  + [회원정보 수정](#회원정보-수정)
-  + [비밀번호 변경](#비밀번호-변경)
-  
-  [5. Limiting access to logged-in users](#5-limiting-access-to-logged-in-users)
-  
+[Django_Auth](#Django_Auth)
+
+  1. [The Django authentication system](#1-the-django-authentication-system)
+
+       + [Substituting a custom User model](#substituting-a-custom-user-model)
+
+       + [How to substituting a custom User model](#how-to-substituting-a-custom-user-model)
+
+
+  2. [HTTP Cookies](#2-http-cookies)
+
+       + [HTTP](#http)
+
+       + [Cookie 쿠키](#Cookie-쿠키)
+
+
+  3. [Authentication in Web requests](#3-authentication-in-web-requests)
+
+       + [Login](#login)
+
+       + [Authentication with User](#authentication-with-user)
+
+       + [Logout](#logout)
+
+
+  4. [Authentication with User](#4-authentication-with-user)
+
+       + [회원 가입](#회원-가입)
+
+       + [Custom user & Built-in auth forms](#custom-user--built-in-auth-forms)
+
+       + [회원 탈퇴](#회원-탈퇴)
+
+       + [회원정보 수정](#회원정보-수정)
+
+       + [비밀번호 변경](#비밀번호-변경)
+
+
+  5. [Limiting access to logged-in users](#5-limiting-access-to-logged-in-users)
+
   [마무리](#마무리)
 
 # Django_Auth
@@ -59,7 +71,8 @@ $ python manage.py startapp accounts
 ```
 
 ```python
-# settings.py
+# 프로젝트/settings.py
+
 INSTALLED_APPS = [
     'articles',
     'accounts',
@@ -69,7 +82,7 @@ INSTALLED_APPS = [
 - **url 분리 및 매핑**
 
 ```python
-# accounts/urls.py
+# 앱/urls.py
 
 from django.urls import path
 from . import views
@@ -81,7 +94,7 @@ urlpatterns = [
 ```
 
 ```python
-# crud/urls.py
+# 프로젝트/urls.py
 
 urlpatterns = [
     path('accounts/', include('accounts.urls')),
@@ -111,7 +124,8 @@ Django는 기본적인 인증 시스템과 여러 가지 필드가 포함된 Use
 - 즉, 첫번째 마이그레이션 전에 확정 지어야 하는 값
 
   ```python
-  # settings.py
+  # 프로젝트/settings.py
+  
   # 기본 값
   AUTH_USER_MODEL = 'auth.User'
   ```
@@ -137,7 +151,8 @@ settings.py는 사실 **global_settings.py**를 상속받아 재정의하는 파
   >  https://github.com/django/django/blob/main/django/contrib/auth/models.py#405
 
   ```python
-  # accounts/models.py
+  # 앱/models.py
+  
   # User 모델을 정의한다
   from django.contrib.auth.models import AbstractUser
   
@@ -148,7 +163,8 @@ settings.py는 사실 **global_settings.py**를 상속받아 재정의하는 파
 - Django 프로젝트에서 User를 나타내는데 사용하는 모델을 방금 생성한 커스텀 User 모델로 지정
 
   ```python
-  # settings.py
+  # 프로젝트/settings.py
+  
   # 이 때 accounts 는 User 클래스를 정의한 application 이름
   AUTH_USER_MODEL = 'accounts.User'
   ```
@@ -158,7 +174,8 @@ settings.py는 사실 **global_settings.py**를 상속받아 재정의하는 파
   - 기본 User  모델이 아니기 때문에 등록하지 않으면 admin site 에 출력되지 않음
 
     ```python
-    # accounts/admin.py
+    # 앱/admin.py
+    
     from django.contrib import admin
     # admin 페이지에 등록
     from django.contrib.auth.admin import UserAdmin  # 기존에 사용하는 User 관리 인터페이스
@@ -349,7 +366,8 @@ Django는 새 프로젝트를 시작하는 경우 비록 기본 User 모델이 �
 **로그인 페이지 작성**
 
 ```python
-# accounts/urls.py
+# 앱/urls.py
+
 from django.urls import path
 from . import views
 
@@ -360,7 +378,8 @@ urlpatterns = [
 ```
 
 ```python
-# accounts/views.py
+# 앱/views.py
+
 from django.contrib.auth import login as auth_login  # 재귀, 충돌 방지
 from django.contrib.auth.forms import AuthenticationForm  # 일반 폼
 from django.shortcuts import render, redirect
@@ -389,7 +408,8 @@ def login(request):
 ```
 
 ```django
-<!-- accounts/login.html -->
+<!-- 앱/templates/앱/login.html -->
+
 {% extends 'base.html' %}
 
 {% block content %}
@@ -404,7 +424,8 @@ def login(request):
 ```
 
 ```django
-<!-- base.html -->
+<!-- templates/base.html -->
+
 <body>
   <div class="container">
     <a href="{% url 'accounts:login' %}">Login</a>
@@ -440,7 +461,8 @@ def login(request):
 - 템플릿에서 인증 관련 데이터를 출력하는 방법
 
 ```django
-<!-- base.html -->
+<!-- templates/base.html -->
+
 {{ user }}
 {{ user.username }}  <!-- 로그인 시만 출력 -->
 ```
@@ -464,7 +486,8 @@ def login(request):
 > https://docs.djangoproject.com/en/3.2/ref/templates/api/#built-in-template-context-processors
 
 ```python
-# settings.py
+# 프로젝트/settings.py
+
 TEMPLATE = [
     {
         'OPTIONS': {
@@ -505,7 +528,8 @@ TEMPLATE = [
 **로그아웃 로직 작성하기**
 
 ```python
-# accounts/urls.py
+# 앱/urls.py
+
 from django.urls import path
 from . import views
 
@@ -517,7 +541,8 @@ urlpatterns = [
 ```
 
 ```python
-# accounts/views.py
+# 앱/views.py
+
 from django.contrib.auth import logout as auth_logout
 
 def logout(request):
@@ -531,7 +556,8 @@ def logout(request):
 ```
 
 ```django
-<!-- base.html -->
+<!-- templates/base.html -->
+
 <div class="container">
   <h3>Hello, {{ user }}</h3>
   <a href="{% url 'accounts:login' %}">Login</a>
@@ -570,7 +596,8 @@ User Object와 User CRUD에 대한 이해
 **회원 가입 페이지 작성**
 
 ```python
-# accouts/urls.py
+# 앱/templates/앱/urls.py
+
 app_name = 'accounts'
 urlpatterns = [
     path('signup/', views.signup, name='signup'),
@@ -578,7 +605,8 @@ urlpatterns = [
 ```
 
 ```python
-# accounts/views.py
+# 앱/templates/앱/views.py
+
 from django.contrib.auth.forms import (
     AuthenticationForm, 
     UserCreationForm,
@@ -598,7 +626,8 @@ def signup(request):
 ```
 
 ```django
-<!-- accounts/signup.html -->
+<!-- 앱/templates/앱/signup.html -->
+
 {% extends 'base.html' %}
 
 {% block content %}
@@ -614,7 +643,8 @@ def signup(request):
 **회원가입 링크 작성**
 
 ```django
-<!-- base.html -->
+<!-- templates/base.html -->
+
 <div class="container">
   <h3>Hello, {{ user }}</h3>
   <a href="{% url 'accounts:login' %}">Login</a>
@@ -670,7 +700,8 @@ class UserCreationForm(forms.ModelForm):
 **UserCreationForm() 커스텀 하기**
 
 ```python
-# accounts/forms.py
+# 앱/forms.py
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
@@ -698,7 +729,8 @@ class CustomUserChangeForm(UserChangeForm):
 **CustomUserCreationForm() 으로 대체하기**
 
 ```python
-# accounts/views.py
+# 앱/views.py
+
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
@@ -719,7 +751,7 @@ def signup(request):
 **회원가입 후 곧바로 로그인 진행**
 
 ```python
-# accounts/views.py
+# 앱/views.py
 
 def signup(request):
     if request.method == 'POST':
@@ -759,7 +791,7 @@ def save(self, commit=True):
 **회원 탈퇴 로직 작성**
 
 ```python
-# accounts/urls.py
+# 앱/urls.py
 
 app_name = 'accounts'
 urlpatterns = [
@@ -768,7 +800,7 @@ urlpatterns = [
 ```
 
 ```python
-# accounts/views.py
+# 앱/views.py
 
 def delete(request):
     # 회원 탈퇴는 DB를 수정하는 것이기에 POST일 때만 동작
@@ -780,7 +812,7 @@ def delete(request):
 ```
 
 ```django
-<!-- base.html -->
+<!-- templates/base.html -->
 
 <h3>Hello, {{ user }}</h3>
 ...
@@ -797,7 +829,7 @@ def delete(request):
 
 
 ```python
-# accounts/views.py
+# 앱/views.py
 
 def delete(request):
     # 회원 탈퇴는 DB를 수정하는 것이기에 POST일 때만 동작
@@ -828,7 +860,7 @@ def delete(request):
 **회원정보 수정 페이지 작성**
 
 ```python
-# accounts/urls.py
+# 앱/urls.py
 
 app_name = 'accounts'
 urlpatterns = [
@@ -837,7 +869,8 @@ urlpatterns = [
 ```
 
 ```python
-# accounts/views.py
+# 앱/views.py
+
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 def update(request):
@@ -856,7 +889,8 @@ def update(request):
 ```
 
 ```django
-<!-- accounts/update.html -->
+<!-- 앱/templates/앱/update.html -->
+
 {% extends 'base.html' %}
 
 {% block content %}
@@ -872,7 +906,7 @@ def update(request):
 **회원정보 수정 페이지 링크 작성**
 
 ```django
-<!-- base.html -->
+<!-- templates/base.html -->
 <div class="container">
   <h3>Hello, {{ user }}</h3>
   <a href="{% url 'accounts:login' %}">Login</a>
@@ -901,7 +935,7 @@ def update(request):
 - 수정하고자 하는 필드 작성
 
 ```python
-# accounts/forms.py
+# 앱/forms.py
 
 class CustomUserChangeForm(UserChangeForm):
 
@@ -953,7 +987,7 @@ class CustomUserChangeForm(UserChangeForm):
 **비밀번호 변경 페이지 작성**
 
 ```python
-# accounts/urls.py
+# 앱/urls.py
 
 app_name = 'accounts'
 urlpatterns = [  # 경로가 아닌 부분을 password 로 하면 문제 생길 수 있음
@@ -962,7 +996,7 @@ urlpatterns = [  # 경로가 아닌 부분을 password 로 하면 문제 생길 
 ```
 
 ```python
-# accounts/views.py
+# 앱/views.py
 
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 
@@ -985,7 +1019,8 @@ def change_password(request):
 ```
 
 ```django
-<!-- accounts/change_password.html -->
+<!-- 앱/templates/앱/change_password.html -->
+
 {% extends 'base.html' %}
 
 {% block content %}
@@ -1023,7 +1058,8 @@ def change_password(request):
 - 암호가 변경되어도 로그아웃 되지 않도록 새로운 password의 session data로 session을 업데이트
 
 ```python
-# accounts/views.py
+# 앱/views.py
+
 from django.contrib.auth import update_session_auth_hash
 
 def password(request):
@@ -1089,7 +1125,7 @@ class AbstractBaseUser(models.Model):
 - 로그인과 비로그인 상태에서 출력되는 링크를 다르게 설정하기
 
 ```django
-<!-- base.html -->
+<!-- templates/base.html -->
 
 {% if request.user.is_authenticated %}
   <h3>Hello, {{ user }}</h3>
@@ -1113,7 +1149,7 @@ class AbstractBaseUser(models.Model):
 - 하지만 아직 비 로그인 상태로도 URL을 직접 입력하면 게시글 작성 페이지로 갈 수 있음
 
 ```django
-<!-- articles/index.html -->
+<!-- 앱/templates/앱/index.html -->
 
 {% extends 'base.html' %}
 
@@ -1130,7 +1166,7 @@ class AbstractBaseUser(models.Model):
 - 인증된 사용자라면 로그인 로직을 수행할 수 없도록 처리
 
 ```python
-# accounts/views.py
+# 앱/views.py
 
 def login(request):
     # 로그인 한 사용자가 로그인 페이지를 볼 필요는 없음
@@ -1149,6 +1185,8 @@ def login(request):
 - 로그인 상태에서만 글을 작성/수정/삭제 할 수 있도록 변경
 
   ```python
+  # 앱/views.py
+  
   from django.contrib.auth.decorators import login_required
   
   @login_required
@@ -1180,7 +1218,7 @@ def login(request):
 **“next” query string parameter 대응**
 
 ```python
-# accounts/views.py
+# 앱/views.py
 
 def login(request):
     # 로그인 한 사용자가 로그인 페이지를 볼 필요는 없음
@@ -1215,7 +1253,7 @@ def login(request):
 
 
 ```django
-<!-- accounts/login.html -->
+<!-- 앱/login.html -->
 
 {% block content %}
   <h1>로그인</h1>  <!-- LOGIN을 Base.html에 만들기 권장 -->
@@ -1257,7 +1295,7 @@ def login(request):
 - POST method만 허용하는 delete 같은 함수는 내부에서는 is_authenticated 속성 값을 사용 해서 처리
 
   ```python
-  # articles/views.py
+  # 앱/views.py
   
   @require_POST
   def delete(request, pk):
@@ -1270,7 +1308,7 @@ def login(request):
 **accounts view 함수에 모든 데코레이터 및 속성 값 적용해보기**
 
 ```python
-# accounts/views.py
+# 앱/views.py
 
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST, require_http_methods

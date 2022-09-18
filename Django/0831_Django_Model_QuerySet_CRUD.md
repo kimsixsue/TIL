@@ -1,27 +1,36 @@
-- [Django_Model_QuerySet_CRUD](#Django_Model_QuerySet_CRUD)
-  
-  [1. Namespace](#1-namespace)
-  
-  + [URL namespace](#url-namespace)
-  + [Template namespace](#template-namespace)
-  
-  [2. Django Model](#2-django-model)
-  
-  + [Database](#database)
-  + [Model](#model)
-  + [Migrations](#migrations)
-  + [추가 필드 정의](#추가-필드-정의)
-  + [ORM](#orm)
-  
-  [3. QuerySet API](#3-queryset-api)
-  
-  + [QuerySet API](#queryset-api)
-  + [QuerySet API 익히기](#QuerySet-API-익히기)
-  
-  [4. CRUD with view functions](#4-crud-with-view-functions)
-  
-  + [Admin site](#admin-site)
-  
+[Django_Model_QuerySet_CRUD](#Django_Model_QuerySet_CRUD)
+
+  1. [Namespace](#1-namespace)
+
+       + [URL namespace](#url-namespace)
+
+       + [Template namespace](#template-namespace)
+
+
+  2. [Django Model](#2-django-model)
+
+       + [Database](#database)
+
+       + [Model](#model)
+
+       + [Migrations](#migrations)
+
+       + [추가 필드 정의](#추가-필드-정의)
+
+       + [ORM](#orm)
+
+
+  3. [QuerySet API](#3-queryset-api)
+
+       + [QuerySet API](#queryset-api)
+
+       + [QuerySet API 익히기](#QuerySet-API-익히기)
+
+
+    4. [CRUD with view functions](#4-crud-with-view-functions)
+         + [Admin site](#admin-site)
+
+
   [마무리](#마무리)
 
 # Django_Model_QuerySet_CRUD
@@ -37,16 +46,17 @@
 - **app_name** attribute를 작성해 URL namespace를 설정
 
   ```python
-  # XXXXX/urls.py
+  # 앱/urls.py
+  
   from django.urls import path
   from . import views
   
-  app_name = "XXXXX"
+  app_name = "앱"
   urlpattern = [
       ...,
   ]
   ```
-
+  
   ```django
   # url 태그에서 반드시
   {% url 'app_name:url_name' %}  
@@ -64,7 +74,8 @@
 - 바로 이 속성 값이 해당 경로를 활성화하고 있음
 
   ```python
-  # settings.py
+  # 프로젝트/settings.py
+  
   TEMPLATES = [
       {
           ...,
@@ -177,7 +188,8 @@ $ python manage.py startapp articles
 ```
 
 ```python
-# settings.py
+# 프로젝트/settings.py
+
 INSTALLED_APPS = [
     'articles',
     ...
@@ -191,7 +203,8 @@ models.py 작성
 - “모델 클래스 == 테이블 스키마”
 
   ```python
-  # arcitles/models.py
+  # 앱/models.py
+  
   class Article(models.Model):
       title = models.CharField(max_length=10)
       content = models.TextField()
@@ -325,7 +338,7 @@ $ python manage.py sqlmigrate [appication_name] [migration_number]
 - 추가 모델 필드 작성 후 다시 한번 makemigrations 진행
 
 ```python
-# articles/model.py
+# 앱/model.py
 
 class Article(models.Model):
     title = models.CharField(max_length=10)
@@ -476,7 +489,7 @@ pip install django-extensions
 ```
 
 ```python
-# settings.py
+# 프로젝트/settings.py
 
 INSTALLED_APPS = [
     'articles',
@@ -799,6 +812,8 @@ QuerySet API를 통해 view 함수에서 직접 CRUD 구현하기
 - bootstrap CDN 및 템플릿 추가 경로 작성
 
   ```django
+  <!-- templates/base.html -->
+  
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -818,9 +833,10 @@ QuerySet API를 통해 view 함수에서 직접 CRUD 구현하기
   </html>
   
   ```
-
+  
   ```python
-  # settings.py
+  # 프로젝트/settings.py
+  
   TEMPLATES = [
       {
   		...,
@@ -833,7 +849,8 @@ QuerySet API를 통해 view 함수에서 직접 CRUD 구현하기
 **url 분리 및 연결**
 
 ```python
-# articles/urls.py
+# 앱/urls.py
+
 from django.urls import path
 
 app_name = 'articles'
@@ -843,7 +860,8 @@ urlpatterns = [
 ```
 
 ```python
-# crud/urls.py
+# 프로젝트/urls.py
+
 from django.contrib import admin
 from django.urls import path, include
 
@@ -856,7 +874,8 @@ urlpatterns = [
 **index 페이지 작성**
 
 ```python
-# articles/urls.py
+# 앱/urls.py
+
 from django.urls import path
 from . import views
 
@@ -867,13 +886,14 @@ urlpatterns = [
 ```
 
 ```python
-# articles/views.py
+# 앱/views.py
+
 def index(request):
     return render(request, 'articles/index.html')
 ```
 
 ```django
-<!-- templates/articles/index.html -->
+<!-- 앱/templates/앱/index.html -->
 {% extends 'base.html' %}
 {% block content %}
   <h1>Articles</h1>
@@ -887,7 +907,8 @@ def index(request):
 - index 페이지에서는 전체 게시글을 조회해서 출력한다.
 
 ```python
-# articles/views.py
+# 앱/views.py
+
 from .models import Article
 
 def index(request):
@@ -902,7 +923,8 @@ def index(request):
 ```
 
 ```django
-<!-- templates/articles/index.html -->
+<!-- 앱/templates/앱/index.html -->
+
 {% extends 'base.html' %}
 {% block content %}
   <h1>Articles</h1>
@@ -927,7 +949,7 @@ def index(request):
 - URL로 특정 게시글을 조회할 수 있는 번호를 받음
 
   ```python
-  # articles/urls.py
+  # 앱/urls.py
   urlpatterns = [
       path('<int:pk>/', views.detail, name='detail'),
   ]
@@ -938,7 +960,8 @@ def index(request):
 - Article.objects.get(pk=pk)에서 오른쪽 pk는 variable routing을 통해 받은 pk, 왼쪽 pk는 DB에 저장된 레코드의 id 컬럼
 
   ```python
-  # articles/views.py
+  # 앱/views.py
+  
   # 글 내용 조회 (하나의 글 데이터 필요)
   def detail(request, pk):
       # query api 에서 get 메소드는 유일한 값을 이용해서 데이터를 찾음
@@ -953,7 +976,8 @@ def index(request):
 **templates**
 
 ```django
-<!-- templates/articles/detail.html -->
+<!-- 앱/templates/앱/detail.html -->
+
 {% extends 'base.html' %}
 {% block content %}
   <h2>DETAIL</h2>
@@ -969,7 +993,8 @@ def index(request):
 ```
 
 ```django
-<!-- templates/articles/index.html -->
+<!-- 앱/templates/앱/index.html -->
+
 {% extends 'base.html' %}
 {% block content %}
 <h1>Articles</h1>
@@ -985,7 +1010,8 @@ def index(request):
 **redirect 인자 변경**
 
 ```python
-# articles/views.py
+# 앱/views.py
+
 def create(request):
     # 글 작성을 완료하고 나면 다음 뜨는 페이지
     return redirect('articels:detail', article.pk)
@@ -1000,7 +1026,7 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   - **“new” view function**
 
   ```python
-  # articles/urls.py
+  # 앱/urls.py
   
   urlpatterns = [
       path('', views.index, name='index'),
@@ -1009,7 +1035,8 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   ```
 
   ```python
-  # articles/views.py
+  # 앱/views.py
+  
   # 글 쓰기 버튼을 눌렀을 때
   # 사용자 입력 페이지 (글쓰기 페이지) 응답으로 전달
   def new(request):
@@ -1017,7 +1044,8 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   ```
 
   ```django
-  <!-- templates/articles/new.html -->
+  <!-- 앱/templates/앱/new.html -->
+  
   {% extends 'base.html' %}
   {% block content %}
     <h1>NEW</h1>
@@ -1038,7 +1066,7 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   - new 페이지로 이동할 수 있는 하이퍼 링크 작성
 
   ```django
-  <!-- templates/articles/index.html -->
+  <!-- 앱/templates/앱/index.html -->
   {% extends 'base.html' %}
   {% block content %}
     <h1>Articles</h1>
@@ -1053,7 +1081,7 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   - **“create” view function**
 
   ```python
-  # articles/urls.py
+  # 앱/urls.py
   
   urlpatterns = [
       path('create/', views.create, name='create'),
@@ -1061,6 +1089,8 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   ```
 
   ```python
+  # 앱/views.py
+  
   # 사용자가 작성한 데이터를 받아서 DB에 저장하는 역할
   def create(request):
       # 데이터 저장하기 위해서는 사용자의 데이터를 확보
@@ -1078,7 +1108,8 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   - 게시글 작성 후 확인
   
   ```django
-  <!-- templates/articles/create.html -->
+  <!-- 앱/templates/앱/create.html -->
+  
   {% extends 'base.html' %}
   {% block content %}
     <h1>성공적으로 글이 작성되었습니다.</h1>
@@ -1086,7 +1117,8 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   ```
   
   ```django
-  <!-- templates/articles/new.html -->
+  <!-- 앱/templates/앱/new.html -->
+  
   {% extends 'base.html' %}
   {% block content %}
     <h1>NEW</h1>
@@ -1103,11 +1135,12 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
     <a href="{% url 'articles:index' %}">[back]</a>
   {% endblock content %}
   ```
-
+  
   - 게시글 작성 후 index 페이지로 돌아고도록 함
   
   ```python
-  # articles/view.py
+  # 앱/view.py
+  
   def create(request):
       return render(request, 'articles/index.html')
   ```
@@ -1118,7 +1151,8 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   -  view name (URL pattern name)
 
 ```python
-# articles/views.py
+# 앱/views.py
+
 from django.shortcuts import redirect
 
 def create(request):
@@ -1259,7 +1293,8 @@ def create(request):
 - 모든 글을 삭제 하는 것이 아니라 삭제하고자 하는 특정 글을 조회 후 삭제해야 함
 
   ```python
-  # articles/urls.py
+  # 앱/urls.py
+  
   urlpatterns = [
       path('<int:pk>/delete/', views.delete, name='delete'),
   ]
@@ -1268,7 +1303,7 @@ def create(request):
 **views**
 
 ```python
-# articles/views.py
+# 앱/views.py
 
 def delete(request, pk):
     # 1. 삭제할 데이터를 가져온다
@@ -1283,7 +1318,8 @@ def delete(request, pk):
 - Detail 페이지에 작성하며 DB에 영향을 미치기 때문에 POST method를 사용
 
   ```django
-  <!-- articles/detail.html -->
+  <!-- 앱/templates/앱/detail.html -->
+  
   {% extends 'base.html' %}
   {% block content %}
     <form action="{% url 'articles:delete' article.pk %}" method="POST">
@@ -1303,14 +1339,16 @@ def delete(request, pk):
   - "edit" view function
 
     ```python
-    # articles/urls.py
+    # 앱/urls.py
+    
     urlpatterns = [
         path('<int:pk>/edit/', views.edit, name='edit'),
     ]
     ```
-
+  
     ```python
-    # articles/views.py
+    # 앱/views.py
+    
     def edit(request, pk):
         article = Article.objects.get(pk=pk)
         context = {
@@ -1322,9 +1360,10 @@ def delete(request, pk):
   - html 태그의 value 속성을 사용해 기존에 입력 되어 있던 데이터를 출력
 
     - **textarea 태그는 value 속성이 없으므로 태그 내부 값으로 작성해야 한다.**
-
+  
     ```django
-    <!-- articles/edit.html -->
+    <!-- 앱/templates/앱/edit.html -->
+    
     {% extends 'base.html' %}
     {% block content %}
       <h1>EDIT</h1>
@@ -1341,11 +1380,12 @@ def delete(request, pk):
       <a href="{% url 'articles:index' %}">[back]</a>
     {% endblock content %}
     ```
-
+  
   - Edit 페이지로 이동하기 위한 하이퍼 링크 작성
-
+  
     ```django
-    <!-- templates/articles/detail.html -->
+    <!-- 앱/templates/앱/detail.html -->
+    
     {% extends 'base.html' %}
     {% block content %}
       <h2>DETAIL</h2>
@@ -1372,14 +1412,16 @@ def delete(request, pk):
   - "update" view function
 
     ```python
-    # articles/urls.py
+    # 앱/urls.py
+    
     urlpatterns = [
         path('<int:pk/update/', views.update, name='update'),
     ]
     ```
-
+    
     ```python
-    # articles/view.py
+    # 앱/view.py
+    
     def update(request, pk):
         # 1. 수정할 글 데이터를 찾아온다.
         article = Article.objects.get(pk=pk)
@@ -1393,7 +1435,8 @@ def delete(request, pk):
     ```
     
     ```django
-    <!-- articles/edit.html -->
+    <!-- 앱/edit.html -->
+    
     {% extends 'base.html' %}
     {% block content %}
       <h1>EDIT</h1>
@@ -1441,7 +1484,7 @@ $ python manage.py createsuperuser
 - 모델의 record를 보기 위해서는 admin.py에 등록 필요
 
 ```python
-# articles/admin.py
+# 앱/admin.py
 
 from django.contrib import admin
 from .models import Article

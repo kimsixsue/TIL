@@ -1,26 +1,32 @@
-- [Django_Form_ModelForm](#Django_Form_ModelForm)
+[Django_Form_ModelForm](#Django_Form_ModelForm)
+
+  1. [Django Form](#1-django-form)
+
+       + [The Django Form Class](#The-Django-Form-Class)
+
+       + [Widgets](#widgets)
+
+
+  2. [Django ModelForm](#2-django-modelform)
+
+       + [ModelForm with view functions](#ModelForm-with-view-functions)
+
+       + [Widgets 활용하기](#Widgets-활용하기)
+
+
+  3. [Handling HTTP requests](#3-handling-http-requests)
   
-  [1. Django Form](#1-django-form)
-  
-  + [The Django Form Class](#The-Django-Form-Class)
-  + [Widgets](#widgets)
-  
-  [2. Django ModelForm](#2-django-modelform)
-  
-  + [ModelForm with view functions](#ModelForm-with-view-functions)
-  + [Widgets 활용하기](#Widgets-활용하기)
-  
-  [3. Handling HTTP requests](#3-handling-http-requests)
-  
-  [4. View decorators](#4-view-decorators)
-  
-  + [Allowed HTTP methods](#Allowed-HTTP-methods)
-  
-  [5. Working with form templates](#5-working-with-form-templates)
-  
-  + [Rendering fields manually](#Rendering-fields-manually)
-  + [Looping over the form’s fields](#looping-over-the-forms-fields)
-  
+    4. [View decorators](#4-view-decorators)
+         + [Allowed HTTP methods](#Allowed-HTTP-methods)
+
+
+  5. [Working with form templates](#5-working-with-form-templates)
+
+       + [Rendering fields manually](#Rendering-fields-manually)
+
+       + [Looping over the form’s fields](#looping-over-the-forms-fields)
+
+
   [마무리](#마무리)
 
 # Django_Form_ModelForm
@@ -66,7 +72,8 @@ Form Class
 - 앱 폴더에 forms.py 를 생성 후  ArticleForm Class 선언
 
   ```python
-  # articles/forms.py
+  # 앱/forms.py
+  
   from django import forms
   
   class ArticleForm(forms.Form):
@@ -81,7 +88,8 @@ Form Class
 **'new' 업데이트**
 
 ```python
-# articles/views.py
+# 앱/views.py
+
 from .forms import ArticleForm
 
 def new(request):
@@ -93,7 +101,8 @@ def new(request):
 ```
 
 ```django
-<!-- articles/new.html -->
+<!-- 앱/templates/앱/new.html -->
+
 {% extends 'base.html' %}
 {% block content %}
   <h1>NEW</h1>
@@ -158,7 +167,8 @@ Django의 HTML input element의 표현을 담당
 **Textarea 위젯 적용하기**
 
 ```python
-# articles/forms.py
+# 앱/forms.py
+
 class ArticleForm(forms.Form):
     title = forms.CharField(max_length=10)
     content = forms.CharField(widget=forms.Textarea)
@@ -171,7 +181,8 @@ class ArticleForm(forms.Form):
 **Form fields와 widget 응용하기**
 
 ```python
-# articles/forms.py
+# 앱/forms.py
+
 class ArticleForm(forms.Form):
     NATION_A = 'kr'
     NATION_B = 'ch'
@@ -205,7 +216,8 @@ ModelForm을 사용하면 Form을 더 쉽게 작성할 수 있음
 - 어떤 모델을 기반으로 form을 작성할 것인지에 대한 정보를 Meta 클래스에 지정
 
   ```python
-  # articles/forms.py
+  # 앱/forms.py
+  
   from django import forms
   from .models import Article
   
@@ -235,7 +247,8 @@ ModelForm을 사용하면 Form을 더 쉽게 작성할 수 있음
 - 호출하지 않고 이름만 작성하는 이 방식은 어떤 의미일까
 
   ```python
-  # articles/forms.py
+  # 앱/forms.py
+  
   class ArticleForm(forms.ModelForm):
       
       class Meta:
@@ -277,7 +290,8 @@ ModelForm으로 인한 view 함수의 구조 변화 알아보기
 **CREATE**
 
 ```python
-# articles/views.py
+# 앱/views.py
+
 def create(request):
     form = Article(request.POST)
     if form.is_valid():  # 유효성 검사를 통과하면
@@ -304,7 +318,8 @@ def create(request):
 - is_valid()의 반환 값이 False인 경우 form 인스턴스의 errors 속성에 값이 작성되는데, 유효성 검증을 실패한 원인이 딕셔너리 형태로 저장됨
 
   ```python
-  # articles/views.py
+  # 앱/views.py
+  
   def create(request):
       form = ArticleForm(request.POST)
       if form.is_valid():
@@ -317,7 +332,8 @@ def create(request):
 - 유효성 검증을 실패했을 때 사용자에게 실패 결과 메세지를 출력해줄 수 있음
 
   ```python
-  # articles/views.py
+  # 앱/views.py
+  
   def create(request):
       form = ArticleForm(request.POST)
       if form.is_valid():
@@ -340,6 +356,8 @@ def create(request):
   - 제공되면 save()는 해당 인스턴스를 수정(UPDATE)
 
     ```python
+    # 앱/views.py
+    
     # CREATE
     form = ArticleForm(request.POST)
     form.save()
@@ -362,7 +380,8 @@ def create(request):
    - 수정이 되는 대상
 
    ```python
-   # articles/views.py
+   # 앱/views.py
+   
    def edit(request, pk):
        article = Article.objectes.get(pk=pk)
        form = ArticleForm(instance=article)
@@ -386,7 +405,8 @@ def create(request):
    ```
    
    ```django
-   <!-- articles/edit.html -->
+   <!-- 앱/templates/앱/edit.html -->
+   
    {% extends 'base.html' %}
    {% block content %}
      <h1>EDIT</h1>
@@ -443,7 +463,8 @@ class BaseModelForm(BaseForm):
 > https://django-bootstrap-v5.readthedocs.io/en/latest/
 
 ```python
-# articles/forms.py
+# 앱/forms.py
+
 class ArticleForm(forms.ModelForm):
     
     title = forms.CharField(
@@ -502,7 +523,8 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
 - 각각의 역할은 **request.method** 값을 기준으로 나뉨
 
   ```python
-  # articles/views.py
+  # 앱/views.py
+  
   from .forms import ArticleForm  # Article Model을 바탕으로 만들어진 Form
   
   def create(request):
@@ -543,7 +565,8 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
 - edit과 update view 함수를 합침
 
   ```python
-  # articles/views.py
+  # 앱/views.py
+  
   def update(request, pk):
       article = Article.objects.get(pk=pk)
       if request.method == 'POST':  # DB
@@ -569,7 +592,8 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
 - POST 요청에 대해서만 삭제가 가능하도록 수정
 
   ```python
-  # articles/views.py
+  # 앱/views.py
+  
   def delete(request, pk):  
       if request.method == 'POST':  # DB
           article = Article.objects.get(pk=pk)
@@ -627,7 +651,8 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
 - View 함수가 특정한 요청 method만 허용하도록 하는 데코레이터
 
   ```python
-  # views.py
+  # 앱/views.py
+  
   from django.views.decorators.http import require_http_methods
   
   @require_http_methods(['GET','POST'])
@@ -644,7 +669,8 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
 - View 함수가 POST 요청 method만 허용하도록 하는 데코레이터
 
   ```python
-  # views.py
+  # 앱/views.py
+  
   from django.views.decorators.http import require_http_methods, require_POST
   
   @ require_POST
@@ -666,7 +692,8 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
 - require_GET 이 있지만 Django에서는 require_safe 를 사용하는 것을 권장
 
   ```python
-  # views.py
+  # 앱/views.py
+  
   from django.views.decorators.http import require_http_methods, require_POST, require_safe
   
   @require_safe

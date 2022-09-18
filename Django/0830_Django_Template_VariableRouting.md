@@ -1,38 +1,51 @@
-- [Django_Template_VariableRouting](#Django_Template_VariableRouting)
-  
-  [1. Django Intro](#1-django-intro)
-  
-  + [Django 시작하기](#Django-시작하기)
-  + [Web 이해하기](#Web-이해하기)
-  + [클라이언트와 서버](#클라이언트와-서버)
-  + [Web browser와 Web page](#Web-browser와-Web-page)
-  
-  [2. Django 구조 이해하기 (MTV Design Pattern)](#2-django-구조-이해하기-mtv-design-pattern)
-  
-  + [Design Pattern](#design-pattern)
-  + [Django's Design Pattern](#djangos-design-pattern)
-  
-  [3. Django Quick Start](#3-django-quick-start)
-  
-  + [기본 설정](#기본-설정)
-  + [요청과 응답](#요청과-응답)
-  
-  [4. Django Template](#4-django-template)
-  
-  + [Template inheritance](#template-inheritance)
-  
-  [5. Sending and Retrieving form data](#5-sending-and-retrieving-form-data)
-  
-  + [Sending from data (Client)](#sending-from-data-client)
-  + [Retrieving the data (Server)](#retrieving-the-data-server)
-    - [action 작성](#action-작성)
-  
-  [6. Django URLs](#6-django-urls)
-  
-  + [Trailing URL Slashes](#trailing-url-slashes)
-  + [Variable routing](#variable-routing)
-  + [App URL mapping](#app-url-mapping)
-  + [Naming URL patterns](#naming-url-patterns)
+[Django_Template_VariableRouting](#Django_Template_VariableRouting)
+
+1. [Django Intro](#1-django-intro)
+
+   + [Django 시작하기](#Django-시작하기)
+
+   + [Web 이해하기](#Web-이해하기)
+
+   + [클라이언트와 서버](#클라이언트와-서버)
+
+   + [Web browser와 Web page](#Web-browser와-Web-page)
+
+
+2. [Django 구조 이해하기 (MTV Design Pattern)](#2-django-구조-이해하기-mtv-design-pattern)
+
+   + [Design Pattern](#design-pattern)
+
+   + [Django's Design Pattern](#djangos-design-pattern)
+
+
+3. [Django Quick Start](#3-django-quick-start)
+
+   + [기본 설정](#기본-설정)
+
+   + [요청과 응답](#요청과-응답)
+
+
+4. [Django Template](#4-django-template)
+   + [Template inheritance](#template-inheritance)
+
+
+5. [Sending and Retrieving form data](#5-sending-and-retrieving-form-data)
+
+   + [Sending from data (Client)](#sending-from-data-client)
+
+   + [Retrieving the data (Server)](#retrieving-the-data-server)
+
+
+6. [Django URLs](#6-django-urls)
+
+   + [Trailing URL Slashes](#trailing-url-slashes)
+
+   + [Variable routing](#variable-routing)
+
+   + [App URL mapping](#app-url-mapping)
+   
+   + [Naming URL patterns](#naming-url-patterns)
+   
 
 # Django_Template_VariableRouting
 
@@ -441,7 +454,8 @@
   - Django installation에 활성화 된 모든 앱을 지정하는 문자열 목록
 
   ```python
-  # settings.py
+  # 프로젝트/settings.py
+  
   # Application definition
   INSTALLED_APPS = [
       # 유저가 생성한 어플리케이션
@@ -481,7 +495,8 @@
 - URL -> VIEW -> TEMPLATE 기초 과정을 작성해보고 데이터의 흐름을 이해하기
 
   ```python
-  # urls.py
+  # 프로젝트/urls.py
+  
   from django.contrib import admin
   from articles import views
   
@@ -501,7 +516,8 @@
 - Template에게 HTTP 응답 서식을 맡김
 
   ```python
-  # articles/views.py
+  # 앱/views.py
+  
   def index(request):
       return render(request, 'index.html')
   ```
@@ -533,7 +549,8 @@ render(request, template_name, context)
 - 템플릿 폴더 이름은 반드시 **`templates`** 라고 지정해야 함
 
   ```python
-  <!-- articles/templates/index.html -->
+  <!-- 앱/templates/index.html -->
+  
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -556,7 +573,7 @@ render(request, template_name, context)
   | --------- | ------------------------------------------------------------ |
   | URL       | path('index/', **views.index**)                              |
   | View      | def `index`(request):<br />    return render(request, '**index.html**') |
-  | Template  | articles/templates/`index.html`                              |
+  | Template  | 앱/templates/`index.html`                                    |
   
 
 **[참고] 추가 설정**
@@ -570,7 +587,8 @@ render(request, template_name, context)
     > http://www.i18nguy.com/unicode/language-identifiers.html
 
     ```python
-    # settings.py
+    # 프로젝트/settings.py
+    
     LANGUAGE_CODE = 'ko-kr'
     ```
 
@@ -629,14 +647,16 @@ render(request, template_name, context)
 - chained가 가능하며 일부 필터는 인자를 받기도 함 `{{name|truncatewords:30 }}`
 
   ```python
-  # urls.py
+  # 프로젝트/urls.py
+  
   urlpatterns = [
       path('dinner/', views.dinner),
   ]
   ```
-
+  
   ```python
-  # articles/views.py
+  # 앱/views.py
+  
   import random
   from django.shortcuts import render
   
@@ -649,9 +669,10 @@ render(request, template_name, context)
       }
       return render(request, 'dinner.html', context)
   ```
-
+  
   ```django
-  <!-- articles/templates/dinner.html -->
+  <!-- 앱/templates/dinner.html -->
+  
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -735,7 +756,8 @@ render(request, template_name, context)
 - Bootstrap CDN 작성
 
   ```django
-  <!-- articles/templates/base.html -->
+  <!-- 앱/templates/base.html -->
+  
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -757,7 +779,8 @@ render(request, template_name, context)
 - Bootstrap이 적용되었는지 확인
 
   ```django
-  <!-- index.html -->
+  <!-- 앱/templates/index.html -->
+  
   {% extends 'base.html' %}
   {% block content %}
     <h1>Hello</h1>
@@ -773,7 +796,7 @@ render(request, template_name, context)
 * app_name/templates/ 디렉토리 경로 외 추가 경로를 설정한 것
 
   ``` python
-  # settings.py
+  # 프로젝트/settings.py
   
   TEMPLATES = [
       {
@@ -785,7 +808,8 @@ render(request, template_name, context)
 **[참고] BASE_DIR**
 
 ```python
-# settings.py
+# 프로젝트/settings.py
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 ```
 
@@ -798,7 +822,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
     > https://docs.python.org/ko/3.9/library/pathlib.html#module-pathlib
 
 ```python
-# config/urls.py
+# 프로젝트/urls.py
+
 from django.contrib import admin
 from django.urls import path, include
 
@@ -851,7 +876,8 @@ urlpatterns = [
    -  HTML form 데이터는 오직 2가지 방법으로만 전송 할 수 있는데 바로 GET 방식과 POST 방식
 
    ```python
-   # urls.py
+   # 프로젝트/urls.py
+   
    from django.urls import path
    from . import views
    
@@ -859,16 +885,17 @@ urlpatterns = [
        path('throw', view.throw),
    ]
    ```
-
+   
    ```python
-   # articles/views.py
+   # 앱/views.py
    
    def throw(request):
        return render(request, 'throw.html')
    ```
-
+   
    ```django
-   <!-- articles/templates/throw.html -->
+   <!-- 앱/templates/throw.html -->
+   
    {% extends 'base.html' %}
    {% block content %}
      <h1>Throw</h1>
@@ -896,7 +923,8 @@ urlpatterns = [
     - ​	GET 방식에서는 URL에서 `‘?key=value&key=value/’` 형식으로 데이터를 전달
 
   ```django
-  <!-- articles/templates/throw.html -->
+  <!-- 앱/templates/throw.html -->
+  
   {% extends 'base.html' %}
   {% block content %}
     <h1>Throw</h1>
@@ -945,7 +973,8 @@ urlpatterns = [
 - 데이터를 입력 후 submit 버튼을 누르고 URL의 변화를 확인한다.
 
   ```django
-  <!-- throw.html -->
+  <!-- 앱/templates/throw.html -->
+  
   {% extends 'base.html' %}
   {% block content %}
     <h1>Throw</h1>
@@ -992,7 +1021,8 @@ urlpatterns = [
 **catch 작성**
 
 ```python
-# urls.py
+# 앱/urls.py
+
 from . import views
 
 urlpatterns = [
@@ -1001,14 +1031,15 @@ urlpatterns = [
 ```
 
 ```python
-# articles/views.py
+# 앱/views.py
 
 def catch(request):
     return render(request, 'catch.html')
 ```
 
 ```django
-<!-- articles/templates/catch.html -->
+<!-- 앱/templates/catch.html -->
+
 {% extends 'base.html' %}
 {% block content %}
   <h1>Catch</h1>
@@ -1016,10 +1047,11 @@ def catch(request):
 {% endblock content %}
 ```
 
-#### action 작성
+**action 작성**
 
 ```django
-<!-- articles/templates/throw.html -->
+<!-- 앱/templates/throw.html -->
+
 {% extends 'base.html' %}
 {% block content %}
   <h1>Throw</h1>
@@ -1033,7 +1065,8 @@ def catch(request):
 ```
 
 ```django
-<!-- articles/templates/index.html -->
+<!-- 앱/templates/index.html -->
+
 {% extends 'base.html' %}
 {% block content %}
   <a href="/throw/">throw<a>
@@ -1061,7 +1094,8 @@ request가 어떤 객체인지 확인해보기
 print를 통해 살펴보기
 
 ```python
-# articles/views.py
+# 앱/views.py
+
 def catch(request):
     print(request)
     print(type(request))
@@ -1082,7 +1116,7 @@ def catch(request):
 **catch 작성 마무리**
 
 ```python
-# articles/views.py
+# 앱/views.py
 
 def catch(request):
     message = request.POST.get('message')
@@ -1093,7 +1127,7 @@ def catch(request):
 ```
 
 ```django
-<!-- articles/templates/catch.html -->
+<!-- 앱/templates/catch.html -->
 
 {% extends 'base.html' %}
 {% block content %}
@@ -1175,7 +1209,7 @@ URL의 일부를 변수로 지정하여 view 함수의 인자로 넘길 수 있�
    - 0 또는 양의 정수와 매치
 
 ``` python
-# urls.py
+# 앱/urls.py
 
 urlpatterns = [
     # path('hello/<str:name>/', views.hello),
@@ -1192,7 +1226,8 @@ urlpatterns = [
 variable routing으로 할당된 변수를 인자로 받고 템플릿 변수로 사용할 수 있음
 
 ```python
-# articles/view.py
+# 앱/view.py
+
 def hello(request, name):
     context = {
         'name': name,
@@ -1201,7 +1236,8 @@ def hello(request, name):
 ```
 
 ```django
-<!-- articles/templates/hello.html -->
+<!-- 앱/templates/hello.html -->
+
 {% extends 'base.html' %}
 {% block content %}
   <h1>Hello, {{ name }}</h1>
@@ -1227,7 +1263,8 @@ def hello(request, name):
 - **각각의 app 폴더 안에 urls.py를 작성**하고 다음과 같이 수정 진행
 
   ```python
-  # articles/urls.py
+  # 앱/urls.py
+  
   from . import views
   
   urlpatterns = [
@@ -1249,7 +1286,8 @@ def hello(request, name):
   **예를 들어, pages 앱의 urlpatterns가 빈 리스트라도 작성되어 있어야 함**
 
   ```python
-  # firstpjt/urls.py
+  # 프로젝트/urls.py
+  
   from django.contrib import admin
   from django.urls import include
   
@@ -1293,7 +1331,7 @@ Django는 URL에 이름을 지정하는 방법을 제공함으로써 view 함수
 **url 태그 사용하기**
 
 ```django
-<!-- catch.html -->
+<!-- 앱/templates/catch.html -->
 
 {% extends 'base.html' %}
 {% block content %}
@@ -1304,7 +1342,8 @@ Django는 URL에 이름을 지정하는 방법을 제공함으로써 view 함수
 ```
 
 ```django
-<!-- throw.html -->
+<!-- 앱/templates/throw.html -->
+
 {% extends 'base.html' %}
 {% block content %}
   <h1>Throw</h1>
@@ -1315,7 +1354,8 @@ Django는 URL에 이름을 지정하는 방법을 제공함으로써 view 함수
 ```
 
 ```django
-<!-- index.html -->
+<!-- 앱/templates/index.html -->
+
 {% extends 'base.html' %}
 {% block content %}
   ...
@@ -1324,7 +1364,8 @@ Django는 URL에 이름을 지정하는 방법을 제공함으로써 view 함수
   <a href="{% url 'throw' %}">throw</a>
 {% endblock content %}
 
-<!-- dinner.html, greeting.html -->
+<!-- 앱/templates/dinner.html, 앱/templates/greeting.html -->
+
 <a href="{% url 'index' %}">뒤로</a>
 ```
 
