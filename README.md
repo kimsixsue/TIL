@@ -57,7 +57,9 @@
 
 9. [2022-09-14 수] [Computational Thinking](./Algorithm/0914_ComputationalThinking.md)
 
-10. [2022-09-04 일] [Graph_Representations_Traversal](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Graph_Representations_Traversal.md)
+10. [2022-09-19 월] [APS Start](./Algorithm/0919_APS_Start.md)
 
-11. [2022-08-28 일] [HashTable_ ResolveCollision_OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
+11. [2022-09-04 일] [Graph_Representations_Traversal](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Graph_Representations_Traversal.md)
+
+12. [2022-08-28 일] [HashTable_ ResolveCollision_OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
 
