@@ -70,6 +70,24 @@
     - 그러나, 재귀에 대해 익숙하지 않은 개발자들은 재귀적 프로그램이 어렵다고 느낀다.
   - 함수 호출은 프로그램 메모리 구조에서 스택을 사용한다. 따라서 재귀 호출은 반복적인 스택의 사용을 의미하며 메모리 및 속도에서 성능저하가 발생한다.
 
+  ```python
+  def selection_sort(depth):
+      if depth == length - 1:
+          return
+      mini = depth
+      for i in range(depth, length):
+          if number[mini] > number[i]:
+              mini = i
+      number[depth], number[mini] = number[mini], number[depth]
+      selection_sort(depth + 1)
+  
+  
+  number = [2, 4, 6, 1, 9, 8, 7, 0]
+  length = len(number)
+  selection_sort(0)
+  print(number)
+  ```
+
 - 팩토리얼 재귀 함수
 
   - 재귀적 정의
@@ -143,12 +161,49 @@
 
 - 모든 경우의 수를 생성하고 테스트하기 때문에 수행 속도는 느리지만, 해답을 찾아내지 못할 확률이 작다.
   - 완전검색은 입력의 크기를 작게 해서 간편하고 빠르게 답을 구하는 프로그램을 작성한다.
+  
 - 이를 기반으로 그리디 기법이나 동적 계획법을 이용해서 효율적인 알고리즘을 찾을 수 있다.
+
 - 검정 등에서 주어진 문제를 풀 때, **우선 완전 검색으로 접근하여 해답을 도출한 후, 성능 개선을 위해 다른 알고리즘을 사용하고 해답을 확인하는 것이 바람직**하다.
 
 - 완전 검색을 통한 Baby-gin 접근
+
 - 고려할 수 있는 모든 경우의 수 생성하기
   - 6개의 숫자로 만들 수 있는 모든 숫자 나열 (중복 포함)
+  
+    ```python
+    def perm(depth):
+        global flag
+        if depth == 6:
+            total = 0
+            if per[0] == per[1] and per[1] == per[2]:
+                total += 1
+            if per[0] + 1 == per[1] and per[1] + 1 == per[2]:
+                total += 1
+            if per[3] == per[4] and per[4] == per[5]:
+                total += 1
+            if per[3] + 1 == per[4] and per[4] + 1 == per[5]:
+                total += 1
+            if total == 2:
+                flag = True
+        else:
+            for number in range(6):
+                if not checked[number]:
+                    per[depth] = arr[number]
+                    checked[number] = 1
+                    perm(depth + 1)
+                    checked[number] = 0
+    
+    
+    for _ in range(int(input())):
+        flag = False
+        arr = list(map(int, input()))
+        checked = [0] * 6
+        per = [0] * 6
+        perm(0)
+        print(flag)
+    ```
+  
 - 완전 검색
   - 많은 종류의 문제들이 특정 조건을 만족하는 경우나 요소를 찾는 것이다.
   - 또한, 이들은 전형적으로 permutation 순열, combination 조합, 그리고 subsets 부분집합과 같은 Combinatorial Problems 조합적 문제들과 연관된다.
@@ -248,31 +303,31 @@
   perm(0, N, R)
   ```
 
-        ```python
-        def array_sum(i, k):
-            global minV
-            if i == k:  # 인덱스 i == 원소의 개수
-                s = 0   # 모든 l행에서 p[l] 열을 골랐을 때의 합
-                for l in range(k):
-                    s += arr[l][p[l]]
-                if minV > s:
-                    minV = s
-            else:
-                for j in range(i, k):
-                    p[i], p[j] = p[j], p[i]
-                    f(i + 1, k)
-                    p[i], p[j] = p[j], p[i]
-        
-                    
-        T = int(input())
-        for tc in range(1, T + 1):
-            N = int(input())
-            arr = [list(map(int, input().split())) for _ in range(N)]
-            p = [i for i in range(N)]
-            minV = N * 10
-            array_sum(0, N)
-            print(f'#{tc} {minV}')
-        ```
+  ```python
+  def array_sum(i, k):
+      global minV
+      if i == k:  # 인덱스 i == 원소의 개수
+          s = 0   # 모든 l행에서 p[l] 열을 골랐을 때의 합
+          for l in range(k):
+              s += arr[l][p[l]]
+          if minV > s:
+              minV = s
+      else:
+          for j in range(i, k):
+              p[i], p[j] = p[j], p[i]
+              f(i + 1, k)
+              p[i], p[j] = p[j], p[i]
+  
+              
+  T = int(input())
+  for tc in range(1, T + 1):
+      N = int(input())
+      arr = [list(map(int, input().split())) for _ in range(N)]
+      p = [i for i in range(N)]
+      minV = N * 10
+      array_sum(0, N)
+      print(f'#{tc} {minV}')
+  ```
 
 ```python
 def array_sum(i, k, s):
@@ -383,8 +438,6 @@ for tc in range(1, T + 1):
   \end{aligned}
   $$
   
-- 
-
 - 재귀 호출을 이용한 조합 생성 알고리즘
 
   ```python
