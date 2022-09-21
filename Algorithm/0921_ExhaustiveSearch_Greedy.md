@@ -219,11 +219,11 @@
 
 - 그리고 nPr 은 다음과 같은 식이 성립한다.
 
-  $_nP_r = (n-0) * (n-1)*(n-2)*...*(n-r+1)$
+  $_nP_r$ = (n-0) * (n-1) * (n-2) * ... * (n-r+1)
 
 - nPn = n! 이라고 표기하며 Factorial이라 부른다.
 
-  $n! = n * (n-1) * (n-2) * ... *2*1$
+  n! = n * (n-1) * (n-2) * ... * 2 * 1
 
 - 다수의 알고리즘 문제들은 순서화된 요소들의 집합에서 최선의 방법을 찾는 것과 관련 있다.
   - 예> TSP(Traveling Salesman Problem)
@@ -430,10 +430,11 @@ for tc in range(1, T + 1):
 - 서로 다른 n개의 원소 중 r개를 순서 없이 골라낸 것을 combination 조합이라고 부른다.
 
 - 조합의 수식
+
   $$
   \begin{aligned}
-  &_nC_r = \frac{n!}{(n-r)!r!}\quad,(n \geq r)\\
-  &_nC_r = \, _{n-1}C_{r-1} +_{n-1}C_r\quad\to재귀적\;표현\\
+  &_nC_r = \frac {n!}{(n-r)!r!} \quad ,(n \geq r) \\
+  &_nC_r = _{n-1}C_{r-1} + _{n-1}C_r \quad \to 재귀적 표현 \\
   &_nC_0 = 1
   \end{aligned}
   $$
@@ -514,13 +515,12 @@ for tc in range(1, T + 1):
   - W : 배낭이 수용가능 한 총 무게
 
   - 문제 정의
-    $$
-    \sum\nolimits_{item_i \in A}^{}w_i \le W \; 를 \; 만족하면서 \; \sum\nolimits_{item_i \in A}^{}P_i \; 가 \; 최대가 \; 되도록
-    \\
-    A \subseteq S \; 가 \; 되는 \; A \; 를 \; 결정하는 \; 문제
-    $$
 
-- 
+    $$
+    \sum\nolimits_{item_i \in A}^{}w_i \le W  를  만족하면서
+    \sum\nolimits_{item_i \in A}^{}P_i  가  최대가  되도록
+    A \subseteq S  가  되는  A  를  결정하는  문제
+    $$
 
 - Knapsack 문제 유형
   - 0-1 Knapsack
