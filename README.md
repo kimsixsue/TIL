@@ -65,3 +65,6 @@
 
 13. [2022-08-28 일] [HashTable_ ResolveCollision_OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
 
+## CS 정리
+
+1. [2022-09-25 일] [Computer Architecture](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Computer_Architecture.md)
