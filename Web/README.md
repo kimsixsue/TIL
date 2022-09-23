@@ -5,7 +5,7 @@
 
 2. [2022-08-03 수] [Flexbox/Bootstrap](./0803_Flexbox_Bootstrap.md)
 
-3. [2022-07-31 일] [REST[ful]_API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
+3. [2022-07-31 일] [REST[ful] API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
 
 4. [2022-09-18 일] [Round robin DNS](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Round_robin_DNS.md)
 
