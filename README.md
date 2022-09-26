@@ -60,9 +60,11 @@
 
 11. [2022-09-21 수] [ExhaustiveSearch/Greedy](./Algorithm/0921_ExhaustiveSearch_Greedy.md)
 
-12. [2022-09-04 일] [Graph Representations Traversal](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Graph_Representations_Traversal.md)
+12. [2022-09-26 월] [Divide and Conquer/Backtracking](./Algorithm/0926_Divide_and_Conquer_Backtracking.md)
 
-13. [2022-08-28 일] [HashTable ResolveCollision OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
+13. [2022-09-04 일] [Graph Representations Traversal](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Graph_Representations_Traversal.md)
+
+14. [2022-08-28 일] [HashTable ResolveCollision OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
 
 ## CS 정리
 
