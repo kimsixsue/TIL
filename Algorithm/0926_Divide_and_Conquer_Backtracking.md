@@ -10,7 +10,7 @@
    
 5. [Tree](#5-tree)
 
-# Divide and Conquer Backtracking
+# Divide and Conquer/Backtracking
 
 ## 1. Divide and Conquer
 
