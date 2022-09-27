@@ -1,6 +1,6 @@
-[Divide_and_Conquer_Backtracking](#divide-and-conquer-backtracking)
+[Divide and Conquer/Backtracking](#divide-and-conquer-backtracking)
 
-1. [Divide_and_Conquer](#1-divide-and-conquer)
+1. [Divide and Conquer](#1-divide-and-conquer)
 
 2. [Quick sort](#2-quick-sort)
 
