@@ -10,9 +10,9 @@
    
 5. [Tree](#5-tree)
 
-# Divide_and_Conquer_Backtracking
+# Divide and Conquer Backtracking
 
-## 1. Divide_and_Conquer
+## 1. Divide and Conquer
 
 병합 정렬은 외부 정렬의 기본이 되는 정렬 알고리즘이다. 또한, Multi-Core 멀티코어 CPU 나 다수의 프로세서에서 정렬 알고리즘을 병렬화하기 위해 병합 정렬 알고리즘이 활용된다.
 
