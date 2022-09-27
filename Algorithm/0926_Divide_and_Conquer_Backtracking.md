@@ -71,7 +71,7 @@
                   result.append(left.pop(0))
               else:
                   result.append(right.pop(0))
-          elif lenleft):
+          elif len(left):
               result.append(left.pop(0))
           elif len(right):
               result.append(right.pop(0))
