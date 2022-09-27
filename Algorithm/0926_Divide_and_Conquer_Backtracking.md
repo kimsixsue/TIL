@@ -41,7 +41,6 @@
 - 알고리즘 : 분할 과정
 
   ```python
-  m = list()
   def merge_sort(m):
       if len(m) == 1:
           return m
@@ -51,29 +50,25 @@
           left.append(x)
       for x in m[middle:]:
           right.append(x)
-          
       left = merge_sort(left)
       right = merge_sort(right)
-      
       return merge(left, right)
   ```
-
+  
 - 알고리즘 : 병합 과정
 
   ```python
-  left, right = list(), list()
   def merge(left, right):
       result = list()
-      
-      while len(left) or len(right):
-          if len(left) and len(right)):
-              if first(left) <= first(right):
+      while left or right:
+          if left and right:
+              if left[0] <= right[0]:
                   result.append(left.pop(0))
               else:
                   result.append(right.pop(0))
-          elif len(left):
+          elif left:
               result.append(left.pop(0))
-          elif len(right):
+          elif right:
               result.append(right.pop(0))
       return result
   ```
