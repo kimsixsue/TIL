@@ -42,14 +42,11 @@
 
   ```python
   def merge_sort(m):
-      if len(m) == 1:
+      if len(m) <= 1:
           return m
-      left, right = list(), list()
       middle = len(m) // 2
-      for x in m[:middle]:
-          left.append(x)
-      for x in m[middle:]:
-          right.append(x)
+      left = m[:middle]
+      right = m[middle:]
       left = merge_sort(left)
       right = merge_sort(right)
       return merge(left, right)
@@ -59,17 +56,27 @@
 
   ```python
   def merge(left, right):
-      result = list()
-      while left or right:
-          if left and right:
-              if left[0] <= right[0]:
-                  result.append(left.pop(0))
+      index, i_left, i_right = 0, 0, 0
+      len_l, len_r = len(left), len(right)
+      result = [0 for _ in range(len_l + len_r)]
+      while i_left < len_l or i_right < len_r:
+          if i_left < len_l and i_right < len_r:
+              if left[i_left] <= right[i_right]:
+                  result[index] = left[i_left]
+                  i_left += 1
+                  index += 1
               else:
-                  result.append(right.pop(0))
-          elif left:
-              result.append(left.pop(0))
-          elif right:
-              result.append(right.pop(0))
+                  result[index] = right[i_right]
+                  i_right += 1
+                  index += 1
+          elif i_left < len_l:
+              result[index] = left[i_left]
+              i_left += 1
+              index += 1
+          elif i_right < len_r:
+              result[index] = right[i_right]
+              i_right += 1
+              index += 1
       return result
   ```
 
@@ -218,7 +225,7 @@
               return mid
           elif key < S[mid]:
               high = mid - 1
-          else:  # s[mid] <= key
+          else:  # s[mid] < key
               low = mid + 1
       return -1
   ```
@@ -236,7 +243,7 @@
               return mid
           elif key < a[mid]:
               return binarySearch(a, low, mid - 1, key)
-          else:  # a[mid] <= key
+          else:  # a[mid] < key
               return binarySearch(a, mid + 1, high, key)
   ```
 
