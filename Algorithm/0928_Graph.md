@@ -377,9 +377,9 @@ DFS(v)
   ```python
   def prim1(r, V):
       MST = [0] * (V + 1)      # MST 포함 여부
-      key = [10000] * (V + 1)  # 가중치의 최대값 이상으로 초기화. key[v]는 v가 MST에 속한 정점과 연결될
+      key = [10000] * (V + 1)  # 가중치의 최대값 이상으로 초기화. key[v]는 v가 MST 에 속한 정점과 연결될 때의 가중치
       key[r] = 0               # 시작정점의 key
-      for _ in range(V):  # V + 1 개의 정점 중 V개를 선택
+      for _ in range(V):       # V + 1 개의 정점 중 V개를 선택
           # MST에 포함되지 않은 정점 중(MST[u]==0), key가 최소인 u 찾기
           u = 0
           minV = 10000
@@ -391,7 +391,7 @@ DFS(v)
           # u에 인접인 v에 대해, MST에 포함되지 않은 정점이면
           for v in range(V + 1):
               if MST[v] == 0 and adjM[u][v] > 0:
-                  key[v] = min(key[v], adjM[u][v])  # u를 통해 MST에 포함되는 비용과 기존 비용
+                  key[v] = min(key[v], adjM[u][v])  # u를 통해 MST 에 포함되는 비용과 기존 비용을 비교, 갱신
       return sum(key)  # MST 가중치의 합
   
   
@@ -402,10 +402,10 @@ DFS(v)
       for _ in range(V):
           u = 0
           minV = 10000
-          for i in range(V + 1):  # MST에 포함된 정점 i와 인접한 정점j 중 MST에 포함되지
+          for i in range(V + 1):  # MST 에 포함된 정점i 와 인접한 정점j 중 MST 에 포함되지 않고 가중치가 최소인 정점 u찾기
               if MST[i] == 1:
                   for j in range(V + 1):
-                      if adjM[i][j] > 0 and MST[j] == 0 and minV > adjM[i][j]:
+                      if MST[j] == 0 and 0 < adjM[i][j] < minV:
                           u = j
                           minV = adjM[i][j]
           s += minV
@@ -413,14 +413,18 @@ DFS(v)
       return s
       
       
-          
   V, E = map(int, input().split())
   adjM = [[0] * (V + 1) for _ in range(V + 1)]
+  adjL = [[] for _ in range(V + 1)]
   for _ in range(E):
       u, v, w = map(int, input().split())
       adjM[u][v] = w
       adjM[v][u] = w  # 가중치가 있는 무방향 그래프
-  print(prim1(0, V))
+      adjL[u].append((v, w))
+      adjL[v].append((u, w))
+  print(adjM)
+  print(adjL)
+  # print(prim1(0, V))
   print(prim2(0, V))
   ```
 
@@ -452,31 +456,29 @@ DFS(v)
 
   ```python
   def find_set(x):
-      while x != rep[x]:
-          x = rep[x]
+      while x != rep[x]:  # 대표원소가 아니면
+          x = rep[x]  # x가 가리키는 정점으로 이동
       return x
   
   
-  def union(x, y):
-      rep[find_set(y)] = find-set(x)
-      
-      
   V, E = map(int, input().split())  # V 마지막 정점, 0~V번 정점. 개수 (V+1)개
   edge = []
   for _ in range(E):
       u, v, w = map(int, input().split())
       edge.append([u, v, w])
-  edge.sort(key=lambda x:x[2])
-  rep = [i for i in range(V + 1)]  # 대표원소 배열
-  
-  N = V + 1  # 실제 정점 수
+  edge.sort(key=lambda x:x[2])  # 가중치 기준 오름차순 정렬
+  rep = [i for i in range(V + 1)]  # 대표원소 초기화
+  # N개의 정점이 있으면 사이클이 생기지 않도록 N-1개의 간선을 선택
+  # MST 에 포함된 간선의 가중치의 합 구하기
+  N = V + 1  # 실제 정점 수, 0~V번 까지의 정점
   cnt = 0    # 선택한 edge의 수
   total = 0  # MST 가중치의 합
-  for u, v, w in edge:
-      if find_set(u) != find_set(v):
+  for u, v, w in edge:  # N-1개의 간선 선택 루프
+      if find_set(u) != find_set(v):  # 사이클을 형성하지 않으면 선택
           cnt += 1
-          union(u, v)
-          total += w
+          total += w  # 가중치의 합
+          # union(u, v) 와 동일
+          rep[find_set(v)] = find_set(u)  # v의 대표원소를 u의 대표원소로 바꿈
           if cnt == N - 1:  # 간선 수
               break
   print(total)
@@ -533,14 +535,14 @@ DFS(v)
                   w = i
           U.append(w)
           for v in range(1, N + 1):        # 정점 v가
-              if 0 < adj[w][v] < 1000000:  # w에 인접이면
+              if 0 < adj[w][v] < 10000:  # w에 인접이면
                   d[v] = min(d[v], d[w] + adj[w][v])
       
   
   T = int(input())
   for tc in range(1, T + 1):
       N, M, X = map(int, input().split())
-      adj1 = [[100000] * (N + 1) for _ in range(N + 1)]
+      adj1 = [[10000] * (N + 1) for _ in range(N + 1)]
       for i in range(N + 1):
           adj1[i][i] = 0
       for _ in range(M):
@@ -551,5 +553,76 @@ DFS(v)
       print(dout)
   ```
 
+  ```python
+  def dijkstra(s, V):  # 시작정점 s, 마지막 정점 V
+      U = [0] * (V + 1)
+      U[s] = 1
+      for v in range(V + 1):
+          D[v] = adj[s][v]  # 시작 점에서 갈 수 있는 값
+      # while len(U) != V:
+      for _ in range(V):  # V = 정점개수-1과 같으므로..남은 정점개수와 같음
+          minV = INF
+          w = 0
+          for i in range(V + 1):
+              if U[i] == 0 and minV > D[i]:
+                  minV = D[i]
+                  w = i
+          U[w] = 1  # 선택된 집합에 포함
+          for v in range(V + 1):  # 정점 v가
+              if 0 < adj[w][v] < INF:  # w에 인접이면 , 시작정점에서 w를 거쳐 v로 가능 비용과
+                  D[v] = min(D[v], D[w] + adj[w][v])  # 시작정점에서 v로 가는 기존 비용을 비교 후 선택
+  
+  
+  INF = 10000
+  V, E = map(int, input().split())
+  adj = [[INF] * (V + 1) for _ in range(V + 1)]
+  for i in range(V + 1):
+      adj[i][i] = 0
+  for _ in range(E):
+      u, v, w = map(int, input().split())
+      adj[u][v] = w  # 방향성 그래프
+  D = [0] * (V + 1)
+  dijkstra(0, V)
+  print(D)  # 시작 정점 0에서 각 정점으로 가는 최소 비용
+  ```
+  
+  ```python
+  def dijkstra():
+      while Q:
+          print(Q, visited)
+          now, dist = Q.pop(0)  # 정점 정보와 거리
+          if D[now] < dist:  # 주어진 거리보다 저장된 거리가 더 작으면 skip
+              continue
+          visited[now] = True
+          # 현재 정점의 인접 정점을 선택하여 그 인접 정점을 확인
+          for v in range(len(adj_list[now])):
+              n_v, n_dist = adj_list[now][v]  # 연결된 정점과 그 거리
+              if not visited[n_v]:
+                  # 현재까지의 거리와 연결된 정점의 거리를 더한 값이 
+                  # 저장된 값보다 작다면 갱신
+                  if dist + n_dist < D[n_v]:
+                      D[n_v] = dist + n_dist
+                      Q.append((n_v, D[n_v]))  # 다음 정점과 갱신된 거리를 Queue 에 등록
+  
+  
+  INF = 987654321
+  V, E = map(int, input().split())
+  # 인접 리스트
+  adj_list = [[] for _ in range(V + 1)]
+  for _ in range(E):
+      s, v, d = map(int, input().split())
+      adj_list[s].append((v, d))
+  D = [INF] * (V + 1)
+  D[0] = 0
+  for v, d in adj_list[0]:  # 시작 정점에서 인접한 정점 거리 저장
+      D[v] = d
+  visited = [False] * (V + 1)
+  visited[0] = True
+  Q = [*adj_list[0]]  # Queue 에 시작점으로 부터 이어진 값을 넣는다.
+  dijkstra()
+  print(D)
+  # visited 를 지우면 0 까지 체크되면서 되돌아 오는 거리를 구할 수 있음
+  ```
+  
   
 
