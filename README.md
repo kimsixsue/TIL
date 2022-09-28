@@ -4,17 +4,11 @@
 
 1. [2022-07-15 금] [Git basic](./Git/0715_Git_basic.md)
 
-2. [2022-08-07 일] [Git Book 요약 정리](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Git_GitHub.md)
-
 ## [Web](/Web) 정리
 
 1. [2022-08-01 월] [HTML/CSS](./Web/0801_HTML_CSS.md)
 
 2. [2022-08-03 수] [Flexbox/Bootstrap](./Web/0803_Flexbox_Bootstrap.md)
-
-3. [2022-07-31 일] [REST[ful] API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
-
-4. [2022-09-18 일] [Round robin DNS](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Round_robin_DNS.md)
 
 ## [Django](/Django) 정리
 
@@ -50,24 +44,30 @@
 
 6. [2022-08-24 수] [Queue BFS](./Algorithm/0824_Queue_BFS.md)
 
-7. [2022-08-14 일] [Tree basic](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Tree.md)
+7. [2022-09-13 화] [Tree Heap](./Algorithm/0913_Tree_Heap.md)
 
-8. [2022-09-13 화] [Tree Heap](./Algorithm/0913_Tree_Heap.md)
+8. [2022-09-14 수] [ComputationalThinking](./Algorithm/0914_ComputationalThinking.md)
 
-9. [2022-09-14 수] [ComputationalThinking](./Algorithm/0914_ComputationalThinking.md)
+9. [2022-09-19 월] [APS Start](./Algorithm/0919_APS_Start.md)
 
-10. [2022-09-19 월] [APS Start](./Algorithm/0919_APS_Start.md)
+10. [2022-09-21 수] [ExhaustiveSearch/Greedy](./Algorithm/0921_ExhaustiveSearch_Greedy.md)
 
-11. [2022-09-21 수] [ExhaustiveSearch/Greedy](./Algorithm/0921_ExhaustiveSearch_Greedy.md)
+11. [2022-09-26 월] [Divide and Conquer/Backtracking](./Algorithm/0926_Divide_and_Conquer_Backtracking.md)
 
-12. [2022-09-26 월] [Divide and Conquer/Backtracking](./Algorithm/0926_Divide_and_Conquer_Backtracking.md)
-
-13. [2022-09-04 일] [Graph Representations Traversal](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Graph_Representations_Traversal.md)
-
-14. [2022-09-28 수] [Graph](./Algorithm/0928_Graph.md)
-
-15. [2022-08-28 일] [HashTable ResolveCollision OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
+12. [2022-09-28 수] [Graph](./Algorithm/0928_Graph.md)
 
 ## CS 정리
 
-1. [2022-09-25 일] [ComputerArchitecture](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Computer_Architecture.md)
+1. [2022-07-31 일] [REST[ful] API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
+
+2. [2022-08-07 일] [Git Book 요약 정리](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Git_GitHub.md)
+
+3. [2022-08-14 일] [Tree basic](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Tree.md)
+
+4. [2022-08-28 일] [HashTable ResolveCollision OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
+
+5. [2022-09-04 일] [Graph Representations Traversal](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Graph_Representations_Traversal.md)
+
+6. [2022-09-18 일] [Round robin DNS](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Round_robin_DNS.md)
+
+7. [2022-09-25 일] [ComputerArchitecture](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Computer_Architecture.md)
