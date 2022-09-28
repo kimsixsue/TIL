@@ -15,5 +15,5 @@
 11. [2022-09-21 수] [ExhaustiveSearch/Greedy](./0921_ExhaustiveSearch_Greedy.md)
 12. [2022-09-26 월] [Divide and Conquer/Backtracking](./0926_Divide_and_Conquer_Backtracking.md)
 13. [2022-09-04 일] [Graph Representations Traversal](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Graph_Representations_Traversal.md)
-14. [2022-09-28 수] [Graph Backtracking](./0928_Graph_Backtracking.md)
+14. [2022-09-28 수] [Graph](./0928_Graph.md)
 15. [2022-08-28 일] [HashTable ResolveCollision OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)

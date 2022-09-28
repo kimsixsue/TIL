@@ -64,7 +64,7 @@
 
 13. [2022-09-04 일] [Graph Representations Traversal](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Graph_Representations_Traversal.md)
 
-14. [2022-09-28 수] [Graph Backtracking](./Algorithm/0928_Graph_Backtracking.md)
+14. [2022-09-28 수] [Graph](./Algorithm/0928_Graph.md)
 
 15. [2022-08-28 일] [HashTable ResolveCollision OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
 
