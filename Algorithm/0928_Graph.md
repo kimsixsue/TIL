@@ -551,7 +551,7 @@ DFS(v)
           adj[x][y] = c
       d = [0] * (N + 1)
       dijkstra(N, X)
-      print(dout)
+      print(d)
   ```
 
   ```python
@@ -576,7 +576,7 @@ DFS(v)
   
   inf = 10000
   V, E = map(int, input().split())
-  adj = [[inv] * (V + 1) for _ in range(V + 1)]
+  adj = [[inf] * (V + 1) for _ in range(V + 1)]
   for i in range(V + 1):
       adj[i][i] = 0
   for _ in range(E):
@@ -589,40 +589,35 @@ DFS(v)
   
   ```python
   def dijkstra():
-      while q:
-          print(q, visited)
-          now, dist = q.pop(0)  # 정점 정보와 거리
-          if d[now] < dist:  # 주어진 거리보다 저장된 거리가 더 작으면 skip
+      while Q:
+          print(Q, D)
+          now, dist = Q.pop(0)  # 정점 정보와 거리
+          if D[now] < dist:  # 주어진 거리보다 저장된 거리가 더 작으면 skip
               continue
-          visited[now] = True
           # 현재 정점의 인접 정점을 선택하여 그 인접 정점을 확인
           for v in range(len(adj_list[now])):
               n_v, n_dist = adj_list[now][v]  # 연결된 정점과 그 거리
-              if not visited[n_v]:
-                  # 현재까지의 거리와 연결된 정점의 거리를 더한 값이 
-                  # 저장된 값보다 작다면 갱신
-                  if dist + n_dist < d[n_v]:
-                      d[n_v] = dist + n_dist
-                      q.append((n_v, d[n_v]))  # 다음 정점과 갱신된 거리를 Queue 에 등록
+              # 현재까지의 거리와 연결된 정점의 거리를 더한 값이
+              # 저장된 값보다 작다면 갱신
+              if dist + n_dist < D[n_v]:
+                  D[n_v] = dist + n_dist
+                  Q.append((n_v, D[n_v]))  # 다음 정점과 갱신된 거리를 Queue에 등록
   
   
-  inf = 987654321
+  INF = 987654321
   V, E = map(int, input().split())
   # 인접 리스트
   adj_list = [[] for _ in range(V + 1)]
   for _ in range(E):
       s, v, d = map(int, input().split())
       adj_list[s].append((v, d))
-  d = [inf] * (V + 1)
-  d[0] = 0
-  for v, di in adj_list[0]:  # 시작 정점에서 인접한 정점 거리 저장
-      d[v] = di
-  visited = [False] * (V + 1)
-  visited[0] = True
-  q = [*adj_list[0]]  # Queue 에 시작점으로 부터 이어진 값을 넣는다.
+  D = [INF] * (V + 1)
+  D[0] = 0
+  for v, d in adj_list[0]:  # 시작 정점에서 인접한 정점 거리 저장
+      D[v] = d
+  Q = [*adj_list[0]]  # Queue 에 시작점으로 부터 이어진 값을 넣는다.
   dijkstra()
-  print(d)
-  # visited 를 지우면 0 까지 체크되면서 되돌아 오는 거리를 구할 수 있음
+  print(D)
   ```
   
   
