@@ -120,7 +120,7 @@ for i in range(E):
 DFS 알고리즘 - 재귀
 
 ```python
-def dfs_recursive(g, v)
+def dfs_recursive(g, v):
     visited[v] = True  # v 방문 설정
     for each all w in adjacency(g, v):
         if visited[W] is False:
@@ -445,7 +445,7 @@ DFS(v)
       for vertex in g.v  # g.v: 그래프의 정점 집합
       	make_set(v)    # g.e: 그래프의 간선 집합
           
-      g.e에 포함된 edge.sort(key=lambda edge:edge[가중치 w])
+      g.e에 포함된 edge.sort(key=lambda edge: edge[가중치 w])
       
       for 가중치가 가장 낮은 간선 (u, v) in g.e 선택(n-1개):
           if find_set(u) != find_set(v):
@@ -467,7 +467,7 @@ DFS(v)
   for _ in range(E):
       u, v, w = map(int, input().split())
       edge.append([u, v, w])
-  edge.sort(key=lambda x:x[2])     # 가중치 기준 오름차순 정렬
+  edge.sort(key=lambda x: x[2])     # 가중치 기준 오름차순 정렬
   rep = [i for i in range(V + 1)]  # 대표원소 초기화
   # N개의 정점이 있으면 사이클이 생기지 않도록 N-1개의 간선을 선택
   # MST 에 포함된 간선의 가중치의 합 구하기
