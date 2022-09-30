@@ -383,16 +383,16 @@ DFS(v)
       for _ in range(v):       # v + 1 개의 정점 중 v개를 선택
           # mst에 포함되지 않은 정점 중(mst[u]==0), key가 최소인 u 찾기
           u = 0
-          min_V = 10000
+          min_v = 10000
           for i in range(v + 1):
               if mst[i] == 0 and key[i] < min_v:
                   u = i
                   min_v = key[i]
           mst[u] = 1  # 정점 u를 mst에 추가
-          # u에 인접인 v에 대해, mst에 포함되지 않은 정점이면
-          for v in range(v + 1):
-              if mst[v] == 0 and adj_m[u][v] > 0:
-                  key[v] = min(key[v], adj_m[u][v])  # u를 통해 mst 에 포함되는 비용과 기존 비용을 비교, 갱신
+          # u에 인접인 n에 대해, mst에 포함되지 않은 정점이면
+          for n in range(v + 1):
+              if mst[n] == 0 and adj_m[u][n] > 0:
+                  key[n] = min(key[n], adj_m[u][n])  # u를 통해 mst 에 포함되는 비용과 기존 비용을 비교, 갱신
       return sum(key)  # mst 가중치의 합
   
   
