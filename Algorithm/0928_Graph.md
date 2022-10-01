@@ -351,14 +351,14 @@ DFS(v)
 
     ```python
     V, E = map(int, input().split())
-    adjM = [[0] * (V + 1) for _ in range(V + 1)]
-    adjL = [[] for _ in range(V + 1)]
+    adj_matrix = [[0] * (V + 1) for _ in range(V + 1)]
+    adj_list = [[] for _ in range(V + 1)]
     for _ in range(E):
         u, v, w = map(int, input().split())
-        adjM[u][v] = w
-        adjM[v][u] = w  # 가중치가 있는 무방향 그래프
-        adjL[u].append((v, w))
-        adjL[v].append((u, w))
+        adj_matrix[u][v] = w
+        adj_matrix[v][u] = w  # 가중치가 있는 무방향 그래프
+        adj_list[u].append((v, w))
+        adj_list[v].append((u, w))
     ```
 
 **Prim 알고리즘**
@@ -395,52 +395,54 @@ DFS(v)
   ```
 
   ```python
-  def prim1(r, v):
-      mst = [0] * (v + 1)      # mst 포함 여부
+  def prim1(start, v):
+      mst = [False] * (v + 1)  # mst 포함 여부
       # 가중치의 최대값 이상으로 초기화. key[v]는 v가 mst 에 속한 정점과 연결될 때의 가중치
-      key = [10000] * (v + 1)  
-      key[r] = 0               # 시작 정점의 key, 가중치 0
-      for _ in range(v):       # v + 1 개의 정점 중 v개를 선택
-          u = 0
-          min_v = 10000
-          for i in range(v + 1): # mst에 포함되지 않은 정점 중(mst[u]==0)
-              if mst[i] == 0 and key[i] < min_v:  # key가 최소인 u 찾기
-                  u = i
-                  min_v = key[i]
-          mst[u] = 1  # 정점 u를 mst에 추가
-          for n in range(v + 1):  # u에 인접인 n에 대해, mst에 포함되지 않은 정점이면
-              if mst[n] == 0 and adj_m[u][n] > 0:  # u를 통해 mst 에 포함되는 비용과 
-                  key[n] = min(key[n], adj_m[u][n])  # 기존 비용을 비교, 갱신
+      key = [10000] * (v + 1)
+      key[start] = 0  # 시작 정점의 key, 가중치 0
+      for _ in range(v):  # v + 1 개의 정점 중 v개를 선택
+          start = 0
+          small = 10000
+          for i in range(v + 1):  # mst 에 포함되지 않은 정점 중(mst[start]==False)
+              if mst[i] is False and key[i] < small:  # key 가 최소인 start 찾기
+                  start = i
+                  small = key[i]
+          mst[start] = True  # 정점 start 를 mst 에 추가
+          # start 에 인접인 goal 에 대해, mst 에 포함되지 않은 정점이면, 기존 비용과
+          for goal in range(v + 1):  # start 를 통해 mst 에 포함되는 비용을 비교, 갱신
+              if mst[goal] is False and adj_matrix[start][goal] > 0:
+                  key[goal] = min(key[goal], adj_matrix[start][goal])
       return sum(key)  # mst 가중치의 합
   
   
-  def prim2(r, v):
-      mst = [0] * (v + 1)  # mst 포함 여부
-      mst[r] = 1           # 시작정점 표시
-      s = 0                # mst 간선의 가중치 합
+  def prim2(start, v):
+      mst = [False] * (v + 1)  # mst 포함 여부
+      mst[start] = True  # 시작정점 표시
+      total = 0  # mst 간선의 가중치 합
       for _ in range(V):
-          u = 0
-          min_v = 10000
-          for i in range(v + 1):  
-              if mst[i] == 1:  # mst 에 포함된 정점i 와 
-                  for j in range(V + 1):  # 인접한 정점j 중 mst 에 포함되지 않고
-                      if mst[j] == 0 and 0 < adj_m[i][j] < min_v:
-                          u = j  # 가중치가 최소인 정점 u찾기
-                          min_v = adj_m[i][j]
-          s += min_v
-          mst[u] = 1
-      return s
-      
-      
+          node = 0
+          small = 10000
+          for start in range(v + 1):
+              if mst[start] is True:  # mst 에 포함된 정점 start 와 인접한 정점 goal 중
+                  for goal in range(V + 1):  # mst 에 포함되지 않고
+                      if mst[goal] is False and 0 < adj_matrix[start][goal] < small:
+                          node = goal  # 가중치가 최소인 정점 node 찾기
+                          small = adj_matrix[start][goal]
+          total += small
+          mst[node] = True
+      return total
+  
+  
   V, E = map(int, input().split())
-  adj_m = [[0] * (V + 1) for _ in range(V + 1)]
-  adj_l = [[] for _ in range(V + 1)]
+  adj_matrix = [[0] * (V + 1) for _ in range(V + 1)]
+  adj_list = [list() for _ in range(V + 1)]
   for _ in range(E):
-      u, v, w = map(int, input().split())
-      adj_m[u][v] = w
-      adj_l[u].append((v, w))
-  # print(prim1(0, V))
-  print(prim2(0, V))
+      start, goal, weight = map(int, input().split())
+      adj_matrix[start][goal] = weight
+      adj_list[start].append((goal, weight))
+  start = 0
+  print(prim1(start, V))
+  print(prim2(start, V))
   ```
   
   ```python
@@ -500,40 +502,41 @@ DFS(v)
   ```
 
   ```python
-  def find_set(x):
-      while x != rep[x]:  # 대표원소가 아니면
-          x = rep[x]      # x가 가리키는 정점으로 이동
-      return x
+  def find_set(n):
+      while n != rep[n]:  # 대표원소가 아니면
+          n = rep[n]  # n이 가리키는 정점으로 이동
+      return n
   
   
-  def union(x, y):
-      px = find_set(x)
-      py = find_set(y)
-      if rank[x] > rank[y]:  # rank는 트리의 높이
-          p[y] = x
+  def union(v, w):
+      pv = find_set(v)
+      pw = find_set(w)
+      if rank[pv] > rank[pw]:  # rank 는 트리의 높이
+          rep[pw] = pv
       else:
-          p[x] = y
-          if rank[x] == rank[y]:
-              rank[y] += 1
+          rep[pv] = pw
+          if rank[pv] == rank[pw]:
+              rank[pw] += 1
   
-              
+  
   V, E = map(int, input().split())  # V 마지막 정점, 0~V번 정점. 개수 (V+1)개
   edge = list()
   for _ in range(E):
-      u, v, w = map(int, input().split())
-      edge.append([u, v, w])
-  edge.sort(key=lambda x: x[2])    # 가중치 기준 오름차순 정렬
-  rep = [i for i in range(V + 1)]  # 대표원소 초기화
+      source, target, weight = map(int, input().split())
+      edge.append([source, target, weight])
+  edge.sort(key=lambda n: n[2])  # 가중치 기준 오름차순 정렬
+  rep = [n for n in range(V + 1)]  # 대표원소 초기화
+  rank = [0 for n in range(V + 1)]  # 루트 노드가 n인 트리의 랭크 값 저장
   # N개의 정점이 있으면 사이클이 생기지 않도록 N-1개의 간선을 선택
   # MST 에 포함된 간선의 가중치의 합 구하기
-  cnt = 0    # 선택한 edge의 수
+  count = 0  # 선택한 edge 의 수
   total = 0  # MST 가중치의 합
-  for u, v, w in edge:  # N-1개의 간선 선택 루프
-      if find_set(u) != find_set(v):  # 사이클을 형성하지 않으면 선택
-          cnt += 1
-          total += w    # 가중치의 합
-          union(u, v)
-          if cnt == V:  # 간선 수
+  for source, target, weight in edge:  # N-1개의 간선 선택 루프
+      if find_set(source) != find_set(target):  # 사이클을 형성하지 않으면 선택
+          count += 1
+          total += weight  # 가중치의 합
+          union(source, target)
+          if count == V:  # 간선 수
               break
   print(total)
   ```
