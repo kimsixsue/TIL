@@ -277,16 +277,25 @@ DFS(v)
 
   ```python
   def make_set(x):
-      p[x] = x
+      p[x] = x     # 노드 x의 부모 저장
+      rank[x] = 0  # 루트 노드가 x인 트리의 랭크 값 저장
   ```
 
 - Find_set( x ): x를 포함하는 집합을 찾는 연산
+
+  - 특정 노드에서 루트까지의 경로를 찾아가면서 노드의 부모 정보를 갱신한다.
+
 
   ```python
   def find_set(x):
       while x != p[x]:
           x = p[x]
       return x
+  
+  def find_set(x):
+      if x != p[x]:  # x가 루트가 아닌 경우
+          p[x] = find_set(p[x])
+      return p[x]
   ```
 
 - Union( x, y ): x와 y를 포함하는 두 집합을 통합하는 연산
@@ -294,6 +303,16 @@ DFS(v)
   ```python
   def union(x, y):  # y의 대표원소를 x의 대표원소로 교체
       p[find_set(y)] = find_set(x)
+      
+  def union(x, y):
+      px = find_set(x)
+      py = find_set(y)
+      if rank[x] > rank[y]:  # rank는 트리의 높이
+          p[y] = x
+      else:
+          p[x] = y
+          if rank[x] == rank[y]:
+              rank[y] += 1
   ```
 
 - 연산의 효율을 높이는 방법
@@ -378,21 +397,20 @@ DFS(v)
   ```python
   def prim1(r, v):
       mst = [0] * (v + 1)      # mst 포함 여부
-      key = [10000] * (v + 1)  # 가중치의 최대값 이상으로 초기화. key[v]는 v가 mst 에 속한 정점과 연결될 때의 가중치
-      key[r] = 0               # 시작정점의 key
+      # 가중치의 최대값 이상으로 초기화. key[v]는 v가 mst 에 속한 정점과 연결될 때의 가중치
+      key = [10000] * (v + 1)  
+      key[r] = 0               # 시작 정점의 key, 가중치 0
       for _ in range(v):       # v + 1 개의 정점 중 v개를 선택
-          # mst에 포함되지 않은 정점 중(mst[u]==0), key가 최소인 u 찾기
           u = 0
           min_v = 10000
-          for i in range(v + 1):
-              if mst[i] == 0 and key[i] < min_v:
+          for i in range(v + 1): # mst에 포함되지 않은 정점 중(mst[u]==0)
+              if mst[i] == 0 and key[i] < min_v:  # key가 최소인 u 찾기
                   u = i
                   min_v = key[i]
           mst[u] = 1  # 정점 u를 mst에 추가
-          # u에 인접인 n에 대해, mst에 포함되지 않은 정점이면
-          for n in range(v + 1):
-              if mst[n] == 0 and adj_m[u][n] > 0:
-                  key[n] = min(key[n], adj_m[u][n])  # u를 통해 mst 에 포함되는 비용과 기존 비용을 비교, 갱신
+          for n in range(v + 1):  # u에 인접인 n에 대해, mst에 포함되지 않은 정점이면
+              if mst[n] == 0 and adj_m[u][n] > 0:  # u를 통해 mst 에 포함되는 비용과 
+                  key[n] = min(key[n], adj_m[u][n])  # 기존 비용을 비교, 갱신
       return sum(key)  # mst 가중치의 합
   
   
@@ -403,11 +421,11 @@ DFS(v)
       for _ in range(V):
           u = 0
           min_v = 10000
-          for i in range(v + 1):  # mst 에 포함된 정점i 와 인접한 정점j 중 mst 에 포함되지 않고 가중치가 최소인 정점 u찾기
-              if mst[i] == 1:
-                  for j in range(V + 1):
+          for i in range(v + 1):  
+              if mst[i] == 1:  # mst 에 포함된 정점i 와 
+                  for j in range(V + 1):  # 인접한 정점j 중 mst 에 포함되지 않고
                       if mst[j] == 0 and 0 < adj_m[i][j] < min_v:
-                          u = j
+                          u = j  # 가중치가 최소인 정점 u찾기
                           min_v = adj_m[i][j]
           s += min_v
           mst[u] = 1
@@ -420,13 +438,39 @@ DFS(v)
   for _ in range(E):
       u, v, w = map(int, input().split())
       adj_m[u][v] = w
-      adj_m[v][u] = w  # 가중치가 있는 무방향 그래프
       adj_l[u].append((v, w))
-      adj_l[v].append((u, w))
-  print(adj_m)
-  print(adj_l)
   # print(prim1(0, V))
   print(prim2(0, V))
+  ```
+  
+  ```python
+  from heapq import heappush, heappop
+  
+  N, E = map(int, input().split())
+  edge = [list() for _ in range(N)]
+  for _ in range(E):
+      source, target, weight = map(int, input().split())
+      edge[source].append((weight, target))
+      edge[target].append((weight, source))
+  start = 0  # 시작점 0 선택
+  mst = [False] * N
+  mst[start] = True
+  total = 0
+  hq = list()
+  for weight, target in edge[start]:
+      heappush(hq, (weight, target))  # u와 연결된 간선 우선순위 큐 추가
+  count = 0
+  while count < N - 1:  # N-1개의 간선이 추가될 때 까지 반복
+      weight, target = heappop(hq)
+      if mst[target]:  # 최소신장트리에 포함된 정점을 연결하는 간선이면 continue
+          continue
+      total += weight  # 포함되지 않은 정점을 연결하는 간선이면, 최소신장트리에 추가
+      mst[target] = True
+      count += 1
+      for n_weight, n_target in edge[target]:
+          if not mst[n_target]:  # 최소 신장 트리에 포함되지 않은 정점을 연결하는 모든 간선을
+              heappush(hq, (n_weight, n_target))  # 우선순위 큐에 추가
+  print(total)
   ```
 
 **KRUSKAL 알고리즘**
@@ -462,25 +506,34 @@ DFS(v)
       return x
   
   
+  def union(x, y):
+      px = find_set(x)
+      py = find_set(y)
+      if rank[x] > rank[y]:  # rank는 트리의 높이
+          p[y] = x
+      else:
+          p[x] = y
+          if rank[x] == rank[y]:
+              rank[y] += 1
+  
+              
   V, E = map(int, input().split())  # V 마지막 정점, 0~V번 정점. 개수 (V+1)개
-  edge = []
+  edge = list()
   for _ in range(E):
       u, v, w = map(int, input().split())
       edge.append([u, v, w])
-  edge.sort(key=lambda x: x[2])     # 가중치 기준 오름차순 정렬
+  edge.sort(key=lambda x: x[2])    # 가중치 기준 오름차순 정렬
   rep = [i for i in range(V + 1)]  # 대표원소 초기화
   # N개의 정점이 있으면 사이클이 생기지 않도록 N-1개의 간선을 선택
   # MST 에 포함된 간선의 가중치의 합 구하기
-  N = V + 1  # 실제 정점 수, 0~V번 까지의 정점
   cnt = 0    # 선택한 edge의 수
   total = 0  # MST 가중치의 합
   for u, v, w in edge:  # N-1개의 간선 선택 루프
       if find_set(u) != find_set(v):  # 사이클을 형성하지 않으면 선택
           cnt += 1
-          total += w  # 가중치의 합
-          # union(u, v) 와 동일
-          rep[find_set(v)] = find_set(u)  # v의 대표원소를 u의 대표원소로 바꿈
-          if cnt == N - 1:  # 간선 수
+          total += w    # 가중치의 합
+          union(u, v)
+          if cnt == V:  # 간선 수
               break
   print(total)
   ```
@@ -525,100 +578,111 @@ DFS(v)
   ```
 
   ```python
-  def dijkstra(n, x):
-      for i in range(n + 1):
-          d[i] = adj[x][i]
-      u = [x]
-      for _ in range(n - 1):  # n개의 정점 중 출발을 제외한 정점 선택
-          w = 0
-          for i in range(1, n + 1):
-              if (i not in u) and (d[i] < d[w]):  # 남는 노드 중 비용이 최소인 w
-                  w = i
-          u.append(w)
-          for v in range(1, n + 1):      # 정점 v가
-              if 0 < adj[w][v] < 10000:  # w에 인접이면
-                  d[v] = min(d[v], d[w] + adj[w][v])
-      
-  
-  T = int(input())
-  for tc in range(1, T + 1):
-      N, M, X = map(int, input().split())
-      adj = [[10000] * (N + 1) for _ in range(N + 1)]
-      for i in range(N + 1):
-          adj[i][i] = 0
-      for _ in range(M):
-          x, y, c = map(int, input().split())
-          adj[x][y] = c
-      d = [0] * (N + 1)
-      dijkstra(N, X)
-      print(d)
+  N, M, X = map(int, input().split())
+  adj_m = [[10000] * (N + 1) for _ in range(N + 1)]
+  for i in range(N + 1):
+      adj_m[i][i] = 0
+  for _ in range(M):
+      source, goal, weight = map(int, input().split())
+      adj_m[source][goal] = weight
+  total = [0] * (N + 1)
+  start = X
+  for i in range(N + 1):
+      total[i] = adj_m[start][i]
+  path = [start]
+  for _ in range(N - 1):  # N 개의 정점 중 출발을 제외한 정점 선택
+      source = 0
+      for i in range(1, N + 1):  # 남는 노드 중 비용이 최소인 source
+          if (i not in path) and (total[i] < total[source]):
+              source = i
+      path.append(source)
+      for goal in range(1, N + 1):  # 정점 goal 이
+          if 0 < adj_m[source][goal] < 10000:  # source 에 인접이면
+              total[goal] = min(total[goal], total[source] + adj_m[source][goal])
+  print(total)
   ```
-
+  
   ```python
-  def dijkstra(s, v):       # 시작정점 s, 마지막 정점 v
-      u = [0] * (v + 1)
-      u[s] = 1
-      for _ in range(v + 1):
-          d[_] = adj[s][_]  # 시작 점에서 갈 수 있는 값
-      # while len(U) != v:
-      for _ in range(v):    # v = 정점개수-1과 같으므로..남은 정점개수와 같음
-          min_v = inf
-          w = 0
-          for i in range(v + 1):
-              if u[i] == 0 and min_v > d[i]:
-                  min_v = d[i]
-                  w = i
-          u[w] = 1                     # 선택된 집합에 포함
-          for _ in range(v + 1):       # 정점 v가
-              if 0 < adj[w][_] < inf:  # w에 인접이면 , 시작정점에서 w를 거쳐 v로 가능 비용과
-                  d[_] = min(d[_], d[w] + adj[w][_])  # 시작정점에서 v로 가는 기존 비용을 비교 후 선택
-  
-  
   inf = 10000
   V, E = map(int, input().split())
-  adj = [[inf] * (V + 1) for _ in range(V + 1)]
+  adj_m = [[inf] * (V + 1) for _ in range(V + 1)]
   for i in range(V + 1):
-      adj[i][i] = 0
+      adj_m[i][i] = 0
   for _ in range(E):
-      u, v, w = map(int, input().split())
-      adj[u][v] = w  # 방향성 그래프
-  d = [0] * (V + 1)
-  dijkstra(0, V)
-  print(d)           # 시작 정점 0에서 각 정점으로 가는 최소 비용
+      source, goal, weight = map(int, input().split())
+      adj_m[source][goal] = weight  # 방향성 그래프
+  total = [0] * (V + 1)
+  start = 0
+  path = [0] * (V + 1)  # 마지막 정점 V
+  path[start] = 1  # 시작정점 start
+  for goal in range(V + 1):
+      total[goal] = adj_m[start][goal]  # 시작 점에서 갈 수 있는 값
+  # while len(U) != V:
+  for _ in range(V):  # V = 정점개수 - 1 과 같으므로, 남은 정점개수와 같음
+      min_v = inf
+      source = 0
+      for i in range(V + 1):
+          if path[i] == 0 and min_v > total[i]:
+              min_v = total[i]
+              source = i
+      path[source] = 1  # 선택된 집합에 포함
+      # 정점 goal 이 source 에 인접이면, 시작정점에서 source 를 거쳐 goal 로 가는 비용과
+      for goal in range(V + 1):  # 시작정점에서 goal 로 가는 기존 비용을 비교 후 선택
+          if 0 < adj_m[source][goal] < inf:
+              total[goal] = min(total[goal], total[source] + adj_m[source][goal])
+  print(total)  # 시작 정점 0에서 각 정점으로 가는 최소 비용
   ```
   
   ```python
-  def dijkstra():
-      while Q:
-          print(Q, D)
-          now, dist = Q.pop(0)  # 정점 정보와 거리
-          if D[now] < dist:  # 주어진 거리보다 저장된 거리가 더 작으면 skip
-              continue
-          # 현재 정점의 인접 정점을 선택하여 그 인접 정점을 확인
-          for v in range(len(adj_list[now])):
-              n_v, n_dist = adj_list[now][v]  # 연결된 정점과 그 거리
-              # 현재까지의 거리와 연결된 정점의 거리를 더한 값이
-              # 저장된 값보다 작다면 갱신
-              if dist + n_dist < D[n_v]:
-                  D[n_v] = dist + n_dist
-                  Q.append((n_v, D[n_v]))  # 다음 정점과 갱신된 거리를 Queue에 등록
-  
-  
   INF = 987654321
   V, E = map(int, input().split())
-  # 인접 리스트
-  adj_list = [[] for _ in range(V + 1)]
+  adj_list = [list() for _ in range(V + 1)]  # 인접 리스트
   for _ in range(E):
-      s, v, d = map(int, input().split())
-      adj_list[s].append((v, d))
-  D = [INF] * (V + 1)
-  D[0] = 0
-  for v, d in adj_list[0]:  # 시작 정점에서 인접한 정점 거리 저장
-      D[v] = d
+      source, target, weight = map(int, input().split())
+      adj_list[source].append((target, weight))
+  total = [INF] * (V + 1)
+  total[0] = 0
+  for target, weight in adj_list[0]:  # 시작 정점에서 인접한 정점 거리 저장
+      total[target] = weight
   Q = [*adj_list[0]]  # Queue 에 시작점으로 부터 이어진 값을 넣는다.
-  dijkstra()
-  print(D)
+  while Q:
+      source, weight = Q.pop(0)  # 정점 정보와 거리
+      if total[source] < weight:  # 주어진 거리보다 저장된 거리가 더 작으면 skip
+          continue
+      # 현재 정점의 인접 정점을 선택하여 그 인접 정점을 확인
+      for target in range(len(adj_list[source])):
+          next_t, next_w = adj_list[source][target]  # 연결된 정점과 그 거리
+          # 현재까지의 거리와 연결된 정점의 거리를 더한 값이, 저장된 값보다 작다면 갱신
+          if weight + next_w < total[next_t]:
+              total[next_t] = weight + next_w  # 다음 정점과 갱신된 거리를 Queue 에 등록
+              Q.append((next_t, total[next_t]))
+  print(total)
+  ```
+  
+  ```python
+  from heapq import heappush, heappop
+  
+  N, E = map(int, input().split())
+  adj_list = [list() for _ in range(N + 1)]
+  for _ in range(E):
+      source, target, weight = map(int, input().split())
+      adj_list[source].append((target, weight))  # 인접 리스트
+  INF = 1e9
+  total = [INF] * (N + 1)  # 최대값으로 초기화
+  start = 0
+  hq = list()  # 최소힙
+  total[start] = 0
+  heappush(hq, (0, start))  # 시작점 추가
+  while hq:
+      cost_s, source = heappop(hq)  # 최소 비용 간선 선택
+      if total[source] < cost_s:  # 테이블에 저장된 최소값 보다 크면 continue
+          continue
+      for target, weight in adj_list[source]:  # 다음 노드로 가는 비용 계산해서
+          cost_t = cost_s + weight
+          if cost_t < total[target]:
+              total[target] = cost_t  # 최소값 테이블에 업데이트 후
+              heappush(hq, (cost_t, target))  # 힙에 추가
+  print(total)
   ```
   
   
-
