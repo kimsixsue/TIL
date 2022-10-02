@@ -1,4 +1,4 @@
-[Graph](#graph)
+[Graph_MST_dijkstra](#Graph_MST_dijkstra)
 
 1. [Graph](#1-graph)
 
@@ -12,7 +12,7 @@
 
 6. [Shortest Path](#6-shortest-path)
 
-# Graph
+# Graph_MST_dijkstra
 
 ## 1. Graph
 
@@ -385,7 +385,7 @@ DFS(v)
       r.key = 0
       q = g.v                                    # 우선순위 q에 모든 정점 넣는다.
   
-      while q != 0:                              # 빈 q가 아닐 동안 반복
+      while q:                                   # 빈 q가 아닐 동안 반복
           u = extract_min(q)                     # key 값이 가장 작은 정점 가져오기
   
           for v in g.adj[u]:                     # u의 인접 정점들
@@ -616,8 +616,8 @@ DFS(v)
       adj_m[source][goal] = weight  # 방향성 그래프
   total = [0] * (V + 1)
   start = 0
-  path = [0] * (V + 1)  # 마지막 정점 V
-  path[start] = 1  # 시작정점 start
+  path = [False] * (V + 1)  # 마지막 정점 V
+  path[start] = True  # 시작정점 start
   for goal in range(V + 1):
       total[goal] = adj_m[start][goal]  # 시작 점에서 갈 수 있는 값
   # while len(U) != V:
@@ -625,10 +625,10 @@ DFS(v)
       min_v = inf
       source = 0
       for i in range(V + 1):
-          if path[i] == 0 and min_v > total[i]:
+          if path[i] is False and min_v > total[i]:
               min_v = total[i]
               source = i
-      path[source] = 1  # 선택된 집합에 포함
+      path[source] = True  # 선택된 집합에 포함
       # 정점 goal 이 source 에 인접이면, 시작정점에서 source 를 거쳐 goal 로 가는 비용과
       for goal in range(V + 1):  # 시작정점에서 goal 로 가는 기존 비용을 비교 후 선택
           if 0 < adj_m[source][goal] < inf:

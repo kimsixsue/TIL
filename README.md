@@ -44,7 +44,7 @@
 
 6. [2022-08-24 수] [Queue BFS](./Algorithm/0824_Queue_BFS.md)
 
-7. [2022-09-13 화] [Tree Heap](./Algorithm/0913_Tree_Heap.md)
+7. [2022-09-13 화] [Tree_BST_Heap](./Algorithm/0913_Tree_BST_Heap.md)
 
 8. [2022-09-14 수] [ComputationalThinking](./Algorithm/0914_ComputationalThinking.md)
 
@@ -52,9 +52,9 @@
 
 10. [2022-09-21 수] [ExhaustiveSearch/Greedy](./Algorithm/0921_ExhaustiveSearch_Greedy.md)
 
-11. [2022-09-26 월] [Divide and Conquer/Backtracking](./Algorithm/0926_Divide_and_Conquer_Backtracking.md)
+11. [2022-09-26 월] [DivideConquer BinarySearch Backtracking](./Algorithm/0926_DivideConquer_BinarySearch_Backtracking.md)
 
-12. [2022-09-28 수] [Graph](./Algorithm/0928_Graph.md)
+12. [2022-09-28 수] [Graph MST dijkstra](./Algorithm/0928_Graph_MST_dijkstra.md)
 
 ## CS 정리
 

@@ -1,4 +1,4 @@
-[Divide and Conquer/Backtracking](#divide-and-conquer-backtracking)
+[DivideConquer_BinarySearch_Backtracking](#DivideConquer_BinarySearch_Backtracking)
 
 1. [Divide and Conquer](#1-divide-and-conquer)
 
@@ -10,7 +10,7 @@
    
 5. [Tree](#5-tree)
 
-# Divide and Conquer/Backtracking
+# DivideConquer_BinarySearch_Backtracking
 
 ## 1. Divide and Conquer
 

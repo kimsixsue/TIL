@@ -1,11 +1,11 @@
-- [Tree](#tree)
+- [Tree_BST_Heap](#Tree_BST_Heap)
   * [BinaryTree](#binarytree)
     + [Representation](#representation)
     + [ExpressionTree](#expressiontree)
   * [BinarySearchTree](#binarysearchtree)
   * [Heap](#heap)
 
-# Tree
+# Tree_BST_Heap
 
 **트리의 개념**
 
