@@ -71,3 +71,6 @@
 6. [2022-09-18 일] [Round robin DNS](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Round_robin_DNS.md)
 
 7. [2022-09-25 일] [ComputerArchitecture](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Computer_Architecture.md)
+
+8. [2022-10-03 월] [OS_CPU Scheduling_FCFS](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/OS_CPU_Scheduling_FCFS.md)
+
