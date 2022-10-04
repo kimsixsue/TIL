@@ -31,6 +31,6 @@ while True:
     break  # 순회 완료
 
 print(len(comp_num))  # 총 단지 수
-comp_num.sort()  # 오름차순으로 정렬
+comp_num.sort()  # 오름차순으로 sort
 for _ in comp_num:  # 각 단지내 집의 수
     print(_)

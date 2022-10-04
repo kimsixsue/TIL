@@ -2,7 +2,7 @@ import sys
 from collections import deque
 
 input = sys.stdin.readline
-# 미로 배열 row N x col M
+# 미로 array row N x col M
 N, M = map(int, input().split())
 maze = [list(map(int, input()[:-1])) for _ in range(N)]
 # 1은 이동할 수 있는 칸

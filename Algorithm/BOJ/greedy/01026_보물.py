@@ -1,4 +1,4 @@
-N = int(input())  # len(배열) 1 ~ 50
+N = int(input())  # len(array) 1 ~ 50
 A = list(map(int, input().split()))  # 0 ~ 100
 B = list(map(int, input().split()))  # 0 ~ 100
 
