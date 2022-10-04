@@ -1,6 +1,6 @@
-[ExhaustiveSearch_Greedy](#exhaustivesearch-greedy)
+[ExhaustiveSearch_Greedy](#exhaustivesearch_greedy)
 
-1. [Iteration_Recursion](#1-iteration-recursion)
+1. [Iteration_Recursion](#1-iteration_recursion)
 
 2. [ExhaustiveSearch](#2-exhaustivesearch)
 
