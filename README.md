@@ -4,6 +4,10 @@
 
 1. [2022-07-15 금] [Git basic](./Git/0715_Git_basic.md)
 
+## [DB](/DB) 정리
+
+1. [2022-10-04 화] [DB SQL](./DB/1004_DB_SQL.md)
+
 ## [Web](/Web) 정리
 
 1. [2022-08-01 월] [HTML/CSS](./Web/0801_HTML_CSS.md)
