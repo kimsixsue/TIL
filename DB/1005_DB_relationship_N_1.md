@@ -6,7 +6,7 @@
 
    + [Foreign Key](#foreign-key)
 
-2. [N-1 (Comment - Article)](#2-n-1--comment---article-)
+2. [N-1 (Comment - Article)](#2-n-1-comment---article)
 
    + [Django Relationship fields](#django-relationship-fields)
 
@@ -18,7 +18,7 @@
 
    + [Comment 2](#comment-2)
 
-3. [N-1 (Article - User)](#3-n-1--article---user-)
+3. [N-1 (Article - User)](#3-n-1-article---user)
 
    + [Referencing the User model](#referencing-the-user-model)
 
@@ -32,7 +32,7 @@
 
    + [READ](#read)
 
-4. [N-1 (Comment - User)](#4-n-1--comment---user-)
+4. [N-1 (Comment - User)](#4-n-1-comment---user)
 
    + [model relationship](#model-relationship-1)
 
@@ -42,7 +42,7 @@
 
    + [DELETE](#delete-1)
 
-   + [is_authenticated](#is-authenticated)
+   + [is_authenticated](#is_authenticated)
 
 # DB relationship N-1
 
