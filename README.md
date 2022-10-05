@@ -1,18 +1,9 @@
 # Today I Learned
 
-## [Git](/Git) 정리
-
-1. [2022-07-15 금] [Git basic](./Git/0715_Git_basic.md)
-
 ## [DB](/DB) 정리
 
 1. [2022-10-04 화] [DB SQL](./DB/1004_DB_SQL.md)
-
-## [Web](/Web) 정리
-
-1. [2022-08-01 월] [HTML/CSS](./Web/0801_HTML_CSS.md)
-
-2. [2022-08-03 수] [Flexbox/Bootstrap](./Web/0803_Flexbox_Bootstrap.md)
+1. [2022-10-05 수] [DB relationship N:1](./DB/1005_DB_relationship_N_1.md)
 
 ## [Django](/Django) 정리
 
@@ -23,6 +14,12 @@
 3. [2022-09-06 화] [Form/ModelForm](./Django/0906_Django_Form_ModelForm.md)
 
 4. [2022-09-07 수] [Auth](./Django/0907_Django_Auth.md)
+
+## [Web](/Web) 정리
+
+1. [2022-08-01 월] [HTML/CSS](./Web/0801_HTML_CSS.md)
+
+2. [2022-08-03 수] [Flexbox/Bootstrap](./Web/0803_Flexbox_Bootstrap.md)
 
 ## [Python](/Python) 정리
 
@@ -59,6 +56,10 @@
 11. [2022-09-26 월] [DivideConquer BinarySearch Backtracking](./Algorithm/0926_DivideConquer_BinarySearch_Backtracking.md)
 
 12. [2022-09-28 수] [Graph MST dijkstra](./Algorithm/0928_Graph_MST_dijkstra.md)
+
+## [Git](/Git) 정리
+
+1. [2022-07-15 금] [Git basic](./Git/0715_Git_basic.md)
 
 ## CS 정리
 
