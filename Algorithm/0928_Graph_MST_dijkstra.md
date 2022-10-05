@@ -540,6 +540,47 @@ DFS(v)
               break
   print(total)
   ```
+  
+  ```python
+  from heapq import heappush, heappop
+  
+  
+  def find_set(n):
+      while n != rep[n]:
+          n = rep[n]
+      return n
+  
+  
+  def union(v, w):
+      pv = find_set(v)
+      pw = find_set(w)
+      if rank[pv] > rank[pw]:
+          rep[pw] = pv
+      else:
+          rep[pv] = pw
+          if rank[pv] == rank[pw]:
+              rank[pw] += 1
+  
+  
+  weight = list()
+  N = int(input())
+  for i in range(N):
+      C = list(map(int, input().split()))
+      for j in range(N):  # undirected
+          if i >= j:  # C_ii=0
+              heappush(flow, (C[j], i, j))
+  count, total = 0, 0
+  rep, rank = [n for n in range(N + 1)], [0 for n in range(N + 1)]
+  while weight:  # kruskal + heapq
+      cost, i, j = heappop(weight)
+      if find_set(i) != find_set(j):
+          count += 1
+          total += cost
+          union(i, j)
+          if count == N:
+              break
+  print(total)
+  ```
 
 ## 6. Shortest Path
 
