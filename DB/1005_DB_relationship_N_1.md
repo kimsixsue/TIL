@@ -352,6 +352,7 @@ class Comment(models.Model):
   # articles/admin.py
   
   from django.contrib import admin
+  
   from .models import Article, Comment
   
   admin.site.register(Article)
@@ -368,6 +369,7 @@ class Comment(models.Model):
   # articles/forms.py
   
   from django import forms
+  
   from .models import Comment
   
   class CommentForm(forms.ModelForm):
@@ -382,8 +384,10 @@ class Comment(models.Model):
   ```python
   # articles/views.py
   
-  from .models import Article
+  from django.shortcuts import render
+  
   from .forms import CommentForm
+  from .models import Article
   
   def detail(request, pk):
       article = Article.objects.get(pk=pk)
@@ -431,10 +435,10 @@ class Comment(models.Model):
   # articles/forms.py
   
   from django import forms
+  
   from .models import Comment
   
   class CommentForm(forms.ModelForm):
-      
       class Meta:
           model = Comment
           fields = ('article',)
@@ -452,6 +456,7 @@ class Comment(models.Model):
   # articles/urls.py
   
   from django.urls import path
+  
   from . import views
   
   urlpatterns = [
@@ -462,8 +467,10 @@ class Comment(models.Model):
   ```python
   # articles/views.py
   
-  from .models import Article
+  from django.shortcuts import redirect
+  
   from .forms import CommentForm
+  from .models import Article
   
   def comments_create(request, pk):
       article = Article.objects.get(pk=pk)
@@ -507,8 +514,10 @@ class Comment(models.Model):
   ```python
   # articles/views.py
   
-  from .models import Article
+  from django.shortcuts import redirect
+  
   from .forms import CommentForm
+  from .models import Article
   
   def comments_create(request, pk):
       article = Article.objects.get(pk=pk)
@@ -529,8 +538,10 @@ class Comment(models.Model):
   ```python
   # articles/views.py
   
-  from .models import Article
+  from django.shortcuts import render
+  
   from .forms import CommentForm
+  from .models import Article
   
   def detail(request, pk):
       article = Article.objects.get(pk=pk)
@@ -572,6 +583,7 @@ class Comment(models.Model):
   # articles/urls.py
   
   from django.urls import path
+  
   from . import views
   
   urlpatterns = [
@@ -581,6 +593,8 @@ class Comment(models.Model):
 
   ```python
   # articles/views.py
+  
+  from django.shortcuts import redirect
   
   from .models import Comment
   
@@ -722,8 +736,8 @@ class Comment(models.Model):
   ```python
   # articles/models.py
   
-  from django.db import models
   from django.conf import settings
+  from django.db import models
   
   class Article(models.Model):
       user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -779,10 +793,10 @@ class Comment(models.Model):
   # articles/forms.py
   
   from django import forms
+  
   from .models import Article
   
   class ArticleForm(forms.ModelForm):
-      
       class Meta:
           model = Article
           fields = ('title', 'article',)
@@ -799,9 +813,10 @@ class Comment(models.Model):
   ```python
   # articles/views.py
   
+  from django.contrib.auth.decorators import login_required
   from django.shortcuts import redirect
   from django.views.decorators.http import require_http_methods
-  from django.contrib.auth.decorators import login_required
+  
   from .forms import ArticleForm
   
   @login_required
@@ -827,6 +842,7 @@ class Comment(models.Model):
   
   from django.shortcuts import redirect
   from django.views.decorators.http import require_POST
+  
   from .models import Article
   
   @require_POST
@@ -848,11 +864,12 @@ class Comment(models.Model):
   ```python
   # articles/view.py
   
+  from django.contrib.auth.decorators import login_required
   from django.shortcuts import redirect
   from django.views.decorators.http import require_http_methods
-  from django.contrib.auth.decorators import login_required
-  from .models import Article
+  
   from .forms import ArticleForm
+  from .models import Article
   
   @login_required
   @require_http_methods(['GET', 'POST'])
@@ -944,8 +961,8 @@ class Comment(models.Model):
   ```python
   # articles/models.py
   
-  from django.db import models
   from django.conf import settings
+  from django.db import models
   
   class Comment(models.Model):
       article = models.ForeignKey(Article, on_delete=models.CASCADE)
@@ -1008,13 +1025,13 @@ class Comment(models.Model):
   # articles/forms.py
   
   from django import forms
+  
   from .models import Comment
   
   class CommentForm(forms.ModelForm):
-      
       class Meta:
           model = Comment
-          fields = ('article', 'users', )
+          fields = ('article', 'users',)
   ```
 
 **외래 키 데이터 누락**
@@ -1030,8 +1047,10 @@ class Comment(models.Model):
   ```python
   # articles/views.py
   
-  from .models import Article
+  from django.shortcuts import redirect
+  
   from .forms import CommentForm
+  from .models import Article
   
   def comments_create(request, pk):
       article = Article.objects.get(pk=pk)
@@ -1082,6 +1101,8 @@ class Comment(models.Model):
   ```python
   # articles/views.py
   
+  from django.shortcuts import redirect
+  
   from .models import Comment
   
   def comments_delete(request, article_pk, comment_pk):
@@ -1125,21 +1146,23 @@ class Comment(models.Model):
 ```python
 # articles/views.py
 
+from django.shortcuts import redirect
 from django.views.decorators.http import require_POST
-from .models import Article
+
 from .forms import CommentForm
+from .models import Article, Comment
 
 @require_POST
 def comments_create(request, pk):
     if request.user.is_authenticated:
-	    article = Article.objects.get(pk=pk)
-	    comment_form = CommentForm(request.POST)
-	    if comment_form.is_valid():
-	        comment = comment_form.save(commit=False)
-	        comment.article = article
-	        comment.user = request.user
-	        comment_form.save()    
-	    return redirect('articles:detail', article.pk)
+        article = Article.objects.get(pk=pk)
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.article = article
+            comment.user = request.user
+            comment_form.save()
+        return redirect('articles:detail', article.pk)
     return redirect('accounts:login')
 
 @require_POST
