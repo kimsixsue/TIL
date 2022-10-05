@@ -7,17 +7,16 @@
    + [Foreign Key](#foreign-key)
 
 2. [N-1 (Comment - Article)](#2-n-1-comment---article)
-
    + [Django Relationship fields](#django-relationship-fields)
-
+   
    + [Comment Model](#comment-model)
-
+   
    + [Related manager](#related-manager)
-
+   
    + [Comment 1](#comment-1)
-
+   
    + [Comment 2](#comment-2)
-
+   
 3. [N-1 (Article - User)](#3-n-1-article---user)
 
    + [Referencing the User model](#referencing-the-user-model)
@@ -441,7 +440,7 @@ class Comment(models.Model):
   class CommentForm(forms.ModelForm):
       class Meta:
           model = Comment
-          fields = ('article',)
+          exclude = ('article',)
   ```
 
 - 출력에서 제외된 외래 키 데이터는 어디서 받아와야 할까?
@@ -785,7 +784,7 @@ class Comment(models.Model):
 **ArticleForm**
 
 - ArticleForm 출력을 확인해보면 create 템플릿에서 불필요한 user 필드가 출력됨
-- 사용자로부터 받는 것이 아니라  url의 variable routing을 통해 처리해야 함
+- 사용자로부터 받는 것이 아니라  request 객체를 통해 처리해야 함
 
 - ArticleForm의 출력 필드 수정
 
@@ -799,7 +798,7 @@ class Comment(models.Model):
   class ArticleForm(forms.ModelForm):
       class Meta:
           model = Article
-          fields = ('title', 'article',)
+          exclude = ('title', 'article',)
   ```
 
 **외래 키 데이터 누락**
@@ -1017,7 +1016,7 @@ class Comment(models.Model):
 
 - CommentForm 출력을 확인해보면 create 템플릿에서 불필요한 user 필드가 출력됨
 
-- 사용자로부터 받는 것이 아니라 url의 variable routing을 통해 처리해야 함
+- 사용자로부터 받는 것이 아니라  request 객체를 통해 처리해야 함
 
 - CommentForm의 출력 필드 수정
 
@@ -1031,12 +1030,12 @@ class Comment(models.Model):
   class CommentForm(forms.ModelForm):
       class Meta:
           model = Comment
-          fields = ('article', 'users',)
+          exclude = ('article', 'users',)
   ```
 
 **외래 키 데이터 누락**
 
-- 게시글 작성 시 NOT NULL constraint failed: articles_comment.user_id 에러 발생
+- 댓글 작성 시 NOT NULL constraint failed: articles_comment.user_id 에러 발생
 
 - “NOT NULL 제약 조건이 실패했다: articles_comment 테이블의 user_id 컬럼에서”
 
@@ -1207,3 +1206,5 @@ def comments_delete(request, article_pk, comment_pk):
   2. Article - User
      - Referencing the User model
   3. Comment - User
+
+> https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/#imports
