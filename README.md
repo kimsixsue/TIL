@@ -1,19 +1,14 @@
 # Today I Learned
 
-## [DB](/DB) 정리
+## [Django+DB](/Django) 정리
 
-1. [2022-10-04 화] [DB SQL](./DB/1004_DB_SQL.md)
-1. [2022-10-05 수] [DB relationship N:1](./DB/1005_DB_relationship_N_1.md)
+1. [2022-08-30 화] [Template/VariableRouting](./django/0830_Django_Template_VariableRouting.md)
 
-## [Django](/Django) 정리
-
-1. [2022-08-30 화] [Template/VariableRouting](./Django/0830_Django_Template_VariableRouting.md)
-
-2. [2022-08-31 수] [Model/QuerySet/CRUD](./Django/0831_Django_Model_QuerySet_CRUD.md)
-
-3. [2022-09-06 화] [Form/ModelForm](./Django/0906_Django_Form_ModelForm.md)
-
-4. [2022-09-07 수] [Auth](./Django/0907_Django_Auth.md)
+2. [2022-08-31 수] [Model/QuerySet/CRUD](./django/0831_Django_Model_QuerySet_CRUD.md)
+3. [2022-09-06 화] [Form/ModelForm](./django/0906_Django_Form_ModelForm.md)
+4. [2022-09-07 수] [Auth](./django/0907_Django_Auth.md)
+5. [2022-10-04 화] [DB SQL](./django/1004_DB_SQL.md)
+6. [2022-10-05 수] [DB relationship N:1](./django/1005_DB_relationship_N_1.md)
 
 ## [Web](/Web) 정리
 
@@ -21,17 +16,7 @@
 
 2. [2022-08-03 수] [Flexbox/Bootstrap](./Web/0803_Flexbox_Bootstrap.md)
 
-## [Python](/Python) 정리
-
-1. [2022-07-18 월] [Python basic](/Python/0718_Python_basic.md)
-
-2. [2022-07-20 수] [Control/Function/Module](/Python/0720_control_function_module.md)
-
-3. [2022-07-25 월] [DataStructure/Copy](/Python/0725_data_structure_copy.md)
-
-4. [2022-07-27 수] [OOP/Error Excpetion](/Python/0727_OOP_error_exception.md)
-
-## [자료구조 + 알고리즘](/Algorithm) 정리
+## [자료구조+알고리즘](/Algorithm) 정리
 
 1. [2022-08-08 월] [Array/Sort](./Algorithm/0808_Array_Sort.md)
 
@@ -56,6 +41,16 @@
 11. [2022-09-26 월] [DivideConquer BinarySearch Backtracking](./Algorithm/0926_DivideConquer_BinarySearch_Backtracking.md)
 
 12. [2022-09-28 수] [Graph MST dijkstra](./Algorithm/0928_Graph_MST_dijkstra.md)
+
+## [Python](/Python) 정리
+
+1. [2022-07-18 월] [Python basic](/Python/0718_Python_basic.md)
+
+2. [2022-07-20 수] [Control/Function/Module](/Python/0720_control_function_module.md)
+
+3. [2022-07-25 월] [DataStructure/Copy](/Python/0725_data_structure_copy.md)
+
+4. [2022-07-27 수] [OOP/Error Excpetion](/Python/0727_OOP_error_exception.md)
 
 ## [Git](/Git) 정리
 

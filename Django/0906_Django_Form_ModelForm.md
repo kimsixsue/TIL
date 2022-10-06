@@ -74,8 +74,8 @@ Form Class
 
   ```python
   # 앱/forms.py
-  
   from django import forms
+  
   
   class ArticleForm(forms.Form):
       title = forms.CharField(max_length=10)
@@ -90,8 +90,10 @@ Form Class
 
 ```python
 # 앱/views.py
+from django.shortcuts import render
 
 from .forms import ArticleForm
+
 
 def new(request):
     form = ArticleForm()
@@ -103,17 +105,16 @@ def new(request):
 
 ```django
 <!-- 앱/templates/앱/new.html -->
-
 {% extends 'base.html' %}
 {% block content %}
-  <h1>NEW</h1>
-  <form action="{% url 'articles:create' %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit">
-  </form>
-  <hr>
-  <a href="{% url 'articles:index' %}">[back]</a>
+<h1>NEW</h1>
+<form action="{% url 'articles:create' %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit">
+</form>
+<hr>
+<a href="{% url 'articles:index' %}">[back]</a>
 {% endblock content %}
 ```
 
@@ -169,6 +170,8 @@ Django의 HTML input element의 표현을 담당
 
 ```python
 # 앱/forms.py
+from django import forms
+
 
 class ArticleForm(forms.Form):
     title = forms.CharField(max_length=10)
@@ -183,6 +186,8 @@ class ArticleForm(forms.Form):
 
 ```python
 # 앱/forms.py
+from django import forms
+
 
 class ArticleForm(forms.Form):
     NATION_A = 'kr'
@@ -218,9 +223,10 @@ ModelForm을 사용하면 Form을 더 쉽게 작성할 수 있음
 
   ```python
   # 앱/forms.py
-  
   from django import forms
+  
   from .models import Article
+  
   
   class ArticleForm(forms.ModelForm):
       
@@ -249,9 +255,12 @@ ModelForm을 사용하면 Form을 더 쉽게 작성할 수 있음
 
   ```python
   # 앱/forms.py
+  from django import forms
+  
+  from .models import Article
+  
   
   class ArticleForm(forms.ModelForm):
-      
       class Meta:
           model = Article  # 어떤 모델을 기반으로 할지
   ```
@@ -265,6 +274,10 @@ ModelForm을 사용하면 Form을 더 쉽게 작성할 수 있음
     **다른 함수에서 "`필요한 시점에`" 호출하는 경우**
 
     ```python
+    from django.urls import path
+    
+    from . import views
+    
     urlpatterns = [
         path('', views.index, name='index'),
     ]
@@ -292,6 +305,10 @@ ModelForm으로 인한 view 함수의 구조 변화 알아보기
 
 ```python
 # 앱/views.py
+from django.shortcuts import redirect, render
+
+from .models import Article
+
 
 def create(request):
     form = Article(request.POST)
@@ -300,7 +317,7 @@ def create(request):
         return redirect('articles:detail', article.pk)  # 상세 페이지로 리다이렉트
     # print(f'에러: {form.errors}')
     # return redirect('articles:new')  # 통과하지 못하면, 작성 페이지로 리다이렉트
-	context = {
+    context = {
         'form': form,
     }  # 유효성 검증을 실패했을 때 사용자에게 실패 결과 메세지를 출력해줄 수 있음
     return render(request, 'articles/new.html', context)
@@ -320,6 +337,10 @@ def create(request):
 
   ```python
   # 앱/views.py
+  from django.shortcuts import redirect
+  
+  from .forms import ArticleForm
+  
   
   def create(request):
       form = ArticleForm(request.POST)
@@ -334,13 +355,17 @@ def create(request):
 
   ```python
   # 앱/views.py
+  from django.shortcuts import redirect, render
+  
+  from .forms import ArticleForm
+  
   
   def create(request):
       form = ArticleForm(request.POST)
       if form.is_valid():
           article = form.save()
           return redirect('articles:detail', article.pk)
-  	context = {
+      context = {
           'form': form,
       }
       return render(request, 'articles/new.html', context)
@@ -358,6 +383,7 @@ def create(request):
 
     ```python
     # 앱/views.py
+    from .forms import ArticleForm
     
     # CREATE
     form = ArticleForm(request.POST)
@@ -382,6 +408,11 @@ def create(request):
 
    ```python
    # 앱/views.py
+   from django.shortcuts import redirect, render
+   
+   from .forms import ArticleForm
+   from .models import Article
+   
    
    def edit(request, pk):
        article = Article.objectes.get(pk=pk)
@@ -391,8 +422,6 @@ def create(request):
            'form': form,
        }
        return render(request, 'articles/edit.html', context)
-   
-   
    def update(request, pk):
        article = Article.objects.get(pk=pk)
        form = ArticleForm(request.POST, instance=article)
@@ -407,17 +436,16 @@ def create(request):
    
    ```django
    <!-- 앱/templates/앱/edit.html -->
-   
    {% extends 'base.html' %}
    {% block content %}
-     <h1>EDIT</h1>
-     <form action="{% url 'articles:update' article.pk %}" method="POST">
-       {% csrf_token %}
-       {{ form.as_p }}
-       <input type="submit">
-     </form>
-     <hr>
-     <a href="{% url 'articles:index' %}">[back]</a>
+   <h1>EDIT</h1>
+   <form action="{% url 'articles:update' article.pk %}" method="POST">
+     {% csrf_token %}
+     {{ form.as_p }}
+     <input type="submit">
+   </form>
+   <hr>
+   <a href="{% url 'articles:index' %}">[back]</a>
    {% endblock content %}
    ```
 
@@ -465,9 +493,12 @@ class BaseModelForm(BaseForm):
 
 ```python
 # 앱/forms.py
+from django import forms
+
+from .models import Article
+
 
 class ArticleForm(forms.ModelForm):
-    
     title = forms.CharField(
     	label='제목',
         widget=forms.TextInput(
@@ -477,7 +508,6 @@ class ArticleForm(forms.ModelForm):
             }
         ),
     )
-    
     content = forms.CharField(
     	label='내용',
         widget=forms.Textarea(
@@ -492,7 +522,6 @@ class ArticleForm(forms.ModelForm):
             'required': 'Please enter your content'
         }
     )
-    
     class Meta:
         model = Article
         fields = '__all__'
@@ -525,8 +554,10 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
 
   ```python
   # 앱/views.py
+  from django.shortcuts import redirect, render
   
   from .forms import ArticleForm  # Article Model을 바탕으로 만들어진 Form
+  
   
   def create(request):
       if request.method == 'POST':  # CREATE  # DB의 내용 변경
@@ -567,6 +598,11 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
 
   ```python
   # 앱/views.py
+  from django.shortcuts import redirect, render
+  
+  from .forms import ArticleForm
+  from .models import Article
+  
   
   def update(request, pk):
       article = Article.objects.get(pk=pk)
@@ -576,7 +612,7 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
               form.save()
               return redirect('articles:detail', article.pk)
       else:  # GET, EDIT
-  		form = ArticleForm(instance=article)
+          form = ArticleForm(instance=article)
       context = {
           'form': form,
           'article': article,
@@ -594,6 +630,10 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
 
   ```python
   # 앱/views.py
+  from django.shortcuts import redirect
+  
+  from .models import Article
+  
   
   def delete(request, pk):  
       if request.method == 'POST':  # DB
@@ -620,10 +660,12 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
           print('HIHI')
       return wrapper
   
+  
   @hello
   def bye():
       print('byebye')
-      
+  
+  
   bye()  # HIHI, byebye, HIHI
   ```
 
@@ -653,16 +695,16 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
 
   ```python
   # 앱/views.py
-  
   from django.views.decorators.http import require_http_methods
+  
   
   @require_http_methods(['GET','POST'])
   def create(request):
       pass
-  
   @require_http_methods(['GET','POST'])
   def update(request, pk):
       pass
+  
   ```
 
 **require_POST()**
@@ -671,8 +713,11 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
 
   ```python
   # 앱/views.py
+  from django.shortcuts import redirect
+  from django.views.decorators.http import require_POST
   
-  from django.views.decorators.http import require_http_methods, require_POST
+  from .models import Article
+  
   
   @ require_POST
   def delete(request, pk):
@@ -694,8 +739,8 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
 
   ```python
   # 앱/views.py
+  from django.views.decorators.http import require_safe
   
-  from django.views.decorators.http import require_http_methods, require_POST, require_safe
   
   @require_safe
   def index(request):  # GET
@@ -724,13 +769,13 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
 
 ```django
 {% for field in form %}
-    <div class="fieldWrapper">
-        {{ field.errors }}
-        {{ field.label_tag }} {{ field }}
-        {% if field.help_text %}
-        <p class="help">{{ field.help_text|safe }}</p>
-        {% endif %}
-    </div>
+<div class="fieldWrapper">
+  {{ field.errors }}
+  {{ field.label_tag }} {{ field }}
+  {% if field.help_text %}
+  <p class="help">{{ field.help_text|safe }}</p>
+  {% endif %}
+</div>
 {% endfor %}
 ```
 

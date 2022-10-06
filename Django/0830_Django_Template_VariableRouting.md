@@ -496,8 +496,8 @@
 
   ```python
   # 프로젝트/urls.py
-  
   from django.contrib import admin
+  
   from articles import views
   
   urlpatterns = [
@@ -517,6 +517,8 @@
 
   ```python
   # 앱/views.py
+  from django.shortcuts import render
+  
   
   def index(request):
       return render(request, 'index.html')
@@ -550,15 +552,17 @@ render(request, template_name, context)
 
   ```python
   <!-- 앱/templates/index.html -->
-  
   <!DOCTYPE html>
   <html lang="en">
+  
   <head>
     <!-- 생략 -->
   </head>
+  
   <body>
     <h1>Hello</h1>
   </body>
+  
   </html>
   ```
 
@@ -588,10 +592,9 @@ render(request, template_name, context)
 
     ```python
     # 프로젝트/settings.py
-    
     LANGUAGE_CODE = 'ko-kr'
     ```
-
+  
 - **USE_I18N**
 
   - Django의 번역 시스템을 활성화해야 하는지 여부를 지정
@@ -648,6 +651,9 @@ render(request, template_name, context)
 
   ```python
   # 프로젝트/urls.py
+  from django.urls import path
+  
+  from . import views
   
   urlpatterns = [
       path('dinner/', views.dinner),
@@ -656,9 +662,10 @@ render(request, template_name, context)
   
   ```python
   # 앱/views.py
-  
   import random
+  
   from django.shortcuts import render
+  
   
   def dinner(request):
       foods = ['족발', '햄버거', '치킨', '초밥',]
@@ -672,25 +679,25 @@ render(request, template_name, context)
   
   ```django
   <!-- 앱/templates/dinner.html -->
-  
   <!DOCTYPE html>
   <html lang="en">
+  
   <head>
-  ...
+    ...
   </head>
+  
   <body>
     <p>{{ pick }}은 {{ pick|length }}글자</p>
     <p>{{ foods|join:", "}}</p>
-    
     <p>메뉴판</p>
     <ul>
       {% for food in foods %}
-        <li>{{ food }}</li>
+      <li>{{ food }}</li>
       {% endfor %}
     </ul>
-    
     <a href="/index/">뒤로</a>
   </body>
+  
   </html>
   ```
 
@@ -720,8 +727,8 @@ render(request, template_name, context)
 
   ```django
   {% comment %}
-    여러 줄
-    주석
+  여러 줄
+  주석
   {% endcomment %}
   ```
 
@@ -757,20 +764,22 @@ render(request, template_name, context)
 
   ```django
   <!-- 앱/templates/base.html -->
-  
   <!DOCTYPE html>
   <html lang="en">
+  
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap CDN 작성 -->
     <title>Document</title>
   </head>
+  
   <body>
     {% block content %}
     {% endblock content %}
     <!-- bootstrap CDN 작성 -->
   </body>
+  
   </html>
   ```
 
@@ -780,10 +789,9 @@ render(request, template_name, context)
 
   ```django
   <!-- 앱/templates/index.html -->
-  
   {% extends 'base.html' %}
   {% block content %}
-    <h1>Hello</h1>
+  <h1>Hello</h1>
   {% endblock content %}
   ```
 
@@ -797,7 +805,6 @@ render(request, template_name, context)
 
   ``` python
   # 프로젝트/settings.py
-  
   TEMPLATES = [
       {
           'DIRS': [BASE_DIR / 'templates',],
@@ -809,6 +816,7 @@ render(request, template_name, context)
 
 ```python
 # 프로젝트/settings.py
+from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 ```
@@ -823,9 +831,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 ```python
 # 프로젝트/urls.py
-
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -877,8 +884,8 @@ urlpatterns = [
 
    ```python
    # 프로젝트/urls.py
-   
    from django.urls import path
+   
    from . import views
    
    urlpatterns = [
@@ -888,6 +895,8 @@ urlpatterns = [
    
    ```python
    # 앱/views.py
+   from django.shortcuts import render
+   
    
    def throw(request):
        return render(request, 'throw.html')
@@ -895,12 +904,11 @@ urlpatterns = [
    
    ```django
    <!-- 앱/templates/throw.html -->
-   
    {% extends 'base.html' %}
    {% block content %}
-     <h1>Throw</h1>
-     <form action="#" method="#">
-     </form>
+   <h1>Throw</h1>
+   <form action="#" method="#">
+   </form>
    {% endblock content %}
    ```
 
@@ -924,15 +932,14 @@ urlpatterns = [
 
   ```django
   <!-- 앱/templates/throw.html -->
-  
   {% extends 'base.html' %}
   {% block content %}
-    <h1>Throw</h1>
-    <form action="#" method="#">
-      <label for="message">Throw</label>
-      <input type="text" id="message" name="message">
-      <input type="submit">
-    </form>
+  <h1>Throw</h1>
+  <form action="#" method="#">
+    <label for="message">Throw</label>
+    <input type="text" id="message" name="message">
+    <input type="submit">
+  </form>
   {% endblock content %}
   ```
 
@@ -974,7 +981,6 @@ urlpatterns = [
 
   ```django
   <!-- 앱/templates/throw.html -->
-  
   {% extends 'base.html' %}
   {% block content %}
     <h1>Throw</h1>
@@ -1022,6 +1028,7 @@ urlpatterns = [
 
 ```python
 # 앱/urls.py
+from django.urls import path
 
 from . import views
 
@@ -1032,6 +1039,8 @@ urlpatterns = [
 
 ```python
 # 앱/views.py
+from django.shortcuts import render
+
 
 def catch(request):
     return render(request, 'catch.html')
@@ -1039,11 +1048,10 @@ def catch(request):
 
 ```django
 <!-- 앱/templates/catch.html -->
-
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Catch</h1>
-  <a href="/throw/">다시 던지러</a>
+<h1>Catch</h1>
+<a href="/throw/">다시 던지러</a>
 {% endblock content %}
 ```
 
@@ -1051,25 +1059,23 @@ def catch(request):
 
 ```django
 <!-- 앱/templates/throw.html -->
-
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Throw</h1>
-  <form action="/catch/" method="POST">
-    {% csrf_token %}
-    <label for="message">Throw</label>
-    <input type="text" id="message" name="message">
-    <input type="submit">
-  </form>
+<h1>Throw</h1>
+<form action="/catch/" method="POST">
+  {% csrf_token %}
+  <label for="message">Throw</label>
+  <input type="text" id="message" name="message">
+  <input type="submit">
+</form>
 {% endblock content %}
 ```
 
 ```django
 <!-- 앱/templates/index.html -->
-
 {% extends 'base.html' %}
 {% block content %}
-  <a href="/throw/">throw<a>
+<a href="/throw/">throw</a>
 {% endblock %}
 ```
 
@@ -1095,6 +1101,8 @@ print를 통해 살펴보기
 
 ```python
 # 앱/views.py
+from django.shortcuts import render
+
 
 def catch(request):
     print(request)
@@ -1117,23 +1125,24 @@ def catch(request):
 
 ```python
 # 앱/views.py
+from django.shortcuts import render
+
 
 def catch(request):
     message = request.POST.get('message')
     context = {
         'message': message,
     }
-    return render(request, 'catch.html', context) 
+    return render(request, 'catch.html', context)
 ```
 
 ```django
 <!-- 앱/templates/catch.html -->
-
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Catch</h1>
-  <h2>여기서 {{ message }}를 받았어!!</h2>
-  <a href="/throw/">다시 던지러</a>
+<h1>Catch</h1>
+<h2>여기서 {{ message }}를 받았어!!</h2>
+<a href="/throw/">다시 던지러</a>
 {% endblock content %}
 ```
 
@@ -1210,6 +1219,9 @@ URL의 일부를 변수로 지정하여 view 함수의 인자로 넘길 수 있�
 
 ``` python
 # 앱/urls.py
+from django.urls import path
+
+from . import views
 
 urlpatterns = [
     # path('hello/<str:name>/', views.hello),
@@ -1227,6 +1239,8 @@ variable routing으로 할당된 변수를 인자로 받고 템플릿 변수로 
 
 ```python
 # 앱/view.py
+from django.shortcuts import render
+
 
 def hello(request, name):
     context = {
@@ -1237,10 +1251,9 @@ def hello(request, name):
 
 ```django
 <!-- 앱/templates/hello.html -->
-
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Hello, {{ name }}</h1>
+<h1>Hello, {{ name }}</h1>
 {% endblock content %}
 ```
 
@@ -1264,6 +1277,7 @@ def hello(request, name):
 
   ```python
   # 앱/urls.py
+  from django.urls import path
   
   from . import views
   
@@ -1287,9 +1301,8 @@ def hello(request, name):
 
   ```python
   # 프로젝트/urls.py
-  
   from django.contrib import admin
-  from django.urls import include
+  from django.urls import include, path
   
   urlpatterns = [
       path('admin/', admin.site.urls),
@@ -1297,7 +1310,7 @@ def hello(request, name):
       path('pages/', include('pages.urls')),
   ]
   ```
-
+  
 - http://127.0.0.1:8000 **/index/** -> http://127.0.0.1:8000 **`/articles/index/`**
 
 **include()**
@@ -1332,40 +1345,36 @@ Django는 URL에 이름을 지정하는 방법을 제공함으로써 view 함수
 
 ```django
 <!-- 앱/templates/catch.html -->
-
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Catch</h1>
-  <h2>여기서 {{ message }}를 받았어!!</h2>
-  <a href="{% url 'throw' %}">다시 던지러</a>
+<h1>Catch</h1>
+<h2>여기서 {{ message }}를 받았어!!</h2>
+<a href="{% url 'throw' %}">다시 던지러</a>
 {% endblock content %}
 ```
 
 ```django
 <!-- 앱/templates/throw.html -->
-
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Throw</h1>
-  <form action="% url 'catch' %" method="POST">
-    ...
-  </form>
+<h1>Throw</h1>
+<form action="% url 'catch' %" method="POST">
+  ...
+</form>
 {% endblock content %}
 ```
 
 ```django
 <!-- 앱/templates/index.html -->
-
 {% extends 'base.html' %}
 {% block content %}
-  ...
-  <a href="{% url 'greeting' %}">greeting</a>
-  <a href="{% url 'dinner' %}">dinner</a>
-  <a href="{% url 'throw' %}">throw</a>
+...
+<a href="{% url 'greeting' %}">greeting</a>
+<a href="{% url 'dinner' %}">dinner</a>
+<a href="{% url 'throw' %}">throw</a>
 {% endblock content %}
 
 <!-- 앱/templates/dinner.html, 앱/templates/greeting.html -->
-
 <a href="{% url 'index' %}">뒤로</a>
 ```
 
