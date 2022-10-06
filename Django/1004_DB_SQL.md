@@ -201,9 +201,10 @@
 
 ### SQL Syntax
 
-```sql
+```sqlite
 -- 주석은 하이픈 2개
-SELECT column_name FROM table_name;
+SELECT column_name
+FROM table_name;
 ```
 
 - 모든 SQL statement 문은 SELECT, INSERT, UPDATE 등과 같은 키워드로 시작하고, 하나의 statement는 **; 세미콜론**으로 끝남
@@ -218,8 +219,9 @@ SELECT column_name FROM table_name;
 - Clause 절
   - statement의 하위 단위
 
-```sql
-SELECT column_name FROM table_name;
+```sqlite
+SELECT column_name
+FROM table_name;
 ```
 
 - SELECT statement라 부름
@@ -252,11 +254,11 @@ SELECT column_name FROM table_name;
 
 - 데이터베이스에 새 테이블을 만듦
 
-  ```sql
+  ```sqlite
   CREATE TABLE table_name (
-      column_1 data_type constraints,
-      column_1 data_type constraints,
-      column_1 data_type constraints
+    column_1 data_type constraints,
+    column_1 data_type constraints,
+    column_1 data_type constraints
   );
   ```
 
@@ -264,11 +266,11 @@ SELECT column_name FROM table_name;
 
 - contacts 테이블 생성
 
-  ```sql
+  ```sqlite
   CREATE TABLE contacts (
-      name TEXT NOT NULL,
-      age INTEGER NOT NULL,
-      email TEXT NOT NULL UNIQUE
+    name TEXT NOT NULL,
+    age INTEGER NOT NULL,
+    email TEXT NOT NULL UNIQUE
   );
   ```
 
@@ -375,10 +377,10 @@ SELECT column_name FROM table_name;
 
    - **주의) INTEGER 타입에만 사용가능 (INT BIGINT 등 불가능)**
 
-     ```sql
+     ```sqlite
      CREATE TABLE table_name (
-         id INTEGER PRIMARY KEY,
-         ..
+       id INTEGER PRIMARY KEY,
+       ..
      );
      ```
 
@@ -390,10 +392,10 @@ SELECT column_name FROM table_name;
 
    - Django에서 테이블 생성 시 id 컬럼에 기본적으로 사용하는 제약조건
 
-     ```sql
+     ```sqlite
      CREATE TABLE table_name (
-         id INTEGER PRIMARY KEY AUTOINCREMENT,
-         ..
+       id INTEGER PRIMARY KEY AUTOINCREMENT,
+       ..
      );
      ```
 
@@ -426,26 +428,26 @@ SELECT column_name FROM table_name;
 
      **Rename** a table 테이블명 변경
 
-     ```sql
-     ALTER TABLE contacts 
-     RENAME TO new_contacts;
+     ```sqlite
+     ALTER TABLE contacts
+       RENAME TO new_contacts;
      ```
 
   2. **ALTER TABLE RENAME COLUMN**
 
      **Rename** a column 컬럼병 변경
 
-     ```sql
-     ALTER TABLE new_contacts 
-     RENAME COLUMN name TO last_name;
+     ```sqlite
+     ALTER TABLE new_contacts
+       RENAME COLUMN name TO last_name;
      ```
 
   3. **ALTER TABLE ADD COLUMN**
 
      **Add** a column to a table 새 컬럼 추가
 
-     ```sql
-     ALTER TABLE new_contacts 
+     ```sqlite
+     ALTER TABLE new_contacts
      ADD COLUMN address TEXT NOT NULL;
      ```
 
@@ -461,7 +463,7 @@ SELECT column_name FROM table_name;
 
      - 다음과 같이 **DEFAULT** 제약 조건을 사용하여 해결할 수 있음
 
-       ```sql
+       ```sqlite
        ALTER TABLE new_contacts
        ADD COLUMN address TEXT NOT NULL DEFAULT 'no address';
        ```
@@ -472,7 +474,7 @@ SELECT column_name FROM table_name;
 
      **Delete** a column 컬럼 삭제
 
-     ```sql
+     ```sqlite
      ALTER TABLE new_contacts DROP COLUMN address;
      ```
 
@@ -486,7 +488,7 @@ SELECT column_name FROM table_name;
 
        - UNIQUE 제약 조건이 있는 경우
 
-         ```sql
+         ```sqlite
          ALTER TABLE new_contacts DROP COLUMN email;
          Cannot drop UNIQUE column: "email"
          ```
@@ -499,7 +501,7 @@ SELECT column_name FROM table_name;
 
 - 데이터베이스에서 테이블을 제거
 
-  ```sql
+  ```sqlite
   DROP TABLE table_name;
   ```
 
@@ -572,14 +574,14 @@ SELECT column_name FROM table_name;
 
 2. 테이블 생성하기
 
-   ```sql
+   ```sqlite
    CREATE TABLE users (
-       first_name TEXT NOT NULL,
-       last_name TEXT NOT NULL,
-       age INTEGER NOT NULL,
-       country TEXT NOT NULL,
-       phone TEXT NOT NULL,
-       balance INTEGER NOT NULL
+     first_name TEXT NOT NULL,
+     last_name TEXT NOT NULL,
+     age INTEGER NOT NULL,
+     country TEXT NOT NULL,
+     phone TEXT NOT NULL,
+     balance INTEGER NOT NULL
    )
    ```
 
@@ -611,9 +613,9 @@ SELECT column_name FROM table_name;
 
 **SELECT statement**
 
-```sql
+```sqlite
 SELECT column1,
-    column2
+  column2
 FROM table_name;
 ```
 
@@ -638,24 +640,24 @@ FROM table_name;
 
 - 모든 컬럼에 대한 shorthand(약칭)인 `*(asterisk)`를 사용할 수 있음
 
-  ```sql
+  ```sqlite
   SELECT *
   FROM users;
   ```
 
 - 이름과 나이 조회하기
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      age
+    age
   FROM users;
   ```
 
 - rowid 컬럼 조회
 
-  ```sql
+  ```sqlite
   SELECT rowid,
-      first_name
+    first_name
   FROM users;
   ```
 
@@ -667,11 +669,11 @@ FROM table_name;
 
 **ORDER BY clause**
 
-```sql
+```sqlite
 SELECT select_list
 FROM table_name
 ORDER BY column_1 ASC,
-    column_2 DESC;
+  column_2 DESC;
 ```
 
 - “Sort a result set of a query”
@@ -686,22 +688,22 @@ ORDER BY column_1 ASC,
 
 - 이름과 나이를 나이 순서대로 조회하기
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      age
+    age
   FROM users
   ORDER BY age DESC;
   ```
 
 - 이름, 나이, 계좌 잔고를 나이가 어린순으로, 만약 같은 나이라면 계좌 잔고가 많은 순으로 정렬해서 조회하기
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      age,
-      balance
+    age,
+    balance
   FROM users
   ORDER BY age ASC,
-      balance DESC;
+    balance DESC;
   ```
 
 - ORDER BY절은 하나 이상의 컬럼을 정렬할 경우 첫 번째 열을 사용하여 행을 정렬하고, 그런 다음 두번째 컬럼을 사용하여 정렬 되어있는 행을 정렬하는 방식
@@ -724,7 +726,7 @@ ORDER BY column_1 ASC,
 
 **`SELECT DISTINCT` clause**
 
-```sql
+```sqlite
 SELECT DISTANCT select_list
 FROM table_name;
 ```
@@ -740,21 +742,21 @@ FROM table_name;
 
 - 모든 지역 조회하기
 
-  ```sql
+  ```sqlite
   SELECT country
   FROM users;
   ```
 
 - 중복없이 모든 지역 조회하기
 
-  ```sql
+  ```sqlite
   SELECT DISTINCT country
   FROM users;
   ```
 
 - 지역 순으로 내림차순 정렬하여 중복없이 모든 지역 조회하기
 
-  ```sql
+  ```sqlite
   SELECT DISTINCT country
   FROM users
   ORDER BY country;
@@ -764,24 +766,24 @@ FROM table_name;
 
   - **각 컬럼의 중복을 따로 계산하는 것이 아니라 두 컬럼을 하나의 집합으로 보고 중복을 제거**
 
-  ```sql
+  ```sqlite
   SELECT DISTINCT first_name,
-      country
+    country
   FROM users;
   ```
 
 - 이름과 지역 중복 없이 지역 순으로 내림차순 정렬하여 모든 이름과 지역 조회하기
 
-  ```sql
+  ```sqlite
   SELECT DISTINCT first_name,
-      country
+    country
   FROM users
   ORDER BY country DESC;
   ```
 
 **`WHERE` clause**
 
-```sql
+```sqlite
 SELECT column_list
 FROM table_name
 WHERE search_condition;
@@ -795,13 +797,13 @@ WHERE search_condition;
 
 **WHERE의 검색 조건 작성 형식**
 
-```sql
+```sqlite
 left_expression COMPARISON_OPERATOR right_expression
 ```
 
 - 작성 예시
 
-  ```sql
+  ```sqlite
   WHERE column_1 = 10
   WHERE column_2 LIKE 'ko%'
   WHERE column_3 IN (1, 2)
@@ -819,23 +821,23 @@ left_expression COMPARISON_OPERATOR right_expression
 
 - 나이가 30살 이상인 사람들의 이름, 나이, 계좌 잔고 조회하기
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      age,
-      balance
+    age,
+    balance
   FROM users
   WHERE age >= 30;
   ```
 
 - 나이가 30살 이상이고 계좌 잔고가 50만원 초과인 사람들의 이름, 나이, 계좌 잔고 조회하기
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      age,
-      balance
+    age,
+    balance
   FROM users
   WHERE age >= 30
-      AND balance > 500000;
+    AND balance > 500000;
   ```
 
 **`LIKE` operator**
@@ -877,16 +879,16 @@ left_expression COMPARISON_OPERATOR right_expression
 
 - 이름에 ‘호’가 포함되는 사람들의 이름과 성 조회하기
 
-```sql
+```sqlite
 SELECT first_name,
-    last_name
+  last_name
 FROM users
 WHERE first_name LIKE '%호%';
 ```
 
 - 이름이 ‘준’으로 끝나는 사람들의 이름 조회하기
 
-  ```sql
+  ```sqlite
   SELECT first_name
   FROM users
   WHERE first_name LIKE '%준';
@@ -894,27 +896,27 @@ WHERE first_name LIKE '%호%';
 
 - 서울 지역 전화번호를 가진 사람들의 이름과 전화번호 조회하기
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      phone
+    phone
   FROM users
   WHERE phone LIKE '02-%';
   ```
 
 - 나이가 20대인 사람들의 이름과 나이 조회하기
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      age
+    age
   FROM users
   WHERE age LIKE '2_';
   ```
 
 - 전화번호 중간 4자리가 51로 시작하는 사람들의 이름과 전화번호 조회하기
 
-  ```sl
+  ```sqlite
   SELECT first_name,
-      phone
+    phone
   FROM users
   WHERE phone LIKE '%-51__-%';
   ```
@@ -930,35 +932,35 @@ WHERE first_name LIKE '%호%';
 
 - 경기도 혹은 강원도에 사는 사람들의 이름과 지역 조회하기
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      country
+    country
   FROM users
   WHERE country IN ('경기도', '강원도');
   ```
 
 - IN 연산자 대신 OR 연산자를 사용하여 동일한 결과를 반환할 수 있음
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      country
+    country
   FROM users
   WHERE country = '경기도'
-      OR country = '강원도';
+    OR country = '강원도';
   ```
 
 - 경기도 혹은 강원도에 살지 않는 사람들의 이름과 지역 조회하기
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      country
+    country
   FROM users
   WHERE country NOT IN ('경기도', '강원도');
   ```
 
 **`BETWEEN` operator**
 
-```sql
+```sqlite
 test_expression BETWEEN low_expression AND high_expression
 ```
 
@@ -972,45 +974,45 @@ test_expression BETWEEN low_expression AND high_expression
 
 - 나이가 20살 이상, 30살 이하인 사람들의 이름과 나이 조회하기
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      age
+    age
   FROM users
   WHERE age BETWEEN 20 AND 30;
   ```
 
 - AND 연산자를 사용하여 이전 쿼리와 동일한 결과를 반환할 수 있음
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      age
+    age
   FROM users
   WHERE age >= 20
-      AND <= 30;
+    AND <= 30;
   ```
 
 - 나이가 20살 이상, 30살 이하가 아닌 사람들의 이름과 나이 조회하기
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      age
+    age
   FROM users
   WHERE age NOT BETWEEN 20 AND 30;
   ```
 
 - OR 연산자를 사용하여 이전 쿼리와 동일한 결과를 반환할 수 있음
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      age
+    age
   FROM users
   WHERE age < 20
-      OR age > 30;
+    OR age > 30;
   ```
 
 **`LIMIT` clause**
 
-```sql
+```sqlite
 SELECT cloumn_list
 FROM table_name
 LIMIT row_count;
@@ -1025,9 +1027,9 @@ LIMIT row_count;
 
 - 첫 번째부터 열 번째 데이터까지 rowid와 이름 조회하기
 
-  ```sql
+  ```sqlite
   SELECT rowid,
-      first_name
+    first_name
   FROM users
   LIMIT 10;
   ```
@@ -1037,9 +1039,9 @@ LIMIT row_count;
   - **ORDER BY 절과 함께 사용하여 지정된 순서로 여러 행을 가져올 수도 있음**
   - **LIMIT 절에 지정된 행 수를 가져오기 전에 결과를 정렬하기 때문**
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      balance
+    balance
   FROM users
   ORDER BY balance DESC
   LIMIT 10;
@@ -1047,9 +1049,9 @@ LIMIT row_count;
 
 - 나이가 가장 어린 5명의 이름과 나이 조회하기
 
-  ```sql
+  ```sqlite
   SELECT first_name,
-      age
+    age
   FROM users
   ORDER BY age
   LIMIT 5;
@@ -1061,9 +1063,9 @@ LIMIT row_count;
 
 - 11번째부터 20번째 데이터의 rowid와 이름 조회하기
 
-  ```sql
+  ```sqlite
   SELECT rowid,
-      first_name
+    first_name
   FROM users
   LIMIT 10 OFFSET 10;
   ```
@@ -1072,12 +1074,12 @@ LIMIT row_count;
 
 **`GROUP BY` clause**
 
-```sql
+```sqlite
 SELECT column_1,
-    aggregate_function(column_2)
+  aggregate_function(column_2)
 FROM table_name
 GROUP BY column_1,
-    column_2;
+  column_2;
 ```
 
 - “Make a set of summary rows from a set of rows.”
@@ -1103,14 +1105,14 @@ GROUP BY column_1,
 
 - users 테이블의 전체 행 수 조회하기
 
-  ```sql
+  ```sqlite
   SELECT COUNT(*)
   FROM users;
   ```
 
 - 나이가 30살 이상인 사람들의 평균 나이 조회하기
 
-  ```sql
+  ```sqlite
   SELECT AVG(age)
   FROM users
   WHERE age >= 30;
@@ -1124,7 +1126,7 @@ GROUP BY column_1,
 
   - country 컬럼으로 그룹화
 
-    ```sql
+    ```sqlite
     SELECT country
     FROM users
     GROUP BY country;
@@ -1136,9 +1138,9 @@ GROUP BY column_1,
 
   - **각 지역별로 그룹이 나뉘어졌기 때문에 `COUNT(*)`는 지역별 데이터 개수를 세게 됨**
   
-    ```sql
+    ```sqlite
     SELECT country,
-        COUNT(*)
+      COUNT(*)
     FROM users
     GROUP BY country;
     ```
@@ -1149,18 +1151,18 @@ GROUP BY column_1,
 
 - AS 키워드를 사용해 컬럼명을 임시로 변경하여 조회할 수 있음
 
-  ```sql
+  ```sqlite
   SELECT last_name,
-      COUNT(*) AS number_of_name
+    COUNT(*) AS number_of_name
   FROM users
   GROUP BY last_name;
   ```
 
 - 인원이 가장 많은 성씨 순으로 조회하기
 
-  ```sql
+  ```sqlite
   SELECT last_name,
-      COUNT(*)
+    COUNT(*)
   FROM users
   GROUP BY last_name
   ORDER BY COUNT(*) DESC;
@@ -1168,9 +1170,9 @@ GROUP BY column_1,
 
 - 각 지역별 평균 나이 조회하기
 
-  ```sql
+  ```sqlite
   SELECT country,
-      AVG(age)
+    AVG(age)
   FROM users
   GROUP BY country;
   ```
@@ -1188,17 +1190,17 @@ GROUP BY column_1,
 
 - 실습 편의를 위해 새 테이블 생성
 
-  ```sql
+  ```sqlite
   CREATE TABLE classmates (
-      name TEXT NOT NULL,
-      age INTEGER NOT NULL,
-      address TEXT NOT NULL
+    name TEXT NOT NULL,
+    age INTEGER NOT NULL,
+    address TEXT NOT NULL
   );
   ```
 
 **`INSERT` statement**
 
-```sql
+```sqlite
 INSERT INTO table_name (column1, column2,...)
 VALUES (value1, value2,...);
 ```
@@ -1217,35 +1219,35 @@ VALUES (value1, value2,...);
 
 - 단일 행 삽입하기
 
-  ```sql
+  ```sqlite
   INSERT INTO classmates (name, age, address)
   VALUES ('홍길동', 23, '서울');
   ```
 
 - 다음과 같이 작성 할 수도 있음
 
-  ```sql
+  ```sqlite
   INSERT INTO classmates
   VALUES ('홍길동', 23, '서울');
   ```
 
 - 여러 행 삽입하기
 
-  ```sql
+  ```sqlite
   INSERT INTO classmates
   VALUES ('김철수', 30, '경기'),
-      ('이영미', 31, '강원'),
-      ('박진성', 26, '전라'),
-      ('최지수', 12, '충청'),
-      ('정요한', 28, '경상');
+    ('이영미', 31, '강원'),
+    ('박진성', 26, '전라'),
+    ('최지수', 12, '충청'),
+    ('정요한', 28, '경상');
   ```
 
 **`UPDATE` statement**
 
-```sql
+```sqlite
 UPDATE table_name
 SET column_1 = new_value_1,
-    column_2 = new_value_2
+  column_2 = new_value_2
 WHERE search_condition;
 ```
 
@@ -1262,16 +1264,16 @@ WHERE search_condition;
 
 - 2번 데이터의 이름을 ‘김철수한무두루미’, 주소를 ‘제주도’로 수정하기
 
-  ```sql
+  ```sqlite
   UPDATE classmates
   SET name = '김철수한무두루미',
-      address = '제주도'
+    address = '제주도'
   WHERE rowid = 2;
   ```
 
 **`DELETE` statement**
 
-```sql
+```sqlite
 DELETE FROM table_name
 WHERE search_condition;
 ```
@@ -1289,16 +1291,16 @@ WHERE search_condition;
 
 - 5번 데이터 삭제하기
 
-  ```sql
+  ```sqlite
   DELETE FROM classmates
   WHERE rowid = 5;
   ```
 
 - 삭제 된 것 확인하기
 
-  ```sql
+  ```sqlite
   SELECT rowid,
-      *
+    *
   FROM classmates;
   ```
 
@@ -1306,14 +1308,14 @@ WHERE search_condition;
 
 - 이름에 ‘영’이 포함되는 데이터 삭제하기
 
-  ```sql
+  ```sqlite
   DELETE FROM classmates
   WHERE name LIKE '%영%';
   ```
 
 - 테이블의 모든 데이터 삭제하기
 
-  ```sql
+  ```sqlite
   DELETE FROM classmates;
   ```
 
