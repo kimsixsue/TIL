@@ -2,13 +2,17 @@
 
 ## [Django+DB](/Django) 정리
 
-1. [2022-08-30 화] [Template/VariableRouting](./django/0830_Django_Template_VariableRouting.md)
+1. [2022-08-30 화] [Template/VariableRouting](./Django/0830_Django_Template_VariableRouting.md)
 
-2. [2022-08-31 수] [Model/QuerySet/CRUD](./django/0831_Django_Model_QuerySet_CRUD.md)
-3. [2022-09-06 화] [Form/ModelForm](./django/0906_Django_Form_ModelForm.md)
-4. [2022-09-07 수] [Auth](./django/0907_Django_Auth.md)
-5. [2022-10-04 화] [DB SQL](./django/1004_DB_SQL.md)
-6. [2022-10-05 수] [DB relationship N:1](./django/1005_DB_relationship_N_1.md)
+2. [2022-08-31 수] [Model/QuerySet/CRUD](./Django/0831_Django_Model_QuerySet_CRUD.md)
+
+3. [2022-09-06 화] [Form/ModelForm](./Django/0906_Django_Form_ModelForm.md)
+
+4. [2022-09-07 수] [Auth](./Django/0907_Django_Auth.md)
+
+5. [2022-10-04 화] [DB SQL](./Django/1004_DB_SQL.md)
+
+6. [2022-10-05 수] [DB relationship N:1](./Django/1005_DB_relationship_N_1.md)
 
 ## [Web](/Web) 정리
 
