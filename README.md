@@ -14,6 +14,8 @@
 
 6. [2022-10-05 수] [DB relationship N:1](./Django/1005_DB_relationship_N_1.md)
 
+7. [2022-10-11 화] [Static_Media](./Django/1011_Django_Static_Media.md)
+
 ## [Web](/Web) 정리
 
 1. [2022-08-01 월] [HTML/CSS](./Web/0801_HTML_CSS.md)
