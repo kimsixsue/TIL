@@ -9,3 +9,4 @@
 5. [2022-10-04 화] [DB SQL DDL DML](./1004_DB_SQL.md)
 6. [2022-10-05 수] [DB relationship N:1](./1005_DB_relationship_N_1.md)
 7. [2022-10-11 화] [Static_Media](./1011_Django_Static_Media.md)
+8. [2022-10-12 수] [DB relationship N:N](./1012_DB_relationship_N_N.md)
