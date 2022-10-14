@@ -96,7 +96,7 @@ OOP 속성
     
     - `.pop()`, `.clear()`, `.copy()`, `.index`(), `.remove`(), `.update`() 등
   
-  - method 호출 시, 항상 첫 인자로 **instance** 자기**자신**인 **`self`**가 전달
+  - method 호출 시, 항상 첫 인자로 **instance** 자기**자신**인 `self`가 전달
     
     - `self`: 파이썬의 암묵적인 규칙 convention
   
@@ -301,7 +301,7 @@ OOP 속성
     
   - **setter** 메서드 : 변수의 값을 *설정*하는 성격의 메서드
     
-    - **`@`변수`.setter`**를 사용
+    - `@`변수`.setter`를 사용
 
 ## 에러/예외 처리 Error/Exception Handling
 
@@ -412,7 +412,7 @@ OOP 속성
 
 더 빠른 것은 `if`문
 
-**`try`**문
+`try`문
 
 - 오류가 발생할 가능성이 있는 **코드를 실행**함
 - 예외가 발생되지 않으면, **except 없이 실행이 종료**
