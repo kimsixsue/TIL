@@ -11,7 +11,7 @@
     + [ModelSerializer](#modelserializer)
     + [Build RESTful API Article](#build-restful-api-article)
   * [Django REST framework N-1 Relation](#django-rest-framework-n-1-relation)
-    + [N-1 역참조 데이터 조회](#N-1 역참조 데이터 조회)
+    + [N-1 역참조 데이터 조회](#n-1-역참조-데이터-조회)
     + [Django shortcuts functions](#django-shortcuts-functions)
   * [finish](#finish)
 
