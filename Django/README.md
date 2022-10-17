@@ -10,3 +10,5 @@
 6. [2022-10-05 수] [DB relationship N:1](./1005_DB_relationship_N_1.md)
 7. [2022-10-11 화] [Static_Media](./1011_Django_Static_Media.md)
 8. [2022-10-12 수] [DB relationship N:N](./1012_DB_relationship_N_N.md)
+9. [2022-07-31 일] [REST[ful] API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md)
+10. [2022-10-17 월] [Django_RESP_API](./1017_Django_RESP_API.md)

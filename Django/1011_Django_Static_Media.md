@@ -18,7 +18,7 @@
 
    + [UPDATE](#update)
 
-   + [upload_to argument](#upload-to-argument)
+   + [upload_to argument](#upload_to-argument)
 
 3. [Image Resizing](#3-image-resizing)
 
@@ -30,7 +30,7 @@
 
    + [Filtering data](#filtering-data)
 
-   + [Aggregation(Grouping data)](#aggregation-grouping-data-)
+   + [Aggregation(Grouping data)](#aggregationgrouping-data)
 
 * [finish](#finish)
 

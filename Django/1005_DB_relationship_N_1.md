@@ -18,19 +18,18 @@
    + [Comment 2](#comment-2)
    
 3. [N-1 (Article - User)](#3-n-1-article---user)
-
    + [Referencing the User model](#referencing-the-user-model)
-
+   
    + [model relationship](#model-relationship)
-
+   
    + [CREATE](#create)
-
+   
    + [DELETE](#delete)
-
+   
    + [UPDATE](#update)
-
+   
    + [READ](#read)
-
+   
 4. [N-1 (Comment - User)](#4-n-1-comment---user)
 
    + [model relationship](#model-relationship-1)
@@ -630,7 +629,7 @@ class Comment(models.Model):
   1. 댓글 개수 출력하기
      1. DTL filter - **length** 사용
      2. Queryset API - **count()** 사용
-  2. 댓글이 없는 겨우 대체 컨텐츠 출력하기
+  2. 댓글이 없는 경우 대체 컨텐츠 출력하기
 
 **댓글 개수 출력하기**
 
