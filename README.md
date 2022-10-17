@@ -18,7 +18,7 @@
 
 8. [2022-10-12 수] [DB relationship N:N](./Django/1012_DB_relationship_N_N.md)
 
-9. [2022-10-17 월] [Django_RESP_API](./Django/1017_Django_RESP_API.md)
+9. [2022-10-17 월] [Django_REST_API](./Django/1017_Django_REST_API.md)
 
 ## [Web](/Web) 정리
 
