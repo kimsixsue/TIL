@@ -207,7 +207,7 @@
      - 데이터 구조나 객체 상태를 동일 혹은 다른 컴퓨터 환경에 저장하고, 나중에 재구성할 수 있는 포맷으로 변환하는 과정
        - 즉, 어떠한 언어나 환경에서도 “**나중에 다시 쉽게 사용할 수 있는 포맷으로 변환하는 과정**”
      - 변환 포맷은 **json**, xml, yaml이 있음
-   - Django의 **serialize()**는 Queryset 및 Model Instance와 같은 복잡한 데이터를 JSON, XML 등의 유형으로 쉽게 변환 할 수 있는 Python 데이터 타입으로 만들어 줌
+   - Django의 `serialize()`는 Queryset 및 Model Instance와 같은 복잡한 데이터를 JSON, XML 등의 유형으로 쉽게 변환 할 수 있는 Python 데이터 타입으로 만들어 줌
 
 4. Django REST framework를 사용한 JSON 응답
 
@@ -254,7 +254,7 @@
 - ModelSerializer 클래스는 모델 필드가 해당하는 필드가 있는 Serializer 클래스를 자동으로 만들 수 있는 shortcut을 제공
   1. Model 정보에 맞춰 자동으로 필드를 생성
   2. serializer에 대한 유효성 검사기를 자동으로 생성
-  3. **.create()** 및 **.update()**의 간단한 기본 구현이 포함됨
+  3. `.create()` 및 `.update()`의 간단한 기본 구현이 포함됨
 
 **ModelSerializer의 `many` option**
 
@@ -676,7 +676,7 @@
 
 **get_object_or_404()**
 
-- 모델 manager objects에서 **get()**을 호출하지만, 해당 객체가 없을 땐 기존 DoesNotExist 예외 대신 Http404를 raise 함
+- 모델 manager objects에서 `get()`을 호출하지만, 해당 객체가 없을 땐 기존 DoesNotExist 예외 대신 Http404를 raise 함
 
   ```python
   # articles/views.py
@@ -689,7 +689,7 @@
 
 **get_list_or_404()**
 
-- 모델 manager objects에서 **filter()**의 결과를 반환하고 해당 객체 목록이 없을 땐 Http404를 raise 함
+- 모델 manager objects에서 `filter()`의 결과를 반환하고 해당 객체 목록이 없을 땐 Http404를 raise 함
 
   ```python
   # articles/views.py
