@@ -272,6 +272,10 @@
   ```python
   # articles/urls.py
   
+  from django.urls import path
+  
+  from . import views
+  
   urlpatterns = [
       path('articles/', views.articles_list),
   ]
@@ -308,31 +312,42 @@
   ```python
   # articles/serializers.py
   
+  from rest_framework import serializers
+  
+  from .models import Article
+  
   class ArticleSerializer(serializers.ModelSerialier):
       
       class Meta:
           model = Article
           fields = '__all__'
   ```
-
+  
   ```python
   # articles/urls.py
+  
+  from django.urls import path
+  
+  from . import views
   
   urlpatterns = [
       path('articles/<int:article_pk>/', views.articles_detail),
   ]
   ```
-
+  
   ```python
   # articles/views.py
+  from rest_framework.decorators import api_view
+  from rest_framework.response import Response
   
+  from .models import Article
   from .serializers import ArticleSerializer
   
   
   @api_view(['GET'])
   def article_detail(request, article_pk):
       article = Article.objects.get(pk=article_pk)
-      serializer = ArticleListSerializer(articles)
+      serializer = ArticleSerializer(articles)
       return Response(serializer.data)
   ```
 
@@ -346,7 +361,11 @@
   # articles/views.py
   
   from rest_framework import status
+  from rest_framework.decorators import api_view
+  from rest_framework.response import Response
   
+  from .models import Article
+  from .serializers import ArticleListSerializer, ArticleSerializer
   
   @api_view(['GET', 'POST'])
   def article_list(request):
@@ -375,6 +394,11 @@
   ```python
   # articles/views.py
   
+  from rest_framework.decorators import api_view
+  from rest_framework.response import Response
+  
+  from .serializers import ArticleSerializer
+  
   @api_view(['GET', 'POST'])
   def article_list(request):
       
@@ -394,15 +418,22 @@
   ```python
   # articles/views.py
   
+  from rest_framework import status
+  from rest_framework.decorators import api_view
+  from rest_framework.response import Response
+  
+  from .models import Article
+  from .serializers import ArticleSerializer
+  
   @api_view(['GET', 'DELETE'])
   def article_detail(request, article_pk):
       article = Article.objects.get(pk=article_pk)
       if request.method == 'GET':
-  	    serializer = ArticleListSerializer(articles)
+  	    serializer = ArticleSerializer(articles)
   	    return Response(serializer.data)
       elif request.method == 'DELETE':
           article.delete()
-          return Response(status=status.HTTP_204_NO_CONTENT)
+          return Response({'id': article_pk}, status=status.HTTP_204_NO_CONTENT)
   ```
 
 **PUT**
@@ -413,6 +444,11 @@
 
   ```python
   # articles/views.py
+  
+  from rest_framework.decorators import api_view
+  from rest_framework.response import Response
+  
+  from .serializers import ArticleSerializer
   
   @api_view(['GET', 'DELETE', 'PUT'])
   def article_detail(request, article_pk):
@@ -435,7 +471,9 @@
   ```python
   # articles/serializers.py
   
-  from .models import Article, Comment
+  from rest_framework import serializers
+  
+  from .models import Comment
   
   
   class CommentSerializer(serializers.ModelSerialier):
@@ -448,6 +486,10 @@
   ```python
   # articles/urls.py
   
+  from django.urls import path
+  
+  from . import views
+  
   urlpatterns = [
       path('comments/', views.comment_list),
   ]
@@ -456,7 +498,10 @@
   ```python
   # articles/views.py
   
-  from .models import Article, Comment
+  from rest_framework.decorators import api_view
+  from rest_framework.response import Response
+  
+  from .models import Comment
   from .serializers import CommentSerializer
   
   
@@ -474,13 +519,23 @@
   ```python
   # articles/urls.py
   
+  from django.urls import path
+  
+  from . import views
+  
   urlpatterns = [
       path('comments/<int:comment_pk>/', views.comment_detail),
   ]
   ```
-
+  
   ```python
   # articles/views.py
+  
+  from rest_framework.decorators import api_view
+  from rest_framework.response import Response
+  
+  from .models import Comment
+  from .serializers import CommentSerializer
   
   @api_view(['GET'])
   def comment_detail(request, comment_pk):
@@ -496,13 +551,24 @@
   ```python
   # articles/urls.py
   
+  from django.urls import path
+  
+  from . import views
+  
   urlpatterns = [
       path('articles/<int:article_pk>/comments/', views.comment_create),
   ]
   ```
-
+  
   ```python
   # articles/views.py
+  
+  from rest_framework import status
+  from rest_framework.decorators import api_view
+  from rest_framework.response import Response
+  
+  from .models import Article
+  from .serializers import CommentSerializer
   
   @api_view(['POST'])
   def comment_create(request, article_pk):
@@ -522,6 +588,13 @@
   ```python
   # articles/views.py
   
+  from rest_framework import status
+  from rest_framework.decorators import api_view
+  from rest_framework.response import Response
+  
+  from .models import Article
+  from .serializers import CommentSerializer
+  
   @api_view(['POST'])
   def comment_create(request, article_pk):
       article = Article.objects.get(pk=article_pk)
@@ -540,6 +613,10 @@
   ```python
   # articles/serializers.py
   
+  from rest_framework import serializers
+  
+  from .models import Comment
+  
   class CommentSerializer(serializers.ModelSerializer):
       
       class Meta:
@@ -555,6 +632,13 @@
   ```python
   # articles/views.py
   
+  from rest_framework import status
+  from rest_framework.decorators import api_view
+  from rest_framework.response import Response
+  
+  from .models import Comment
+  from .serializers import CommentSerializer
+  
   @api_view(['GET', 'DELETE', 'PUT'])
   def comment_detail(request, comment_pk):
       comment = Comment.objects.get(pk=comment_pk)
@@ -563,7 +647,7 @@
   	    return Response(serializer.data)
       elif request.method == 'DELETE':
           comment.delete()
-          return Response(status=status.HTTP_204_NO_CONTENT)
+          return Response({'id': comment_pk}, status=status.HTTP_204_NO_CONTENT)
       elif request.method == 'PUT':
           serializer = CommentSerializer(comment, data=request.data)
           if serializer.is_valid(raise_exception=True):
@@ -592,6 +676,10 @@
      ```python
      # articles/serializers.py
      
+     from rest_framework import serializers
+     
+     from .models import Article
+     
      class ArticleSerializer(serializers.ModelSerializer):
          comment_set = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
          
@@ -601,11 +689,13 @@
      ```
 
   - models.py에서 **related_name**을 통해 이름 변경 가능
-
+  
   - 역참조 시 생성되는 **comment_set**을 override 할 수 있음
-
+  
     ```python
     # articles/models.py
+    
+    from django.db import models
     
     class Comment(models.Model):
         article = models.ForeignKey(
@@ -622,6 +712,10 @@
      ```python
      # articles/serializers.py
      
+     from rest_framework import serializers
+     
+     from .models import Article, Comment
+     
      class CommentSerializer(serializers.ModelSerializer):
          class Meta:
              model = Comment
@@ -636,7 +730,7 @@
              model = Article
              fields = '__all__'
      ```
-  
+     
      - 모델 관계 상으로 참조 된 대상은 참조하는 대상의 표현에 포함되거나 nested 중첩 될 수 있음
      - 이러한 중첩된 관계는 serializers를 필드로 사용하여 표현 할 수 있음
      - 두 클래스의 상/하 위치를 변경해야 함
@@ -649,6 +743,10 @@
 
     ```python
     # articles/serializers.py
+    
+    from rest_framework import serializers
+    
+    from .models import Article
     
     class ArticleSerializer(serializers.ModelSerializer):
         comment_set = CommentSerializer(many=True, read_only=True)
@@ -697,7 +795,7 @@
 
 **get_list_or_404()**
 
-- 모델 manager objects에서 `filter()`의 결과를 반환하고 해당 객체 목록이 없을 땐 Http404를 raise 함
+- 모델 manager objects에서 `all()`, `filter()`의 결과를 반환하고 해당 객체 목록이 없을 땐 Http404를 raise 함
 
   ```python
   # articles/views.py
