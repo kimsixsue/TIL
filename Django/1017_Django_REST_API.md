@@ -239,11 +239,12 @@
   # articles/serializers.py
   
   from rest_framework import serializers
+  
   from .models import Article
   
   
   class ArticleListSerializer(serializers.ModelSerializer):
-      
+  
       class Meta:
           model = Article
           fields = ('id', 'title', 'content',)
@@ -279,11 +280,12 @@
   ```python
   # articles/views.py
   
-  from rest_framework.response import Response
   from rest_framework.decorators import api_view
+  from rest_framework.response import Response
   
   from .models import Article
-  from .serializers immport ArticleListSerializer
+  from .serializers import ArticleListSerializer
+  
   
   @api_view(['GET'])
   def article_list(request):
@@ -324,7 +326,8 @@
   ```python
   # articles/views.py
   
-  from .serializers immport ArticleSerializer
+  from .serializers import ArticleSerializer
+  
   
   @api_view(['GET'])
   def article_detail(request, article_pk):
@@ -344,12 +347,13 @@
   
   from rest_framework import status
   
+  
   @api_view(['GET', 'POST'])
   def article_list(request):
-      if requestmethod == 'GET':
+      if request.method == 'GET':
           articles = Article.objects.all()
-   	    serializer = ArticleListSerializer(articles, many=True)
-  	    return Response(serializer.data)
+          serializer = ArticleListSerializer(articles, many=True)
+          return Response(serializer.data)
       elif request.method == 'POST':
           serializer = ArticleSerializer(data=request.data)
           if serializer.is_valid():
@@ -412,12 +416,12 @@
   
   @api_view(['GET', 'DELETE', 'PUT'])
   def article_detail(request, article_pk):
-      
-  	elif request.method == 'PUT':
+  
+      elif request.method == 'PUT':
           serializer = ArticleSerializer(article, data=request.data)
           if serializer.is_valid(raise_exception=True):
               serializer.save()
-              return Response(serializer.data
+              return Response(serializer.data)
   ```
 
 ## Django REST framework N-1 Relation
@@ -433,13 +437,14 @@
   
   from .models import Article, Comment
   
+  
   class CommentSerializer(serializers.ModelSerialier):
-      
+  
       class Meta:
           model = Comment
           fields = '__all__'
   ```
-
+  
   ```python
   # articles/urls.py
   
@@ -447,12 +452,13 @@
       path('comments/', views.comment_list),
   ]
   ```
-
+  
   ```python
   # articles/views.py
   
   from .models import Article, Comment
-  from .serializers import ArticleListSerializer, ArticcleSerializer, CommentSerializer
+  from .serializers import CommentSerializer
+  
   
   @api_view(['GET'])
   def comment_list(request):
@@ -602,16 +608,17 @@
     # articles/models.py
     
     class Comment(models.Model):
-        article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+        article = models.ForeignKey(
+            Article, on_delete=models.CASCADE, related_name='comments')
         content = models.TextField()
         created_at = models.DateTimeField(auto_now_add=True)
         updated_at = models.DateTimeField(auto_now=True)
     ```
-
+  
   - 작성 후 삭제
-
+  
   2. Nested relationships
-
+  
      ```python
      # articles/serializers.py
      
@@ -620,16 +627,16 @@
              model = Comment
              fields = '__all__'
              read_only_fields = ('article',)
-             
+     
+     
      class ArticleSerializer(serializers.ModelSerializer):
          comment_set = CommentSerializer(many=True, read_only=True)
-         
+     
          class Meta:
              model = Article
              fields = '__all__'
-             
      ```
-
+  
      - 모델 관계 상으로 참조 된 대상은 참조하는 대상의 표현에 포함되거나 nested 중첩 될 수 있음
      - 이러한 중첩된 관계는 serializers를 필드로 사용하여 표현 할 수 있음
      - 두 클래스의 상/하 위치를 변경해야 함
@@ -645,15 +652,16 @@
     
     class ArticleSerializer(serializers.ModelSerializer):
         comment_set = CommentSerializer(many=True, read_only=True)
-        comment_count = serializers.IntegerField(source='comment_set.count', read_only=True)
-        
+        comment_count = serializers.IntegerField(
+            source='comment_set.count', read_only=True)
+    
         class Meta:
             model = Article
             fields = '__all__'
     ```
-
+  
   - **source**
-
+  
     - serializers field’s argument
     - 필드를 채우는 데 사용할 속성의 이름
     - dotted notation 점 표기법을 사용하여 속성을 탐색 할 수 있음
@@ -696,8 +704,8 @@
   
   from django.shortcuts import get_list_or_404
   
-  article = get_object_or_404(Article)
-  comment = get_object_or_404(Comment)
+  article = get_list_or_404(Article)
+  comment = get_list_or_404(Comment)
   ```
 
 **왜 사용해야 할까?**
