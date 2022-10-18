@@ -823,4 +823,4 @@
 - REST API
 - Response JSON
 - Django REST framework - Single Model
-- Django REST framework - N:1 Relation
+- Django REST framework - N:1 Relation0

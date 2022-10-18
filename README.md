@@ -1,5 +1,9 @@
 # Today I Learned
 
+## [JavaScript](/JavaScript) 정리
+
+1. [2022-10-19 수] [JavaScript basic](./JavaScript/1019_JavaScript_basic.md)
+
 ## [Django+DB](/Django) 정리
 
 1. [2022-08-30 화] [Template URL VariableRouting](./Django/0830_Django_Template_VariableRouting.md)
