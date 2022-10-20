@@ -509,13 +509,20 @@ function 함수명() {
      
      restArgs(1, 2, 3, 4, 5)  // [1, 2, [3, 4, 5]]
      
-     function addNumbers(...restArgs) {
-       const numbers = [...restArgs]
+     function addNumbers(...numbers) {
        return numbers.reduce((sum, number) => {
          return sum + number
        }, 0)
      }
      console.log(addNumbers(1, 2, 3, 4, 5))
+     
+     const defaultColors = ['red', 'green', 'blue'];
+     const favoriteColors = ['navy', 'black', 'gold', 'white']
+     const palette = [...defaultColors, ...favoriteColors]
+     
+     const info1 = { name: 'Tom', age: 30 }
+     const info2 = { isMarried: true, balance: 3000 }
+     const fullInfo = { ...info1, ...info2 }
      ```
 
 ### 선언식과 표현식
@@ -681,9 +688,7 @@ colors.forEach((color) => {
 
 colors.forEach((color) => console.log(color))
 
-users.forEach((user) => {
-  return console.log(user.name)
-})
+users.forEach((user) => return console.log(user.name))
 ```
 
 **Array Helper Methods - map**
@@ -769,9 +774,7 @@ const fruits = products.filter((product) => {
 
 const fruits = products.filter((product) => product.type === 'fruit')
 
-const marriedUsers = users.filter((user) => {
-  return user.isMarried === true
-})
+const marriedUsers = users.filter((user) => user.isMarried)
 ```
 
 **Array Helper Methods - reduce**
@@ -806,9 +809,7 @@ const sum = tests.reduce((total, x) => total + x, 0)
 
 const sum = tests.reduce((total, x) => total + x, 0) / tests.length
 
-const totalBalance = users.reduce((total, user) => {
-  return total += user.balance
-}, 0)
+const totalBalance = users.reduce((total, user) => total + user.balance, 0)
 ```
 
 **Array Helper Methods - find**
@@ -841,9 +842,7 @@ const avenger = avengers.find((avenger) => {
 
 const avenger = avengers.find((avenger) => avenger.name === 'Tony Stark')
 
-const tom = users.find((user) => {
-  return user.name === 'Tom'
-})
+const tom = users.find((user) => user.name === 'Tom')
 ```
 
 **Array Helper Methods - some**
@@ -1034,10 +1033,16 @@ const userInformation = {
 const { userId } = userInformation
 const { phoneNumber, email } = userInformation
 
-const { name, extension, size } = savedFile
-function fileSummary() {
+const savedFile = {
+  name: 'profile',
+  extension: 'jpg',
+  size: 29930
+}
+
+function fileSummary({name, extension, size}) {
   console.log(`The file ${name}.${extension} is size of ${size} bytes.`)
 }
+fileSummary(savedFile)
 ```
 
 **5. Spread syntax (…)**
@@ -1058,8 +1063,6 @@ const palette = [...defaultColors, ...favoriteColors]
 const info1 = { name: 'Tom', age: 30 }
 const info2 = { isMarried: true, balance: 3000 }
 const fullInfo = { ...info1, ...info2 }
-
-console.log(fullInfo)
 ```
 
 **JSON (JavaScript Object Notation)**
