@@ -48,7 +48,7 @@
 
   ```html
   </body>
-  <script src="hello.js"></script>
+  <script type="text/javascript" src="hello.js"></script>
   </html>
   ```
 
@@ -150,12 +150,25 @@
 **String**
 
 - 문자열을 표현하는 자료형
+
 - 작은 따옴표 또는 큰 따옴표 모두 가능
+
 - 덧셈을 통해 문자열 붙일 수 있음
+
 - Quote를 사용하면 선언 시 줄 바꿈이 안 됨
+
 - 대신 escape sequence를 사용할 수 있기 때문에 \n 를 사용해야 함
+
 - **Tempate Literal**을 사용하면 줄바꿈이 되며, 문자열 사이에 변수도 삽입도 가능
+
 - (단, escape sequence를 사용할 수 없다)
+
+  ```js
+  const age = 10
+  const message = `홍길동은 ${age}세입니다.`
+  ```
+
+  
 
 **Template literals 템플릿 리터럴**
 
@@ -177,12 +190,12 @@
 **undefined**
 
 - 값이 정의되어 있지 않음을 표현하는 값
-- 변수 선언 이후 직접 값을 할당하지 않으면 자동으로 할당됨
+- 변수 선언 이후 **직접 값을 할당하지 않으면 자동으로 할당**됨
 
 **null과 undefeined**
 
 - null과 undefined의 가장 대표적인 차이점은 **typeof** 연산자를 통해 타입을 확인 했을 때 가능함
-- null 이 원시 타입임에도 불구하고 object로 출력되는 이유는 JavaScript 설계 당시의 버그를 지금까지 해결하지 못한 것
+- null 이 원시 타입임에도 불구하고 object로 출력되는 이유는 **JavaScript 설계 당시의 버그를 지금까지 해결하지 못한 것**
 
 **Boolean**
 
@@ -197,11 +210,11 @@
 
 | 데이터 타입 | false      | true             |
 | ----------- | ---------- | ---------------- |
-| undefined   | 항상 거짓  | X                |
-| null        | 항상 거짓  | X                |
+| undefined   | 항상 false | X                |
+| null        | 항상 false | X                |
 | Number      | 0, -0, NaN | 나머지 모든 경우 |
 | String      | 빈 문자열  | 나머지 모든 경우 |
-| Object      | X          | 항상 참          |
+| Object      | X          | 항상 true        |
 
 ### 연산자
 
@@ -241,7 +254,7 @@
 **조건문의 종류와 특징**
 
 - **if** statement
-  - 조건 표현식의 결과값을 boolean 타입을 변환 후 참/거짓을 판단
+  - 조건 표현식의 결과값을 **boolean 타입을 변환 후 참/거짓을 판단**
     - 조건은 **condition 소괄호** 안에 작성
     - 실행할 코드는 **{ } 중괄호** 안에 작성
     - 블록 스코프 생성
@@ -254,8 +267,8 @@
   - break 및 default문은 [선택적]으로 사용 가능
   - break문이 없는 경우 break문을 만나거나 default문을 실행할 때까지 다음 조건문 실행
   - 블록 스코프 생성
-  - Fall-through
-    - break를 작성하면 의도한대로 동작
+  - **Fall-through 현상**
+    - **break**를 작성하면 의도한대로 동작
 
 **if / switch**
 
@@ -292,15 +305,15 @@
 
     1. 반복문 진입 및 변수 i 선언
     2. 조건문 평가 후 코드 블럭 실행
-    3. 코드 블록 싱행 이후 i 값 증가
+    3. 코드 블록 실행 이후 i 값 증가
 
 - for…in
 
-  - object **객체**의 속성을 순회할 때 사용
+  - object 객체의 **속성을 순회**할 때 사용
 
   - 속성 이름을 통해 반복
 
-  - **객체** 순회 적합
+  - 객체 순회 적합
 
   - 배열도 순회 가능하지만 인덱스 순으로 순회한다는 보장이 없으므로 권장하지 않음
 
@@ -326,7 +339,7 @@
 
   - iterable 순회 적합
 
-  - iterable 반복 가능한 객체의 종류 : Array, Set, String 등
+  - iterable 반복 가능한 객체의 종류 : **Array, Set, String** 등
 
     ```js
     for (variable of object) {
@@ -343,8 +356,12 @@
 
 **[참고] for…in, for…of 와 const**
 
-- 일반적인 for문의 경우에는 최초 정의한 i 를 재할당 하면서 사용하기 때문에 const를 사용하면 에러 발생
-- 다만 for…in, for…of 의 경우에는 재할당이 아니라, 매 반복 시 해당 변수를 새로 정의하여 사용하므로 에러가 발생하지 않음
+- for문
+  - 최초 정의한 i 를 재할당 하면서 사용하기 때문에 const를 사용하면 **에러 발생**
+
+- for…in, for…of
+  - 재할당이 아니라, 매 반복 시 해당 변수를 새로 정의하여 사용하므로 **에러가 발생하지 않음**
+
 
 **조건문과 반복문 정리**
 
@@ -428,7 +445,7 @@ function 함수명() {
 
 - 전개 구문을 사용하면 배열이나 문자열과 같이 반복 가능한 객체를 배열의 경우는 요소, 함수의 경우는 인자로 확장할 수 있음
 
-  1. 배열과의 사용
+  1. 배열과의 사용 (배열 복사)
 
      ```js
      let parts = ['shoulders', 'knees']
@@ -437,7 +454,7 @@ function 함수명() {
 
   2. 함수와의 사용 (**Rest parameters**)
 
-     - The rest parameter syntax 를 사용하여 정해지지 않은 수의 매개변수를 배열로 받을 수 있음
+     - 정해지지 않은 수의 매개변수를 배열로 받을 수 있음
 
      ```js
      const restOpr = function (arg1, arg2, ...restArgs) {
@@ -445,6 +462,14 @@ function 함수명() {
      }
      
      restArgs(1, 2, 3, 4, 5)  // [1, 2, [3, 4, 5]]
+     
+     function addNumbers(...restArgs) {
+       const numbers = [...restArgs]
+       return numbers.reduce((sum, number) => {
+         return sum + number
+       }, 0)
+     }
+     console.log(addNumbers(1, 2, 3, 4, 5))
      ```
 
 ### 선언식과 표현식
@@ -453,7 +478,7 @@ function 함수명() {
 
 **함수의 타입**
 
-- 선언식 함수와 표현식 함수 모두 타입은 function으로 동일
+- 선언식 함수와 표현식 함수 모두 타입은 **function**으로 동일
 
 **호이스팅 - 선언식**
 
@@ -480,7 +505,7 @@ function 함수명() {
 
 - function 키워드와 중괄호를 이용한 구문을 짧게 사용하기 위해 탄생
 
-  1. **function 키워드 생략가능**
+  1. **function** 키워드 생략가능
   2. 함수의 매개변수가 하나뿐이라면 `( )` 도 생략 가능
      - **명확성과 일관성을 위해 항상 인자 주위에는`()` 괄호를 포함하는 것을 권장** 
   3. 함수의 내용이 한 줄이라면 `{ }` 와 `return` 도 생략 가능
@@ -525,7 +550,7 @@ function 함수명() {
 
   ```js
   (function(num) { return num ** 3 })(2) // 8
-  (num => num **3)(2) // 8
+  (num => num ** 3 )(2) // 8
   ```
 
 ## 4. Array_Object
@@ -539,9 +564,9 @@ function 함수명() {
 
 - 순서를 보장하는 특징이 있음
 
-- 주로 대괄호(**[]**)를 이용하여 생성하고, 0을 포함한 양의 정수 인덱스로 특정 값에 접근 가능
+- 주로 대괄호([])를 이용하여 생성하고, 0을 포함한 양의 정수 인덱스로 특정 값에 접근 가능
 
-- 배열의 길이는 **array.length** 형태로 접근 가능
+- 배열의 길이는 array.length 형태로 접근 가능
 
   ```js
   const numbers = [1, 2, 3, 4, 5]
@@ -549,14 +574,14 @@ function 함수명() {
 
 ### Array method 기초
 
-| 메서드          | 설명                                                 | 비고                     |
-| --------------- | ---------------------------------------------------- | ------------------------ |
-| reverse         | **원본 배열**의 요소들의 순서를 반대로 정렬          |                          |
-| push & pop      | 배열의 **가장 뒤에** 요소를 **추가 또는 제거**       |                          |
-| unshift & shift | 배열의 **가장 앞에** 요소를 **추가 또는 제거**       |                          |
-| includes        | 배열에 특정 값이 존재하는지 판별 후 **참/거짓 반환** |                          |
-| indexOf         | 배열에 특정 값이 존재하는지 판별 후 **인덱스 반환**  | 요소가 없을 경우 -1 반환 |
-| join            | 배열의 **모든 요소를 구분자를 이용하여 연결**        | 구분자 생략 시 쉼표 기준 |
+| 메서드          | 설명                                                    | 비고                     |
+| --------------- | ------------------------------------------------------- | ------------------------ |
+| reverse         | **원본 배열**의 요소들의 순서를 반대로 정렬             |                          |
+| push & pop      | 배열의 **가장 뒤에** 요소를 **추가 또는 제거**          |                          |
+| unshift & shift | 배열의 **가장 앞에** 요소를 **추가 또는 제거**          |                          |
+| includes        | 배열에 특정 값이 존재하는지 판별 후 **true/false 반환** |                          |
+| indexOf         | 배열에 특정 값이 존재하는지 판별 후 **인덱스 반환**     | 요소가 없을 경우 -1 반환 |
+| join            | 배열의 **모든 요소를 구분자를 이용하여 연결**           | 구분자 생략 시 쉼표 기준 |
 
 ### Array method 심화
 
@@ -604,7 +629,15 @@ colors.forEach(function (color) {
   console.log(color)
 })
 
+colors.forEach((color) => {
+    return console.log(color)
+})
+
 colors.forEach((color) => console.log(color))
+
+users.forEach((user) => {
+  return console.log(user.name)
+})
 ```
 
 **Array Helper Methods - map**
@@ -619,6 +652,8 @@ array.map((element, index, array) => {
 - 배열의 각 요소에 대해 콜백 함수를 한 번씩 실행
 - **콜백 함수의 반환 값을 요소로 하는 새로운 배열 반환** 
 - 기존 배열 전체를 다른 형태로 바꿀 때 유용
+  - forEach + return  이라고 생각하기
+
 
 ```js
 const numbers = [1, 2, 3]
@@ -635,8 +670,18 @@ const doubleNumbers = numbers.map(function (number) {
 })
 console.log(doubleNumbers)
 
+const doubleNumbers = numbers.map((number) => {
+    return number * 2
+)}
+console.log(doubleNumbers)
+
 const doubleNumbers = numbers.map((number) => number * 2)
 console.log(doubleNumbers)
+
+const newUsers = users.map((user) => {
+  user.isAlive = true
+  return user
+})
 ```
 
 **Array Helper Methods - filter**
@@ -649,7 +694,7 @@ array.filter((element, index, array)) => {
 
 - array.filter(callback(element[, index[, array]]))
 - 배열의 각 요소에 대해 콜백 함수를 한 번씩 실행
-- **콜백 함수의 반환 값이 참인 요소들만 모아서 새로운 배열 반환**
+- **콜백 함수의 반환 값이 true인 요소들만 모아서 새로운 배열 반환**
 - 기존 배열의 요소들을 필터링할 때 유용
 
 ```js
@@ -672,7 +717,15 @@ const fruits = products.filter(function (product) {
   return product.type === 'fruit'
 })
 
+const fruits = products.filter((product) => {
+  return product.type === 'fruit'
+})
+
 const fruits = products.filter((product) => product.type === 'fruit')
+
+const marriedUsers = users.filter((user) => {
+  return user.isMarried === true
+})
 ```
 
 **Array Helper Methods - reduce**
@@ -684,12 +737,12 @@ array.reduce((acc, element, index, array) => {
 ```
 
 - array.reduce(callback(acc, element, [index[, array]])[, initialValue])
-- 인자로 주어지는 함수(콜백 함수)를 배열의 각 요소에 대해 한 번씩 실행해서, 하나의 결과 값을 반환.
+- 인자로 주어지는 함수(콜백 함수)를 배열의 각 요소에 대해 한 번씩 실행해서, 하나의 결과 값을 **반환**.
 - 즉, 배열을 하나의 값으로 계산하는 동작이 필요할 때 사용(총합, 평균 등)
 - map, filter 등 여러 배열 메서드 동작을 대부분 대체할 수 있음
 - reduce 메서드의 주요 매개변수
   - acc
-    - 이전 callback 함수의 반환 값이 누적되는 변수
+    - 이전 callback 함수의 **반환** 값이 누적되는 변수
   - initialValue(optional)
     - 최초 callback 함수 호출 시 acc에 할당되는 값, default 값은 배열의 첫 번째 값
 - reduce의 첫번째 매개변수인 콜백함수의 첫번째 매개변수(`acc`)는 누적된 값(전 단계 까지의 결과)
@@ -701,11 +754,15 @@ const tests = [90, 90, 80, 77]
 
 const sum = tests.reduce(function (total, x) {
   return total + x
-})
+}, 0)
 
-const sum = tests.reduce((total, x) => total + x)
+const sum = tests.reduce((total, x) => total + x, 0)
 
-const sum = tests.reduce((total, x) => total + x) / tests.length
+const sum = tests.reduce((total, x) => total + x, 0) / tests.length
+
+const totalBalance = users.reduce((total, user) => {
+  return total += user.balance
+}, 0)
 ```
 
 **Array Helper Methods - find**
@@ -718,7 +775,7 @@ array.find((element, index, array)) {
 
 - array.find(callback(element[, index[, array]]))
 - 배열의 각 요소에 대해 콜백 함수를 한 번씩 실행
-- 콜백 함수의 반환 값이 참이면, 조건을 만족하는 첫번째 요소를 반환
+- 콜백 함수의 반환 값이 true면, 조건을 만족하는 첫번째 **요소를 반환**
 - 찾는 값이 배열에 없으면 undefined 반환
 
 ```js
@@ -732,7 +789,15 @@ const avenger = avengers.find(function (avenger) {
   return avenger.name === 'Tony Stark'
 })
 
+const avenger = avengers.find((avenger) => {
+    return avenger.name === 'Tony Stark'
+})
+
 const avenger = avengers.find((avenger) => avenger.name === 'Tony Stark')
+
+const tom = users.find((user) => {
+  return user.name === 'Tom'
+})
 ```
 
 **Array Helper Methods - some**
@@ -744,12 +809,16 @@ array.some((element, index, array) => {
 ```
 
 - array.some(callback(element[, index[, array]]))
-- 배열의 **요소 중 하나라도** 주어진 판별 함수를 통과하면 참을 반환
+- 배열의 **요소 중 하나라도** 주어진 판별 함수를 통과하면 true 반환
 - 모든 요소가 통과하지 못하면 거짓 반환
 - 빈 배열은 항상 false 반환
 
 ```js
 const arr = [1, 2, 3, 4, 5]
+
+const result = arr.some((elem) => {
+    return elem % 2 == 0
+})
 
 const result = arr.some((elem) => elem % 2 === 0)
 ```
@@ -763,12 +832,16 @@ array.every((element, index, array) => {
 ```
 
 - array.every(callback(element[, index[, array]]))
-- 배열의 **모든 요소가** 주어진 판별 함수를 통과하면 참을 반환
-- 하나의 요소라도 통과하지 못하면 거짓 반환
+- 배열의 **모든 요소가** 주어진 판별 함수를 통과하면 true을 반환
+- 하나의 요소라도 통과하지 못하면 false 반환
 - 빈 배열은 항상 true 반환
 
 ```js
 const arr = [1, 2, 3, 4, 5]
+
+const result = arr.every((elem) => {
+    return elem % 2 === 0
+})
 
 const result2 = arr.every((elem) => elem % 2 === 0)
 ```
@@ -852,6 +925,15 @@ const bookShop = {
   magazines,
 }
 console.log(bookShop)
+
+const url = 'https://test.com'
+const data = {
+  message: 'Hello World!'
+}
+const request = {
+  url,
+  data,
+}
 ```
 
 **2. 메서드명 축약**
@@ -866,6 +948,13 @@ const obj = {
 }
 
 obj.greeting()
+
+const tom = {
+  name: 'Tom',
+  introduce() {
+    console.log('Hi, my name is' + this.name)
+  }
+}
 ```
 
 **3. 계산된 속성 (computed property name)**
@@ -896,9 +985,13 @@ const userInformation = {
   email: 'student@student.com'
 }
 
-const name = userInformation.name
 const { userId } = userInformation
 const { phoneNumber, email } = userInformation
+
+const { name, extension, size } = savedFile
+function fileSummary() {
+  console.log(`The file ${name}.${extension} is size of ${size} bytes.`)
+}
 ```
 
 **5. Spread syntax (…)**
@@ -911,33 +1004,43 @@ const obj = {b: 2, c: 3, d: 4}
 const newObj = {a: 1, ...obj, e: 5}
 
 console.log(newObj)
+
+const defaultColors = ['red', 'green', 'blue'];
+const favoriteColors = ['navy', 'black', 'gold', 'white']
+const palette = [...defaultColors, ...favoriteColors]
+
+const info1 = { name: 'Tom', age: 30 }
+const info2 = { isMarried: true, balance: 3000 }
+const fullInfo = { ...info1, ...info2 }
+
+console.log(fullInfo)
 ```
 
-**JavaScriptON (JavaScript Object Notation)**
+**JSON (JavaScript Object Notation)**
 
 - Key-Value 형태로 이루어진 자료 표기법
-- JavaScript의 Object와 유사한 구조를 가지고 있지만 Object는 그 자체로 타입이고, JavaScriptON은 형식이 있는 문자열
-- **즉, JavaScriptON을 Object로 사용하기 위해서는 변환 작업이 필요**
+- JavaScript의 Object와 유사한 구조를 가지고 있지만 Object는 그 자체로 타입이고, JSON은 형식이 있는 "문자열"
+- **즉, JSON을 Object로 사용하기 위해서는 변환 작업이 필요**
 
-JavaScriptON (JavaScript Object Notation) 변환
+JSON 변환
 
 ```js
-const JavaScriptObject = {
+const jsObject = {
   coffee: 'Americano',
   iceCream: 'Cookie and cream',
 }
 ```
 
 ```js
-const objToJavaScripton = JavaScriptON.stringify(JavaScriptObject)
+const objToJson = JSON.stringify(jsObject)
 
-console.log(objToJavaScripton)
-console.log(typeof objToJavaScripton)
+console.log(objToJson)
+console.log(typeof objToJson)
 
-const JavaScriptonToObj = JavaScriptON.parse(objToJavaScripton)
+const jsonToObj = JSON.parse(objToJson)
 
-console.log(JavaScriptonToObj)
-console.log(typeof JavaScriptonToobj)
+console.log(jsonToObj)
+console.log(typeof jsonToObj)
 ```
 
 ## finish
