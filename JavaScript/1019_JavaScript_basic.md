@@ -1,47 +1,25 @@
 [JavaScript Basic](#javascript-basic)
-
 1. [JavaScript 시작하기](#1-javascript-시작하기)
-
    + [JavaScript를 배워야 하는 이유](#javascript를-배워야-하는-이유)
-
    + [JavaScript의 역사](#javascript의-역사)
-
    + [JavaScript 실행환경 구성](#javascript-실행환경-구성)
-
 2. [JavaScript 기초 문법](#2-javascript-기초-문법)
-
    + [코드 작성법](#코드-작성법)
-
    + [변수와 식별자](#변수와-식별자)
-
    + [데이터 타입](#데이터-타입)
-
    + [연산자](#연산자)
-
    + [조건문](#조건문)
-
    + [반복문](#반복문)
-
 3. [Function](#3-function)
-
    + [함수의 정의](#함수의-정의)
-
    + [선언식과 표현식](#선언식과-표현식)
-
    + [Arrow Function](#arrow-function)
-
 4. [Array_Object](#4-array_object)
-
    + [Array](#array)
-
    + [Array method 기초](#array-method-기초)
-
    + [Array method 심화](#array-method-심화)
-
    + [Object](#object)
-
    + [Object 관련 문법](#object-관련-문법)
-
 * [finish](#finish)
 
 # JavaScript Basic
