@@ -348,7 +348,7 @@
   @api_view(['GET'])
   def article_detail(request, article_pk):
       article = Article.objects.get(pk=article_pk)
-      serializer = ArticleSerializer(articles)
+      serializer = ArticleSerializer(article)
       return Response(serializer.data)
   ```
 
@@ -431,7 +431,7 @@
   def article_detail(request, article_pk):
       article = Article.objects.get(pk=article_pk)
       if request.method == 'GET':
-  	    serializer = ArticleSerializer(articles)
+  	    serializer = ArticleSerializer(article)
   	    return Response(serializer.data)
       elif request.method == 'DELETE':
           article.delete()
@@ -690,6 +690,8 @@
              fields = '__all__'
      ```
 
+  
+  
   - models.py에서 **related_name**을 통해 이름 변경 가능
   
   - 역참조 시 생성되는 **comment_set**을 override 할 수 있음
@@ -708,6 +710,8 @@
     ```
   
   - 작성 후 삭제
+  
+  
   
   2. Nested relationships
   
