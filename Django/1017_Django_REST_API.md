@@ -227,6 +227,47 @@
 
 단일 모델의 data를 Serialization하여 JSON으로 변환하는 방법에 대한 학습
 
+```bash
+$ python -m venv venv
+$ source venv/Scripts/actiate
+$ django-admin startproject 프로젝트 .
+$ python manage.py startapp 앱
+$ python manage.py makemigrations
+$ python manage.py migrate
+$ python manage.py createsuperuser
+$ python manage.py runserver
+```
+
+```python
+# /settings.py
+INSTALLED_APPS = [
+    '앱',
+    'rest_framework',  
+    'django_seed',
+    'django_extensions',
+]
+```
+
+```python
+# /urls.py
+from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/v1/', include('앱.urls')),
+]
+```
+
+```python
+# 앱/admin.py
+from django.contrib import admin
+
+from .models import 모델클래스
+
+admin.site.register(모델클래스)
+```
+
 ### ModelSerializer
 
 **ModelSerializaer 작성**
@@ -321,7 +362,7 @@
       
       class Meta:
           model = Article
-          fields = '__all__'
+          fields = '__all__'  # 생성, 수정을 할 때 모든 필드의 유효성 검사
   ```
   
   ```python
@@ -436,6 +477,11 @@
       elif request.method == 'DELETE':
           article.delete()
           return Response({'id': article_pk}, status=status.HTTP_204_NO_CONTENT)
+        
+      elif request.method == 'DELETE':
+          review.delete()
+          msg = f"review {review_pk} is deleted"
+          return Response({"delete": msg}, status=status.HTTP_204_NO_CONTENT)
   ```
 
 **PUT**
@@ -583,9 +629,9 @@
 
 **Passing Additional attrbitues to `.save()`**
 
-- save() 메서드는 특정 Serializer 인스턴스를 저장하는 과정에서 추가적인 데이터를 받을 수 있음
+- **save() 메서드는 특정 Serializer 인스턴스를 저장하는 과정에서 추가적인 데이터를 받을 수 있음**
 
-- CommentSerializer를 통해 Serialize되는 과정에서 Parameter로 넘어온 article_pk에 해당하는 article 객체를 추가적인 데이터를 넘겨 저장
+- **CommentSerializer를 통해 Serialize되는 과정에서 Parameter로 넘어온 article_pk에 해당하는 article 객체를 추가적인 데이터를 넘겨 저장**
 
   ```python
   # articles/views.py
@@ -602,7 +648,7 @@
       article = Article.objects.get(pk=article_pk)
       serializer = CommentSerializer(data=request.data)
       if serializer.is_valid(raise_exception=True):
-          serializer.save(article=article)
+          serializer.save(article=article)  # 저장
           return Response(serializer.data, status=status.HTTP_201_CREATED)
   ```
 
@@ -610,7 +656,7 @@
 
 - **read_only_fields** 를 사용해 외래 키 필드를 **읽기 전용 필드**로 설정
 
-- 읽기 전용 필드는 데이터를 전송하는 시점에 **해당 필드를 유효성 검사에서 제외시키고 데이터 조회 시에는 출력**하도록 함
+- **읽기 전용 필드**는 데이터를 전송하는 시점에 **해당 필드를 유효성 검사에서 제외시키고 데이터 조회 시에는 출력**하도록 함
 
   ```python
   # articles/serializers.py
@@ -655,6 +701,11 @@
           if serializer.is_valid(raise_exception=True):
               serializer.save()
               return Response(serializer.data)
+            
+      elif request.method == 'DELETE':
+          review.delete()
+          msg = f"review {review_pk} is deleted"
+          return Response({"delete": msg}, status=status.HTTP_204_NO_CONTENT)
   ```
 
 ### N-1 역참조 데이터 조회
@@ -692,9 +743,15 @@
 
   
   
-  - models.py에서 **related_name**을 통해 이름 변경 가능
+  - **models.py**에서 ForeignKey 클래스의 선택 옵션 **related_name**을 통해 이름 변경 가능
   
-  - 역참조 시 생성되는 **comment_set**을 override 할 수 있음
+  - 역참조 시 사용하는 model_set manager 매니저 이름을 변경할 수 있음
+  
+    - **역참조** 시 생성되는 **comment_set**을 **override** 할 수 있음
+  
+  - 작성 후, migration 과정이 필요
+  
+  - 선택 옵션이지만 상황에 따라 반드시 작성해야 하는 경우가 생기기도 함
   
     ```python
     # articles/models.py
@@ -707,9 +764,19 @@
         content = models.TextField()
         created_at = models.DateTimeField(auto_now_add=True)
         updated_at = models.DateTimeField(auto_now=True)
+    
+    class Movie(models.Model):
+        actors = models.ManyToManyField(Actor, related_name='movies')
+        
+    class Review(models.Model):
+        movie = models.ForeignKey(
+            Movie, on_delete=models.CASCADE, related_name='review_set')
     ```
   
-  - 작성 후 삭제
+  - 작성 후 삭제(다시 원래 코드로 복구)
+  
+    - **위와 같이 변경 하면 기존 article.comment_set은 더 이상 사용할 수 없고, article.comments로 대체됨**
+  
   
   
   
