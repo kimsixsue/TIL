@@ -3,6 +3,7 @@
 ## [JavaScript](/JavaScript) 정리
 
 1. [2022-10-19 수] [JavaScript basic](./JavaScript/1019_JavaScript_basic.md)
+1. [2022-10-24 월] [JS_DOM_Event_this](./JavaScript/1024_JS_DOM_Event_this.md)
 
 ## [Django+DB](/Django) 정리
 
