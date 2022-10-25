@@ -1,4 +1,4 @@
-[JS_DOM_Event_this](#js-dom-event-this)
+[JS_DOM_Event_this](#js_dom_event_this)
 
 1. [DOM](#1-dom)
 
@@ -59,11 +59,11 @@ JavaScript는 웹 페이지에서 다양한 기능을 구현하는 스크립트 
 
 **DOM의 주요 객체**
 
-- **window** object
+- `window` object
   - DOM을 표현하는 창
   - 가장 최상위 객체 ( 작성 시 생략 가능)
   - 탭 기능이 있는 브라우저에서는 각각의 탭을 각각의 window 객체로 나타냄
-- **document** object
+- `document` object
   - 브라우저가 불러온 웹 페이지
   - 페이지 컨텐츠의 진입점 역할을 하며, `<body>` 등과 같은 수많은 다른 요소들을 포함하고 있음
 
@@ -120,9 +120,13 @@ JavaScript는 웹 페이지에서 다양한 기능을 구현하는 스크립트 
   - 지정된 요소의 값을 설정
   - 속성이 이미 존재하면 값을 갱신, 존재하지 않으면 지정된 이름과 값으로 새 속성을 추가
 
+> https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Default_parameters
+
 ## 2. Event
 
 - **Event**란 프로그래밍하고 있는 시스템에서 일어나는 action 사건 혹은 occurrence 발생인데, 우리가 원한다면 그것들에 어떠한 방식으로 응답할 수 있도록 시스템이 말해주는 것
+
+  > https://developer.mozilla.org/ko/docs/Learn/JavaScript/Building_blocks/Events
 
 ### Event Intro
 
@@ -158,7 +162,9 @@ EventTarget.addEventListener(type, listener)
     - input, click, submit
 
       > https://developer.mozilla.org/docs/Web/Events
-
+      >
+      > https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event
+  
   - **listener**
     - 지정된 타입의 Event를 수신할 객체
     - JavaScript function 객체(콜백 함수)여야 함
@@ -290,7 +296,38 @@ aTag.addEventListener('click', function (event) {
 })
 ```
 
+> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll
 
+```js
+function filterMessage(event) {
+  let filteredInput = event.target.value
+  for (i = 0; i < badWords.length; i++) {
+    filteredInput = filteredInput.replaceAll(badWords[i], "**")
+  }
+  output.innerText = filteredInput
+}
+userInput.addEventListener('input', filterMessage)
+```
+
+```html
+<style>
+  .line {
+    text-decoration: line-through;
+  }
+</style>
+<script>
+  event.preventDefault()
+  const inputTag = document.querySelector('input')
+  const data = inputTag.value
+  if (data.trim()) {
+    liTag.onclick = function () {
+      liTag.classList.toggle('line')
+    }
+  } else {
+    alert('값을 입력하세요')
+  }
+</script>
+```
 
 ## 3. this
 
@@ -325,7 +362,7 @@ aTag.addEventListener('click', function (event) {
    - 전역은 브라우저에서는 window, Node.js는 global을 의미함
 2. Method (Function in Object, 객체의 메서드로서)
    - 메서드로 선언하고 호출한다면, 객체의 메서드이므로 해당 객체가 바인딩
-3. Nested (Function 키워드)
+3. Nested (`Function` 키워드)
    - forEach의 콜백 함수에서의 this가 메서드의 객체를 가리키지 못하고 전역 객체 window를 가리킴
    - 단순 호출 방식으로 사용되었기 때문
    - 이를 해결하기 위해 등장한 함수 표현식이 바로 "화살표 함수"
@@ -344,9 +381,9 @@ aTag.addEventListener('click', function (event) {
 
 **this와 addEventListener**
 
-- addEventListener에서의 콜백 함수는 특별하게 function 키워드의 경우, addEventListener를 호출한 대상(event.target)을 뜻함
-- 화살표 함수의 경우 상위 스코프를 지칭하기 때문에 window 객체가 바인딩 됨
-- "addEventListener 의 콜백 함수는 function 키워드를 사용하기"
+- addEventListener에서의 콜백 함수는 특별하게 function 키워드의 경우, addEventListener를 호출한 대상(`event.target`)을 뜻함
+- 화살표 함수의 경우 상위 스코프를 지칭하기 때문에 `window` 객체가 바인딩 됨
+- "addEventListener 의 콜백 함수는 `function` 키워드를 사용하기"
 
 ## finish
 
