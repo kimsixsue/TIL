@@ -1,4 +1,28 @@
-# JS_DOM_Event_this
+[JS_DOM_Event_this](#js-dom-event-this)
+
+1. [DOM](#1-dom)
+
+   + [DOM](#dom)
+
+   + [DOM 조작](#dom-조작)
+
+2. [Event](#2-event)
+
+   + [Event Intro](#event-intro)
+
+   + [Event 실습](#event-실습)
+
+   + [Event 취소](#event-취소)
+
+   + [Event 취소 실습](#event-취소-실습)
+
+   + [Event 종합 실습](#event-종합-실습)
+
+3. [this](#3-this)
+
+- [finish](#finish)
+
+#  JS_DOM_Event_this
 
 ## 1. DOM
 
@@ -155,6 +179,18 @@ btn.addEventListener('click', function() {
 ```
 
 ```js
+const btn = document.createElement('button')
+btn.innerText = '로그 출력'
+
+const bodyTag = document.querySelector('body')
+bodyTag.appendChild(btn)
+
+btn.addEventListener('click', function() {
+  console.log('버튼을 클릭하였습니다!')
+})
+```
+
+```js
 const textInput = document.querySelector('#text-input')
 textInput.addEventListener('input', function (event) {
   // console.log(event)
@@ -241,6 +277,20 @@ const addTodo = function (event) {
 }
 formTag.addEventListener('submit', addTodo)
 ```
+
+```js
+const aTag = document.createElement('a')
+aTag.setAttribute('href','https://www.google.com/')
+aTag.innerText = 'GOOGLE'
+const bodyTag = document.querySelector('body')
+bodyTag.appendChild(aTag)
+
+aTag.addEventListener('click', function (event) {
+  event.preventDefault()
+})
+```
+
+
 
 ## 3. this
 
