@@ -1,4 +1,4 @@
-[JS_DOM_Event_this](#js-dom-event-this)
+[JS_DOM_Event_this](#js_dom_event_this)
 
 1. [DOM](#1-dom)
 
