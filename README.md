@@ -4,6 +4,7 @@
 
 1. [2022-10-19 수] [JavaScript basic](./JavaScript/1019_JavaScript_basic.md)
 1. [2022-10-24 월] [JS_DOM_Event_this](./JavaScript/1024_JS_DOM_Event_this.md)
+1. [2022-10-26 수] [Asynchronous_JS](./JavaScript/1026_Asynchronous_JS.md)
 
 ## [Django+DB](/Django) 정리
 
