@@ -2,18 +2,15 @@
 
 1. [Many to many relationship](#1-many-to-many-relationship)
    + [Intro](#intro)
-
 2. [ManyToManyField](#2-manytomanyfield)
-
 3. [M-N Article-User](#3-m-n-article-user)
    + [Like](#like)
-
 4. [M-N User-User](#4-m-n-user-user)
 
    + [Profile](#profile)
-
+   
    + [Follow](#follow)
-
+   
 * [finish](#finish)
 
 # DB relationship N-N
@@ -215,6 +212,7 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
   # articles/urls.py
   
   urlpatterns = [
+    
       path('<int:article_pk>/likes/', views.likes, name='likes'),
   ]
   ```
@@ -241,9 +239,11 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
   <!-- articles/index.html -->
   
   {% extends 'base.html' %}
+  
   {% block content %}
   
   {% for article in articles %}
+  
   <div>
     <form action="{% url 'articles:likes' article.pk %}" method="POST">
       {% csrf_token %}
@@ -293,6 +293,7 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
   # accounts/urls.py
   
   urlpatterns = [
+    
       path('profile/<username>/', views.profile, name='profile'),
   ]
   ```
@@ -317,6 +318,7 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
   <!-- accounts/index.html -->
   
   {% extends 'base.html' %}
+  
   {% block content %}
   <h1>{{ person.username }}님의 프로필 </h1>
   
@@ -390,6 +392,7 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
   # accounts/urls.py
   
   urlpatterns = [
+    
       path('<int:user_pk>/follow/', views.follow, name='follow'),
   ]
   ```
@@ -416,6 +419,7 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
   <!-- accounts/profile.html -->
   
   {% extends 'base.html' %}
+  
   {% block content %}
   
   <h1>{{ person.username }}님의 프로필</h1>

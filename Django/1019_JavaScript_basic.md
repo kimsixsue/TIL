@@ -194,7 +194,6 @@
   const message = `홍길동은 ${age}세입니다.`
   ```
 
-  
 
 **Template literals 템플릿 리터럴**
 
@@ -583,6 +582,7 @@ function 함수명() {
 
   ```js
   (function(num) { return num ** 3 })(2) // 8
+  
   (num => num ** 3 )(2) // 8
   ```
 
