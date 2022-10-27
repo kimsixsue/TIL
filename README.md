@@ -1,12 +1,6 @@
 # Today I Learned
 
-## [JavaScript](/JavaScript) 정리
-
-1. [2022-10-19 수] [JavaScript basic](./JavaScript/1019_JavaScript_basic.md)
-1. [2022-10-24 월] [JS_DOM_Event_this](./JavaScript/1024_JS_DOM_Event_this.md)
-1. [2022-10-26 수] [Asynchronous_JS](./JavaScript/1026_Asynchronous_JS.md)
-
-## [Django+DB](/Django) 정리
+## [Django_DB_JS](/Django) 정리
 
 1. [2022-08-30 화] [Template URL VariableRouting](./Django/0830_Django_Template_VariableRouting.md)
 
@@ -20,11 +14,17 @@
 
 6. [2022-10-05 수] [DB relationship N:1](./Django/1005_DB_relationship_N_1.md)
 
-7. [2022-10-11 화] [Static_Media](./Django/1011_Django_Static_Media.md)
+7. [2022-10-11 화] [Static Media](./Django/1011_Django_Static_Media.md)
 
 8. [2022-10-12 수] [DB relationship N:N](./Django/1012_DB_relationship_N_N.md)
 
-9. [2022-10-17 월] [Django_REST_API](./Django/1017_Django_REST_API.md)
+9. [2022-10-17 월] [Django REST API](./Django/1017_Django_REST_API.md)
+
+10. [2022-10-19 수] [JavaScript basic](./Django/1019_JavaScript_basic.md)
+
+11. [2022-10-24 월] [JS DOM Event this](./Django/1024_JS_DOM_Event_this.md)
+
+12. [2022-10-26 수] [Asynchronous JS](./Django/1026_Asynchronous_JS.md)
 
 ## [Web](/Web) 정리
 
