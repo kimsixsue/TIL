@@ -234,6 +234,7 @@ $ django-admin startproject 프로젝트 .
 $ python manage.py startapp 앱
 $ python manage.py makemigrations
 $ python manage.py migrate
+$ python manage.py loaddata D/M.json D/M.json D/M.json
 $ python manage.py createsuperuser
 $ python manage.py runserver
 ```
