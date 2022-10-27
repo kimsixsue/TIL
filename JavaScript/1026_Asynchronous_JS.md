@@ -1,24 +1,24 @@
-[Asynchronous_JS](#asynchronous-js)
+[Asynchronous_JS](#asynchronous_js)
 
-1. [동기와 비동기](#동기와-비동기)
+1. [동기와 비동기](#1-동기와-비동기)
 
    + [동기 Synchronous](#동기-synchronous)
 
    + [비동기 Asynchronous](#비동기-asynchronous)
 
-2. [JavaScript의 비동기 처리](#javascript의-비동기-처리)
+2. [JavaScript의 비동기 처리](#2-javascript의-비동기-처리)
 
-3. [Axios 라이브러리](#axios-라이브러리)
+3. [Axios 라이브러리](#3-axios-라이브러리)
 
    + [Axios 기본 구조](#axios-기본-구조)
 
-4. [Callback과 Promise](#callback과-promise)
+4. [Callback과 Promise](#4-callback과-promise)
    + [콜백 함수 Callback Function](#콜백-함수-callback-function)
    
    + [Promise 프로미스](#promise-프로미스)
    
-5. [AJAX](#AJAX)
-+ [비동기 적용하기](#비동기-적용하기)
+5. [AJAX](#5-ajax)
+   + [비동기 적용하기](#비동기-적용하기)
 
 * [finish](#finish)
 
