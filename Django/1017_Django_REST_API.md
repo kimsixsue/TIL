@@ -374,6 +374,7 @@ admin.site.register(모델클래스)
   from . import views
   
   urlpatterns = [
+    
       path('articles/<int:article_pk>/', views.articles_detail),
   ]
   ```
@@ -416,6 +417,7 @@ admin.site.register(모델클래스)
           articles = Article.objects.all()
           serializer = ArticleListSerializer(articles, many=True)
           return Response(serializer.data)
+        
       elif request.method == 'POST':
           serializer = ArticleSerializer(data=request.data)
           if serializer.is_valid():
@@ -475,6 +477,7 @@ admin.site.register(모델클래스)
       if request.method == 'GET':
   	    serializer = ArticleSerializer(article)
   	    return Response(serializer.data)
+      
       elif request.method == 'DELETE':
           article.delete()
           return Response({'id': article_pk}, status=status.HTTP_204_NO_CONTENT)
@@ -540,6 +543,7 @@ admin.site.register(모델클래스)
   from . import views
   
   urlpatterns = [
+    
       path('comments/', views.comment_list),
   ]
   ```
@@ -573,6 +577,7 @@ admin.site.register(모델클래스)
   from . import views
   
   urlpatterns = [
+    
       path('comments/<int:comment_pk>/', views.comment_detail),
   ]
   ```
@@ -605,6 +610,7 @@ admin.site.register(모델클래스)
   from . import views
   
   urlpatterns = [
+    
       path('articles/<int:article_pk>/comments/', views.comment_create),
   ]
   ```
@@ -694,9 +700,11 @@ admin.site.register(모델클래스)
       if request.method == 'GET':
   	    serializer = CommentSerializer(comment)
   	    return Response(serializer.data)
+      
       elif request.method == 'DELETE':
           comment.delete()
           return Response({'id': comment_pk}, status=status.HTTP_204_NO_CONTENT)
+        
       elif request.method == 'PUT':
           serializer = CommentSerializer(comment, data=request.data)
           if serializer.is_valid(raise_exception=True):
@@ -792,6 +800,7 @@ admin.site.register(모델클래스)
      
      # 역참조 할 때 댓글 정보를 보여주기 위해 Commentserializer 위치 이동
      class CommentSerializer(serializers.ModelSerializer):
+       
          class Meta:
              model = Comment
              fields = '__all__'

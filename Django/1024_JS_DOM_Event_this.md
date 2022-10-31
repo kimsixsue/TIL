@@ -174,6 +174,7 @@ EventTarget.addEventListener(type, listener)
 
 ```js
 let countNumber = 0
+
 const btn = document.querySelector('#btn')
 console.log(btn)
 btn.addEventListener('click', function() {
@@ -202,6 +203,7 @@ textInput.addEventListener('input', function (event) {
   // console.log(event)
   console.log(event.target) // == textInput
   console.log(event.target.value)
+  
   const pTag = document.querySelector('p')
   pTag.innerText = event.target.value
 })
@@ -213,6 +215,7 @@ input.addEventListener('input', function(event) {
   const h1Tag = document.querySelector('h1')
   h1Tag.innerText = event.target.value
 })
+
 const btn = document.querySelector('#btn')
 btn.addEventListener('click', function() {
   const h1 = document.querySelector('h1')
@@ -257,6 +260,7 @@ button.addEventListener('click', function(event) {
     ball.classList.add('ball')
     ballContainer.appendChild(ball)
   }
+  
   const resultDiv = document.querySelector('#result')
   resultDiv.appendChild(ballContainer)
 })
@@ -268,12 +272,14 @@ const formTag = document.querySelector('form')
 
 const addTodo = function (event) {
   event.preventDefault()
+  
   const inputTag = document.querySelector('.inputData')
   const data = inputTag.value
 
   if (data.trim()) {
     const liTag = document.createElement('li')
     liTag.innerText = data
+    
     const ulTag = document.querySelector('ul')
     ulTag.appendChild(liTag)
     event.target.reset()
@@ -281,6 +287,7 @@ const addTodo = function (event) {
     alert('할 일을 입력하세요.')
   }
 }
+
 formTag.addEventListener('submit', addTodo)
 ```
 
