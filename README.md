@@ -26,6 +26,8 @@
 
 12. [2022-10-26 수] [Asynchronous JS](./Django/1026_Asynchronous_JS.md)
 
+13. [2022-10-31 월] [Vue.js](./Django/1031_Vue.js.md)
+
 ## [Web](/Web) 정리
 
 1. [2022-08-01 월] [HTML/CSS](./Web/0801_HTML_CSS.md)
