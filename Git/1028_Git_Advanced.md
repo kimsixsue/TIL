@@ -383,15 +383,39 @@
 
 ### 2.3 Git의 기초 - 커밋 히스토리 조회하기
 
+```bash
+git log [<options>] [<revision-range>] [[--] <path>…]
+```
+
 Git에는 히스토리를 조회하는 명령어인 `git log` 가 있다. 특별한 아규먼트 없이 `git log` 명령을 실행하면 저장소의 커밋 히스토리를 시간순으로 보여준다. 즉, 가장 최근의 커밋이 가장 먼저 나온다.
+
+`--abbrev-commit` 옵션. 40자 짜리 SHA-1 체크섬을 전부 보여주는 것이 아니라 처음 몇 자만 보여준다.
+
+- Instead of showing the full 40-byte hexadecimal commit object name, show a prefix that names the object uniquely. `--abbrev=<n>` (which also modifies diff output, if it is displayed) option can be used to specify the minimum length of the prefix.
+
+  This should make `--pretty=oneline` a whole lot more readable for people using 80-column terminals.
 
 `--pretty` 옵션이다. 지정한 형식으로 보여준다. 이 옵션을 통해 히스토리 내용을 보여줄 때 기본 형식 이외에 여러 가지 중에 하나를 선택할 수 있다. 몇개 선택할 수 있는 옵션의 값이 있다. `oneline` 옵션은 각 커밋을 한 라인으로 보여준다. 이 옵션은 많은 커밋을 한 번에 조회할 때 유용하다.
 
-`--graph` 옵션. 이 명령은 브랜치와 머지 히스토리를 보여주는 아스키 그래프를 출력한다.
+`--pretty[=<format>]`
+
+`--format=<format>`
+
+Pretty-print the contents of the commit logs in a given format, where `<format>` can be one of `oneline`, `short`, `medium`, `full`, `fuller`, `reference`, `email`, `raw`, format:`<string>` and tformat:`<string>`. When `<format>` is none of the above, and has `%placeholder` in it, it acts as if `--pretty=tformat:<format>` were given.
+
+See the "PRETTY FORMATS" section for some additional details for each format. When `=<format>` part is omitted, it defaults to `medium`.
+
+Note: you can specify the default pretty format in the repository configuration
 
 `--oneline` 옵션.  `--pretty=oneline --abbrev-commit` 두 옵션을 함께 사용한 것과 같다.
 
-`--abbrev-commit` 옵션. 40자 짜리 SHA-1 체크섬을 전부 보여주는 것이 아니라 처음 몇 자만 보여준다.
+`--all` 옵션. Pretend as if all the refs in `refs/`, along with `HEAD`, are listed on the command line as `<commit>`.
+
+`--graph` 옵션. 이 명령은 브랜치와 머지 히스토리를 보여주는 아스키 그래프를 출력한다.
+
+- Draw a text-based graphical representation of the commit history on the left hand side of the output. This may cause extra lines to be printed in between commits, in order for the graph history to be drawn properly.
+
+
 
 ### 2.4 Git의 기초 - 되돌리기
 
