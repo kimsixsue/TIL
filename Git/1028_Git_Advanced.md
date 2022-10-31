@@ -17,7 +17,7 @@
 
   - `git restore`를 통해 되돌리면, 해당 내용을 복원할 수 없으니 주의할 것
 
-    `git restore {filename}`
+    `git restore {filename} `
 
 - `git stash`
 
@@ -103,7 +103,7 @@
       - 아래쪽으로 갈수록 옛날
         - 그러고 `git reset --hard` 하면 복구 가능
       - `git reset –hard 1fe67b2`
-      
+    
   - `commit ID` 는 되돌아가고 싶은 시점의 `commit ID` 를 작성
   
 - `git revert`
@@ -258,7 +258,7 @@
       2. `git remote add 단축이름 [원본 URL]`
        - 동기화하기 위해서
          - 단축이름 ex) upstream
-       
+      
       3. branch해서 기능 개발
   
       4. 기능 개발 완료 후 나의 원격 저장소에 해당 브랜치를 `push`
@@ -271,8 +271,8 @@
 
 - git branch 전략
 
-  - git-flow
-
+  - Git Flow
+    - 대규모 프로젝트에 적합한 브랜치 전략
     - 다음과 같이 5개의 브랜치로 나누어 소스 코드를 관리
 
       - `master` : 제품으로 출시될 수 있는 브랜치
@@ -280,23 +280,17 @@
       - `develop` : 다음 출시 버전을 개발하는 브랜치
 
       - `feature` : 기능을 개발하는 브랜치
-      
+  
       - `release` : 이번 출시 버전을 준비하는 브랜치
 
       - `hotfix` : 출시 버전에서 발생한 버그를 수정하는 브랜치
-
-    - 대규모 프로젝트에 적합한 브랜치 전략
-
-  - GitHub-flow
-
-    - GitHub에서 사용하는 방식
-
-  - gitlab flow
-
-    - gitlab에서 사용하는 방식
-  - pre-production
-    
-- 결국 어떤 브랜치 전략은 팀에서 전략을 정한다.
+  - GitHub Flow
+  
+  - GitLab Flow
+  
+    - pre-production
+  
+- 결국 팀에서 브랜치 전략을 정한다.
   
 - **브랜치는 자주 생성하는 것을 강력히 권장한다.**
   
@@ -305,13 +299,8 @@
 기타 명령어
 
 - `git log --oneline` : 깃 로그 한 줄로 보기
-
 - `git log --oneline --all` : 로그 전부 다 볼 수 있음
-
 - `git log --oneline --all --graph` : 그래프로 로그기록 확인 가능
-
-- `cat .git/HEAD` : 현재 HEAD가 어떤 브랜치를 가리키는지 알 수 있음
-
 - **무조건 `merge` 후에 branch 사용하지 않으면 삭제해줘야 함**
 
 
@@ -324,119 +313,91 @@
 
 Staging Area에서만 제거하고 워킹 디렉토리에 있는 파일은 지우지 않고 남겨둘 수 있다. 다시 말해서 있는 파일은 그대로 두고 Git만 추적하지 않게 한다. 이것은 `.gitignore` 파일에 추가하는 것을 빼먹었거나 대용량 로그 파일이나 컴파일된 파일인 `.a` 파일 같은 것을 실수로 추가했을 때 쓴다. `--cached` 옵션을 사용하여 명령을 실행한다.
 
-```console
-$ git rm --cached filename
-```
+`git rm --cached filename`
 
 ### 커밋 히스토리 조회하기
 
-```bash
-git log [<options>] [<revision-range>] [[--] <path>…]
-```
+`git log [<options>]`
 
 Git에는 히스토리를 조회하는 명령어인 `git log` 가 있다. 특별한 아규먼트 없이 `git log` 명령을 실행하면 저장소의 커밋 히스토리를 시간순으로 보여준다. 즉, 가장 최근의 커밋이 가장 먼저 나온다.
 
-`--abbrev-commit` 옵션. 40자 짜리 SHA-1 체크섬을 전부 보여주는 것이 아니라 처음 몇 자만 보여준다.
+`--oneline` 
 
-- Instead of showing the full 40-byte hexadecimal commit object name, show a prefix that names the object uniquely. `--abbrev=<n>` (which also modifies diff output, if it is displayed) option can be used to specify the minimum length of the prefix.
+- 각 커밋을 **한 라인으로 보여준다**. 많은 커밋을 한 번에 조회할 때 유용하다.
 
-  This should make `--pretty=oneline` a whole lot more readable for people using 80-column terminals.
+`--all` 
 
-`--pretty` 옵션이다. 지정한 형식으로 보여준다. 이 옵션을 통해 히스토리 내용을 보여줄 때 기본 형식 이외에 여러 가지 중에 하나를 선택할 수 있다. 몇개 선택할 수 있는 옵션의 값이 있다. `oneline` 옵션은 각 커밋을 한 라인으로 보여준다. 이 옵션은 많은 커밋을 한 번에 조회할 때 유용하다.
+- Pretend as if **all** the refs in `refs/`, along with `HEAD`, are listed on the command line as `<commit>`.
 
-`--pretty[=<format>]`
+`--graph` 
 
-`--format=<format>`
+- Draw a text-based **graphical** representation of the commit **history** on the left hand side of the output. This may cause extra lines to be printed in between commits, in order for the **graph history** to be drawn properly.
 
-Pretty-print the contents of the commit logs in a given format, where `<format>` can be one of `oneline`, `short`, `medium`, `full`, `fuller`, `reference`, `email`, `raw`, format:`<string>` and tformat:`<string>`. When `<format>` is none of the above, and has `%placeholder` in it, it acts as if `--pretty=tformat:<format>` were given.
-
-See the "PRETTY FORMATS" section for some additional details for each format. When `=<format>` part is omitted, it defaults to `medium`.
-
-Note: you can specify the default pretty format in the repository configuration
-
-`--oneline` 옵션.  `--pretty=oneline --abbrev-commit` 두 옵션을 함께 사용한 것과 같다.
-
-`--all` 옵션. Pretend as if all the refs in `refs/`, along with `HEAD`, are listed on the command line as `<commit>`.
-
-`--graph` 옵션. 이 명령은 브랜치와 머지 히스토리를 보여주는 아스키 그래프를 출력한다.
-
-- Draw a text-based graphical representation of the commit history on the left hand side of the output. This may cause extra lines to be printed in between commits, in order for the graph history to be drawn properly.
+```bash
+$ git log --pretty=format:"%h %s" --graph
+* 2d3acf9 Ignore errors from SIGCHLD on trap
+*  5e3ee11 Merge branch 'master' of git://github.com/dustin/grit
+|\
+| * 420eac9 Add method for getting the current branch
+* | 30e367c Timeout code and tests
+* | 5a09431 Add timeout protection to grit
+* | e1193f8 Support for heads with slashes in them
+|/
+* d6016bc Require time for xmlschema
+*  11d191e Merge branch 'defunkt' into local
+```
 
 ### 되돌리기
 
-종종 완료한 커밋을 수정해야 할 때가 있다. 너무 일찍 커밋했거나 어떤 파일을 빼먹었을 때 그리고 커밋 메시지를 잘못 적었을 때 한다. 다시 커밋하고 싶으면 파일 수정 작업을 하고 Staging Area에 추가한 다음 `--amend` 옵션을 사용하여 커밋을 재작성 할 수 있다.
+만약 마지막으로 커밋하고 나서 수정한 것이 없다면(커밋하자마자 바로 이 명령을 실행하는 경우) 조금 전에 한 커밋과 모든 것이 같다. 이때는 **커밋 메시지만 수정한다.**
 
-이 명령은 Staging Area를 사용하여 커밋한다. 만약 마지막으로 커밋하고 나서 수정한 것이 없다면(커밋하자마자 바로 이 명령을 실행하는 경우) 조금 전에 한 커밋과 모든 것이 같다. 이때는 커밋 메시지만 수정한다.
+편집기가 실행되면 이전 커밋 메시지가 자동으로 포함된다. 메시지를 수정하지 않고 그대로 커밋해도 **기존의 커밋을 덮어쓴다.**
 
-편집기가 실행되면 이전 커밋 메시지가 자동으로 포함된다. 메시지를 수정하지 않고 그대로 커밋해도 기존의 커밋을 덮어쓴다.
-
-이렇게 `--amend` 옵션으로 커밋을 고치는 작업은, 추가로 작업한 일이 작다고 하더라도 이전의 커밋을 완전히 새로 고쳐서 새 커밋으로 변경하는 것을 의미한다. 이전의 커밋은 일어나지 않은 일이 되는 것이고 당연히 히스토리에도 남지 않는다.
-
-`--amend` 옵션으로 커밋을 고치는 작업이 주는 장점은 마지막 커밋 작업에서 아주 살짝 뭔가 빠뜨린 것을 넣거나 변경하는 것을 새 커밋으로 분리하지 않고 하나의 커밋에서 처리하는 것이다. “앗차, 빠진 파일 넣었음”, “이전 커밋에서 오타 살짝 고침” 등의 커밋을 만들지 않겠다는 말이다.
+이렇게 `--amend` 옵션으로 커밋을 고치는 작업은, 추가로 작업한 일이 작다고 하더라도 **이전의 커밋을 완전히 새로 고쳐서 새 커밋으로 변경**하는 것을 의미한다. **이전의 커밋은 일어나지 않은 일이 되는 것이고 당연히 히스토리에도 남지 않는다.
 
 Git으로 *커밋* 한 모든 것은 언제나 복구할 수 있다. 삭제한 브랜치에 있었던 것도, `--amend` 옵션으로 다시 커밋한 것도 복구할 수 있다. 하지만 커밋하지 않고 잃어버린 것은 절대로 되돌릴 수 없다.
 
 > https://git-scm.com/docs/git-restore
 
-`git restore file`
+`git restore {file}`
 
-Restore working tree files
+- Restore working tree files. Restore specified paths in the working tree with some contents from a restore source. **If a path is tracked but does not exist in the restore source, it will be removed to match the source.**
 
-Restore specified paths in the working tree with some contents from a restore source. If a path is tracked but does not exist in the restore source, it will be removed to match the source.
+`git restore --staged {file}`
 
-`git restore --staged file`
-
-Specify the restore location. If neither option is specified, by default the working tree is restored. Specifying `--staged` will only restore the index. Specifying both restores both.
-
-The command can also be used to restore the content in the index with `--staged`
-
-By default, if `--staged` is given, the contents are restored from `HEAD`, otherwise from the index.
+- Specify the restore location. If neither option is specified, by default the working tree is restored. Specifying `--staged` will only restore the index. Specifying both restores both. The command can also be used to restore the content in the index with `--staged` By default, if `--staged` is given, the **contents are restored** from `HEAD`, otherwise from the index.
 
 ### 리모트 저장소
 
-리모트 저장소 확인하기
-
-저장소를 Clone 하면 `origin`이라는 리모트 저장소가 자동으로 등록되기 때문에 `origin`이라는 이름을 볼 수 있
-
-다.
-
 리모트 저장소 추가하기
 
-기존 워킹 디렉토리에 새 리모트 저장소를 쉽게 추가할 수 있는데 `git remote add <단축이름> <url>` 명령을 사용한다.
+- 기존 워킹 디렉토리에 새 리모트 저장소를 쉽게 추가할 수 있는데 `git remote add <단축이름> <url>` 명령을 사용한다.
 
 리모트 저장소를  Pull 하기
 
-그냥 쉽게 `git pull` 명령으로 리모트 저장소 브랜치에서 데이터를 가져올 뿐만 아니라 자동으로 로컬 브랜치와 Merge 시킬 수 있다(다음 섹션과 [Git 브랜치](https://git-scm.com/book/ko/v2/ch00/ch03-git-branching) 에서 좀더 자세히 살펴본다). 먼저 `git clone` 명령은 자동으로 로컬의 master 브랜치가 리모트 저장소의 master 브랜치를 추적하도록 한다(물론 리모트 저장소에 master 브랜치가 있다는 가정에서). 그리고 `git pull` 명령은 Clone 한 서버에서 데이터를 가져오고 그 데이터를 자동으로 현재 작업하는 코드와 Merge 시킨다.
+- 그냥 쉽게 `git pull` 명령으로 리모트 저장소 브랜치에서 데이터를 가져올 뿐만 아니라 자동으로 로컬 브랜치와 Merge 시킬 수 있다. 먼저 `git clone` 명령은 자동으로 로컬의 master 브랜치가 리모트 저장소의 master 브랜치를 추적하도록 한다(물론 **리모트 저장소**에 master 브랜치가 있다는 가정에서). 그리고 `git pull` 명령은 Clone 한 서버에서 데이터를 가져오고 그 데이터를 자동으로 현재 작업하는 코드와 Merge 시킨다.
 
 리모트 저장소에 Push 하기
 
-프로젝트를 공유하고 싶을 때 Upstream 저장소에 Push 할 수 있다. 이 명령은 `git push <리모트 저장소 이름> <브랜치 이름>`으로 단순하다. master 브랜치를 `origin` 서버에 Push 하려면(다시 말하지만 Clone 하면 보통 자동으로 origin 이름이 생성된다) 아래와 같이 서버에 Push 한다.
+- 프로젝트를 공유하고 싶을 때 **Upstream 저장소에 Push** 할 수 있다. 이 명령은 `git push <리모트 저장소 이름> <브랜치 이름>`으로 단순하다. master 브랜치를 `origin` 서버에 Push 하려면(다시 말하지만 Clone 하면 보통 자동으로 origin 이름이 생성된다) `git push origin master` 로 서버에 Push 한다.
 
-```bash
-$ git push origin master
-```
-
-이 명령은 Clone 한 리모트 저장소에 쓰기 권한이 있고, Clone 하고 난 이후 아무도 Upstream 저장소에 Push 하지 않았을 때만 사용할 수 있다. 다시 말해서 Clone 한 사람이 여러 명 있을 때, 다른 사람이 Push 한 후에 Push 하려고 하면 Push 할 수 없다. 먼저 다른 사람이 작업한 것을 가져와서 Merge 한 후에 Push 할 수 있다.
+- **Clone 한 리모트 저장소에 쓰기 권한이 있고**, Clone 하고 난 이후 아무도 Upstream 저장소에 Push 하지 않았을 때만 사용할 수 있다. 다시 말해서 Clone 한 사람이 여러 명 있을 때, 다른 사람이 Push 한 후에 Push 하려고 하면 Push 할 수 없다. 먼저 다른 사람이 작업한 것을 가져와서 **Merge 한 후에 Push** 할 수 있다.
 
 ## 3. Git 브랜치
 
 ### 브랜치란 무엇인가
 
-모든 버전 관리 시스템은 브랜치를 지원한다. 개발을 하다 보면 코드를 여러 개로 복사해야 하는 일이 자주 생긴다. 코드를 통째로 복사하고 나서 원래 코드와는 상관없이 독립적으로 개발을 진행할 수 있는데, 이렇게 독립적으로 개발하는 것이 브랜치다.
+모든 버전 관리 시스템은 브랜치를 지원한다. 개발을 하다 보면 코드를 **여러 개로** 복사해야 하는 일이 자주 생긴다. 코드를 통째로 복사하고 나서 원래 코드와는 상관없이 **독립적으로 개발을 진행**할 수 있는데, 이렇게 **독립적**으로 개발하는 것이 브랜치다.
 
-사람들은 브랜치 모델이 Git의 최고의 장점이라고, Git이 다른 것들과 구분되는 특징이라고 말한다. 당최 어떤 점이 그렇게 특별한 것일까. Git의 브랜치는 매우 가볍다. 순식간에 브랜치를 새로 만들고 브랜치 사이를 이동할 수 있다. 다른 버전 관리 시스템과는 달리 Git은 브랜치를 만들어 작업하고 나중에 Merge 하는 방법을 권장한다. 심지어 하루에 수십 번씩해도 괜찮다. Git 브랜치에 능숙해지면 개발 방식이 완전히 바뀌고 다른 도구를 사용할 수 없게 된다.
+사람들은 브랜치 모델이 Git의 최고의 장점이라고, Git이 다른 것들과 구분되는 특징이라고 말한다. 당최 어떤 점이 그렇게 특별한 것일까. Git의 브랜치는 매우 가볍다. **순식간에 브랜치를 새로 만들고** 브랜치 사이를 이동할 수 있다. 다른 버전 관리 시스템과는 달리 Git은 브랜치를 만들어 작업하고 나중에 Merge 하는 방법을 권장한다. 심지어 하루에 수십 번씩해도 괜찮다. Git 브랜치에 능숙해지면 개발 방식이 완전히 바뀌고 다른 도구를 사용할 수 없게 된다.
 
 Git의 브랜치는 커밋 사이를 가볍게 이동할 수 있는 어떤 포인터 같은 것이다. 기본적으로 Git은 `master` 브랜치를 만든다. 처음 커밋하면 이 `master` 브랜치가 생성된 커밋을 가리킨다. 이후 커밋을 만들면 `master` 브랜치는 자동으로 가장 마지막 커밋을 가리킨다.
 
 Git 버전 관리 시스템에서 “master” 브랜치는 특별하지 않다. 다른 브랜치와 다른 것이 없다. 다만 모든 저장소에서 “master” 브랜치가 존재하는 이유는 `git init` 명령으로 초기화할 때 자동으로 만들어진 이 브랜치를 애써 다른 이름으로 변경하지 않기 때문이다.
 
-새 브랜치 생성하기
+**새 브랜치 생성하기**
 
-브랜치를 하나 새로 만들면 어떨까. 브랜치를 하나 만들어서 놀자. 아래와 같이 `git branch` 명령으로 `testing` 브랜치를 만든다.
-
-```bash
-$ git branch testing
-```
+`git branch {branch name}`
 
 새로 만든 브랜치도 지금 작업하고 있던 마지막 커밋을 가리킨다.
 
@@ -456,54 +417,24 @@ $ git log --oneline --decorate --graph --all
 
 실제로 Git의 브랜치는 어떤 한 커밋을 가리키는 40글자의 SHA-1 체크섬 파일에 불과하기 때문에 만들기도 쉽고 지우기도 쉽다. 새로 브랜치를 하나 만드는 것은 41바이트 크기의 파일을(40자와 줄 바꿈 문자) 하나 만드는 것에 불과하다.
 
-브랜치가 필요할 때 프로젝트를 통째로 복사해야 하는 다른 버전 관리 도구와 Git의 차이는 극명하다. 통째로 복사하는 작업은 프로젝트 크기에 따라 다르겠지만 수십 초에서 수십 분까지 걸린다. 그에 비해 Git은 순식간이다. 게다가 커밋을 할 때마다 이전 커밋의 정보를 저장하기 때문에 Merge 할 때 어디서부터(Merge Base) 합쳐야 하는지 안다. 이런 특징은 개발자들이 수시로 브랜치를 만들어 사용하게 한다.
-
-> https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell
-
-From Git version 2.23 onwards you can use `git switch` instead of `git checkout` to:
-
-- Switch to an existing branch: `git switch testing-branch`.
-- Create a new branch and switch to it: `git switch -c <new-branch-name>`. The `-c` flag stands for create, you can also use the full flag: `--create`.
-  - If you want to create a new branch to retain commits you create, you may do so (now or later) by using -c with the switch command.
-- Return to your previously checked out branch: `git switch -`.
+브랜치가 필요할 때 프로젝트를 통째로 복사해야 하는 다른 버전 관리 도구와 Git의 차이는 극명하다. 통째로 복사하는 작업은 프로젝트 크기에 따라 다르겠지만 수십 초에서 수십 분까지 걸린다. 그에 비해 **Git은 순식간이다.** 게다가 커밋을 할 때마다 이전 커밋의 정보를 저장하기 때문에 Merge 할 때 어디서부터(Merge Base) 합쳐야 하는지 안다. 이런 특징은 개발자들이 수시로 브랜치를 만들어 사용하게 한다.
 
 > https://git-scm.com/docs/git-switch
 
-`git switch (-c|-C) <new-branch> [<start-point>]`
+`git switch (-c|-C) <branch-name> [<start-point>]`
 
-Switch branches
+- **Switch to a specified branch**. The working tree and the index are updated to match the branch. All new commits will be added to the tip of this branch.
 
-Switch to a specified branch. The working tree and the index are updated to match the branch. All new commits will be added to the tip of this branch.
+- `git switch -c <new-branch-name>` : **Create a new branch and switch to it**
 
-Optionally a new branch could be created with either `-c`, `-C`, automatically from a remote branch of same name (see `--guess`), or detach the working tree from any branch with `--detach`, along with switching.
+- The `-c` flag stands for **create**
+  - If you want to **create a new branch** to retain commits you create, you may do so (now or later) by using **-c with the switch** command.
 
-Switching branches does not require a clean index and working tree (i.e. no differences compared to `HEAD`). The operation is aborted however if the operation leads to loss of local changes, unless told otherwise with `--discard-changes` or `--merge`.
-
-THIS COMMAND IS EXPERIMENTAL. THE BEHAVIOR MAY CHANGE.
-
-`<new-branch>`
-
-Name for the new branch.
-
-`<start-point>`
-
-The starting point for the new branch. Specifying a `<start-point>` allows you to create a branch based on some other point in history than where HEAD currently points. (Or, in the case of `--detach`, allows you to inspect and detach from some other point.)
-
-You can use the `@{-N}` syntax to refer to the N-th last branch/commit switched to using "git switch" or "git checkout" operation. You may also specify `-` which is synonymous to `@{-1}`. This is often used to switch quickly between two branches, or to undo a branch switch by mistake.
-
-As a special case, you may use `A...B` as a shortcut for the merge base of `A` and `B` if there is exactly one merge base. You can leave out at most one of `A` and `B`, in which case it defaults to `HEAD`.
-
-You can grow a new branch from any commit. For example, switch to "HEAD~3" and create branch "fixup":
+- `<start-point>` : **You can grow a new branch from any commit**.
 
 ```bash
 $ git switch -c fixup HEAD~3
 Switched to a new branch 'fixup'
-```
-
-If it turns out whatever you have done is worth keeping, you can always create a new name for it (without switching away):
-
-```bash
-$ git switch -c good-surprises
 ```
 
 ### 브랜치와 Merge 의 기초
@@ -514,22 +445,31 @@ $ git switch -c good-surprises
 2. 새로운 이슈를 처리할 새 Branch를 하나 생성한다.
 3. 새로 만든 Branch에서 작업을 진행한다.
 
-이때 중요한 문제가 생겨서 그것을 해결하는 Hotfix를 먼저 만들어야 한다. 그러면 아래와 같이 할 수 있다.
+이때 중요한 문제가 생겨서 그것을 해결하는 `Hotfix`를 먼저 만들어야 한다. 그러면 아래와 같이 할 수 있다.
 
 1. 새로운 이슈를 처리하기 이전의 운영(Production) 브랜치로 이동한다.
-2. Hotfix 브랜치를 새로 하나 생성한다.
-3. 수정한 Hotfix 테스트를 마치고 운영 브랜치로 Merge 한다.
+2. `Hotfix` 브랜치를 새로 하나 생성한다.
+3. 수정한 `Hotfix` 테스트를 마치고 운영 브랜치로 Merge 한다.
 4. 다시 작업하던 브랜치로 옮겨가서 하던 일 진행한다.
 
 브랜치의 기초
 
-운영 환경에 적용하려면 문제를 제대로 고쳤는지 테스트하고 최종적으로 운영환경에 배포하기 위해 `hotfix` 브랜치를 `master` 브랜치에 합쳐야 한다. `git merge` 명령으로 아래와 같이 한다.
+- 운영 환경에 적용하려면 문제를 제대로 고쳤는지 테스트하고 최종적으로 운영환경에 배포하기 위해 `hotfix` 브랜치를 `master` 브랜치에 합쳐야 한다. `git merge` 명령으로 아래와 같이 한다.
 
-Merge 메시지에서 “fast-forward” 가 보이는가. `hotfix` 브랜치가 가리키는 `C4` 커밋이 `C2` 커밋에 기반한 브랜치이기 때문에 브랜치 포인터는 Merge 과정 없이 그저 최신 커밋으로 이동한다. 이런 Merge 방식을 “Fast forward” 라고 부른다. 다시 말해 A 브랜치에서 다른 B 브랜치를 Merge 할 때 B 브랜치가 A 브랜치 이후의 커밋을 가리키고 있으면 그저 A 브랜치가 B 브랜치와 동일한 커밋을 가리키도록 이동시킬 뿐이다.
+```bash
+$ git checkout master
+$ git merge hotfix
+Updating f42c576..3a0874c
+Fast-forward
+ index.html | 2 ++
+ 1 file changed, 2 insertions(+)
+```
 
-이제 `hotfix`는 `master` 브랜치에 포함됐고 운영환경에 적용할 수 있는 상태가 되었다고 가정해보자.
+- **Merge** 메시지에서 “**fast-forward**” 가 보이는가. `hotfix` 브랜치가 가리키는 `C4` 커밋이 `C2` 커밋에 기반한 브랜치이기 때문에 브랜치 포인터는 Merge 과정 없이 그저 최신 **커밋으로 이동한다.** 이런 Merge 방식을 “**Fast forward**” 라고 부른다. 다시 말해 A 브랜치에서 다른 B 브랜치를 Merge 할 때 B 브랜치가 A 브랜치 이후의 커밋을 가리키고 있으면 그저 A 브랜치가 B 브랜치와 동일한 커밋을 가리키도록 이동시킬 뿐이다.
 
-급한 문제를 해결하고 `master` 브랜치에 적용하고 나면 다시 일하던 브랜치로 돌아가야 한다. 이제 더 이상 필요없는 `hotfix` 브랜치는 삭제한다. `git branch` 명령에 `-d` 옵션을 주고 브랜치를 삭제한다.
+- 이제 `hotfix`는 `master` 브랜치에 포함됐고 운영환경에 적용할 수 있는 상태가 되었다고 가정해보자.
+
+- 급한 문제를 해결하고 `master` 브랜치에 적용하고 나면 다시 일하던 브랜치로 돌아가야 한다. 이제 더 이상 필요없는 `hotfix` **브랜치는 삭제한다**. `git branch` 명령에 `-d` 옵션을 주고 **브랜치를 삭제한다.**
 
 ```bash
 $ git branch -d hotfix
@@ -541,21 +481,19 @@ Merge 의 기초
 53번 이슈를 다 구현하고 master 브랜치에 Merge 하는 과정을 살펴보자. `iss53` 브랜치를 `master` 브랜치에 Merge 하는 것은 앞서 살펴본 `hotfix` 브랜치를 Merge 하는 것과 비슷하다. `git merge` 명령으로 합칠 브랜치에서 합쳐질 브랜치를 Merge 하면 된다.
 
 ```bash
-$ git checkout master
-Switched to branch 'master'
 $ git merge iss53
 Merge made by the 'recursive' strategy.
 index.html |    1 +
 1 file changed, 1 insertion(+)
 ```
 
-`hotfix` 를 Merge 했을 때와 메시지가 다르다. 현재 브랜치가 가리키는 커밋이 Merge 할 브랜치의 조상이 아니므로 Git은 'Fast-forward’로 Merge 하지 않는다. 이 경우에는 Git은 각 브랜치가 가리키는 커밋 두 개와 공통 조상 하나를 사용하여 3-way Merge를 한다.
+`hotfix` 를 Merge 했을 때와 메시지가 다르다. 현재 브랜치가 가리키는 커밋이 Merge 할 브랜치의 조상이 아니므로 Git은 'Fast-forward’로 Merge 하지 않는다. 이 경우에는 Git은 각 브랜치가 가리키는 커밋 두 개와 공통 조상 하나를 사용하여 **3-way Merge**를 한다.
 
-단순히 브랜치 포인터를 최신 커밋으로 옮기는 게 아니라 3-way Merge 의 결과를 별도의 커밋으로 만들고 나서 해당 브랜치가 그 커밋을 가리키도록 이동시킨다. 그래서 이런 커밋은 부모가 여러 개고 Merge 커밋이라고 부른다.
+단순히 브랜치 포인터를 최신 커밋으로 옮기는 게 아니라 **3-way Merge** 의 결과를 별도의 커밋으로 만들고 나서 해당 브랜치가 그 커밋을 가리키도록 이동시킨다. 그래서 이런 커밋은 부모가 여러 개고 Merge 커밋이라고 부른다.
 
 충돌의 기초
 
-가끔씩 3-way Merge가 실패할 때도 있다. Merge 하는 두 브랜치에서 같은 파일의 한 부분을 동시에 수정하고 Merge 하면 Git은 해당 부분을 Merge 하지 못한다. 예를 들어, 53번 이슈와 `hotfix` 가 같은 부분을 수정했다면 Git은 Merge 하지 못하고 아래와 같은 충돌(Conflict) 메시지를 출력한다.
+가끔씩 3-way Merge가 실패할 때도 있다. Merge 하는 **두 브랜치에서 같은 파일의 한 부분을 동시에 수정하고** Merge 하면 Git은 해당 부분을 Merge 하지 못한다. 예를 들어, 53번 이슈와 `hotfix` 가 같은 부분을 수정했다면 Git은 Merge 하지 못하고 아래와 같은 **충돌(Conflict)** 메시지를 출력한다.
 
 ```bash
 $ git merge iss53
@@ -580,7 +518,7 @@ Unmerged paths:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-충돌이 일어난 파일은 unmerged 상태로 표시된다. Git은 충돌이 난 부분을 표준 형식에 따라 표시해준다. 그러면 개발자는 해당 부분을 수동으로 해결한다. 충돌 난 부분은 아래와 같이 표시된다.
+충돌이 일어난 파일은 unmerged 상태로 표시된다. Git은 충돌이 난 부분을 표준 형식에 따라 표시해준다. 그러면 개발자는 **해당 부분을 수동으로 해결한다.** 충돌 난 부분은 아래와 같이 표시된다.
 
 ```bash
 <<<<<<< HEAD:index.html
@@ -592,7 +530,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 >>>>>>> iss53:index.html
 ```
 
-`=======` 위쪽의 내용은 `HEAD` 버전(merge 명령을 실행할 때 작업하던 `master` 브랜치)의 내용이고 아래쪽은 `iss53` 브랜치의 내용이다. 충돌을 해결하려면 위쪽이나 아래쪽 내용 중에서 고르거나 새로 작성하여 Merge 한다. 아래는 아예 새로 작성하여 충돌을 해결하는 예제다.
+**`=======` 위쪽의 내용은 `HEAD` 버전(merge 명령을 실행할 때 작업하던 `master` 브랜치)의 내용이고** 아래쪽은 `iss53` 브랜치의 내용이다. 충돌을 해결하려면 위쪽이나 아래쪽 내용 중에서 고르거나 새로 작성하여 Merge 한다. 아래는 아예 새로 작성하여 충돌을 해결하는 예제다.
 
 ```bash
 <div id="footer">
@@ -600,15 +538,15 @@ please contact us at email.support@github.com
 </div>
 ```
 
-충돌한 양쪽에서 조금씩 가져와서 새로 수정했다. 그리고 `<<<<<<<`, `=======`, `>>>>>>>`가 포함된 행을 삭제했다. 이렇게 충돌한 부분을 해결하고 `git add` 명령으로 다시 Git에 저장한다.
+충돌한 양쪽에서 조금씩 가져와서 새로 수정했다. **그리고 `<<<<<<<`, `=======`, `>>>>>>>`가 포함된 행을 삭제했다. 이렇게 충돌한 부분을 해결하고 `git add` 명령으로 다시 Git에 저장한다.**
 
-충돌을 해결하고 나서 해당 파일이 Staging Area에 저장됐는지 확인했으면 `git commit` 명령으로 Merge 한 것을 커밋한다.
+충돌을 해결하고 나서 해당 파일이 Staging Area에 저장됐는지 확인했으면 **`git commit`** 명령으로 Merge 한 것을 커밋한다.
 
 어떻게 충돌을 해결했고 좀 더 확인해야 하는 부분은 무엇이고 왜 그렇게 해결했는지에 대해서 자세하게 기록한다. 자세한 기록은 나중에 이 Merge 커밋을 이해하는데 도움을 준다.
 
 ### 브랜치 관리
 
-`git branch` 명령은 단순히 브랜치를 만들고 삭제하는 것이 아니다. 아무런 옵션 없이 실행하면 브랜치의 목록을 보여준다.
+`git branch` 명령은 단순히 브랜치를 만들고 삭제하는 것이 아니다. 아무런 옵션 없이 실행하면 **브랜치의 목록을 보여준다.**
 
 ``` bash
 $ git branch
@@ -617,7 +555,7 @@ $ git branch
   testing
 ```
 
-`iss53` 브랜치는 앞에서 이미 Merge 했기 때문에 목록에 나타난다. `*` 기호가 붙어 있지 않은 브랜치는 `git branch -d` 명령으로 삭제해도 되는 브랜치다. 이미 다른 브랜치와 Merge 했기 때문에 삭제해도 정보를 잃지 않는다.
+`iss53` 브랜치는 앞에서 이미 Merge 했기 때문에 목록에 나타난다. `*` 기호가 붙어 있지 않은 브랜치는 **`git branch -d` 명령으로 삭제해도 되는 브랜치다. 이미 다른 브랜치와 Merge 했기 때문에 삭제해도** 정보를 잃지 않는다.
 
 위에는 없었던 다른 브랜치가 보인다. 아직 Merge 하지 않은 커밋을 담고 있기 때문에 `git branch -d` 명령으로 삭제되지 않는다.
 
@@ -627,7 +565,7 @@ error: The branch 'testing' is not fully merged.
 If you are sure you want to delete it, run 'git branch -D testing'.
 ```
 
-Merge 하지 않은 브랜치를 강제로 삭제하려면 `-D` 옵션으로 삭제한다.
+Merge 하지 않은 브랜치를 **강제로 삭제**하려면 `-D` 옵션으로 삭제한다.
 
 ### 브랜치 워크플로
 
@@ -635,13 +573,13 @@ Long-Running 브랜치
 
 Git은 꼼꼼하게 3-way Merge를 사용하기 때문에 장기간에 걸쳐서 한 브랜치를 다른 브랜치와 여러 번 Merge 하는 것이 쉬운 편이다. 그래서 개발 과정에서 필요한 용도에 따라 브랜치를 만들어 두고 계속 사용할 수 있다. 그리고 정기적으로 브랜치를 다른 브랜치로 Merge 한다.
 
-이런 접근법에 따라서 Git 개발자가 많이 선호하는 워크플로가 하나 있다. 배포했거나 배포할 코드만 `master` 브랜치에 Merge 해서 안정 버전의 코드만 `master` 브랜치에 둔다. 개발을 진행하고 안정화하는 브랜치는 `develop` 이나 `next` 라는 이름으로 추가로 만들어 사용한다. 이 브랜치는 언젠가 안정 상태가 되겠지만, 항상 안정 상태를 유지해야 하는 것이 아니다. 테스트를 거쳐서 안정적이라고 판단되면 `master` 브랜치에 Merge 한다. 토픽 브랜치(앞서 살펴본 `iss53` 브랜치 같은 짧은 호흡 브랜치)에도 적용할 수 있는데, 해당 토픽을 처리하고 테스트해서 버그도 없고 안정적이면 그때 Merge 한다.
+이런 접근법에 따라서 Git 개발자가 많이 선호하는 워크플로가 하나 있다. 배포했거나 **배포할 코드만 `master` 브랜치에 Merge 해서** 안정 버전의 코드만 `master` 브랜치에 둔다. **개발을 진행하고 안정화하는 브랜치는 `develop`** 이나 `next` 라는 이름으로 추가로 만들어 사용한다. 이 브랜치는 언젠가 안정 상태가 되겠지만, 항상 안정 상태를 유지해야 하는 것이 아니다. 테스트를 거쳐서 안정적이라고 판단되면 `master` 브랜치에 Merge 한다. 토픽 브랜치(앞서 살펴본 `iss53` 브랜치 같은 짧은 호흡 브랜치)에도 적용할 수 있는데, 해당 토픽을 처리하고 테스트해서 버그도 없고 안정적이면 그때 Merge 한다.
 
 사실 우리가 얘기하는 것은 커밋을 가리키는 포인터에 대한 얘기다. 커밋 포인터를 만들고 수정하고 분리하고 합치는지에 대한 것이다. 개발 브랜치는 공격적으로 히스토리를 만들어 나아가고 안정 브랜치는 이미 만든 히스토리를 뒤따르며 나아간다.
 
 토픽 브랜치
 
-토픽 브랜치는 프로젝트 크기에 상관없이 유용하다. 토픽 브랜치는 어떤 한 가지 주제나 작업을 위해 만든 짧은 호흡의 브랜치다. 다른 버전 관리 시스템에서는 이런 브랜치를 본 적이 없을 것이다. Git이 아닌 다른 버전 관리 도구에서는 브랜치를 하나 만드는 데 큰 비용이 든다. Git에서는 매우 일상적으로 브랜치를 만들고 Merge 하고 삭제한다.
+토픽 브랜치는 프로젝트 크기에 상관없이 유용하다. 토픽 브랜치는 **어떤 한 가지 주제나 작업을 위해 만든** 짧은 호흡의 브랜치다. 다른 버전 관리 시스템에서는 이런 브랜치를 본 적이 없을 것이다. Git이 아닌 다른 버전 관리 도구에서는 브랜치를 하나 만드는 데 큰 비용이 든다. Git에서는 매우 일상적으로 브랜치를 만들고 Merge 하고 삭제한다.
 
 앞서 사용한 `iss53` 이나 `hotfix` 브랜치가 토픽 브랜치다. 우리는 브랜치를 새로 만들고 어느 정도 커밋하고 나서 다시 `master` 브랜치에 Merge 하고 브랜치 삭제도 해 보았다. 보통 주제별로 브랜치를 만들고 각각은 독립돼 있기 때문에 매우 쉽게 컨텍스트 사이를 옮겨 다닐 수 있다. 묶음별로 나눠서 일하면 내용별로 검토하기에도, 테스트하기에도 더 편하다. 각 작업을 하루든 한 달이든 유지하다가 `master` 브랜치에 Merge 할 시점이 되면 순서에 관계없이 그때 Merge 하면 된다.
 
@@ -651,13 +589,9 @@ Git은 꼼꼼하게 3-way Merge를 사용하기 때문에 장기간에 걸쳐서
 
 브랜치 추적
 
-리모트 트래킹 브랜치를 로컬 브랜치로 Checkout 하면 자동으로 “트래킹(Tracking) 브랜치” 가 만들어진다 (트래킹 하는 대상 브랜치를 “Upstream 브랜치” 라고 부른다). 트래킹 브랜치는 리모트 브랜치와 직접적인 연결고리가 있는 로컬 브랜치이다. 트래킹 브랜치에서 `git pull` 명령을 내리면 리모트 저장소로부터 데이터를 내려받아 연결된 리모트 브랜치와 자동으로 Merge 한다.
+리모트 트래킹 브랜치를 로컬 브랜치로 Checkout 하면 자동으로 “트래킹(Tracking) 브랜치” 가 만들어진다 (트래킹 하는 대상 브랜치를 “**Upstream** 브랜치” 라고 부른다). 트래킹 브랜치는 리모트 브랜치와 직접적인 연결고리가 있는 로컬 브랜치이다. 트래킹 브랜치에서 `git pull` 명령을 내리면 리모트 저장소로부터 데이터를 내려받아 연결된 리모트 브랜치와 자동으로 Merge 한다.
 
-서버로부터 저장소를 Clone을 하면 Git은 자동으로 `master` 브랜치를 `origin/master` 브랜치의 트래킹 브랜치로 만든다. 트래킹 브랜치를 직접 만들 수 있는데 리모트를 `origin` 이 아닌 다른 리모트로 할 수도 있고, 브랜치도 `master` 가 아닌 다른 브랜치로 추적하게 할 수 있다. `git checkout -b <branch> <remote>/<branch>` 명령으로 간단히 트래킹 브랜치를 만들 수 있다. `--track` 옵션을 사용하여 로컬 브랜치 이름을 자동으로 생성할 수 있다.
-
-Upstream 별명
-
-추적 브랜치를 설정했다면 추적 브랜치 이름을 `@{upstream}` 이나 `@{u}` 로 짧게 대체하여 사용할 수 있다. `master` 브랜치가 `origin/master` 브랜치를 추적하는 경우라면 `git merge origin/master` 명령과 `git merge @{u}` 명령을 똑같이 사용할 수 있다.
+서버로부터 **저장소를 Clone**을 하면 Git은 자동으로 `master` 브랜치를 `origin/master` 브랜치의 트래킹 브랜치로 만든다. 트래킹 브랜치를 직접 만들 수 있는데 리모트를 `origin` 이 아닌 다른 리모트로 할 수도 있고, 브랜치도 `master` 가 아닌 다른 브랜치로 추적하게 할 수 있다. 
 
 ## 5. 분산 환경에서의 Git
 
@@ -665,7 +599,7 @@ Upstream 별명
 
 ### Integration-Manager 워크플로
 
-Git을 사용하면 리모트 저장소를 여러 개 운영할 수 있다. 다른 개발자는 읽기만 가능하고 자신은 쓰기도 가능한 공개 저장소를 만드는 워크플로도 된다. 이 Workflow에는 보통 프로젝트를 대표하는 공식 저장소가 있다. 기여자는 우선 공식 저장소를 하나 Clone 하고 수정하고 나서 자신의 저장소에 Push 한다. 그 다음에 프로젝트 Integration-Manager에게 새 저장소에서 Pull 하라고 요청한다. 그러면 그 Integration-Manager는 기여자의 저장소를 리모트 저장소로 등록하고, 로컬에서 기여물을 테스트하고, 프로젝트 메인 브랜치에 Merge 하고, 그 내용을 다시 프로젝트 메인 저장소에 Push 한다.
+Git을 사용하면 **리모트 저장소**를 여러 개 운영할 수 있다. 다른 개발자는 읽기만 가능하고 자신은 쓰기도 가능한 **공개 저장소**를 만드는 워크플로도 된다. 이 Workflow에는 보통 프로젝트를 대표하는 공식 저장소가 있다. **기여자는 우선 공식 저장소를 하나 Clone 하고** 수정하고 나서 **자신의 저장소에 Push 한다.** 그 다음에 프로젝트 Integration-Manager에게 새 저장소에서 **Pull 하라고 요청한다.** 그러면 그 Integration-Manager는 기여자의 저장소를 리모트 저장소로 등록하고, 로컬에서 기여물을 테스트하고, 프로젝트 메인 브랜치에 **Merge 하고**, 그 내용을 다시 프로젝트 메인 저장소에 Push 한다.
 
 1. 프로젝트 Integration-Manager는 프로젝트 메인 저장소에 Push를 한다.
 2. 프로젝트 기여자는 메인 저장소를 Clone 하고 수정한다.
@@ -703,6 +637,8 @@ Merge 하는 워크플로
 개발자가 많고 규모가 큰 프로젝트에서는 최소한 두 단계로 Merge 하는 것이 좋다. 살펴볼 예에서는 Long-Running 브랜치를 두 개를 유지한다. `master` 브랜치는 아주 안정적인 버전을 릴리즈하기 위해서 사용한다. `develop` 브랜치는 새로 수정된 코드를 통합할 때 사용한다. 그리고 두 브랜치를 모두 공개 저장소에 Push 한다. 우선 develop 브랜치에 토픽 브랜치를 같이 Merge 한다. 그 후에 릴리즈해도 될만한 수준이 되면 master 브랜치를 develop 브랜치까지 Fast-forward시킨다
 
 이 워크플로를 사용하면 프로젝트 저장소를 Clone 하고 나서 개발자가 안정 버전이 필요하면 master 브랜치를 빌드하고 안정적이지 않더라도 좀 더 최신 버전이 필요하면 develop 브랜치를 Checkout 하여 빌드한다. 이 개념을 좀 더 확장해서 사용할 수 있다. 토픽 브랜치를 검증하기 위한 `integrate` 브랜치를 만들어 Merge 하고 토픽 브랜치가 검증되면 develop 브랜치에 Merge 한다. 그리고 `develop` 브랜치에서 충분히 안정하다는 것이 증명되면 그때 `master` 브랜치에 Fast-forward Merge 한다.
+
+> https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project
 
 ## 6. GitHub
 
@@ -926,17 +862,21 @@ $ git revert -m 1 HEAD
 
 `-m 1` 옵션은 부모가 보호되어야 하는 “mainline” 이라는 것을 나타낸다. `HEAD` 로 Merge를 했을 때(`git merge topic1`) Merge 커밋은 두 개의 부모 커밋을 가진다. 첫 번째 부모 커밋은 `HEAD` (`C6`)이고 두 번째 부모 커밋은 Merge 대상 브랜치(`C4`)이다. 두 번째 부모 커밋(`C4`)에서 받아온 모든 변경사항을 되돌리고 첫 번째 부모(`C6`)로부터 받아온 변경사항은 남겨두고자 하는 상황이다.
 
-변경사항을 되돌린 커밋은 히스토리에서 아래와 같이 보인다.
+> https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging
+
+This can often be useful to basically trick Git into thinking that a branch is already merged when doing a merge later on. For example, say you branched off a `release` branch and have done some work on it that you will want to merge back into your `master` branch at some point. In the meantime some bugfix on `master` needs to be backported into your `release` branch. You can merge the bugfix branch into the `release` branch and also `merge -s ours` the same branch into your `master` branch (even though the fix is already there) so when you later merge the `release` branch again, there are no conflicts from the bugfix.
 
 ## 10. Git의 내부
 
 ### Git Refs
 
-HEAD
+**HEAD**
 
-`git branch <branch>` 명령을 실행할 때 Git은 어떻게 마지막 커밋의 SHA-1 값을 아는 걸까? HEAD 파일은 현 브랜치를 가리키는 간접(symbolic) Refs다.
+`git branch <branch>` 명령을 실행할 때 Git은 어떻게 마지막 커밋의 SHA-1 값을 아는 걸까? **HEAD** 파일은 현 브랜치를 가리키는 간접(symbolic) Refs다.
 
 간접 Refs라서 다른 것과 다르다. 이 Refs는 다른 Refs를 가리키는 것이라서 SHA-1 값이 없다. 파일을 열어 보면 아래와 같이 생겼다.
+
+**현재 HEAD가 어떤 브랜치를 가리키는지 알 수 있음**
 
 ```bash
 $ cat .git/HEAD
