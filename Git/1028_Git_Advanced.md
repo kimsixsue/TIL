@@ -9,41 +9,33 @@
 
 ### working directory
 
-- **git restore**
-
-  > https://git-scm.com/docs/git-restore
+- `git restore`
 
   - 수정한 파일을 수정 전으로 되돌리기
 
   - 이미 버전 관리가 되는 파일만 되돌리기 가능
 
-  - git restore를 통해 되돌리면, 해당 내용을 복원할 수 없으니 주의할 것
+  - `git restore`를 통해 되돌리면, 해당 내용을 복원할 수 없으니 주의할 것
 
     `git restore {filename}`
 
-- **git stash**
-
-  > https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-Stashing%EA%B3%BC-Cleaning
+- `git stash`
 
   - 수정한 파일을 stash 영역(임시 공간)으로 옮긴 후에
-  - 수정한 부분 초기화
+- 수정한 부분 초기화
 
 ### staging area 작업 단계 되돌리기
 
-- git  add 를 잘못한 경우 되돌리기
+- `git add` 를 잘못한 경우 되돌리기
 - root-commit 이 없는 경우 : `git rm --cached filename`
   - 한 번도 커밋 안 한 경우
-  - git 으로 관리 되는 file -> 더는 관리하고 싶지 않을 때, `gitignore`에 등록해야 하는데 commit 됐을 때
-- root-commit 이 있는 경우 : `git restore --stage filename`
+  - git 으로 관리 되는 file -> 더는 관리하고 싶지 않을 때, `.gitignore` 파일에 등록해야 하는데 commit 됐을 때
+- root-commit 이 있는 경우 : `git restore --staged file`
   - 커밋이 한 번이라도 있을 때 사용
 
 ### Repository 작업 단계 되돌리기
 
-> https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EB%90%98%EB%8F%8C%EB%A6%AC%EA%B8%B0
-
 - `git commit --amend`
-
-  > https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EB%8B%A8%EC%9E%A5%ED%95%98%EA%B8%B0
 
 - 상황별로 두 가지 기능으로 나뉨
 
@@ -52,16 +44,15 @@
 
 - 이전 커밋을 완전히 고쳐서 새 커밋으로 변경하므로, 이전 커밋은 일어나지 않은 일이 되며 히스토리에도 남지 않음을 주의할 것!
 
-- 팀으로 작업해서 사용할 때는 주의해야 한다. 
-
+- 팀으로 작업해서 사용할 때는 주의해야 한다.
   - 문제 발생: 계속 커밋 해시값이 변경되면 해시값이 두 개로 나뉘면서 기존이랑 충돌
-
+  
 - 이전에 a파일 커밋, 새로운 b파일, a와 b 같이 커밋하고 싶을 때 이 명령어 사용
 
 - vim 간단 사용법
 
-  - i 입력 모드 문서 편집 가능
-  - esc 명령 모드
+  - `i` 입력 모드 문서 편집 가능
+  - `esc` 명령 모드
     - 저장 및 종료 `:wq`
     - 강제 종료 `:q!`
 
@@ -71,7 +62,7 @@
 
 - commit 기록을 하느냐 하지 않느냐? 차이점
 
-- **git reset**
+- `git reset`
 
   - 마치 과거로 돌리는 듯한 행위로, 프로젝트를 특정 커밋 버전 상태로 되돌림
 
@@ -79,73 +70,56 @@
 
   - `git reset [option] {commit ID}`
 
-    > https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-Reset-%EB%AA%85%ED%99%95%ED%9E%88-%EC%95%8C%EA%B3%A0-%EA%B0%80%EA%B8%B0
-    >
-    > https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%EB%A6%AC%EB%B9%84%EC%A0%84-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0
-    >
-    > https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%EB%8C%80%ED%99%94%ED%98%95-%EB%AA%85%EB%A0%B9
-    >
-    > https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EB%8B%A8%EC%9E%A5%ED%95%98%EA%B8%B0
-
-    - 옵션: soft, mixed, hard 중 하나를 작성
-
-    - soft: 해당 커밋으로 되돌아가고, 되돌아간 커밋 이후 파일들은 staging area로 넣어둠. 돌려둠
-
+    - 옵션: `--soft`, `--mixed`, `--hard` 중 하나를 작성
+    
+    - `—-soft` : 해당 커밋으로 되돌아가고, 되돌아간 커밋 이후 파일들은 staging area로 넣어둠. 돌려둠
+    
       - c2 커밋 바로 직전으로 돌아가는 옵션
       - `git reset --soft HEAD~1`
-
-    - mixed: 옵션을 정하지 않으면 기본
-
-      - 되돌아간 커밋 이후의 파일들은 working directory로 돌려놓음
+    
+  - `–-mixed` : 옵션을 정하지 않으면 기본
+    
+    - 되돌아간 커밋 이후의 파일들은 working directory로 돌려놓음
       - `git reset --mixed 3daf666`
 
-    - hard
-
-      > https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%EA%B3%A0%EA%B8%89-Merge
-
-      - 되돌아간 커밋 이후 파일들은 모두 working directory에서 삭제
-
-        - 따라서 사용 시 주의할 것
-          - 복구는 가능 `reflog`
-
+    - `--hard`
+    
+    - 되돌아간 커밋 이후 파일들은 모두 working directory에서 삭제 > 따라서 사용 시 주의할 것
+    
+      - 복구는 가능 `git reflog`
+        
       - `git reset --hard 0785b4a`
-
-        `HEAD is now at 0785b4a commit 01 - 이 커밋은 수정되었습니다.`
-
+    
+        HEAD is now at 0785b4a commit 01 - 이 커밋은 수정되었습니다.
+    
       - ls 해보면 다 삭제됨
-
+    
       - `git reflog`
-
-        > https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EB%82%B4%EB%B6%80-%EC%9A%B4%EC%98%81-%EB%B0%8F-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%B3%B5%EA%B5%AC
-
-        - hard 옵션으로 삭제했을 때
-        - `git reflog` 명령어를 사용하면 reset 하기 전의 과거 커밋 명세를 모두 조회 가능
-        - `git reflog`
+    
+        - `-–hard` 옵션으로 삭제했을 때
+        - `git reflog` 명령어를 사용하면 `git reset` 하기 전의 과거 커밋 명세를 모두 조회 가능
+      - `git reflog`
         - 가장 위쪽이 최근
-        - 아래쪽으로 갈수록 옛날
+      - 아래쪽으로 갈수록 옛날
         - 그러고 `git reset --hard` 하면 복구 가능
-        - `git reset –hard 1fe67b2`
-
-    - 커밋ID는 되돌아가고 싶은 시점의 커밋 ID를 작성
-
-- **git revert**
-
-  > https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%EA%B3%A0%EA%B8%89-Merge
+      - `git reset –hard 1fe67b2`
+      
+  - `commit ID` 는 되돌아가고 싶은 시점의 `commit ID` 를 작성
+  
+- `git revert`
 
   - 해당 commit을 취소시키고, 취소시킨 걸 기록으로 남기는 것이다.
   - 과거를 없었던 일로 만드는 행위로, 이전 커밋을 취소한다는 뜻. 새로운 커밋을 생성
   - `git revert {commit ID}`
   - 새로운 커밋이 하나 증가함 커밋 삭제했다는 커밋이 증가하는 것임.
   - GitHub을 이용해 팀 협업할 때 커밋 명세의 차이로 충돌 방지
-
+  
 - 문법적 차이
 
   - `git reset 5sd2f42`라고 작성하면 커밋으로 되돌린다는 뜻
-  - `git revert 5sd2f42`라고 작성하면 5sd2f42 라는 커밋 한 개를 취소한다는 뜻
+  - `git revert 5sd2f42`라고 작성하면 `5sd2f42` 라는 커밋 한 개를 취소한다는 뜻
 
 ## git branch
-
-> https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80
 
 - 브랜치는 나뭇가지라는 뜻으로 여러 갈래로 작업공간을 나누어 독립적으로 작업할 수 있도록 도와주는 git의 도구
 
@@ -160,41 +134,30 @@
 - git은 브랜치를 만드는 속도가 굉장히 빠르고, 적은 용량을 소모함
 
 - **조회**
-
-  - `git branch`: 로컬 저장소의 브랜치 목록 확인
-  - `git branch -r`: 원격 저장소의 브랜치 목록 확인
-
+  - `git branch` : 로컬 저장소의 브랜치 목록 확인
+  - `git branch -r` : 원격 저장소의 브랜치 목록 확인
+  
 - **생성**
-
-  - `git branch {branch name}`: 새로운 브랜치 생성
-  - `git branch {branch name} {commit ID}`: 특정 커밋 기준으로 브랜치 생성
-
+  - `git branch {branch name}` : 새로운 브랜치 생성
+  - `git branch {branch name} {commit ID}` : 특정 커밋 기준으로 브랜치 생성
+  
 - **삭제**
-
-  - `git branch -d {branch name}`: merge 병합이 완료된 브랜치만 삭제 가능
-
-  - `git branch -D {branch name}`: 강제 삭제
-
-    > https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EA%B4%80%EB%A6%AC
+- `git branch -d {branch name}` : merge 병합이 완료된 브랜치만 삭제 가능
+  
+- `git branch -D {branch name}` : 강제 삭제
 
 1. 기능 개발 완료 2. merge OK 3. branch 삭제
 
 ## git switch
 
-> https://git-scm.com/docs/git-switch
-
-- `git switch {branch name}`: 다른 브랜치로 이동
-  - `git switch hj`
-- `git switch -c {branch name}`: 브랜치를 새로 생성하고 이동
-  - `git switch -c hj`
-- `git switch -c {branch name} {commit ID}`: 특정 커밋 기준으로 브랜치 생성 및 이동
+- `git switch {branch name}` : 다른 브랜치로 이동
+- `git switch -c {branch name}` : 브랜치를 새로 생성하고 이동
+- `git switch -c {branch name} {commit ID}` : 특정 커밋 기준으로 브랜치 생성 및 이동
 - switch 하기 전에, 해당 브랜치의 변경 사항을 반드시 커밋해야함을 주의할 것
 - **커밋하고 스위치 하자**
   - 커밋 안 하면 서로 레파지토리에 영향을 미침
 
 ## git merge
-
-> https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%99%80-Merge-%EC%9D%98-%EA%B8%B0%EC%B4%88
 
 - 분기된 브랜치 들을 하나로 합치는 명령어
 
@@ -209,20 +172,18 @@
     - **Fast-Forward**
 
       - 마치 빨리 감기처럼 브랜치가 가리키는 커밋을 앞으로 이동시키는 방법
-      - 가장 쉬운 방식 master 가서 merge 명령어 치기
+      - 가장 쉬운 방식 : master 가서 merge 명령어 치기
       - 명령어 `(master) git merge hotfix`
 
     - **3-way Merge**
 
       - master도 분기가 됐고, hotfix도 분기가 된 상태
       - 가장 최근 부분들(master에서도 최근 것 + hotfix에서도 최근 것) 합쳐지기
-      - git switch master 로 master에서 작업
-      - 명령어 git merge hotfix 하면 커밋메세지 수정란이 나옴
+      - `git switch master` 로 master에서 작업
+      - 명령어 `git merge hotfix` 하면 커밋메세지 수정란이 나옴
       - 깃이 알아서 fast-forward 인지 3-way-merge인지 알아서 선택해줌
 
     - **Merge Conflict**
-
-      > https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%EA%B3%A0%EA%B8%89-Merge
 
       - 두 브랜치에서 같은 부분을 수정한 경우 발생
 
@@ -245,24 +206,18 @@
           logout
           >>>>>>> login(login에서 수정한 부분)
           ```
-
+      
         - 수정은 그냥 없애고 싶은 부분 없애면 됨 **>>>> 부분들**
 
-        - **conflict 해결 후에 git add . > git commit 하고 vim 나가면 끝**
+        - **conflict 해결 후에 `git add .` > `git commit` 하고 vim 나가면 끝**
 
         - (master | MERGING) > (master)로 변경되면 해결된 상황임
 
 ## workflow
 
-> https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C
->
-> https://git-scm.com/book/ko/v2/%EB%B6%84%EC%82%B0-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C%EC%9D%98-Git-%EB%B6%84%EC%82%B0-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C%EC%9D%98-%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C
-
 - 원격 저장소를 이용해 협업하는 두 가지 방법
 
   - **(중요) 원격 저장소 소유권이 있는 경우: shared repository model**
-
-    > https://git-scm.com/book/ko/v2/GitHub-GitHub-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0
 
     - collaborator로 등록된 경우
 
@@ -270,23 +225,21 @@
 
     - `git push origin branchname`
 
-      > https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98
-
-    - `Pull Request를 사용하여 팀원 간 변경 내용에 대한 소통 진행`
+    - Pull Request를 사용하여 팀원 간 변경 내용에 대한 소통 진행
 
     - 원격 저장소에
 
-      1. clone 받기
+      1. `clone` 받기
 
       2. 각자 branch 생성하기
 
-      3. master가 아니라 본인 branch에 push를 한다
+      3. master가 아니라 본인 branch에 `push` 를 한다
 
-      4. pull request 기능을 통해 각각의 기능들을 merge 시킨다
+      4. pull request 기능을 통해 각각의 기능들을 `merge` 시킨다
 
-      5. merge가 끝나면 master로 돌아가서
+      5. `merge` 가 끝나면 master로 돌아가서
 
-      6. 그다음 병합이 완료된 master를 pull 받기
+      6. 그다음 병합이 완료된 master를 `pull` 받기
 
       7. 그다음 개발 완료한 branch는 삭제해 주기
 
@@ -298,29 +251,23 @@
 
   - 원격 저장소 소유권이 없는 경우: fork & pull model
 
-    > https://git-scm.com/book/ko/v2/GitHub-GitHub-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%97%90-%EA%B8%B0%EC%97%AC%ED%95%98%EA%B8%B0
-
     - 특정 오픈 소스나, django, kakao 등등 소유권 없는 코드에 코더로서 개발자로서 기여하고 싶을 때
 
       1. fork를 한다.
 
-      2. git remote add upstream [원본 URL]
-
-         > https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EC%A0%80%EC%9E%A5%EC%86%8C
-         >
-         > https://git-scm.com/book/ko/v2/%EB%B6%84%EC%82%B0-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C%EC%9D%98-Git-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%97%90-%EA%B8%B0%EC%97%AC%ED%95%98%EA%B8%B0
-
-         - 동기화하기 위해서
-
+      2. `git remote add 단축이름 [원본 URL]`
+       - 동기화하기 위해서
+         - 단축이름 ex) upstream
+       
       3. branch해서 기능 개발
-
-      4. 기능 개발 완료 후 나의 원격 저장소에 해당 브랜치를 push
+  
+      4. 기능 개발 완료 후 나의 원격 저장소에 해당 브랜치를 `push`
 
       5. pull request를 원본에 요청함
-
+  
       6. 좋은 코드면 병합함
 
-      7. 병합되면 병합된 코드 pull 받고 branch 삭제
+      7. 병합되면 병합된 코드 `pull` 받고 branch 삭제
 
 - git branch 전략
 
@@ -328,19 +275,15 @@
 
     - 다음과 같이 5개의 브랜치로 나누어 소스 코드를 관리
 
-      - master: 제품으로 출시될 수 있는 브랜치
+      - `master` : 제품으로 출시될 수 있는 브랜치
 
-      - develop: 다음 출시 버전을 개발하는 브랜치
+      - `develop` : 다음 출시 버전을 개발하는 브랜치
 
-        > https://git-scm.com/book/ko/v2/%EB%B6%84%EC%82%B0-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C%EC%9D%98-Git-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0
-        >
-        > https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%B8%8C%EB%9E%9C%EC%B9%98%EC%99%80-Merge-%EC%9D%98-%EA%B8%B0%EC%B4%88
+      - `feature` : 기능을 개발하는 브랜치
+      
+      - `release` : 이번 출시 버전을 준비하는 브랜치
 
-      - feature: 기능을 개발하는 브랜치
-
-      - release: 이번 출시 버전을 준비하는 브랜치
-
-      - hotfix: 출시 버전에서 발생한 버그를 수정하는 브랜치
+      - `hotfix` : 출시 버전에서 발생한 버그를 수정하는 브랜치
 
     - 대규모 프로젝트에 적합한 브랜치 전략
 
@@ -348,40 +291,44 @@
 
     - GitHub에서 사용하는 방식
 
-      > https://git-scm.com/book/ko/v2/GitHub-GitHub-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%97%90-%EA%B8%B0%EC%97%AC%ED%95%98%EA%B8%B0
-
   - gitlab flow
 
-    > https://git-scm.com/book/ko/v2/%EB%B6%84%EC%82%B0-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C%EC%9D%98-Git-%EB%B6%84%EC%82%B0-%ED%99%98%EA%B2%BD%EC%97%90%EC%84%9C%EC%9D%98-%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C
-
     - gitlab에서 사용하는 방식
-    - pre-production
-
-  - 결국 어떤 브랜치 전략은 팀에서 전략을 정한다
-
-  - **브랜치는 자주 생성하는 것을 강력히 권장**
-
-  - **main으로 만들어서 하는 작업을 지양**
+  - pre-production
+    
+- 결국 어떤 브랜치 전략은 팀에서 전략을 정한다.
+  
+- **브랜치는 자주 생성하는 것을 강력히 권장한다.**
+  
+- **`main`으로 만들어서 하는 작업을 지양한다.**
 
 기타 명령어
 
-> https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%BB%A4%EB%B0%8B-%ED%9E%88%EC%8A%A4%ED%86%A0%EB%A6%AC-%EC%A1%B0%ED%9A%8C%ED%95%98%EA%B8%B0
+- `git log --oneline` : 깃 로그 한 줄로 보기
 
-- git log --oneline: 깃 로그 한 줄로 보기
+- `git log --oneline --all` : 로그 전부 다 볼 수 있음
 
-- git log --oneline --all: 로그 전부 다 볼 수 있음
+- `git log --oneline --all --graph` : 그래프로 로그기록 확인 가능
 
-- git log --oneline --all --graph: 그래프로 로그기록 확인 가능
+- `cat .git/HEAD` : 현재 HEAD가 어떤 브랜치를 가리키는지 알 수 있음
 
-- `cat .git/HEAD`: 현재 HEAD가 어떤 브랜치를 가리키는지 알 수 있음
-
-  > https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EB%82%B4%EB%B6%80-Git-Refs
-
-- **무조건 머지 후에 branch 사용하지 않으면 삭제해줘야 함**
+- **무조건 `merge` 후에 branch 사용하지 않으면 삭제해줘야 함**
 
 
 
-### 2.3 Git의 기초 - 커밋 히스토리 조회하기
+## 2. Git의 기초
+
+### 수정하고 저장소에 저장하기
+
+파일 삭제하기
+
+Staging Area에서만 제거하고 워킹 디렉토리에 있는 파일은 지우지 않고 남겨둘 수 있다. 다시 말해서 있는 파일은 그대로 두고 Git만 추적하지 않게 한다. 이것은 `.gitignore` 파일에 추가하는 것을 빼먹었거나 대용량 로그 파일이나 컴파일된 파일인 `.a` 파일 같은 것을 실수로 추가했을 때 쓴다. `--cached` 옵션을 사용하여 명령을 실행한다.
+
+```console
+$ git rm --cached filename
+```
+
+### 커밋 히스토리 조회하기
 
 ```bash
 git log [<options>] [<revision-range>] [[--] <path>…]
@@ -415,9 +362,7 @@ Note: you can specify the default pretty format in the repository configuration
 
 - Draw a text-based graphical representation of the commit history on the left hand side of the output. This may cause extra lines to be printed in between commits, in order for the graph history to be drawn properly.
 
-
-
-### 2.4 Git의 기초 - 되돌리기
+### 되돌리기
 
 종종 완료한 커밋을 수정해야 할 때가 있다. 너무 일찍 커밋했거나 어떤 파일을 빼먹었을 때 그리고 커밋 메시지를 잘못 적었을 때 한다. 다시 커밋하고 싶으면 파일 수정 작업을 하고 Staging Area에 추가한 다음 `--amend` 옵션을 사용하여 커밋을 재작성 할 수 있다.
 
@@ -431,9 +376,23 @@ Note: you can specify the default pretty format in the repository configuration
 
 Git으로 *커밋* 한 모든 것은 언제나 복구할 수 있다. 삭제한 브랜치에 있었던 것도, `--amend` 옵션으로 다시 커밋한 것도 복구할 수 있다. 하지만 커밋하지 않고 잃어버린 것은 절대로 되돌릴 수 없다.
 
+> https://git-scm.com/docs/git-restore
 
+`git restore file`
 
-### 2.5 Git의 기초 리모트 저장소
+Restore working tree files
+
+Restore specified paths in the working tree with some contents from a restore source. If a path is tracked but does not exist in the restore source, it will be removed to match the source.
+
+`git restore --staged file`
+
+Specify the restore location. If neither option is specified, by default the working tree is restored. Specifying `--staged` will only restore the index. Specifying both restores both.
+
+The command can also be used to restore the content in the index with `--staged`
+
+By default, if `--staged` is given, the contents are restored from `HEAD`, otherwise from the index.
+
+### 리모트 저장소
 
 리모트 저장소 확인하기
 
@@ -459,9 +418,9 @@ $ git push origin master
 
 이 명령은 Clone 한 리모트 저장소에 쓰기 권한이 있고, Clone 하고 난 이후 아무도 Upstream 저장소에 Push 하지 않았을 때만 사용할 수 있다. 다시 말해서 Clone 한 사람이 여러 명 있을 때, 다른 사람이 Push 한 후에 Push 하려고 하면 Push 할 수 없다. 먼저 다른 사람이 작업한 것을 가져와서 Merge 한 후에 Push 할 수 있다.
 
+## 3. Git 브랜치
 
-
-### 3.1 Git 브랜치 - 브랜치란 무엇인가
+### 브랜치란 무엇인가
 
 모든 버전 관리 시스템은 브랜치를 지원한다. 개발을 하다 보면 코드를 여러 개로 복사해야 하는 일이 자주 생긴다. 코드를 통째로 복사하고 나서 원래 코드와는 상관없이 독립적으로 개발을 진행할 수 있는데, 이렇게 독립적으로 개발하는 것이 브랜치다.
 
@@ -499,9 +458,55 @@ $ git log --oneline --decorate --graph --all
 
 브랜치가 필요할 때 프로젝트를 통째로 복사해야 하는 다른 버전 관리 도구와 Git의 차이는 극명하다. 통째로 복사하는 작업은 프로젝트 크기에 따라 다르겠지만 수십 초에서 수십 분까지 걸린다. 그에 비해 Git은 순식간이다. 게다가 커밋을 할 때마다 이전 커밋의 정보를 저장하기 때문에 Merge 할 때 어디서부터(Merge Base) 합쳐야 하는지 안다. 이런 특징은 개발자들이 수시로 브랜치를 만들어 사용하게 한다.
 
+> https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell
 
+From Git version 2.23 onwards you can use `git switch` instead of `git checkout` to:
 
-### 3.2 Git 브랜치 - 브랜치와 Merge 의 기초
+- Switch to an existing branch: `git switch testing-branch`.
+- Create a new branch and switch to it: `git switch -c <new-branch-name>`. The `-c` flag stands for create, you can also use the full flag: `--create`.
+  - If you want to create a new branch to retain commits you create, you may do so (now or later) by using -c with the switch command.
+- Return to your previously checked out branch: `git switch -`.
+
+> https://git-scm.com/docs/git-switch
+
+`git switch (-c|-C) <new-branch> [<start-point>]`
+
+Switch branches
+
+Switch to a specified branch. The working tree and the index are updated to match the branch. All new commits will be added to the tip of this branch.
+
+Optionally a new branch could be created with either `-c`, `-C`, automatically from a remote branch of same name (see `--guess`), or detach the working tree from any branch with `--detach`, along with switching.
+
+Switching branches does not require a clean index and working tree (i.e. no differences compared to `HEAD`). The operation is aborted however if the operation leads to loss of local changes, unless told otherwise with `--discard-changes` or `--merge`.
+
+THIS COMMAND IS EXPERIMENTAL. THE BEHAVIOR MAY CHANGE.
+
+`<new-branch>`
+
+Name for the new branch.
+
+`<start-point>`
+
+The starting point for the new branch. Specifying a `<start-point>` allows you to create a branch based on some other point in history than where HEAD currently points. (Or, in the case of `--detach`, allows you to inspect and detach from some other point.)
+
+You can use the `@{-N}` syntax to refer to the N-th last branch/commit switched to using "git switch" or "git checkout" operation. You may also specify `-` which is synonymous to `@{-1}`. This is often used to switch quickly between two branches, or to undo a branch switch by mistake.
+
+As a special case, you may use `A...B` as a shortcut for the merge base of `A` and `B` if there is exactly one merge base. You can leave out at most one of `A` and `B`, in which case it defaults to `HEAD`.
+
+You can grow a new branch from any commit. For example, switch to "HEAD~3" and create branch "fixup":
+
+```bash
+$ git switch -c fixup HEAD~3
+Switched to a new branch 'fixup'
+```
+
+If it turns out whatever you have done is worth keeping, you can always create a new name for it (without switching away):
+
+```bash
+$ git switch -c good-surprises
+```
+
+### 브랜치와 Merge 의 기초
 
 실제 개발과정에서 겪을 만한 예제를 하나 살펴보자. 브랜치와 Merge는 보통 이런 식으로 진행한다.
 
@@ -601,9 +606,7 @@ please contact us at email.support@github.com
 
 어떻게 충돌을 해결했고 좀 더 확인해야 하는 부분은 무엇이고 왜 그렇게 해결했는지에 대해서 자세하게 기록한다. 자세한 기록은 나중에 이 Merge 커밋을 이해하는데 도움을 준다.
 
-
-
-### 3.3 Git 브랜치 - 브랜치 관리
+### 브랜치 관리
 
 `git branch` 명령은 단순히 브랜치를 만들고 삭제하는 것이 아니다. 아무런 옵션 없이 실행하면 브랜치의 목록을 보여준다.
 
@@ -626,9 +629,7 @@ If you are sure you want to delete it, run 'git branch -D testing'.
 
 Merge 하지 않은 브랜치를 강제로 삭제하려면 `-D` 옵션으로 삭제한다.
 
-
-
-### 3.4 Git 브랜치 - 브랜치 워크플로
+### 브랜치 워크플로
 
 Long-Running 브랜치
 
@@ -646,9 +647,7 @@ Git은 꼼꼼하게 3-way Merge를 사용하기 때문에 장기간에 걸쳐서
 
 `master` 브랜치를 checkout 한 상태에서 어떤 작업을 한다고 해보자. 한 이슈를 처리하기 위해서 `iss91` 브랜치를 만들고 해당 작업을 한다. 같은 이슈를 다른 방법으로 해결해보고 싶을 때도 있다. `iss91v2` 브랜치를 만들고 다른 방법을 시도해 본다. 확신할 수 없는 아이디어를 적용해보기 위해 다시 `master` 브랜치로 되돌아가서 `dumbidea` 브랜치를 하나 더 만든다. 지금까지 말했던 커밋 히스토리는 아래 그림 같다.
 
-
-
-### 3.5 Git 브랜치 - 리모트 브랜치
+### 리모트 브랜치
 
 브랜치 추적
 
@@ -660,9 +659,9 @@ Upstream 별명
 
 추적 브랜치를 설정했다면 추적 브랜치 이름을 `@{upstream}` 이나 `@{u}` 로 짧게 대체하여 사용할 수 있다. `master` 브랜치가 `origin/master` 브랜치를 추적하는 경우라면 `git merge origin/master` 명령과 `git merge @{u}` 명령을 똑같이 사용할 수 있다.
 
+## 5. 분산 환경에서의 Git
 
-
-### 5.1 분산 환경에서의 Git - 분산 환경에서의 워크플로
+### 분산 환경에서의 워크플로
 
 ### Integration-Manager 워크플로
 
@@ -677,9 +676,7 @@ Git을 사용하면 리모트 저장소를 여러 개 운영할 수 있다. 다�
 
 이 방식은 GitHub나 GitLab 같은 Hub 사이트를 통해 주로 사용하는 방식이다. 프로젝트를 Fork 하고 수정사항을 반영하여 다시 모두에게 공개하기 좋은 구조로 돼 있다. 이 방식의 장점은 기여자와 Integration-Manager가 각자의 사정에 맞춰 프로젝트를 유지할 수 있다는 점이다. 기여자는 자신의 저장소와 브랜치에서 수정 작업을 계속해 나갈 수 있고 수정사항이 프로젝트에 반영되도록 기다릴 필요가 없다. 관리자는 여유를 가지고 기여자가 Push 해 놓은 커밋을 적절한 시점에 Merge 한다.
 
-
-
-### 5.2 분산 환경에서의 Git - 프로젝트에 기여하기
+### 프로젝트에 기여하기
 
 공개 프로젝트 Fork
 
@@ -695,9 +692,7 @@ $ git remote add myfork <url>
 
 자 이제 등록한 리모트 저장소에 Push 한다. 작업하던 것을 로컬 저장소의 `master` 브랜치에 Merge 한 후 Push 하는 것보다 리모트 브랜치에 바로 Push를 하는 방식이 훨씬 간단하다. 이렇게 하는 이유는 관리자가 토픽 브랜치를 프로젝트에 포함시키고 싶지 않을 때 토픽 브랜치를 Merge 하기 이전 상태로 `master` 브랜치를 되돌릴 필요가 없기 때문이다. 다시 관리자의 저장소를 Pull 할 때는 토픽 브랜치의 내용이 들어 있을 것이다.
 
-
-
-### 5.3 분산 환경에서의 Git - 프로젝트 관리하기
+### 프로젝트 관리하기
 
 기여물 통합하기
 
@@ -709,9 +704,9 @@ Merge 하는 워크플로
 
 이 워크플로를 사용하면 프로젝트 저장소를 Clone 하고 나서 개발자가 안정 버전이 필요하면 master 브랜치를 빌드하고 안정적이지 않더라도 좀 더 최신 버전이 필요하면 develop 브랜치를 Checkout 하여 빌드한다. 이 개념을 좀 더 확장해서 사용할 수 있다. 토픽 브랜치를 검증하기 위한 `integrate` 브랜치를 만들어 Merge 하고 토픽 브랜치가 검증되면 develop 브랜치에 Merge 한다. 그리고 `develop` 브랜치에서 충분히 안정하다는 것이 증명되면 그때 `master` 브랜치에 Fast-forward Merge 한다.
 
+## 6. GitHub
 
-
-### 6.2 GitHub - GitHub 프로젝트에 기여하기
+### GitHub 프로젝트에 기여하기
 
 프로젝트 Fork 하기
 
@@ -735,9 +730,7 @@ GitHub은 Pull Request가 중심인 협업 워크플로를 위주로 설계됐�
 
 이 방식은 기본적으로 Integration-Manager 워크플로와 같다.
 
-
-
-### 6.3 GitHub - GitHub 프로젝트 관리하기
+### GitHub 프로젝트 관리하기
 
 동료 추가하기
 
@@ -769,9 +762,9 @@ Pull Request를 만들러 가면 페이지 위쪽에 어떤 저장소의 브랜�
 
 쉽게 다른 Fork 저장소나 Pull Request의 브랜치를 골라 Pull Request를 열 수 있다.
 
+## 7. Git 도구
 
-
-### 7.1 Git 도구 - 리비전 조회하기
+### 리비전 조회하기
 
 RefLog로 가리키기
 
@@ -790,11 +783,9 @@ d921970 HEAD@{1}: merge phedders/rdocs: Merge made by the 'recursive' strategy.
 7e05da5 HEAD@{6}: rebase -i (pick): updating HEAD
 ```
 
-Git은 브랜치가 가리키는 것이 달라질 때마다 그 정보를 임시 영역에 저장한다. 그래서 예전에 가리키던 것이 무엇인지 확인해 볼 수 있다.
+Git은 브랜치가 가리키는것이 달라질 때마다 그 정보를 임시 영역에 저장한다. 그래서 예전에 가리키던 것이 무엇인지 확인해 볼 수 있다.
 
-
-
-### 7.3 Git 도구 - Stashing과 Cleaning
+### Stashing과 Cleaning
 
 당신이 어떤 프로젝트에서 한 부분을 담당하고 있다고 하자. 그리고 여기에서 뭔가 작업하던 일이 있고 다른 요청이 들어와서 잠시 브랜치를 변경해야 할 일이 생겼다고 치자. 그런데 이런 상황에서 아직 완료하지 않은 일을 커밋하는 것이 껄끄럽다는 것이 문제다. 커밋하지 않고 나중에 다시 돌아와서 작업을 다시 하고 싶을 것이다. 이 문제는 `git stash` 라는 명령으로 해결할 수 있다.
 
@@ -802,9 +793,7 @@ Stash 명령을 사용하면 워킹 디렉토리에서 수정한 파일들만 �
 
 Git은 Stash에 저장할 때 수정했던 파일들을 복원해준다. 복원할 때의 워킹 디렉토리는 Stash 할 때의 그 브랜치이고 워킹 디렉토리도 깨끗한 상태였다. 하지만 꼭 깨끗한 워킹 디렉토리나 Stash 할 때와 같은 브랜치에 적용해야 하는 것은 아니다. 어떤 브랜치에서 Stash 하고 다른 브랜치로 옮기고서 거기에 Stash를 복원할 수 있다. 그리고 꼭 워킹 디렉토리가 깨끗한 상태일 필요도 없다. 워킹 디렉토리에 수정하고 커밋하지 않은 파일들이 있을 때도 Stash를 적용할 수 있다. 만약 충돌이 있으면 알려준다.
 
-
-
-### 7.6 Git 도구 - 히스토리 단장하기
+### 히스토리 단장하기
 
 마지막 커밋을 수정하기
 
@@ -822,9 +811,7 @@ $ git commit --amend
 
 이때 SHA-1 값이 바뀌기 때문에 과거의 커밋을 변경할 때 주의해야 한다. Rebase와 같이 이미 Push 한 커밋은 수정하면 안 된다.
 
-
-
-### 7.7 Git 도구 - Reset 명확히 알고 가기
+### Reset 명확히 알고 가기
 
 HEAD
 
@@ -864,9 +851,7 @@ HEAD는 현재 브랜치를 가리키는 포인터이며, 브랜치는 브랜치
 
 이 `--hard` 옵션은 매우 매우 중요하다. `reset` 명령을 위험하게 만드는 유일한 옵션이다. Git에는 데이터를 실제로 삭제하는 방법이 별로 없다. 이 삭제하는 방법은 그 중 하나다. `reset` 명령을 어떻게 사용하더라도 간단히 결과를 되돌릴 수 있다. 하지만 `--hard` 옵션은 되돌리는 것이 불가능하다. 이 옵션을 사용하면 워킹 디렉토리의 파일까지 강제로 덮어쓴다. 이 예제는 파일의 **v3**버전을 아직 Git이 커밋으로 보관하고 있기 때문에 `reflog` 를 이용해서 다시 복원할 수 있다. 만약 커밋한 적 없다면 Git이 덮어쓴 데이터는 복원할 수 없다.
 
-
-
-### 7.8 Git 도구 - 고급 Merge
+### 고급 Merge
 
 Git의 Merge은 진짜 가볍다. Git에서는 브랜치끼리 몇 번이고 Merge 하기가 쉽다. 오랫동안 합치지 않은 두 브랜치를 한 번에 Merge 하면 거대한 충돌이 발생한다. 조그마한 충돌을 자주 겪고 그걸 풀어나감으로써 브랜치를 최신으로 유지한다.
 
@@ -910,8 +895,6 @@ index 0399cd5,59727f0..0000000
 
 이 예제에서 `<<<<<<<` 와 `>>>>>>>` 충돌 마커 표시는 어떤 쪽에도 존재하지 않고 추가된 코드라는 것을 알 수 있다. 이 표시는 Merge 도구가 만들어낸 코드이기 때문이다. 물론 이 표시는 지워야 하는 라인이다.
 
-
-
 Merge 되돌리기
 
 지금까지 Merge 하는 방법을 배웠으나 Merge 할 때 실수할 수도 있다. Git에서는 실수해도 된다. 실수해도 (대부분 간단하게) 되돌릴 수 있다.
@@ -932,9 +915,7 @@ Refs 수정
 
 이 방법의 단점은 히스토리를 다시 쓴다는 것이다. 다른 사람들과 공유된 저장소에서 히스토리를 덮어쓰면 문제가 생길 수 있다. 간단히 말해 다시 쓰는 커밋이 이미 다른 사람들과 공유한 커밋이라면 `reset` 하지 않는 게 좋다. 이 방법은 Merge 하고 나서 다른 커밋을 생성했다면 제대로 동작하지 않는다. HEAD를 이동시키면 Merge 이후에 만든 커밋을 잃어버린다.
 
-
-
-#### 커밋 되돌리기
+커밋 되돌리기
 
 브랜치를 옮기는 것을 할 수 없는 경우는 모든 변경사항을 취소하는 새로운 커밋을 만들 수도 있다. Git에서 이 기능을 “revert” 라고 부른다. 지금의 경우엔 아래처럼 실행한다.
 
@@ -947,11 +928,11 @@ $ git revert -m 1 HEAD
 
 변경사항을 되돌린 커밋은 히스토리에서 아래와 같이 보인다.
 
+## 10. Git의 내부
 
+### Git Refs
 
-### 10.3 Git의 내부 - Git Refs
-
-### HEAD
+HEAD
 
 `git branch <branch>` 명령을 실행할 때 Git은 어떻게 마지막 커밋의 SHA-1 값을 아는 걸까? HEAD 파일은 현 브랜치를 가리키는 간접(symbolic) Refs다.
 
@@ -962,9 +943,7 @@ $ cat .git/HEAD
 ref: refs/heads/master
 ```
 
-
-
-### 10.7 Git의 내부 - 운영 및 데이터 복구
+### 운영 및 데이터 복구
 
 데이터 복구
 
@@ -976,3 +955,7 @@ $ git reflog
 ab1afef HEAD@{1}: commit: modified repo.rb a bit
 484a592 HEAD@{2}: commit: added repo.rb
 ```
+
+개체 삭제
+
+`git rm --cached filename` 명령으로 삭제한다. 디스크에서 삭제하는 것이 아니라 Index에서 삭제하는 것이다. 이렇게 하는 이유는 속도가 빠르기 때문이다.
