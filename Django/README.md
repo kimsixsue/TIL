@@ -16,3 +16,4 @@
 12. [2022-10-24 월] [JS DOM Event this](./1024_JS_DOM_Event_this.md)
 13. [2022-10-26 수] [Asynchronous JS](./1026_Asynchronous_JS.md)
 14. [2022-10-31 월] [Vue.js](./1031_Vue.js.md)
+15. [2022-11-02 수] [Vue CLI](./1102_Vue_CLI.md)
