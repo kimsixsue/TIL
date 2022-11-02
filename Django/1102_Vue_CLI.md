@@ -18,7 +18,7 @@
 
    + [Vue component 실습](#vue-component-실습)
 
-3. [Pass Props & Emit Events](#3-pass-props---emit-events)
+3. [Pass Props & Emit Events](#3-pass-props--emit-events)
 
    + [Data in components](#data-in-components)
 
