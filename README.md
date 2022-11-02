@@ -3,31 +3,20 @@
 ## [Django_DB_JS](/Django) 정리
 
 1. [2022-08-30 화] [Template URL VariableRouting](./Django/0830_Django_Template_VariableRouting.md)
-
 2. [2022-08-31 수] [Model Migrations QuerySet CRUD](./Django/0831_Django_Model_QuerySet_CRUD.md)
-
 3. [2022-09-06 화] [Form ModelForm Decorator](./Django/0906_Django_Form_ModelForm.md)
-
 4. [2022-09-07 수] [Auth User CRUD](./Django/0907_Django_Auth.md)
-
 5. [2022-10-04 화] [DB SQL DDL DML](./Django/1004_DB_SQL.md)
-
 6. [2022-10-05 수] [DB relationship N:1](./Django/1005_DB_relationship_N_1.md)
-
 7. [2022-10-11 화] [Static Media](./Django/1011_Django_Static_Media.md)
-
 8. [2022-10-12 수] [DB relationship N:N](./Django/1012_DB_relationship_N_N.md)
-
 9. [2022-10-17 월] [Django REST API](./Django/1017_Django_REST_API.md)
 
 10. [2022-10-19 수] [JavaScript basic](./Django/1019_JavaScript_basic.md)
-
 11. [2022-10-24 월] [JS DOM Event this](./Django/1024_JS_DOM_Event_this.md)
-
 12. [2022-10-26 수] [Asynchronous JS](./Django/1026_Asynchronous_JS.md)
 
 13. [2022-10-31 월] [Vue.js](./Django/1031_Vue.js.md)
-
 14. [2022-11-02 수] [Vue CLI](./Django/1102_Vue_CLI.md)
 
 ## [Web](/Web) 정리
@@ -75,6 +64,7 @@
 ## [Git](/Git) 정리
 
 1. [2022-07-15 금] [Git basic](./Git/0715_Git_basic.md)
+
 1. [2022-10-28 금] [Git_Advanced](/Git/1028_Git_Advanced.md)
 
 ## CS 정리
@@ -94,4 +84,3 @@
 7. [2022-09-25 일] [ComputerArchitecture](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Computer_Architecture.md)
 
 8. [2022-10-03 월] [OS_CPU Scheduling_FCFS](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/OS_CPU_Scheduling_FCFS.md)
-

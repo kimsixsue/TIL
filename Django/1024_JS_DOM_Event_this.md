@@ -1,28 +1,19 @@
 [JS_DOM_Event_this](#js_dom_event_this)
 
 1. [DOM](#1-dom)
-
-   + [DOM](#dom)
-
-   + [DOM 조작](#dom-조작)
-
+   - [DOM](#dom)
+   - [DOM 조작](#dom-조작)
 2. [Event](#2-event)
-
-   + [Event Intro](#event-intro)
-
-   + [Event 실습](#event-실습)
-
-   + [Event 취소](#event-취소)
-
-   + [Event 취소 실습](#event-취소-실습)
-
-   + [Event 종합 실습](#event-종합-실습)
-
+   - [Event Intro](#event-intro)
+   - [Event 실습](#event-실습)
+   - [Event 취소](#event-취소)
+   - [Event 취소 실습](#event-취소-실습)
+   - [Event 종합 실습](#event-종합-실습)
 3. [this](#3-this)
 
 - [finish](#finish)
 
-#  JS_DOM_Event_this
+# JS_DOM_Event_this
 
 ## 1. DOM
 
@@ -93,11 +84,12 @@ JavaScript는 웹 페이지에서 다양한 기능을 구현하는 스크립트 
 **조작 관련 메서드 (입력)**
 
 - Node`.innerText`
+
   - Node 객체와 그 자손의 텍스트 컨텐츠(DOMString)를 표현 (해당 요소 내부의 raw text)
   - 사람이 읽을 수 있는 요소만 남김
   - 줄 바꿈을 인식하고 숨겨진 내용을 무시하는 등 최종적으로 스타일링이 적용된 모습으로 표현됨
 
- **조작 관련 메서드 (추가)**
+  **조작 관련 메서드 (추가)**
 
 - Node`.appendChild()`
   - 한 Node를 특정 부모 Node의 자식 NodeList 중 마지막 자식으로 삽입
@@ -164,7 +156,7 @@ EventTarget.addEventListener(type, listener)
       > https://developer.mozilla.org/docs/Web/Events
       >
       > https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event
-  
+
   - **listener**
     - 지정된 타입의 Event를 수신할 객체
     - JavaScript function 객체(콜백 함수)여야 함
@@ -175,51 +167,51 @@ EventTarget.addEventListener(type, listener)
 ```js
 let countNumber = 0
 
-const btn = document.querySelector('#btn')
+const btn = document.querySelector("#btn")
 console.log(btn)
-btn.addEventListener('click', function() {
-  console.log('버튼 클릭')
+btn.addEventListener("click", function () {
+  console.log("버튼 클릭")
   countNumber += 1
-  const counter = document.querySelector('#counter')
+  const counter = document.querySelector("#counter")
   counter.innerText = countNumber
 })
 ```
 
 ```js
-const btn = document.createElement('button')
-btn.innerText = '로그 출력'
+const btn = document.createElement("button")
+btn.innerText = "로그 출력"
 
-const bodyTag = document.querySelector('body')
+const bodyTag = document.querySelector("body")
 bodyTag.appendChild(btn)
 
-btn.addEventListener('click', function() {
-  console.log('버튼을 클릭하였습니다!')
+btn.addEventListener("click", function () {
+  console.log("버튼을 클릭하였습니다!")
 })
 ```
 
 ```js
-const textInput = document.querySelector('#text-input')
-textInput.addEventListener('input', function (event) {
+const textInput = document.querySelector("#text-input")
+textInput.addEventListener("input", function (event) {
   // console.log(event)
   console.log(event.target) // == textInput
   console.log(event.target.value)
-  
-  const pTag = document.querySelector('p')
+
+  const pTag = document.querySelector("p")
   pTag.innerText = event.target.value
 })
 ```
 
 ```js
-const input = document.querySelector('input')
-input.addEventListener('input', function(event) {
-  const h1Tag = document.querySelector('h1')
+const input = document.querySelector("input")
+input.addEventListener("input", function (event) {
+  const h1Tag = document.querySelector("h1")
   h1Tag.innerText = event.target.value
 })
 
-const btn = document.querySelector('#btn')
-btn.addEventListener('click', function() {
-  const h1 = document.querySelector('h1')
-  h1.classList.toggle('blue')
+const btn = document.querySelector("#btn")
+btn.addEventListener("click", function () {
+  const h1 = document.querySelector("h1")
+  h1.classList.toggle("blue")
 })
 ```
 
@@ -233,10 +225,10 @@ btn.addEventListener('click', function() {
 ### Event 취소 실습
 
 ```js
-const h1 = document.querySelector('h1')
-h1.addEventListener('copy', function(event) {
+const h1 = document.querySelector("h1")
+h1.addEventListener("copy", function (event) {
   event.preventDefault()
-  alert('복사 할 수 없습니다.')
+  alert("복사 할 수 없습니다.")
 })
 ```
 
@@ -244,23 +236,23 @@ h1.addEventListener('copy', function(event) {
 
 > https://lodash.com/
 
-``` js
+```js
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 <script>
-const button = document.querySelector('#lotto-btn')
-button.addEventListener('click', function(event) {
+  const button = document.querySelector('#lotto-btn')
+button.addEventListener('click', function (event) {
   const ballContainer = document.createElement('div')
   ballContainer.classList.add('ball-container')
 
   const numbers = _.sampleSize(_.range(1, 46), 6)
 
-  numbers.forEach((number)) => {
+  numbers.forEach((number) => {
     const ball = document.createElement('div')
     ball.innerText = number
     ball.classList.add('ball')
     ballContainer.appendChild(ball)
-  }
-  
+  })
+
   const resultDiv = document.querySelector('#result')
   resultDiv.appendChild(ballContainer)
 })
@@ -268,37 +260,37 @@ button.addEventListener('click', function(event) {
 ```
 
 ```js
-const formTag = document.querySelector('form')
+const formTag = document.querySelector("form")
 
 const addTodo = function (event) {
   event.preventDefault()
-  
-  const inputTag = document.querySelector('.inputData')
+
+  const inputTag = document.querySelector(".inputData")
   const data = inputTag.value
 
   if (data.trim()) {
-    const liTag = document.createElement('li')
+    const liTag = document.createElement("li")
     liTag.innerText = data
-    
-    const ulTag = document.querySelector('ul')
+
+    const ulTag = document.querySelector("ul")
     ulTag.appendChild(liTag)
     event.target.reset()
   } else {
-    alert('할 일을 입력하세요.')
+    alert("할 일을 입력하세요.")
   }
 }
 
-formTag.addEventListener('submit', addTodo)
+formTag.addEventListener("submit", addTodo)
 ```
 
 ```js
-const aTag = document.createElement('a')
-aTag.setAttribute('href','https://www.google.com/')
-aTag.innerText = 'GOOGLE'
-const bodyTag = document.querySelector('body')
+const aTag = document.createElement("a")
+aTag.setAttribute("href", "https://www.google.com/")
+aTag.innerText = "GOOGLE"
+const bodyTag = document.querySelector("body")
 bodyTag.appendChild(aTag)
 
-aTag.addEventListener('click', function (event) {
+aTag.addEventListener("click", function (event) {
   event.preventDefault()
 })
 ```
@@ -313,27 +305,31 @@ function filterMessage(event) {
   }
   output.innerText = filteredInput
 }
-userInput.addEventListener('input', filterMessage)
+userInput.addEventListener("input", filterMessage)
 ```
 
 ```html
-<style>
-  .line {
-    text-decoration: line-through;
-  }
-</style>
-<script>
-  event.preventDefault()
-  const inputTag = document.querySelector('input')
-  const data = inputTag.value
-  if (data.trim()) {
-    liTag.onclick = function () {
-      liTag.classList.toggle('line')
+  <style>
+    .line {
+      text-decoration: line-through;
     }
-  } else {
-    alert('값을 입력하세요')
-  }
-</script>
+  </style>
+</head>
+
+<body>
+  <script>
+    event.preventDefault()
+    const inputTag = document.querySelector("input")
+    const data = inputTag.value
+    if (data.trim()) {
+      liTag.onclick = function () {
+        liTag.classList.toggle("line")
+      }
+    } else {
+      alert("값을 입력하세요")
+    }
+  </script>
+</body>
 ```
 
 ## 3. this
@@ -376,7 +372,7 @@ userInput.addEventListener('input', filterMessage)
 4. Nested (화살표 함수)
    - 일반 function 키워드와 달리 메서드의 객체를 잘 가리킴
    - 화살표 함수에서 this는 자신을 감싼 정적 범위
-   - 자동으로 한 단계 상위의 scope의  context를 바인딩
+   - 자동으로 한 단계 상위의 scope의 context를 바인딩
 
 **화살표 함수**
 

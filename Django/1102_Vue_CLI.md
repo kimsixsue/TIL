@@ -1,30 +1,19 @@
 [Vue CLI](#vue-cli)
 
 1. [Vue CLI](#1-vue-cli)
-
-   + [Node.js](#nodejs)
-
-   + [Vue CLI](#vue-cli-1)
-
-   + [Vue CLI 프로젝트 구조](#vue-cli-프로젝트-구조)
-
+   - [Node.js](#nodejs)
+   - [Vue CLI](#vue-cli-1)
+   - [Vue CLI 프로젝트 구조](#vue-cli-프로젝트-구조)
 2. [SFC](#2-sfc)
-
-   + [Component](#component)
-
-   + [SFC](#sfc)
-
-   + [Vue component](#vue-component)
-
-   + [Vue component 실습](#vue-component-실습)
-
+   - [Component](#component)
+   - [SFC](#sfc)
+   - [Vue component](#vue-component)
+   - [Vue component 실습](#vue-component-실습)
 3. [Pass Props & Emit Events](#3-pass-props--emit-events)
 
-   + [Data in components](#data-in-components)
-
-   + [Pass Props](#pass-props)
-
-   + [Emit Event](#emit-event)
+- [Data in components](#data-in-components)
+- [Pass Props](#pass-props)
+- [Emit Event](#emit-event)
 
 * [finish](#finish)
 
@@ -202,6 +191,7 @@
 
 - 하나의 `.vue` 파일이 하나의 `Vue instance` 이고, 하나의 `컴포넌트` 이다
 - Vue instance 에서는 HTML, CSS, JavaScript 코드를 한번에 관리
+
   - 이 Vue instance 를 기능 단위로 작성하는 것이 핵심
 
 - 컴포넌트 기반 개발의 핵심 기능
@@ -245,8 +235,8 @@
 <!-- App.vue -->
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue/js App"/>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <HelloWorld msg="Welcome to Your Vue/js App" />
   </div>
 </template>
 ```
@@ -263,12 +253,11 @@
 
 <script>
 export default {
-  name: 'MyComponent',
+  name: "MyComponent",
 }
 </script>
 
-<style>
-</style>
+<style></style>
 ```
 
 1. src/components/ 안에 생성
@@ -278,28 +267,28 @@ export default {
      - **비어 있어도 안됨**
      - **해당 요소 안에 추가 요소를 작성해야 함**
 
-**component 등록 3 단계** 
+**component 등록 3 단계**
 
 ```vue
 <!-- App.vue -->
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <img alt="Vue logo" src="./assets/logo.png" />
     <!-- 3. 보여주기 -->
-    <HelloWorld msg="Welcome to Your Vue/js App"/>
+    <HelloWorld msg="Welcome to Your Vue/js App" />
   </div>
 </template>
 
 <script>
 // 1. 불러오기
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue"
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     // 2. 등록하기
     HelloWorld,
-  }
+  },
 }
 </script>
 ```
@@ -313,16 +302,16 @@ export default {
 ```vue
 <!-- App.vue -->
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue"
 // 1. 불러오기
-import MyComponent from '@/components/MyComponent'
-  
+import MyComponent from "@/components/MyComponent"
+
 export default {
-  name: 'App',
+  name: "App",
   components: {
     HelloWorld,
-    MyComponent // 2. 등록하기
-  }
+    MyComponent, // 2. 등록하기
+  },
 }
 </script>
 ```
@@ -339,9 +328,10 @@ export default {
      <!-- App.vue -->
      <template>
        <div id="app">
-         <img alt="Vue logo" src="./assets/logo.png">
-     		<MyComponent/> <!-- 3. 보여주기 -->
-         <HelloWorld msg="Welcome to Your Vue/js App"/>
+         <img alt="Vue logo" src="./assets/logo.png" />
+         <MyComponent />
+         <!-- 3. 보여주기 -->
+         <HelloWorld msg="Welcome to Your Vue/js App" />
        </div>
      </template>
      ```
@@ -351,15 +341,17 @@ export default {
 ```vue
 <!-- MyComponent.vue -->
 <template>
-  <div class="border"> <!-- 추가 -->
+  <div class="border">
+    <!-- 추가 -->
     <h1>This is my component</h1>
   </div>
 </template>
 
 <style>
-  .border { /* 추가 */
-    border: solid;
-  }
+.border {
+  /* 추가 */
+  border: solid;
+}
 </style>
 ```
 
@@ -375,7 +367,7 @@ export default {
 
 <script>
 export default {
-  name: 'MyComponentItem' // 생성
+  name: "MyComponentItem", // 생성
 }
 </script>
 ```
@@ -387,19 +379,20 @@ export default {
 <template>
   <div class="border">
     <h1>This is my component</h1>
-    <MyComponentItem/> <!-- MyComponentItem 등록 -->
+    <MyComponentItem />
+    <!-- MyComponentItem 등록 -->
   </div>
 </template>
 
 <script>
 // MyComponentItem 등록
-import MyComponentItem from '@/components/MyComponentItem'
-  
+import MyComponentItem from "@/components/MyComponentItem"
+
 export default {
-  name: 'MyComponent',
-  components : {
+  name: "MyComponent",
+  components: {
     MyComponentItem, // MyComponentItem 등록
-  }
+  },
 }
 </script>
 ```
@@ -410,10 +403,12 @@ export default {
 <!-- App.vue -->
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-		<MyComponent/> <!-- 재사용성 -->
-    <MyComponent/> <!-- 재사용성 -->
-    <HelloWorld msg="Welcome to Your Vue/js App"/>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <MyComponent />
+    <!-- 재사용성 -->
+    <MyComponent />
+    <!-- 재사용성 -->
+    <HelloWorld msg="Welcome to Your Vue/js App" />
   </div>
 </template>
 ```
@@ -426,6 +421,7 @@ export default {
 
 - 동적 웹페이지에서 다뤄야 할 데이터가 등장
 - 한 페이지 내에서 같은 데이터를 공유 해야 함
+
   - 하지만 페이지들은 component 로 구분이 되어있음
 
 - 각 Component는 독립적이므로 서로 다른 data 를 갖게 될 것이다.
@@ -436,7 +432,7 @@ export default {
 **pass props & emit event**
 
 - 부모 => 자식으로의 데이터의 흐름
-  - pass **props**  의 방식
+  - pass **props** 의 방식
 - 자식 => 부모로의 데이터의 흐름
   - **emit** event 의 방식
 
@@ -444,15 +440,15 @@ export default {
 
 - 요소의 property 속성을 사용하여 데이터 전달
 - props는 부모(상위) 컴포넌트의 정보를 전달하기 위한 사용자 지정 특성
-- 자식(하위) 컴포넌트는  props 옵션을 사용하여 수신하는 props 를 명시적으로 선언해야 함
+- 자식(하위) 컴포넌트는 props 옵션을 사용하여 수신하는 props 를 명시적으로 선언해야 함
 
 ```vue
 <!-- App.vue -->
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-		<MyComponent/>
-    <HelloWorld msg="Welcome to Your Vue/js App"/>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <MyComponent />
+    <HelloWorld msg="Welcome to Your Vue/js App" />
   </div>
 </template>
 ```
@@ -467,10 +463,12 @@ export default {
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+  </div>
+</template>
 ```
 
 - 부모 => 자식으로의 data 전달 방식을 pass props 라고 함
-- 정적인 데이터를 전달하는 경우 static props  라고 명시하기도 함
+- 정적인 데이터를 전달하는 경우 static props 라고 명시하기도 함
 - 요소에 속성을 작성하듯이 사용 가능하여, `prop-data-name="value"` 의 형태로 데이터를 전달
   - 이때 속성의 키 값은 kebab-case 를 사용
 
@@ -478,10 +476,10 @@ export default {
 <!-- HelloWorld.vue -->
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
-    msg: String
-  }
+    msg: String,
+  },
 }
 </script>
 ```
@@ -490,7 +488,7 @@ export default {
 
 - 데이터를 받는 쪽, 즉 하위 컴포넌트에서도 props에 대해 명시적으로 작성 해주어야 함
 
-- 전달 받은  props 를 type과 함께 명시
+- 전달 받은 props 를 type과 함께 명시
 
 - 컴포넌트를 문서화할 뿐만 아니라, 잘못된 타입이 전달하는 경우 브라우저의 자바스크립트 콘솔에서 사용자에게 경고
 
@@ -503,7 +501,7 @@ export default {
 <template>
   <div class="border">
     <h1>This is my component</h1>
-    <MyComponentItem static-props="component에서 componentItem으로"/>
+    <MyComponentItem static-props="component에서 componentItem으로" />
   </div>
 </template>
 ```
@@ -519,10 +517,10 @@ export default {
 
 <script>
 export default {
-  name: 'MyComponentItem',
-  props : {
+  name: "MyComponentItem",
+  props: {
     staticProps: String,
-  }
+  },
 }
 </script>
 ```
@@ -535,9 +533,9 @@ export default {
 
     (HTML 속성명은 대소문자를 구분하지 않기 때문)
 
-- 자식에서 받는 prps
+- 자식에서 받는 props
   - `camelCase`
-- 부모 html 템플릿에서 kebab-case 로 넘긴 변수를 자식의 vue 스크립트에서 자동으로 camclCase 로 변환하여 인식함
+- 부모 html 템플릿에서 kebab-case 로 넘긴 변수를 자식의 vue 스크립트에서 자동으로 camelCase 로 변환하여 인식함
 
 **Dynamic props**
 
@@ -585,12 +583,12 @@ export default {
 
 <script>
 export default {
-  name: 'MyComponentItem',
-  props : {
+  name: "MyComponentItem",
+  props: {
     staticProps: String,
     // Dynamic props
     dynamicProps: String,
-  }
+  },
 }
 </script>
 ```
@@ -598,11 +596,11 @@ export default {
 **컴포넌트의 data 함수**
 
 ```js
-data : function () {
+data: function () {
   return {
     // component's data in here
   }
-}
+},
 ```
 
 - 각 vue 인스턴스는 같은 data 객체를 공유하므로 새로운 data 객체를 return 반환하여 사용해야 함
@@ -629,7 +627,7 @@ data : function () {
     <MyComponentItem
       static-props="component에서 componentItem으로"
       v-bind:my-props="dynamicProps"
-      />
+    />
   </div>
 </template>
 ```
@@ -646,11 +644,11 @@ data : function () {
 
 <script>
 export default {
-  name: 'MyComponentItem',
-  props : {
+  name: "MyComponentItem",
+  props: {
     staticProps: String,
     myProps: String,
-  }
+  },
 }
 </script>
 ```
@@ -660,9 +658,9 @@ export default {
 
 ```vue
 <!-- static props 로 string 으로써의 "1" 을 전달 -->
-<SomeComponent num-props="1"/>
+<SomeComponent num-props="1" />
 <!-- dynamic props 로 숫자로써의 1 을 전달 -->
-<SomeComponent v-bind:num-props="1"/>
+<SomeComponent v-bind:num-props="1" />
 ```
 
 **`단방향 데이터 흐름`**
@@ -671,6 +669,7 @@ export default {
 - 부모 속성이 업데이트되면 자식으로 흐르지만 반대 방향은 아님
   - 부모 컴포넌트가 업데이트될 때마다 자식 컴포넌트의 모든 prop 들이 최신 값으로 새로고침 됨
 - 목적
+
   - 하위 컴포넌트가 실수로 상위 컴포넌트 상태를 변경하여 앱의 데이터 흐름을 이해하기 힘들게 만드는 것을 방지
 
 - 하위 컴포넌트에서 prop 를 변경하려고 시도해서는 안되며 그렇게 하면 Vue 는 콘솔에서 경고를 출력함
@@ -688,7 +687,7 @@ export default {
   - **`$emit('event-name')`** 형식으로 사용하며 부모컴포넌트에 **`event-name`** 이라는 이벤트가 발생했다는 것을 알림
   - 마치 사용자가 **마우스 클릭**을 하면 `click` 이벤트가 발생하는 것처럼 `$emit('event-name')` 가 실행되면 `event-name` 이벤트가 발생하는 것
 - 참고) `$`
-  - javascript 는 변수에 `_`, `$`  두개의 특수문자를 사용 가능
+  - javascript 는 변수에 `_`, `$` 두개의 특수문자를 사용 가능
   - 이때, 기존에 사용하던 변수, 메서드들과 겹치지 않게 하기 위해서 vue 는 `$emit` 를 이벤트 이벤트 전달을 위한 방식으로 택하였다.
 
 **Emit Event**
@@ -696,20 +695,16 @@ export default {
 ```vue
 <!-- MyComponentItem.vue -->
 <template>
-  <div>
-    
-    <button v-on:click="childToParent">클릭</button><br>
-  </div>
+  <div><button v-on:click="childToParent">클릭</button><br /></div>
 </template>
 
 <script>
 export default {
-  
   methods: {
-    ChildToParent : function(){
-      this.$emit('child-to-parent')
-    }
-  }
+    ChildToParent: function () {
+      this.$emit("child-to-parent")
+    },
+  },
 }
 </script>
 ```
@@ -722,21 +717,17 @@ export default {
 <template>
   <div class="border">
     <h1>This is my component</h1>
-    <MyComponentItem
-
-      v-on:child-to-parent="parentGetEvent"
-      />
+    <MyComponentItem v-on:child-to-parent="parentGetEvent" />
   </div>
 </template>
 
 <script>
 export default {
-  
   methods: {
-    parentGetEvent: function(){
+    parentGetEvent: function () {
       console.log("자식 컴포넌트에서 발생한 이벤트")
-    }
-  }
+    },
+  },
 }
 </script>
 ```
@@ -754,20 +745,16 @@ export default {
 ```vue
 <!-- MyComponentItem.vue -->
 <template>
-  <div>
-    
-    <button v-on:click="childToParent">클릭</button><br>
-  </div>
+  <div><button v-on:click="childToParent">클릭</button><br /></div>
 </template>
 
 <script>
 export default {
-  
   methods: {
-    ChildToParent : function(){
-      this.$emit('child-to-parent', 'child data')
-    }
-  }
+    ChildToParent: function () {
+      this.$emit("child-to-parent", "child data")
+    },
+  },
 }
 </script>
 ```
@@ -779,22 +766,18 @@ export default {
 <template>
   <div class="border">
     <h1>This is my component</h1>
-    <MyComponentItem
-
-      v-on:child-to-parent="parentGetEvent"
-      />
+    <MyComponentItem v-on:child-to-parent="parentGetEvent" />
   </div>
 </template>
 
 <script>
 export default {
-  
   methods: {
-    parentGetEvent: function(inputData){
+    parentGetEvent: function (inputData) {
       console.log("자식 컴포넌트에서 발생한 이벤트")
-      console.log('child component로부터 ${inputData}를 받음')
-    }
-  }
+      console.log("child component로부터 ${inputData}를 받음")
+    },
+  },
 }
 </script>
 ```
@@ -825,29 +808,22 @@ export default {
 <!-- MyComponentItem.vue -->
 <template>
   <div>
-    
-    <input 
-      type="text" 
-      v-model="childInputData" 
-      v-on:keyup.enter="childInput"
-    >
+    <input type="text" v-model="childInputData" v-on:keyup.enter="childInput" />
   </div>
 </template>
 
 <script>
 export default {
-  
-  data: function(){
+  data: function () {
     return {
       childInputData: null,
     }
   },
   methods: {
-    
-    childInput: function(){
-      this.$emit('child-input', this.childInputData)
+    childInput: function () {
+      this.$emit("child-input", this.childInputData)
       this.childInputData = ""
-    }
+    },
   },
 }
 </script>
@@ -858,23 +834,19 @@ export default {
 <template>
   <div class="border">
     <h1>This is my component</h1>
-    <MyComponentItem
-
-      v-on:child-input="getDynamicData"
-      />
+    <MyComponentItem v-on:child-input="getDynamicData" />
   </div>
 </template>
 
 <script>
-import MyComponentItem from '@/components/MyComponentItem'
+import MyComponentItem from "@/components/MyComponentItem"
+
 export default {
-  
   methods: {
-    
-    getDynamicData: function(inputData){
-      console.log('child component로부터 ${inputData}를 입력받음')
-    }
-  }
+    getDynamicData: function (inputData) {
+      console.log("child component로부터 ${inputData}를 입력받음")
+    },
+  },
 }
 </script>
 ```
@@ -909,6 +881,7 @@ export default {
 - HTML 요소에서 사용할 때는 `kebab-case`
 - JavaScript 에서 사용할 때는 `camelCase`
 - props
+
   - 상위 => 하위 흐름에서 HTML 요소로 내려줌 : `kebab-case`
   - 하위에서 받을 때 JavaScript 에서 받음 : `camelCase`
 

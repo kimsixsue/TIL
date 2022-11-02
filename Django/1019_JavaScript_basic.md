@@ -1,26 +1,28 @@
 [JavaScript Basic](#javascript-basic)
+
 1. [JavaScript 시작하기](#1-javascript-시작하기)
-   + [JavaScript를 배워야 하는 이유](#javascript를-배워야-하는-이유)
-   + [JavaScript의 역사](#javascript의-역사)
-   + [JavaScript 실행환경 구성](#javascript-실행환경-구성)
+   - [JavaScript를 배워야 하는 이유](#javascript를-배워야-하는-이유)
+   - [JavaScript의 역사](#javascript의-역사)
+   - [JavaScript 실행환경 구성](#javascript-실행환경-구성)
 2. [JavaScript 기초 문법](#2-javascript-기초-문법)
-   + [코드 작성법](#코드-작성법)
-   + [변수와 식별자](#변수와-식별자)
-   + [데이터 타입](#데이터-타입)
-   + [연산자](#연산자)
-   + [조건문](#조건문)
-   + [반복문](#반복문)
+   - [코드 작성법](#코드-작성법)
+   - [변수와 식별자](#변수와-식별자)
+   - [데이터 타입](#데이터-타입)
+   - [연산자](#연산자)
+   - [조건문](#조건문)
+   - [반복문](#반복문)
 3. [Function](#3-function)
-   + [함수의 정의](#함수의-정의)
-   + [선언식과 표현식](#선언식과-표현식)
-   + [Arrow Function](#arrow-function)
+   - [함수의 정의](#함수의-정의)
+   - [선언식과 표현식](#선언식과-표현식)
+   - [Arrow Function](#arrow-function)
 4. [Array_Object](#4-array_object)
-   + [Array](#array)
-   + [Array method 기초](#array-method-기초)
-   + [Array method 심화](#array-method-심화)
-   + [Object](#object)
-   + [Object 관련 문법](#object-관련-문법)
-* [finish](#finish)
+   - [Array](#array)
+   - [Array method 기초](#array-method-기초)
+   - [Array method 심화](#array-method-심화)
+   - [Object](#object)
+   - [Object 관련 문법](#object-관련-문법)
+
+- [finish](#finish)
 
 # JavaScript Basic
 
@@ -69,11 +71,10 @@
 
   - .js 확장자를 가진 파일에 JavaScript를 작성하고, 해당 파일을 HTML에 포함 가능
 
-
   ```html
+  <body>
+    <script type="text/javascript" src="hello.js"></script>
   </body>
-  <script type="text/javascript" src="hello.js"></script>
-  </html>
   ```
 
 - Web Browser에서 바로 입력하기
@@ -81,7 +82,6 @@
   - 웹 브라우저의 console에서 바로 JavaScript를 입력해도 된다
   - 특별하게 웹 브라우저에서 바로 실행할 수 있는 JavaScript 문법들을 **Vanilla JavaScript**라고 부름
   - 순수한 JavaScript라는 의미(모든 아이스크림의 순정은 Vanilla라는 어원)
-
 
 2. **Node.JS로 실행하기**
    - 웹 브라우저를 이용하지 않고 JavaScript를 실행할 수 있음
@@ -115,7 +115,7 @@
 **식별자 정의와 특징**
 
 - identifier 식별자는 변수를 구분할 수 있는 변수명을 말함
-- 식별자는 반드시 문자, $ 달러 또는 _ 밑줄로 시작
+- 식별자는 반드시 문자, $ 달러 또는 \_ 밑줄로 시작
 - 대소문자를 구분하며, 클래스명 외에는 모두 소문자로 시작
 - 예약어 사용 불가능
 
@@ -179,7 +179,7 @@
 
 - 덧셈을 통해 문자열 붙일 수 있음
 
-  >https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/repeat
+  > https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/repeat
 
 - Quote를 사용하면 선언 시 줄 바꿈이 안 됨
 
@@ -193,7 +193,6 @@
   const age = 10
   const message = `홍길동은 ${age}세입니다.`
   ```
-
 
 **Template literals 템플릿 리터럴**
 
@@ -288,7 +287,7 @@
   - 주로 특정 변수의 값에 따라 조건을 분기할 때 활용
     - 조건이 많아질 경우 if문보다 가독성이 나올 수 있음
   - expression 표현식의 결과값을 이용한 조건문
-  - 표현식의 결과값과  case문의 오른쪽 값을 비교
+  - 표현식의 결과값과 case문의 오른쪽 값을 비교
   - break 및 default문은 [선택적]으로 사용 가능
   - break문이 없는 경우 break문을 만나거나 default문을 실행할 때까지 다음 조건문 실행
   - 블록 스코프 생성
@@ -309,9 +308,7 @@
   - 조건문이 참이기만 하면 문장을 계속해서 수행
 
     ```js
-    while (조건문) {
-        
-    }
+    while (조건문) {}
     ```
 
 - for
@@ -319,12 +316,10 @@
   - 특정한 조건이 거짓으로 판별될 때까지 반복
 
     ```js
-    for ([초기문]; [조건문]; [증감문]) {
-        
-    }
-    
-    for (let i = 0; i < 6; i ++) {
-        console.log(i)
+    for ([초기문]; [조건문]; [증감문]) {}
+  
+    for (let i = 0; i < 6; i++) {
+      console.log(i)
     }
     ```
 
@@ -344,15 +339,14 @@
 
     ```js
     for (variable in object) {
-        
     }
-    
-    const fruits = { a: 'apple', b: 'banana' }
-    
+  
+    const fruits = { a: "apple", b: "banana" }
+  
     // for (let key in fruits) {
     for (const key in fruits) {
-        console.log(key)
-        console.log(fruits[key])
+      console.log(key)
+      console.log(fruits[key])
     }
     ```
 
@@ -368,25 +362,24 @@
 
     ```js
     for (variable of object) {
-        
     }
     
     const numbers = [0, 1, 2, 3]
     
     // for (let number of numbers) {
     for (const number of numbers) {
-        console.log(number)
+      console.log(number)
     }
     ```
 
 **[참고] for…in, for…of 와 const**
 
 - for문
+
   - 최초 정의한 i 를 재할당 하면서 사용하기 때문에 const를 사용하면 **에러 발생**
 
 - for…in, for…of
   - 재할당이 아니라, 매 반복 시 해당 변수를 새로 정의하여 사용하므로 **에러가 발생하지 않음**
-
 
 **조건문과 반복문 정리**
 
@@ -413,9 +406,7 @@ JavaScript에서 함수를 정의하는 방법은 주로 2가지로 구분됨
 **function declaration 함수 선언식**
 
 ```js
-function 함수명() {
-    
-}
+function 함수명() {}
 ```
 
 **function expression 함수 표현식**
@@ -425,7 +416,7 @@ function 함수명() {
 
 ```js
 변수키워드 함수명 = function () {
-    
+
 }
 ```
 
@@ -437,7 +428,7 @@ function 함수명() {
 - 인자 작성 시 `=` 문자 뒤 기본 인자 선언 가능
 
   ```js
-  const greeting = function (name = 'Anonymous') {
+  const greeting = function (name = "Anonymous") {
     return `Hi ${name}`
   }
   
@@ -452,8 +443,8 @@ function 함수명() {
   const twoArgs = function (arg1, arg2) {
     return [arg1, arg2]
   }
-  
-  twoArgs(1, 2, 3)  // [1, 2]
+
+  twoArgs(1, 2, 3) // [1, 2]
   ```
 
 - 매개변수보다 인자의 개수가 적을 경우
@@ -473,8 +464,8 @@ function 함수명() {
   1. 배열과의 사용 (배열 복사)
 
      ```js
-     let parts = ['shoulders', 'knees']
-     let lyrics = ['head', ...parts, 'and', 'toes']
+     let parts = ["shoulders", "knees"]
+     let lyrics = ["head", ...parts, "and", "toes"]
      ```
 
   2. 함수와의 사용 (**Rest parameters**)
@@ -486,7 +477,7 @@ function 함수명() {
        return [arg1, arg2, restArgs]
      }
      
-     restArgs(1, 2, 3, 4, 5)  // [1, 2, [3, 4, 5]]
+     restArgs(1, 2, 3, 4, 5) // [1, 2, [3, 4, 5]]
      
      function addNumbers(...numbers) {
        return numbers.reduce((sum, number) => {
@@ -495,11 +486,11 @@ function 함수명() {
      }
      console.log(addNumbers(1, 2, 3, 4, 5))
      
-     const defaultColors = ['red', 'green', 'blue'];
-     const favoriteColors = ['navy', 'black', 'gold', 'white']
+     const defaultColors = ["red", "green", "blue"]
+     const favoriteColors = ["navy", "black", "gold", "white"]
      const palette = [...defaultColors, ...favoriteColors]
      
-     const info1 = { name: 'Tom', age: 30 }
+     const info1 = { name: "Tom", age: 30 }
      const info2 = { isMarried: true, balance: 3000 }
      const fullInfo = { ...info1, ...info2 }
      ```
@@ -539,7 +530,7 @@ function 함수명() {
 
   1. **function** 키워드 생략가능
   2. 함수의 매개변수가 하나뿐이라면 `( )` 도 생략 가능
-     - **명확성과 일관성을 위해 항상 인자 주위에는`()` 괄호를 포함하는 것을 권장** 
+     - **명확성과 일관성을 위해 항상 인자 주위에는`()` 괄호를 포함하는 것을 권장**
   3. 함수의 내용이 한 줄이라면 `{ }` 와 `return` 도 생략 가능
 
 - 화살표 함수는 항상 익명 함수
@@ -548,7 +539,9 @@ function 함수명() {
 
   ```js
   // 1. function 키워드 삭제
-  const arrow = (name) => { return `hello, ${name}` }
+  const arrow = (name) => {
+    return `hello, ${name}`
+  }
   
   // 3. 함수 바디가 return을 포함한 표현식 1개일 경우에 { } & return 삭제 가능
   const arrow = (name) => `hello, ${name}`
@@ -556,14 +549,16 @@ function 함수명() {
 
   ```js
   // 인자가 없다면? () or _ 로 표시 가능.
-  let noArgs = () => 'No args'
-  noArgs = _ => 'No args'
+  let noArgs = () => "No args"
+  noArgs = (_) => "No args"
   
   // object 를 return 한다면, return 을 명시적으로 적어준다.
-  let returnObject = () => { return { key: 'value'} }
+  let returnObject = () => {
+    return { key: "value" }
+  }
   
   // return 을 적지 않으려면 괄호를 붙여야 한다.
-  returnObject = () => ({ key: 'value' })
+  returnObject = () => ({ key: "value" })
   ```
 
 **즉시 실행 함수 (IIFE, Immediaely Invoked Function Expression)**
@@ -581,9 +576,9 @@ function 함수명() {
 - 일회성 함수이므로 익명함수로 사용하는 것이 일반적
 
   ```js
-  (function(num) { return num ** 3 })(2) // 8
+  (function (num) { return num ** 3 })(2)  // 8
   
-  (num => num ** 3 )(2) // 8
+  (num => num ** 3)(2) // 8
   ```
 
 ## 4. Array_Object
@@ -624,22 +619,20 @@ function 함수명() {
 - 메서드 호출 시 인자로 **callback 함수**를 받는 것이 특징
   - **callback 함수**: 어떤 함수의 내부에서 실행될 목적으로 인자로 넘겨받는 함수
 
-| 메서드      | 설명                                                         | 비고         |
-| ----------- | ------------------------------------------------------------ | ------------ |
-| **forEach** | 배열의 각 요소에 대해 콜백 함수를 한 번씩 실행               | 반환 값 없음 |
-| **map**     | **콜백 함수의 반환 값**을 요소로 하는 **새로운 배열 반환**   |              |
+| 메서드      | 설명                                                                  | 비고         |
+| ----------- | --------------------------------------------------------------------- | ------------ |
+| **forEach** | 배열의 각 요소에 대해 콜백 함수를 한 번씩 실행                        | 반환 값 없음 |
+| **map**     | **콜백 함수의 반환 값**을 요소로 하는 **새로운 배열 반환**            |              |
 | **filter**  | **콜백 함수의 반환 값이 참인 요소들만** 모아서 **새로운 배열을 반환** |              |
-| **reduce**  | **콜백 함수의 반환 값들을 하나의 값(acc)에 누적 후 반환**    |              |
-| find        | 콜백 함수의 **반환 값이 참이면 해당 요소를 반환**            |              |
-| some        | 배열의 **요소 중 하나라도 판별 함수를 통과**하면 참을 반환   |              |
-| every       | 배열의 **모든 요소가 판별 함수를 통과**하면 참을 반환        |              |
+| **reduce**  | **콜백 함수의 반환 값들을 하나의 값(acc)에 누적 후 반환**             |              |
+| find        | 콜백 함수의 **반환 값이 참이면 해당 요소를 반환**                     |              |
+| some        | 배열의 **요소 중 하나라도 판별 함수를 통과**하면 참을 반환            |              |
+| every       | 배열의 **모든 요소가 판별 함수를 통과**하면 참을 반환                 |              |
 
 **Array Helper Methods - forEach**
 
 ```js
-array.forEach((element, index, array) => {
-    
-})
+array.forEach((element, index, array) => {})
 ```
 
 - array.forEach(callback(element[, index[,array]]))
@@ -651,7 +644,7 @@ array.forEach((element, index, array) => {
 - return 반환 값 없음
 
 ```js
-const colors = ['red', 'blue', 'green']
+const colors = ["red", "blue", "green"]
 
 printFunc = function (color) {
   console.log(color)
@@ -663,28 +656,28 @@ colors.forEach(function (color) {
 })
 
 colors.forEach((color) => {
-    return console.log(color)
+  return console.log(color)
 })
 
 colors.forEach((color) => console.log(color))
 
-users.forEach((user) => return console.log(user.name))
+users.forEach((user) => {
+  return console.log(user.name)
+})
+
 ```
 
 **Array Helper Methods - map**
 
 ```js
-array.map((element, index, array) => {
-    
-})
+array.map((element, index, array) => {})
 ```
 
 - array.map(callback(element[, index[, array]]))
 - 배열의 각 요소에 대해 콜백 함수를 한 번씩 실행
-- **콜백 함수의 반환 값을 요소로 하는 새로운 배열 반환** 
+- **콜백 함수의 반환 값을 요소로 하는 새로운 배열 반환**
 - 기존 배열 전체를 다른 형태로 바꿀 때 유용
-  - forEach + return  이라고 생각하기
-
+  - forEach + return 이라고 생각하기
 
 ```js
 const numbers = [1, 2, 3]
@@ -702,8 +695,8 @@ const doubleNumbers = numbers.map(function (number) {
 console.log(doubleNumbers)
 
 const doubleNumbers = numbers.map((number) => {
-    return number * 2
-)}
+  return number * 2
+})
 console.log(doubleNumbers)
 
 const doubleNumbers = numbers.map((number) => number * 2)
@@ -718,8 +711,8 @@ const newUsers = users.map((user) => {
 **Array Helper Methods - filter**
 
 ```js
-array.filter((element, index, array)) => {
-    
+array.filter((element, index, array) => {
+  
 })
 ```
 
@@ -730,14 +723,14 @@ array.filter((element, index, array)) => {
 
 ```js
 const products = [
-  { name: 'cucumber', type: 'vegetable' },
-  { name: 'banana', type: 'fruit' },
-  { name: 'carrot', type: 'vegetable' },
-  { name: 'apple', type: 'fruit' },
+  { name: "cucumber", type: "vegetable" },
+  { name: "banana", type: "fruit" },
+  { name: "carrot", type: "vegetable" },
+  { name: "apple", type: "fruit" },
 ]
 
 const fruitFilter = function (product) {
-  return product.type === 'fruit'
+  return product.type === "fruit"
 }
 
 const fruits = products.filter(fruitFilter)
@@ -745,14 +738,14 @@ const fruits = products.filter(fruitFilter)
 console.log(fruits)
 
 const fruits = products.filter(function (product) {
-  return product.type === 'fruit'
+  return product.type === "fruit"
 })
 
 const fruits = products.filter((product) => {
-  return product.type === 'fruit'
+  return product.type === "fruit"
 })
 
-const fruits = products.filter((product) => product.type === 'fruit')
+const fruits = products.filter((product) => product.type === "fruit")
 
 const marriedUsers = users.filter((user) => user.isMarried)
 ```
@@ -761,7 +754,7 @@ const marriedUsers = users.filter((user) => user.isMarried)
 
 ```js
 array.reduce((acc, element, index, array) => {
-    
+  
 }, initialValue)
 ```
 
@@ -795,9 +788,9 @@ const totalBalance = users.reduce((total, user) => total + user.balance, 0)
 **Array Helper Methods - find**
 
 ```js
-array.find((element, index, array)) {
-    
-}
+array.find((element, index, array) => {
+  
+})
 ```
 
 - array.find(callback(element[, index[, array]]))
@@ -807,29 +800,29 @@ array.find((element, index, array)) {
 
 ```js
 const avengers = [
-  { name: 'Tony Stark', age: 45 },
-  { name: 'Steve Rogers', age: 32 },
-  { name: 'Thor', age: 40 },
+  { name: "Tony Stark", age: 45 },
+  { name: "Steve Rogers", age: 32 },
+  { name: "Thor", age: 40 },
 ]
 
 const avenger = avengers.find(function (avenger) {
-  return avenger.name === 'Tony Stark'
+  return avenger.name === "Tony Stark"
 })
 
 const avenger = avengers.find((avenger) => {
-    return avenger.name === 'Tony Stark'
+  return avenger.name === "Tony Stark"
 })
 
-const avenger = avengers.find((avenger) => avenger.name === 'Tony Stark')
+const avenger = avengers.find((avenger) => avenger.name === "Tony Stark")
 
-const tom = users.find((user) => user.name === 'Tom')
+const tom = users.find((user) => user.name === "Tom")
 ```
 
 **Array Helper Methods - some**
 
 ```js
 array.some((element, index, array) => {
-    
+  
 })
 ```
 
@@ -842,7 +835,7 @@ array.some((element, index, array) => {
 const arr = [1, 2, 3, 4, 5]
 
 const result = arr.some((elem) => {
-    return elem % 2 == 0
+  return elem % 2 == 0
 })
 
 const result = arr.some((elem) => elem % 2 === 0)
@@ -852,7 +845,7 @@ const result = arr.some((elem) => elem % 2 === 0)
 
 ```js
 array.every((element, index, array) => {
-    
+  
 })
 ```
 
@@ -865,7 +858,7 @@ array.every((element, index, array) => {
 const arr = [1, 2, 3, 4, 5]
 
 const result = arr.every((elem) => {
-    return elem % 2 === 0
+  return elem % 2 === 0
 })
 
 const result2 = arr.every((elem) => elem % 2 === 0)
@@ -874,7 +867,7 @@ const result2 = arr.every((elem) => elem % 2 === 0)
 **배열 순회 비교**
 
 ```js
-const chars = ['A', 'B', 'C', 'D']
+const chars = ["A", "B", "C", "D"]
 
 // for loop
 for (let idx = 0; idx < chars.length; idx++) {
@@ -891,16 +884,16 @@ chars.forEach((char, idx) => {
   console.log(idx, char)
 })
 
-chars.forEach(char => {
+chars.forEach((char) => {
   console.log(char)
 })
 ```
 
-| 방식        | 특징                                                         | 비고                         |
-| ----------- | ------------------------------------------------------------ | ---------------------------- |
-| for loop    | 모든 브라우저 환경에서 지원<br />인덱스를 활용하여 배열의 요소에 접근<br />break, continue 사용 가능 |                              |
+| 방식        | 특징                                                                                                        | 비고                         |
+| ----------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| for loop    | 모든 브라우저 환경에서 지원<br />인덱스를 활용하여 배열의 요소에 접근<br />break, continue 사용 가능        |                              |
 | for…of      | 일부 오래된 환경에서 **지원X**<br />인덱스 없이 배열의 요소에 바로 접근 가능<br />break, continue 사용 가능 |                              |
-| **forEach** | 대부분의 브라우저 환경에서 지원<br />break, continue 사용 **불가능** | Airbnb Style Guide 권장 방식 |
+| **forEach** | 대부분의 브라우저 환경에서 지원<br />break, continue 사용 **불가능**                                        | Airbnb Style Guide 권장 방식 |
 
 ### Object
 
@@ -914,16 +907,16 @@ chars.forEach(char => {
 
 ```js
 const me = {
-  name: 'jack',
-  phoneNumber: '0102345678',
-  'samsung products': {
-    buds: 'Galaxy Buds pro',
-    galaxy: 'Galaxy s99',
+  name: "jack",
+  phoneNumber: "0102345678",
+  "samsung products": {
+    buds: "Galaxy Buds pro",
+    galaxy: "Galaxy s99",
   },
 }
 
 console.log(me.name)
-console.log(me['samsung products'].buds)
+console.log(me["samsung products"].buds)
 ```
 
 ### Object 관련 문법
@@ -942,8 +935,8 @@ console.log(me['samsung products'].buds)
 - 객체를 정의할 때 key와 할당하는 변수의 이름이 같으면 **축약** 가능
 
 ```js
-const books = ['Learning JavaScript', 'Learning Python']
-const magazines = ['Vogue', 'Science']
+const books = ["Learning JavaScript", "Learning Python"]
+const magazines = ["Vogue", "Science"]
 
 const bookShop = {
   books,
@@ -951,9 +944,9 @@ const bookShop = {
 }
 console.log(bookShop)
 
-const url = 'https://test.com'
+const url = "https://test.com"
 const data = {
-  message: 'Hello World!'
+  message: "Hello World!",
 }
 const request = {
   url,
@@ -968,17 +961,17 @@ const request = {
 ```js
 const obj = {
   greeting() {
-    console.log('Hi!')
-  }
+    console.log("Hi!")
+  },
 }
 
 obj.greeting()
 
 const tom = {
-  name: 'Tom',
+  name: "Tom",
   introduce() {
-    console.log('Hi, my name is' + this.name)
-  }
+    console.log("Hi, my name is" + this.name)
+  },
 }
 ```
 
@@ -987,8 +980,8 @@ const tom = {
 - 객체를 정의할 때 key의 이름을 표현식을 이용하여 동적으로 생성 가능
 
 ```js
-const key = 'country'
-const value = ['한국', '미국', '일본', '중국']
+const key = "country"
+const value = ["한국", "미국", "일본", "중국"]
 
 const myObj = {
   [key]: value,
@@ -1004,22 +997,22 @@ console.log(myObj.country)
 
 ```js
 const userInformation = {
-  name: 'kim',
-  userId: 'Student1234',
-  phoneNumber: '010-1234-1234',
-  email: 'student@student.com'
+  name: "kim",
+  userId: "Student1234",
+  phoneNumber: "010-1234-1234",
+  email: "student@student.com",
 }
 
 const { userId } = userInformation
 const { phoneNumber, email } = userInformation
 
 const savedFile = {
-  name: 'profile',
-  extension: 'jpg',
-  size: 29930
+  name: "profile",
+  extension: "jpg",
+  size: 29930,
 }
 
-function fileSummary({name, extension, size}) {
+function fileSummary({ name, extension, size }) {
   console.log(`The file ${name}.${extension} is size of ${size} bytes.`)
 }
 fileSummary(savedFile)
@@ -1031,16 +1024,16 @@ fileSummary(savedFile)
 - 얕은 복사에 활용 가능
 
 ```js
-const obj = {b: 2, c: 3, d: 4}
-const newObj = {a: 1, ...obj, e: 5}
+const obj = { b: 2, c: 3, d: 4 }
+const newObj = { a: 1, ...obj, e: 5 }
 
 console.log(newObj)
 
-const defaultColors = ['red', 'green', 'blue'];
-const favoriteColors = ['navy', 'black', 'gold', 'white']
+const defaultColors = ["red", "green", "blue"]
+const favoriteColors = ["navy", "black", "gold", "white"]
 const palette = [...defaultColors, ...favoriteColors]
 
-const info1 = { name: 'Tom', age: 30 }
+const info1 = { name: "Tom", age: 30 }
 const info2 = { isMarried: true, balance: 3000 }
 const fullInfo = { ...info1, ...info2 }
 ```
@@ -1055,8 +1048,8 @@ JSON 변환
 
 ```js
 const jsObject = {
-  coffee: 'Americano',
-  iceCream: 'Cookie and cream',
+  coffee: "Americano",
+  iceCream: "Cookie and cream",
 }
 ```
 
@@ -1083,6 +1076,7 @@ console.log(typeof jsonToObj)
   - 스타일 가이드
 
   - 변수와 식별자
+
     - 타입과 연산자
       - 원시 자료형
 
