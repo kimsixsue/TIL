@@ -10,12 +10,11 @@
    - [Vue component](#vue-component)
    - [Vue component 실습](#vue-component-실습)
 3. [Pass Props & Emit Events](#3-pass-props--emit-events)
-
-   - [Data in components](#data-in-components)
-
-   - [Pass Props](#pass-props)
-
-   - [Emit Event](#emit-event)
+- [Data in components](#data-in-components)
+  
+- [Pass Props](#pass-props)
+  
+- [Emit Event](#emit-event)
 
 
 * [finish](#finish)
@@ -213,11 +212,15 @@
   - HTML의 body 부분
   - 눈으로 보여지는 요소 작성
   - 다른 컴포넌트를 HTML 요소처럼 추가 가능
+  
 - JavaScript 스크립트
   - JavaScript 코드가 작성되는 곳
   - 컴포넌트 정보, 데이터, 메서드 등 vue 인스턴스를 구성하는 대부분이 작성 됨
+  
 - CSS 스타일
   - CSS가 작성되며 컴포넌트의 스타일을 담당
+  
+    >  https://forum.vuejs.org/t/use-google-font-into-my-project/12331
 
 **Vue component 구조 정리**
 
@@ -388,7 +391,26 @@ export default {
 - src/components/ 안에 MyComponentItem.vue 생성
 
 ```vue
-s
+<!-- MyComponent.vue -->
+<template>
+  <div class="border">
+    <h1>This is my component</h1>
+    <MyComponentItem />
+    <!-- MyComponentItem 등록 -->
+  </div>
+</template>
+
+<script>
+// MyComponentItem 등록
+import MyComponentItem from "@/components/MyComponentItem"
+
+export default {
+  name: "MyComponent",
+  components: {
+    MyComponentItem, // MyComponentItem 등록
+  },
+}
+</script>
 ```
 
 - MyComponent 에 MyComponentItem 등록
@@ -1163,4 +1185,3 @@ export default {
 }
 </style>
 ```
-
