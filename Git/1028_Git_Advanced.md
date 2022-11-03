@@ -2,306 +2,231 @@
 
 >  https://git-scm.com/book
 
-## GIT undoing
+`git restore {filename} `
 
-- Git 작업 되돌리기
-  - working directory 작업 단계
+- 수정한 파일을 수정 전(직전 커밋)으로 되돌리기
+- 이미 git에 등록되어, 버전 관리가 되는 파일만 되돌리기 가능
+- 해당 내용을 복원할 수 없으니 주의할 것
 
-### working directory
 
-- `git restore`
 
-  - 수정한 파일을 수정 전으로 되돌리기
+`git stash {filename}`  : 수정한 파일을 stash 공간으로 옮겨 임시 보관
 
-  - 이미 버전 관리가 되는 파일만 되돌리기 가능
+- `git stash apply` : stash의 내용을 불러오기
 
-  - `git restore`를 통해 되돌리면, 해당 내용을 복원할 수 없으니 주의할 것
 
-    `git restore {filename} `
 
-- `git stash`
+`git add` 를 잘못한 경우 되돌리기
 
-  - 수정한 파일을 stash 영역(임시 공간)으로 옮긴 후에
-- 수정한 부분 초기화
+- `git rm --cached {filename}`
+  - root-commit 이 없는 경우, 한 번도 커밋 안 한 경우
+    - git에서 더 이상 관리하고 싶지 않은 file인 경우에도 사용
+- `git restore --staged {filename}`
+  - root-commit 이 있는 경우, 커밋이 한 번이라도 있을 때 사용
+  - HEAD(최근 commit된 곳)로 되돌릴 때 사용
 
-### staging area 작업 단계 되돌리기
 
-- `git add` 를 잘못한 경우 되돌리기
-- root-commit 이 없는 경우 : `git rm --cached filename`
-  - 한 번도 커밋 안 한 경우
-  - git 으로 관리 되는 file -> 더는 관리하고 싶지 않을 때, `.gitignore` 파일에 등록해야 하는데 commit 됐을 때
-- root-commit 이 있는 경우 : `git restore --staged file`
-  - 커밋이 한 번이라도 있을 때 사용
 
-### Repository 작업 단계 되돌리기
+`git commit --amend` 
 
-- `git commit --amend`
+- commit 내용을 수정하지 않아도 hash 값이 변경되므로, 팀으로 작업해서 사용할 때는 주의해야 한다.
+
+- 이전 커밋을 완전히 고쳐서 새 커밋으로 변경하므로, 이전 커밋은 일어나지 않은 일이 되며 히스토리에도 남지 않음을 주의할 것
 
 - 상황별로 두 가지 기능으로 나뉨
 
-  - 직전 커밋의 메시지만 수정
-  - 직전 커밋을 덮어쓰기
+  - 새로 올라온 내용이 없다면, 직전 commit의 메시지만 수정
+  - 새로 올라온 내용이 있다면, 직전 commit을 덮어쓰기
+    - 동시에 같이 관리되어야 할 파일이 별도로 관리 될 때, 함께 관리할 파일과 같이 새롭게 commit
 
-- 이전 커밋을 완전히 고쳐서 새 커밋으로 변경하므로, 이전 커밋은 일어나지 않은 일이 되며 히스토리에도 남지 않음을 주의할 것!
-
-- 팀으로 작업해서 사용할 때는 주의해야 한다.
-  - 문제 발생: 계속 커밋 해시값이 변경되면 해시값이 두 개로 나뉘면서 기존이랑 충돌
-  
-- 이전에 a파일 커밋, 새로운 b파일, a와 b 같이 커밋하고 싶을 때 이 명령어 사용
-
-- vim 간단 사용법
+- `vim 모드` 로 들어가게 됨
 
   - `i` 입력 모드 문서 편집 가능
+
   - `esc` 명령 모드
     - 저장 및 종료 `:wq`
-    - 강제 종료 `:q!`
+      - 강제 종료 `:q!`
 
-### git reset/revert
 
-- 둘 다 특정 시간으로 되돌리기
 
-- commit 기록을 하느냐 하지 않느냐? 차이점
+`git reset [option] {commit ID}`
 
-- `git reset`
+- 프로젝트를 특정 커밋 버전 상태로 되돌림
 
-  - 마치 과거로 돌리는 듯한 행위로, 프로젝트를 특정 커밋 버전 상태로 되돌림
+- `commit ID` 는 되돌아가고 싶은 버전 시점의 `commit ID` (hash) 를 작성
 
-  - 특정 커밋으로 되돌아갔을  때 해당 커밋 이후로 쌓았던 커밋들은 전부 사라짐
+- 특정 커밋으로 되돌아갔을  때, 해당 커밋 이후로 쌓았던 커밋 내역들은 전부 사라짐
 
-  - `git reset [option] {commit ID}`
+  - `—-soft` : 해당 커밋 바로 직전으로 돌아가는 옵션
+  - `–-mixed` : 해당 커밋 버전으로 돌아가는 옵션. default
 
-    - 옵션: `--soft`, `--mixed`, `--hard` 중 하나를 작성
-    
-    - `—-soft` : 해당 커밋으로 되돌아가고, 되돌아간 커밋 이후 파일들은 staging area로 넣어둠. 돌려둠
-    
-      - c2 커밋 바로 직전으로 돌아가는 옵션
-      - `git reset --soft HEAD~1`
-    
-  - `–-mixed` : 옵션을 정하지 않으면 기본
-    
-    - 되돌아간 커밋 이후의 파일들은 working directory로 돌려놓음
-      - `git reset --mixed 3daf666`
+  - `--hard`: 해당 커밋 버전으로 돌아가는 옵션.
 
-    - `--hard`
-    
-    - 되돌아간 커밋 이후 파일들은 모두 working directory에서 삭제 > 따라서 사용 시 주의할 것
-    
-      - 복구는 가능 `git reflog`
-        
-      - `git reset --hard 0785b4a`
-    
-        HEAD is now at 0785b4a commit 01 - 이 커밋은 수정되었습니다.
-    
-      - ls 해보면 다 삭제됨
-    
-      - `git reflog`
-    
-        - `-–hard` 옵션으로 삭제했을 때
-        - `git reflog` 명령어를 사용하면 `git reset` 하기 전의 과거 커밋 명세를 모두 조회 가능
-      - `git reflog`
-        - 가장 위쪽이 최근
-      - 아래쪽으로 갈수록 옛날
-        - 그러고 `git reset --hard` 하면 복구 가능
-      - `git reset –hard 1fe67b2`
-    
-  - `commit ID` 는 되돌아가고 싶은 시점의 `commit ID` 를 작성
-  
-- `git revert`
+    - 되돌아간 커밋 이후의 파일들은 모두 Working Directory에서 삭제
 
-  - 해당 commit을 취소시키고, 취소시킨 걸 기록으로 남기는 것이다.
-  - 과거를 없었던 일로 만드는 행위로, 이전 커밋을 취소한다는 뜻. 새로운 커밋을 생성
-  - `git revert {commit ID}`
-  - 새로운 커밋이 하나 증가함 커밋 삭제했다는 커밋이 증가하는 것임.
-  - GitHub을 이용해 팀 협업할 때 커밋 명세의 차이로 충돌 방지
-  
-- 문법적 차이
+    - 기존의 Untracked 파일은 사라지지 않고 Untracked로 남아있음
 
-  - `git reset 5sd2f42`라고 작성하면 커밋으로 되돌린다는 뜻
-  - `git revert 5sd2f42`라고 작성하면 `5sd2f42` 라는 커밋 한 개를 취소한다는 뜻
+
+
+`git reflog` 
+
+- `git reset --hard {commit ID}` 하기 전의 과거 커밋 해쉬 명세를 모두 조회 가능
+
+- 이후 `git reset --hard {commit ID}` 하면, 삭제된 파일도 복구 가능
+
+
+
+`git revert {commit id}`
+
+- 취소하고 싶은 commit id를 되돌리며, 커밋 취소했다는 commit 기록으로 남김
+
+- 과거를 없었던 일처럼 만드는 행위로, 이전 커밋을 취소한다는 새로운 커밋 기록을 생성
+- 팀 협업할 때 커밋 명세의 차이로 인한 충돌 방지 가능
+
+
 
 ## git branch
 
 - 브랜치는 나뭇가지라는 뜻으로 여러 갈래로 작업공간을 나누어 독립적으로 작업할 수 있도록 도와주는 git의 도구
 
-- 독립적인 작업 공간
+- 브랜치는 독립 공간을 형성하기 때문에, master 원본에 대해 안전함
 
-- 브랜치는 독립 공간을 형성하기 때문에 master 원본에 대해 안전함
+  - 서비스가 정상 동작 가능하게, 배포할 수 있도록 유지
 
-  - master: 동작이 정상적 서비스가 가능한 배포할 수 있는	
-
-- 하나의 작업은 하나의 브랜치로 나누어 진행되므로 체계적인 개발이 가능함
+- 하나의 작업은 하나의 브랜치로 나누어 진행되므로, 체계적인 개발이 가능함
 
 - git은 브랜치를 만드는 속도가 굉장히 빠르고, 적은 용량을 소모함
+
+
 
 - **조회**
   - `git branch` : 로컬 저장소의 브랜치 목록 확인
   - `git branch -r` : 원격 저장소의 브랜치 목록 확인
-  
+
 - **생성**
   - `git branch {branch name}` : 새로운 브랜치 생성
   - `git branch {branch name} {commit ID}` : 특정 커밋 기준으로 브랜치 생성
-  
-- **삭제**
-- `git branch -d {branch name}` : merge 병합이 완료된 브랜치만 삭제 가능
-  
-- `git branch -D {branch name}` : 강제 삭제
 
-1. 기능 개발 완료 2. merge OK 3. branch 삭제
+- **삭제**
+  - `git branch -d {branch name}` : merge 병합이 완료된 브랜치만 삭제 가능
+
+  - `git branch -D {branch name}` : 강제 삭제
+- 진행 흐름
+  - branch 생성 > 새로운 기능 개발 완료 > merge 완료 > branch 삭제
+
+
 
 ## git switch
+
+현재 브랜치에서 다른 브랜치로 이동하는 명령어
+
+해당 브랜치의 변경 사항을 반드시 커밋 후, switch 하자
 
 - `git switch {branch name}` : 다른 브랜치로 이동
 - `git switch -c {branch name}` : 브랜치를 새로 생성하고 이동
 - `git switch -c {branch name} {commit ID}` : 특정 커밋 기준으로 브랜치 생성 및 이동
-- switch 하기 전에, 해당 브랜치의 변경 사항을 반드시 커밋해야함을 주의할 것
-- **커밋하고 스위치 하자**
-  - 커밋 안 하면 서로 레파지토리에 영향을 미침
 
-## git merge
 
-- 분기된 브랜치 들을 하나로 합치는 명령어
 
-- master 브랜치가 상용이고 주로 master 브랜치에 병합
+`cat.git/HEAD` : 현재 브랜치가 어디인지 확인 가능
 
-- `git merge {합칠 브랜치 이름}`
+`git log --oneline`
 
-  - 병합하기 전에 브랜치를 합치려고 하는, 즉 **메인 브랜치로 switch 해야 함**
+`git log --oneline --all`
 
-  - 병합에는 세 종류가 존재
+`git log --oneline --all --graph`
 
-    - **Fast-Forward**
 
-      - 마치 빨리 감기처럼 브랜치가 가리키는 커밋을 앞으로 이동시키는 방법
-      - 가장 쉬운 방식 : master 가서 merge 명령어 치기
-      - 명령어 `(master) git merge hotfix`
 
-    - **3-way Merge**
+`git merge {합칠 브랜치 이름}`: 분기된 브랜치 들을 하나로 합치는 명령어
 
-      - master도 분기가 됐고, hotfix도 분기가 된 상태
-      - 가장 최근 부분들(master에서도 최근 것 + hotfix에서도 최근 것) 합쳐지기
-      - `git switch master` 로 master에서 작업
-      - 명령어 `git merge hotfix` 하면 커밋메세지 수정란이 나옴
-      - 깃이 알아서 fast-forward 인지 3-way-merge인지 알아서 선택해줌
+- 브랜치를 합치려고 하는, 즉 메인 브랜치로 switch 후, master가 선택된 상태에서, 다른 branch를 부름
+- master 브랜치가 상용이므로 주로 master 브랜치에 병합, 병합 후에는 꼭 브랜치 삭제해주자
+  - **Fast-Forward**
+    - 마치 빨리 감기처럼, 브랜치가 가리키는 커밋을 앞으로 이동시키는 방법
+    - master에는 변화 없고 다른 브랜치의 변화만 있어서, 해당 commit으로 HEAD가 이동하는 것 처럼 보임
+    - `git merge hotfix`
+  - **3-way Merge**
+    - 각 브랜치의 커밋 두 개와 공통 조상 하나를 사용하여 병합하는 방법
+    - `git merge hotfix` 하면 커밋메세지 수정란이 나옴
+  - **Merge Conflict**
+    - 두 브랜치에서 보통 같은 파일의 같은 부분을 수정했을 때 자주 발생함
+    - Git은 사용자에게 해결 방법을 선택하라고 요청, 충돌이 발생했을 때 이를 해결하며 병합하는 방법
 
-    - **Merge Conflict**
 
-      - 두 브랜치에서 같은 부분을 수정한 경우 발생
 
-      - 보통 같은 파일의 같은 부분을 수정했을 때 자주 발생함
+**Git workflow : 브랜치와 원격 저장소를 이용해 협업**
 
-      - 충돌이 발생했을 때 이를 해결 (사용자에게 선택하라고 함)하며 병합하는 방법
 
-      - `error: CONFLICT (content): Merge conflict in {file name}`
 
-        - 무조건 해결 해야 함. 파일 이름 해당하는 파일 열어서 수정해야 함
+**(중요) 원격 저장소 소유권이 있는 경우: shared repository model**
 
-          ```bash
-          Hello
-          world
-          <<<<<<< HEAD (master에서 수정한 부분)
-          rabbit
-          bunny
-          =======
-          login
-          logout
-          >>>>>>> login(login에서 수정한 부분)
-          ```
-      
-        - 수정은 그냥 없애고 싶은 부분 없애면 됨 **>>>> 부분들**
+- 원격 저장소가 자신의 소유이거나 Collaborator로 등록된 경우
+- master 브랜치에 직접 개발하는 것이 아니라, 기능별로 브랜치를 따로 만들어 개발
+- Pull Request를 사용하여 팀원 간 변경 내용에 대한 소통 진행
+- 작업 순서
+  1. repository 를 각자 `clone` 받는다
+  2. 각자 기능별로 branch 생성하기
+  3. 기능 구현이 완료되면, 해당 branch에 `push` 를 한다
+  4. pull request 기능을 통해, master에 각각의 기능 브랜치들을 반영 요청
+  5. 병합이 완료된 브랜치는 불필요하므로 원격 저장소에서 삭제
+  6. 원격 저장소에서 병합이 완료되면 사용자는 로컬에서 master 브랜치로 switch
+  7. 병합으로 인해 변경된 원격 저장소의 master 내용을 로컬에 Pull
+  8. 원격 저장소 master를 받았으므로, 기존 로컬 브랜치는 삭제 (한 사이클 종료)
+  9. 새 기능 추가를 위해 새로운 브랜치를 생성하며 지금까지의 과정을 반복
 
-        - **conflict 해결 후에 `git add .` > `git commit` 하고 vim 나가면 끝**
 
-        - (master | MERGING) > (master)로 변경되면 해결된 상황임
 
-## workflow
+원격 저장소 소유권이 없는 경우
 
-- 원격 저장소를 이용해 협업하는 두 가지 방법
+fork & pull model
 
-  - **(중요) 원격 저장소 소유권이 있는 경우: shared repository model**
+- 오픈 소스 프로젝트와 같이, 자신의 소유가 아닌 코드에 개발자로서 기여하고 싶을 때
 
-    - collaborator로 등록된 경우
+- 원본 원격 저장소를 그대로 내 원격 저장소에 복제(Fork)
 
-    - master 브랜치에 직접 개발하는 것이 아니라, 기능별로 브랜치를 따로 만들어 개발
+- 기능 완성 후 복제한 내 원격 저장소에 Push
 
-    - `git push origin branchname`
+- 이후 Pull Request를 통해 원본 원격 저장소에 반영 요청
 
-    - Pull Request를 사용하여 팀원 간 변경 내용에 대한 소통 진행
+- 작업 순서
 
-    - 원격 저장소에
+  1. 소유권이 없는 원격 저장소를 Fork를 통해 내 원격 저장소에 clone
 
-      1. `clone` 받기
+  2. 이후에 로컬 저장소와 원본 원격 저장소를 동기화하기 위해 연결
 
-      2. 각자 branch 생성하기
+     `git remote add upstream [원본 URL]`
 
-      3. master가 아니라 본인 branch에 `push` 를 한다
+  3. branch해서 기능 개발 진행
 
-      4. pull request 기능을 통해 각각의 기능들을 `merge` 시킨다
+  4. 기능 개발 완료 후, 원본 원격 저장소에 해당 브랜치를 `push`
 
-      5. `merge` 가 끝나면 master로 돌아가서
+  5. pull request를 통해, origin의 브랜치를 upstream에 반영해달라는 요청을 보냄
 
-      6. 그다음 병합이 완료된 master를 `pull` 받기
+  6. 좋은 코드면 upstream에 브랜치가 병합.
 
-      7. 그다음 개발 완료한 branch는 삭제해 주기
+  7. 내 원격 저장소에서 브랜치 삭제 후, 병합된 코드 `pull` 받기
 
-         ------- 7번 단계까지 1사이클
+  8. 새로운 기능 추가를 위해 새로운 브랜치를 생성하며 위 과정을 반복
 
-      8. 새로운 기능을 추가하려면 새로운 branch 생성
 
-      9. 반복
 
-  - 원격 저장소 소유권이 없는 경우: fork & pull model
+git branch 전략
 
-    - 특정 오픈 소스나, django, kakao 등등 소유권 없는 코드에 코더로서 개발자로서 기여하고 싶을 때
+Git Flow 
 
-      1. fork를 한다.
+- 브랜치를 자주 생성하는 것을 강력히 권장한다.
+- 대규모 프로젝트에 적합한 브랜치 전략
+- 5개의 브랜치로 나누어 소스 코드를 관리
+  - `master` : 제품으로 당장 출시할 수 있는 브랜치
 
-      2. `git remote add 단축이름 [원본 URL]`
-       - 동기화하기 위해서
-         - 단축이름 ex) upstream
-      
-      3. branch해서 기능 개발
-  
-      4. 기능 개발 완료 후 나의 원격 저장소에 해당 브랜치를 `push`
+  - `develop` : 다음 출시 버전을 개발하는 브랜치
 
-      5. pull request를 원본에 요청함
-  
-      6. 좋은 코드면 병합함
+  - `feature` : 기능을 개발하는 브랜치
 
-      7. 병합되면 병합된 코드 `pull` 받고 branch 삭제
+  - `release` : 이번 출시 버전을 준비하는 브랜치
 
-- git branch 전략
-
-  - Git Flow
-    - 대규모 프로젝트에 적합한 브랜치 전략
-    - 다음과 같이 5개의 브랜치로 나누어 소스 코드를 관리
-
-      - `master` : 제품으로 출시될 수 있는 브랜치
-
-      - `develop` : 다음 출시 버전을 개발하는 브랜치
-
-      - `feature` : 기능을 개발하는 브랜치
-  
-      - `release` : 이번 출시 버전을 준비하는 브랜치
-
-      - `hotfix` : 출시 버전에서 발생한 버그를 수정하는 브랜치
-  - GitHub Flow
-  
-  - GitLab Flow
-  
-    - pre-production
-  
-- 결국 팀에서 브랜치 전략을 정한다.
-  
-- **브랜치는 자주 생성하는 것을 강력히 권장한다.**
-  
-- **`main`으로 만들어서 하는 작업을 지양한다.**
-
-기타 명령어
-
-- `git log --oneline` : 깃 로그 한 줄로 보기
-- `git log --oneline --all` : 로그 전부 다 볼 수 있음
-- `git log --oneline --all --graph` : 그래프로 로그기록 확인 가능
-- **무조건 `merge` 후에 branch 사용하지 않으면 삭제해줘야 함**
+  - `hotfix` : 출시 버전에서 발생한 버그를 수정하는 브랜치
 
 
 
