@@ -92,9 +92,9 @@ JavaScript는 한 번에 하나의 작업을 수행하는 Single Thread 언어�
 ```django
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script> // 요청에 사용될 서버 URL 필수
-  axios.get('요청할 URL') // method를 지정하지 않으면 GET방식이 기본값
-    .then(성공하면 수행할 콜백함수)
-    .catch(실패하면 수행할 콜백함수)
+axios.get('요청할 URL') // method를 지정하지 않으면 GET방식이 기본값
+  .then(성공하면 수행할 콜백함수)
+  .catch(실패하면 수행할 콜백함수)
 </script>
 ```
 
@@ -106,22 +106,22 @@ JavaScript는 한 번에 하나의 작업을 수행하는 Single Thread 언어�
 <button>토끼</button>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-  console.log("토끼는 깡총")
-  const catImageSearchURL = "https://api.thebunnyapi.com/v1/images/search"
-  const btn = document.querySelector("button")
-  btn.addEventListener("click", function () {
-    axios
-      .get(bunnyImageSearchURL)
-      .then(function (response) {
+console.log("토끼는 깡총")
+const catImageSearchURL = "https://api.thebunnyapi.com/v1/images/search"
+const btn = document.querySelector("button")
+btn.addEventListener("click", function () {
+  axios
+    .get(bunnyImageSearchURL)
+    .then(function (response) {
       imgElem = document.createElement("img")
       imgElem.setAttribute("src", response.data[0].url)
       document.body.appendChild(imgElem)
     })
-      .catch(function (error) {
+    .catch(function (error) {
       console.log("실패")
     })
-    console.log("깡총")
-  })
+  console.log("깡총")
+})
 </script>
 ```
 
@@ -277,7 +277,7 @@ work1()
 
 <form id="follow-form"></form>
 <script>
-  const form = document.querySelector("#follow-form")
+const form = document.querySelector("#follow-form")
 </script>
 ```
 
@@ -287,10 +287,10 @@ work1()
 <!-- accounts/profile.html -->
 
 <script>
-  const form = document.querySelector("#follow-form")
-  form.addEventListener("submit", function (event) {
-    event.preventDefault()
-  })
+const form = document.querySelector("#follow-form")
+form.addEventListener("submit", function (event) {
+  event.preventDefault()
+})
 </script>
 ```
 
@@ -299,97 +299,97 @@ work1()
 ```django
 <!-- accounts/profile.html -->
 <script>
-  const form = document.querySelector("#follow-form")
-  form.addEventListener("submit", function (event) {
-    event.preventDefault()
-    axios({
-      method: "post", // 요청을 생성할때 사용되는 메소드
-      url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-    })
+const form = document.querySelector("#follow-form")
+form.addEventListener("submit", function (event) {
+  event.preventDefault()
+  axios({
+    method: "post", // 요청을 생성할때 사용되는 메소드
+    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
   })
+})
 </script>
 ```
 
 1. **url에 작성할 user pk 가져오기 (HTML -> JavaScript)**
 
-   ```django
-   <form id="follow-form" data-user-id="{{ person.pk }}"></form>
-   <script>
-  const form = document.querySelector("#follow-form")
-     form.addEventListener("submit", function (event) {
-    event.preventDefault()
-       const userId = event.target.dataset.userId
-       axios({
-         method: "post", // 요청을 생성할때 사용되는 메소드
-         url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-    })
-     })
+```django
+<form id="follow-form" data-user-id="{{ person.pk }}"></form>
+<script>
+const form = document.querySelector("#follow-form")
+  form.addEventListener("submit", function (event) {
+  event.preventDefault()
+  const userId = event.target.dataset.userId
+    axios({
+    method: "post", // 요청을 생성할때 사용되는 메소드
+    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+  })
+})
 </script>
-   ```
-   
-   **`data-*` attributes**
-   
-   - 사용자 지정 데이터 특성을 만들어 임의의 데이터를 HTML과 DOM 사이에서 교환 할 수 있는 방법
-   
-     > [https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/data-\*](https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/data-*)
-  >
-     > https://developer.mozilla.org/ko/docs/Learn/HTML/Howto/Use_data_attributes
+```
 
-     ```django
-  <div data-my-id="my-data"></div>
-     <script>
-       const myId = event.target.dataset.myId
-     </script>
-  ```
-   
-   - data-test-value 라는 이름의 특성을 지정했다면, JavaScript에서는 element.dataset.testValue 로 접근할 수 있음
-   
-   - 속셩명 작성 시 주의사항
-   
-     - 대소문자 여부에 상관없이 xml로 시작하면 안 됨
-  - 세미콜론을 포함해서는 안됨
-     - 대문자를 포함해서는 안됨
+**`data-*` attributes**
+
+- 사용자 지정 데이터 특성을 만들어 임의의 데이터를 HTML과 DOM 사이에서 교환 할 수 있는 방법
+
+> [https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/data-\*](https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/data-*)
+>
+> https://developer.mozilla.org/ko/docs/Learn/HTML/Howto/Use_data_attributes
+
+```django
+<div data-my-id="my-data"></div>
+<script>
+const myId = event.target.dataset.myId
+</script>
+```
+
+- data-test-value 라는 이름의 특성을 지정했다면, JavaScript에서는 element.dataset.testValue 로 접근할 수 있음
+
+- 속셩명 작성 시 주의사항
+
+- 대소문자 여부에 상관없이 xml로 시작하면 안 됨
+- 세미콜론을 포함해서는 안됨
+- 대문자를 포함해서는 안됨
 
 2. **csrktoken 보내기**
 
-   - hidden 타입으로 숨겨져있는 csrf 값을 가진 input 태그를 선택해야 함
+- hidden 타입으로 숨겨져있는 csrf 값을 가진 input 태그를 선택해야 함
 
-   > https://docs.djangoproject.com/en/3.2/ref/csrf/#acquiring-the-token-if-csrf-use-sessions-or-csrf-cookie-httponly-is-true
+> https://docs.djangoproject.com/en/3.2/ref/csrf/#acquiring-the-token-if-csrf-use-sessions-or-csrf-cookie-httponly-is-true
 
-   ```django
-   <!-- accounts/profile.html -->
-   <script>
-     const form = document.querySelector("#follow-form")
-     const csrftoken = document.querySelector(
-       "[name=csrfmiddlewaretoken]"
-     ).value
-   </script>
-   ```
+```django
+<!-- accounts/profile.html -->
+<script>
+const form = document.querySelector("#follow-form")
+const csrftoken = document.querySelector(
+  "[name=csrfmiddlewaretoken]"
+).value
+</script>
+```
 
-   - AJAX로 csrfktoken을 보내는 방법
+- AJAX로 csrfktoken을 보내는 방법
 
-     > https://docs.djangoproject.com/en/3.2/ref/csrf/#setting-the-token-on-the-ajax-request
-   
-     ```django
-     <!-- accounts/profile.html -->
-     <script>
-       const form = document.querySelector("#follow-form")
-       const csrftoken = document.querySelector(
-         "[name=csrfmiddlewaretoken]"
-       ).value
-       form.addEventListener("submit", function (event) {
-         event.preventDefault()
-         const userId = event.target.dataset.userId
-         axios({
-           method: "post", // 요청을 생성할때 사용되는 메소드
-           url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-           headers: { // 사용자 지정 헤더
-             "X-CSRFToken": csrftoken,
-           },
-         })
-       })
-     </script>
-     ```
+> https://docs.djangoproject.com/en/3.2/ref/csrf/#setting-the-token-on-the-ajax-request
+
+```django
+<!-- accounts/profile.html -->
+<script>
+const form = document.querySelector("#follow-form")
+const csrftoken = document.querySelector(
+  "[name=csrfmiddlewaretoken]"
+).value
+form.addEventListener("submit", function (event) {
+  event.preventDefault()
+  const userId = event.target.dataset.userId
+  axios({
+    method: "post", // 요청을 생성할때 사용되는 메소드
+    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+    headers: { // 사용자 지정 헤더
+      "X-CSRFToken": csrftoken,
+    },
+  })
+})
+</script>
+```
 
 - 팔로우 버튼을 토글하기 위해서는 현재 팔로우가 된 상태인지 여부 확인이 필요
 
@@ -397,137 +397,64 @@ work1()
 
 - 팔로우 여부를 확인하기 위한 is_followed 변수 작성 및 JSON 응답
 
-  ```python
-  # accounts/views.py
+```python
+# accounts/views.py
   
-  from django.contrib.auth import get_user_model
-  from django.http import JsonResponse
-  from django.shortcuts import redirect
-  from django.views.decorators.http import require_POST
-  
-  
-  @require_POST
-  def follow(request, user_pk):
-      if request.user.is_authenticated:
-          User = get_user_model()
-          me = request.user
-          you = User.objects.get(pk=user_pk)
-          if me != you:
-              if you.followers.filter(pk=me.pk).exists():
-                  you.followers.remove(me)
-                  is_followed = False
-              else:
-                  you.followers.add(me)
-                  is_followed = True
-              context = {
-                  'is_followed': is_followed,
-              }
-              return JsonResponse(context)
-          return redirect('accounts:profile', you.username)
-      return redirect('accounts:login')
+from django.contrib.auth import get_user_model
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.views.decorators.http import require_POST
+
+
+@require_POST
+def follow(request, user_pk):
+    if request.user.is_authenticated:
+        User = get_user_model()
+        me = request.user
+        you = User.objects.get(pk=user_pk)
+        if me != you:
+            if you.followers.filter(pk=me.pk).exists():
+                you.followers.remove(me)
+                is_followed = False
+            else:
+                you.followers.add(me)
+                is_followed = True
+            context = {
+                'is_followed': is_followed,
+            }
+            return JsonResponse(context)
+        return redirect('accounts:profile', you.username)
+    return redirect('accounts:login')
+```
 
 - view 함수에서 응답한 is_followed를 사용해 버튼 토글하기
 
-  ```django
+```django
 <!-- accounts/profile.html -->
-
 <script>
-  axios({
-    method: "post", // 요청을 생성할때 사용되는 메소드
-    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-    headers: { // 사용자 지정 헤더
-      "X-CSRFToken": csrftoken,
-    },
-  }).then(function (response) {
-    const isFollowed = response.data.is_followed
-    const followBtn = document.querySelector(
-      "#follow-form > input[type=submit]"
-    )
-    if (isFollowed === true) {
-      followBtn.value = "언팔로우"
-    } else {
-      followBtn.value = "팔로우"
-    }
-  })
+axios({
+  method: "post", // 요청을 생성할때 사용되는 메소드
+  url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+  headers: { // 사용자 지정 헤더
+    "X-CSRFToken": csrftoken,
+  },
+}).then(function (response) {
+  const isFollowed = response.data.is_followed
+  const followBtn = document.querySelector(
+    "#follow-form > input[type=submit]"
+  )
+  if (isFollowed === true) {
+    followBtn.value = "언팔로우"
+  } else {
+    followBtn.value = "팔로우"
+  }
+})
 </script>
-  ```
+```
 
 - **팔로워 & 팔로잉 수 비동기 적용**
 
-  - 해당 요소를 선택할 수 있도록 span 태그와 id 속성 작성
-
-    ```django
-    <!-- accounts/profile.html -->
-    
-    {% extends 'base.html' %} {% block content %}
-    <h1>{{ person.username }}님의 프로필</h1>
-    <div>
-      팔로워 :
-      <span id="followers-count">{{ person.followers.all|length }}</span> /
-      팔로잉 :
-      <span id="followings-count">{{ person.followings.all|length }}</span>
-    </div>
-    
-    <script>
-      axios({
-        method: "post", // 요청을 생성할때 사용되는 메소드
-        url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-        headers: {
-          // 사용자 지정 헤더
-          "X-CSRFToken": csrftoken,
-        },
-      }).then(function (response) {
-        const followersCountTag = document.querySelector("#followers-count")
-        const followingsCountTag = document.querySelector("#followings-count")
-      })
-    </script>
-    ```
-    
-  - 팔로워, 팔로잉 인원 수 연산은 view 함수에서 진행하여 결과를 응답으로 전달
-
-    ```python
-    # accounts/views.py
-    
-    from django.http import JsonResponse
-    from django.shortcuts import redirect
-    from django.views.decorators.http import require_POST
-    
-    
-    @require_POST
-    def follow(request, user_pk):
-    
-                context = {
-                    'is_followed': is_followed,
-                    'followers_count': you.followers.count(),
-                    'followings_count': you.followings.count(),
-                }
-                return JsonResponse(context)
-            return redirect('accounts:profile', you.username)
-        return redirect('accounts:login')
-    ```
-
-  - view 함수에서 응답한 연산 결과를 사용해 각 태그의 인원 수 값 변경하기
-
-    ```django
-    <!-- accounts/profile.html -->
-    
-    <script>
-      axios({
-        method: "post", // 요청을 생성할때 사용되는 메소드
-        url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-        headers: { // 사용자 지정 헤더
-          "X-CSRFToken": csrftoken,
-        },
-      }).then(function (response) {
-        const followersCountTag = document.querySelector("#followers-count")
-        const followingsCountTag = document.querySelector("#followings-count")
-        followersCountTag.innerText = followersCount
-        followingsCountTag.innerText = followingsCount
-      })
-    </script>
-    ```
-
-**최종 코드**
+- 해당 요소를 선택할 수 있도록 span 태그와 id 속성 작성
 
 ```django
 <!-- accounts/profile.html -->
@@ -541,55 +468,128 @@ work1()
   <span id="followings-count">{{ person.followings.all|length }}</span>
 </div>
 
+<script>
+  axios({
+    method: "post", // 요청을 생성할때 사용되는 메소드
+    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+    headers: {
+      // 사용자 지정 헤더
+      "X-CSRFToken": csrftoken,
+    },
+  }).then(function (response) {
+    const followersCountTag = document.querySelector("#followers-count")
+    const followingsCountTag = document.querySelector("#followings-count")
+    })
+</script>
+```
+
+- 팔로워, 팔로잉 인원 수 연산은 view 함수에서 진행하여 결과를 응답으로 전달
+
+```python
+# accounts/views.py
+
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.views.decorators.http import require_POST
+
+
+@require_POST
+def follow(request, user_pk):
+
+            context = {
+                'is_followed': is_followed,
+                'followers_count': you.followers.count(),
+                'followings_count': you.followings.count(),
+                }
+            return JsonResponse(context)
+        return redirect('accounts:profile', you.username)
+    return redirect('accounts:login')
+```
+
+- view 함수에서 응답한 연산 결과를 사용해 각 태그의 인원 수 값 변경하기
+
+```django
+<!-- accounts/profile.html -->
+
+<script>
+  axios({
+    method: "post", // 요청을 생성할때 사용되는 메소드
+    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+    headers: { // 사용자 지정 헤더
+      "X-CSRFToken": csrftoken,
+    },
+  }).then(function (response) {
+    const followersCountTag = document.querySelector("#followers-count")
+    const followingsCountTag = document.querySelector("#followings-count")
+    followersCountTag.innerText = followersCount
+    followingsCountTag.innerText = followingsCount
+  })
+</script>
+```
+
+**최종 코드**
+
+```django
+<!-- accounts/profile.html -->
+
+{% extends 'base.html' %} {% block content %}
+<h1>{{ person.username }}님의 프로필</h1>
+<div>
+팔로워 :
+<span id="followers-count">{{ person.followers.all|length }}</span> /
+팔로잉 :
+<span id="followings-count">{{ person.followings.all|length }}</span>
+</div>
+
 {% if request.user != person %}
 <div>
-  <form id="follow-form" data-user-id="{{ person.pk }}">
-    {% csrf_tokne %} {% if request.user in person.followers.all %}
-    <input type="submit" value="언팔로우" />
-    {% else %} <input type="submit" value"팔로우"> {% endif %}
-  </form>
+<form id="follow-form" data-user-id="{{ person.pk }}">
+  {% csrf_tokne %} {% if request.user in person.followers.all %}
+  <input type="submit" value="언팔로우" />
+  {% else %} <input type="submit" value"팔로우"> {% endif %}
+</form>
 </div>
 {% endif %}
 
 <script>
-  const form = document.querySelector("#follow-form")
-  const csrftoken = document.querySelector(
-    "[name=csrfmiddlewaretoken]"
-  ).value
+const form = document.querySelector("#follow-form")
+const csrftoken = document.querySelector(
+  "[name=csrfmiddlewaretoken]"
+).value
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault()
-    const userId = event.target.dataset.userId
+form.addEventListener("submit", function (event) {
+  event.preventDefault()
+  const userId = event.target.dataset.userId
 
-    axios({
-      method: "post", // 요청을 생성할때 사용되는 메소드
-      url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-      headers: { // 사용자 지정 헤더
-        "X-CSRFToken": csrftoken,
-      },
-    })
-      .then(function (response) {
-        const isFollowed = response.data.is_followed
-        const followBtn = document.querySelector(
-          "#follow-form > input[type=submit]"
-        )
-        if (isFollowed === true) {
-          followBtn.value = "언팔로우"
-        } else {
-          followBtn.value = "팔로우"
-        }
-        const followersCountTag = document.querySelector("#followers-count")
-        const followingsCountTag =
-          document.querySelector("#followings-count")
-        const followersCount = response.data.followers_count
-        const followingsCount = response.data.followings_count
-        followersCountTag.innerText = followersCount
-        followingsCountTag.innerText = followingsCount
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+  axios({
+    method: "post", // 요청을 생성할때 사용되는 메소드
+    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+    headers: { // 사용자 지정 헤더
+      "X-CSRFToken": csrftoken,
+    },
   })
+    .then(function (response) {
+      const isFollowed = response.data.is_followed
+      const followBtn = document.querySelector(
+        "#follow-form > input[type=submit]"
+      )
+      if (isFollowed === true) {
+        followBtn.value = "언팔로우"
+      } else {
+        followBtn.value = "팔로우"
+      }
+      const followersCountTag = document.querySelector("#followers-count")
+      const followingsCountTag =
+        document.querySelector("#followings-count")
+      const followersCount = response.data.followers_count
+      const followingsCount = response.data.followings_count
+      followersCountTag.innerText = followersCount
+      followingsCountTag.innerText = followingsCount
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+})
 </script>
 ```
 
@@ -633,7 +633,7 @@ def follow(request, user_pk):
 ```django
 <!-- articles/index.html -->
 
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block content %}
 
@@ -671,9 +671,9 @@ def follow(request, user_pk):
 </div>
 <a href="{% url 'articles:detail' article.pk %}">상세 페이지</a>
 <hr />
-{% endfor %} 
+{% endfor %}
 
-{% endblock content %} 
+{% endblock content %}
 
 {% block script %}
 <script>
