@@ -1,7 +1,7 @@
 # Today I Learned
 
 
-## [Git](/Git) 정리
+## [Git](/Git/README.md) 정리
 
 1. [2022-07-15 금] [Git basic](./Git/0715_Git_basic.md) : Markdown, Bash
 
@@ -10,7 +10,7 @@
 1. [2022-10-28 금] [Git Advanced](/Git/1028_Git_Advanced.md) : undoing, reset, revert, branch, switch, merge, workflow, flow
 
 
-## [Web](/Web) 정리
+## [Web](/Web/README.md) 정리
 
 
 1. [2022-08-01 월] [HTML CSS](./Web/0801_HTML_CSS.md) : 선택자, 박스모델, display, position
@@ -42,7 +42,7 @@
 17. [2022-11-02 수] [Vue CLI](./Web/1102_Vue_CLI.md) : SFC, PassProps, EmitEvents
 
 
-## [Algorithm](/Algorithm) 정리
+## [Algorithm](/Algorithm/README.md) 정리
 
 
 1. [2022-08-08 월] [Array Sort](./Algorithm/0808_Array_Sort.md) : 버블, 카운팅, 완전검색, 그리디
@@ -76,7 +76,7 @@
 15. [2022-08-28 일] [HashTable ResolveCollision OpenAddressing](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/Open_Addressing.md)
 
 
-## [Python](/Python) 정리
+## [Python](/Python/README.md) 정리
 
 
 1. [2022-07-18 월] [Python basic](/Python/0718_Python_basic.md) : 프로그래밍, 개발환경, 기초문법, 데이터타입, 컨테이너, 형변환
