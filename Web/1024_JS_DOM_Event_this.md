@@ -74,7 +74,7 @@ JavaScript는 웹 페이지에서 다양한 기능을 구현하는 스크립트 
 - document`.querySelectorAll`(selector)
   - 제공한 선택자와 일치하는 여러 element를 선택
   - 매칭 할 하나 이상의 셀렉터를 포함하는 유효한 CSS selector를 인자(문자열)로 받음
-  - 제공한 CSS selector를 만족하는 NodeList를 반환
+  - 제공한 CSS selector를 만족하는 `NodeList`를 반환
 
 **조작 관련 메서드 (생성)**
 
@@ -89,7 +89,8 @@ JavaScript는 웹 페이지에서 다양한 기능을 구현하는 스크립트 
   - 사람이 읽을 수 있는 요소만 남김
   - 줄 바꿈을 인식하고 숨겨진 내용을 무시하는 등 최종적으로 스타일링이 적용된 모습으로 표현됨
 
-  **조작 관련 메서드 (추가)**
+
+**조작 관련 메서드 (추가)**
 
 - Node`.appendChild()`
   - 한 Node를 특정 부모 Node의 자식 NodeList 중 마지막 자식으로 삽입
@@ -151,7 +152,7 @@ EventTarget.addEventListener(type, listener)
 
     - 반응 할 Event 유형을 나타내는 대소문자 구분 문자열
 
-    - input, click, submit
+    - `input`, `click`, `submit`
 
       > https://developer.mozilla.org/docs/Web/Events
       >
@@ -239,7 +240,7 @@ h1.addEventListener("copy", function (event) {
 ```js
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 <script>
-  const button = document.querySelector('#lotto-btn')
+const button = document.querySelector('#lotto-btn')
 button.addEventListener('click', function (event) {
   const ballContainer = document.createElement('div')
   ballContainer.classList.add('ball-container')
@@ -309,27 +310,24 @@ userInput.addEventListener("input", filterMessage)
 ```
 
 ```html
-  <style>
-    .line {
-      text-decoration: line-through;
-    }
-  </style>
-</head>
+ <style>
+  .line {
+    text-decoration: line-through;
+  }
+</style>
 
-<body>
-  <script>
-    event.preventDefault()
-    const inputTag = document.querySelector("input")
-    const data = inputTag.value
-    if (data.trim()) {
-      liTag.onclick = function () {
-        liTag.classList.toggle("line")
-      }
-    } else {
-      alert("값을 입력하세요")
-    }
-  </script>
-</body>
+<script>
+event.preventDefault()
+const inputTag = document.querySelector("input")
+const data = inputTag.value
+if (data.trim()) {
+  liTag.onclick = function () {
+    liTag.classList.toggle("line")
+  }
+} else {
+  alert("값을 입력하세요")
+}
+</script>
 ```
 
 ## 3. this
@@ -351,7 +349,7 @@ userInput.addEventListener("input", filterMessage)
 
 **전역 문맥에서의 this**
 
-- 브라우저의 전역 객체인 windows를 가리킴
+- 브라우저의 전역 객체인 window를 가리킴
   - 전역객체는 모든 객체의 유일한 최상위 객체를 의미
 
 **함수 문맥에서의 this**
@@ -393,6 +391,6 @@ userInput.addEventListener("input", filterMessage)
 - DOM
   - DOM 조작
 - Event
-  - addEventListener
-- this
+  - `addEventListener`
+- `this`
   - "function" vs "arrow function"

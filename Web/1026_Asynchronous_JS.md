@@ -31,8 +31,6 @@ JavaScript에서의 비동기 처리
 - 작업을 시작한 후 **결과를 기다리지 않고** 다음 작업을 처리하는 것 (병렬적 수행)
 - 시간이 필요한 작업들은 요청을 보낸 뒤 응답이 빨리 오는 작업부터 처리
 
-> https://developer.mozilla.org/ko/docs/Web/API/setTimeout
-
 **비동기를 사용하는 이유**
 
 - **사용자 경험**
@@ -55,7 +53,7 @@ JavaScript에서의 비동기 처리
   1. JavaScript Engine의 **Call Stack**
      - 요청이 들어올 때마다 순차적으로 처리하는 Stack(LIFO) 기본적인 JavaScript의 Single Thread 작업 처리
   2. **Web API**
-     - JavaScript 엔진이 아닌 브라우저에서 제공하는 runtime 환경으로 시간이 소요되는 작업을 처리 (setTimeout, DOM Event, AJAX 요청 등)
+     - JavaScript 엔진이 아닌 브라우저에서 제공하는 runtime 환경으로 시간이 소요되는 작업을 처리 ([setTimeout](https://developer.mozilla.org/ko/docs/Web/API/setTimeout), DOM Event, AJAX 요청 등)
   3. **Task Queue**
      - 비동기 처리된 Callback 함수가 대기하는 Queue(FIFO)
   4. **Event Loop**
@@ -127,7 +125,7 @@ btn.addEventListener("click", function () {
 
 **결과 비교**
 
-- 동기식 코드는 위에서부터 순서대로 처리가 되기때문에 첫번째 print가 출력되고 이미지를 가져오는 처리를 기다렸다가 다음 print 가 출력되는 반면,
+- 동기식 코드는 위에서부터 순서대로 처리가 되기 때문에 첫번째 print가 출력되고 이미지를 가져오는 처리를 기다렸다가 다음 print 가 출력되는 반면
 - 비동기식 코드 (JavaScript)는 바로 처리가 가능한 작업(console.log)은 바로 처리하고, 오래 걸리는 작업인 이미지를 요청하고 가져오는 일은 요청을 보내 놓고 기다리지 않고 다음 코드로 진행 후 완료가 된 시점에 결과 출력이 진행됨
 - 버튼을 여러 번 누르면 먼저 로딩되는 이미지부터 나오는 것을 볼 수 있다.
 
@@ -253,7 +251,8 @@ work1()
 <!-- base.html -->
 
 <body>
-  {% block script %} {% endblock script %}
+{% block script %}
+{% endblock script %}
 </body>
 ```
 
@@ -265,7 +264,8 @@ work1()
 {% block script %}
 <!-- jsDelivr CDN 사용하기: -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script></script>
+<script>
+</script>
 {% endblock script %}
 ```
 
@@ -275,7 +275,9 @@ work1()
 ```django
 <!-- accounts/profile.html -->
 
-<form id="follow-form"></form>
+<form id="follow-form">
+</form>
+
 <script>
 const form = document.querySelector("#follow-form")
 </script>
@@ -313,7 +315,9 @@ form.addEventListener("submit", function (event) {
 1. **url에 작성할 user pk 가져오기 (HTML -> JavaScript)**
 
 ```django
-<form id="follow-form" data-user-id="{{ person.pk }}"></form>
+<form id="follow-form" data-user-id="{{ person.pk }}">
+</form>
+
 <script>
 const form = document.querySelector("#follow-form")
   form.addEventListener("submit", function (event) {
@@ -336,7 +340,9 @@ const form = document.querySelector("#follow-form")
 > https://developer.mozilla.org/ko/docs/Learn/HTML/Howto/Use_data_attributes
 
 ```django
-<div data-my-id="my-data"></div>
+<div data-my-id="my-data">
+</div>
+
 <script>
 const myId = event.target.dataset.myId
 </script>
@@ -345,10 +351,10 @@ const myId = event.target.dataset.myId
 - data-test-value 라는 이름의 특성을 지정했다면, JavaScript에서는 element.dataset.testValue 로 접근할 수 있음
 
 - 속셩명 작성 시 주의사항
+  - 대소문자 여부에 상관없이 xml로 시작하면 안 됨
+  - 세미콜론을 포함해서는 안됨
+  - 대문자를 포함해서는 안됨
 
-- 대소문자 여부에 상관없이 xml로 시작하면 안 됨
-- 세미콜론을 포함해서는 안됨
-- 대문자를 포함해서는 안됨
 
 2. **csrktoken 보내기**
 
@@ -393,7 +399,7 @@ form.addEventListener("submit", function (event) {
 
 - 팔로우 버튼을 토글하기 위해서는 현재 팔로우가 된 상태인지 여부 확인이 필요
 
-- axios 요청을 통해 받는 response 객체를 활용해 view 함수를 통해서 팔로우 여부를 파악 할 수 있는 변수를 담아 JSON 타입으로 응답하기
+- axios 요청을 통해 받는 `response` 객체를 활용해 view 함수를 통해서 팔로우 여부를 파악 할 수 있는 변수를 담아 JSON 타입으로 응답하기
 
 - 팔로우 여부를 확인하기 위한 is_followed 변수 작성 및 JSON 응답
 
@@ -454,32 +460,37 @@ axios({
 
 - **팔로워 & 팔로잉 수 비동기 적용**
 
-- 해당 요소를 선택할 수 있도록 span 태그와 id 속성 작성
+- 해당 요소를 선택할 수 있도록 span 태그와 `id` 속성 작성
 
 ```django
 <!-- accounts/profile.html -->
 
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 <h1>{{ person.username }}님의 프로필</h1>
 <div>
   팔로워 :
-  <span id="followers-count">{{ person.followers.all|length }}</span> /
-  팔로잉 :
-  <span id="followings-count">{{ person.followings.all|length }}</span>
+  <span id="followers-count">
+    {{ person.followers.all|length }}
+  </span>
+  / 팔로잉 :
+  <span id="followings-count">
+    {{ person.followings.all|length }}
+  </span>
 </div>
 
 <script>
-  axios({
-    method: "post", // 요청을 생성할때 사용되는 메소드
-    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-    headers: {
-      // 사용자 지정 헤더
-      "X-CSRFToken": csrftoken,
-    },
-  }).then(function (response) {
-    const followersCountTag = document.querySelector("#followers-count")
-    const followingsCountTag = document.querySelector("#followings-count")
-    })
+axios({
+  method: "post", // 요청을 생성할때 사용되는 메소드
+  url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+  headers: {
+    // 사용자 지정 헤더
+    "X-CSRFToken": csrftoken,
+  },
+}).then(function (response) {
+  const followersCountTag = document.querySelector("#followers-count")
+  const followingsCountTag = document.querySelector("#followings-count")
+  })
 </script>
 ```
 
@@ -512,18 +523,18 @@ def follow(request, user_pk):
 <!-- accounts/profile.html -->
 
 <script>
-  axios({
-    method: "post", // 요청을 생성할때 사용되는 메소드
-    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-    headers: { // 사용자 지정 헤더
-      "X-CSRFToken": csrftoken,
-    },
-  }).then(function (response) {
-    const followersCountTag = document.querySelector("#followers-count")
-    const followingsCountTag = document.querySelector("#followings-count")
-    followersCountTag.innerText = followersCount
-    followingsCountTag.innerText = followingsCount
-  })
+axios({
+  method: "post", // 요청을 생성할때 사용되는 메소드
+  url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+  headers: { // 사용자 지정 헤더
+    "X-CSRFToken": csrftoken,
+  },
+}).then(function (response) {
+  const followersCountTag = document.querySelector("#followers-count")
+  const followingsCountTag = document.querySelector("#followings-count")
+  followersCountTag.innerText = followersCount
+  followingsCountTag.innerText = followingsCount
+})
 </script>
 ```
 
@@ -532,21 +543,29 @@ def follow(request, user_pk):
 ```django
 <!-- accounts/profile.html -->
 
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 <h1>{{ person.username }}님의 프로필</h1>
 <div>
 팔로워 :
-<span id="followers-count">{{ person.followers.all|length }}</span> /
-팔로잉 :
-<span id="followings-count">{{ person.followings.all|length }}</span>
+<span id="followers-count">
+  {{ person.followers.all|length }}
+  </span>
+  / 팔로잉 :
+<span id="followings-count">
+  {{ person.followings.all|length }}
+  </span>
 </div>
 
 {% if request.user != person %}
 <div>
 <form id="follow-form" data-user-id="{{ person.pk }}">
-  {% csrf_tokne %} {% if request.user in person.followers.all %}
+  {% csrf_tokne %} 
+  {% if request.user in person.followers.all %}
   <input type="submit" value="언팔로우" />
-  {% else %} <input type="submit" value"팔로우"> {% endif %}
+  {% else %} 
+  <input type="submit" value"팔로우"> 
+  {% endif %}
 </form>
 </div>
 {% endif %}
@@ -656,7 +675,8 @@ def follow(request, user_pk):
 <p>글 내용 : {{ article.content }}</p>
 <div>
   <form class="like-forms" data-article-id="{{ article.pk }}">
-    {% csrf_token %} {% if request.user in article.like_users.all %}
+    {% csrf_token %} 
+    {% if request.user in article.like_users.all %}
     <input type="submit" id="like-{{ article.pk }}" value="좋아요 취소" />
     {% else %}
     <input type="submit" id="like-{{ article.pk }}" value="좋아요 취소" />
@@ -761,7 +781,7 @@ def likes(request, article_pk):
 - JavaScript의 비동기 처리
   - Call Stack, Web API, Task Queue, Event Loop
 - Axios 라이브러리
-  - then & catch
+  - `then` & `catch`
 - Async Callback과 Promise
 
 - AJAX

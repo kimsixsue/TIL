@@ -50,8 +50,8 @@
 - 현재의 JavaScript는 이제 시장에서 자리를 잡은 언어이며, 개발에서 큰 축을 담당하는 언어
 - 더 이상 jQuery 등의 라이브러리를 사용할 필요가 없음(모든 웹 브라우저가 표준안을 따름)
 - 특히, Chrome의 V8의 경우 Javascript를 번역하는 속도가 매우 빠름
-  - node.JS, react.JS, electron 등의 내부 엔진으로 사용
-  - back-end, mobile, desktop app 등을 모두 JavaScript로 개발이 가능해진
+  - [node.JS](https://nodejs.org/ko/), react.JS, electron 등의 내부 엔진으로 사용
+  - back-end, mobile, desktop app 등을 모두 JavaScript로 개발이 가능해짐
 
 ### JavaScript 실행환경 구성
 
@@ -61,6 +61,7 @@
 
 ```html
 <body>
+  
   <script>
     console.log('hello, javascript')
   </script>
@@ -73,6 +74,7 @@
 
   ```html
   <body>
+    
     <script type="text/javascript" src="hello.js"></script>
   </body>
   ```
@@ -83,14 +85,14 @@
   - 특별하게 웹 브라우저에서 바로 실행할 수 있는 JavaScript 문법들을 **Vanilla JavaScript**라고 부름
   - 순수한 JavaScript라는 의미(모든 아이스크림의 순정은 Vanilla라는 어원)
 
-2. **Node.JS로 실행하기**
+2. **[Node.JS](https://nodejs.org/ko/)로 실행하기**
    - 웹 브라우저를 이용하지 않고 JavaScript를 실행할 수 있음
 
 ## 2. JavaScript 기초 문법
 
 ### **코드 작성법**
 
-**semicolon 세미콜론**
+**semicolon 세미콜론 `;`**
 
 - 자바스크립트는 세미콜론을 선택적으로 사용 가능
 - 세미콜론이 없으면 ASI에 의해 자동으로 세미콜론이 삽입됨
@@ -104,7 +106,7 @@
 
 **코드 스타일 가이드**
 
-- Airbnb Style Guide
+- [Airbnb Style Guide](https://github.com/airbnb/javascript)
 
 **주석**
 
@@ -115,7 +117,7 @@
 **식별자 정의와 특징**
 
 - identifier 식별자는 변수를 구분할 수 있는 변수명을 말함
-- 식별자는 반드시 문자, $ 달러 또는 \_ 밑줄로 시작
+- 식별자는 반드시 문자, `$` 달러 또는 `_` 밑줄로 시작
 - 대소문자를 구분하며, 클래스명 외에는 모두 소문자로 시작
 - 예약어 사용 불가능
 
@@ -150,7 +152,7 @@
 **변수 선언 키워드 정리**
 
 - 어디에 변수를 쓰고 상수를 쓸지 결정하는 것은 프로그래머의 몫
-- Airbnb 스타일 가이드에서는 기본적으로 **const 사용을 권장**
+- [Airbnb 스타일 가이드](https://github.com/airbnb/javascript#references)에서는 기본적으로 **const 사용을 권장**
   - 재할당해야 하는 경우만 **let**
 
 ### 데이터 타입
@@ -163,7 +165,7 @@
 - 정수 또는 실수형 숫자를 표현하는 자료형
 - **NaN**
   - Not-A-Number 숫자가 아님
-  - **Number.isNan()** 의 경우 주어진 값의 유형이 Number이고 값이 Nan이면 true, 아니면 false를 반환
+  - **Number.isNan()** 의 경우 주어진 값의 유형이 Number이고 값이 Nan이면 `true`, 아니면 `false`를 반환
 - **NaN을 반환하는 경우**
   1. 숫자로서 읽을 수 없음
   2. 결과가 허수인 수학 계산식
@@ -204,7 +206,7 @@
 **Empty Value**
 
 - 값이 존재하지 않음을 표현하는 값으로 JavaScript에서는 **null**과 **undefined** 가 존재
-- 동일한 역할을 하는 이 두개의 키워드가 존재하는 이유는 단순한 JavaScript의 설계 실수
+- 동일한 역할을 하는 이 두 개의 키워드가 존재하는 이유는 단순한 JavaScript의 설계 실수
 - 큰 차이를 두지 말고 interchangeable 하게 사용할 수 있도록 권장함
 
 **null**
@@ -216,7 +218,7 @@
 - 값이 정의되어 있지 않음을 표현하는 값
 - 변수 선언 이후 **직접 값을 할당하지 않으면 자동으로 할당**됨
 
-**null과 undefeined**
+**null과 undefined**
 
 - null과 undefined의 가장 대표적인 차이점은 **typeof** 연산자를 통해 타입을 확인 했을 때 가능함
 - null 이 원시 타입임에도 불구하고 object로 출력되는 이유는 **JavaScript 설계 당시의 버그를 지금까지 해결하지 못한 것**
@@ -257,7 +259,7 @@
 **일치 연산자 `===`**
 
 - 두 피연산자의 값과 타입이 모두 같은 경우 true를 반환
-- 같은 객체를 가리키거나, 같은 타입이면서 같은 값인지를 비교
+- 같은 객체를 가리키거나, 같은 타입이면서 같은 값인지 비교
 - 엄격한 비교가 이뤄지며 **암묵적 타입 변환이 발생하지 않음**
   - 엄격한 비교 - 두 비교 대상의 타입과 값 모두 같은 지 비교하는 방식
 
@@ -270,7 +272,7 @@
 **Ternary Operator 삼항 연산자**
 
 - 3개의 피연산자를 사용하여 조건에 따라 값을 반환하는 연산자
-- 가장 앞의 조건식이 참이면 : (콜론) 앞의 값이 반환되며, 그 반대일 경우 : 뒤의 값이 반환되는 연산자
+- 가장 앞의 조건식이 참이면 `:` (콜론) 앞의 값이 반환되며, 그 반대일 경우 `: 뒤의 값이 반환되는 연산자
 - 삼항 연산자의 결과 값이기 때문에 변수에 할당 가능
 
 ### 조건문
@@ -279,7 +281,7 @@
 
 - **if** statement
   - 조건 표현식의 결과값을 **boolean 타입을 변환 후 참/거짓을 판단**
-    - 조건은 **condition 소괄호** 안에 작성
+    - 조건은 **condition () 소괄호** 안에 작성
     - 실행할 코드는 **{ } 중괄호** 안에 작성
     - 블록 스코프 생성
 - **switch** statement
@@ -308,7 +310,9 @@
   - 조건문이 참이기만 하면 문장을 계속해서 수행
 
     ```js
-    while (조건문) {}
+    while (조건문) {
+      
+    }
     ```
 
 - for
@@ -316,13 +320,15 @@
   - 특정한 조건이 거짓으로 판별될 때까지 반복
 
     ```js
-    for ([초기문]; [조건문]; [증감문]) {}
-  
+    for ([초기문]; [조건문]; [증감문]) {
+      
+    }
+    
     for (let i = 0; i < 6; i++) {
       console.log(i)
     }
     ```
-
+    
     1. 반복문 진입 및 변수 i 선언
     2. 조건문 평가 후 코드 블럭 실행
     3. 코드 블록 실행 이후 i 값 증가
@@ -339,11 +345,11 @@
 
     ```js
     for (variable in object) {
+      
     }
-  
+    
     const fruits = { a: "apple", b: "banana" }
-  
-    // for (let key in fruits) {
+    
     for (const key in fruits) {
       console.log(key)
       console.log(fruits[key])
@@ -362,11 +368,11 @@
 
     ```js
     for (variable of object) {
+      
     }
     
     const numbers = [0, 1, 2, 3]
     
-    // for (let number of numbers) {
     for (const number of numbers) {
       console.log(number)
     }
@@ -396,7 +402,7 @@
 
 참조 타입 중 하나로써 function 타입에 속함
 
-JavaScript에서 함수를 정의하는 방법은 주로 2가지로 구분됨
+JavaScript에서 함수를 정의하는 방법은 주로 2 가지로 구분됨
 
 - function declaration 함수 선언식
 - function expression 함수 표현식
@@ -406,7 +412,9 @@ JavaScript에서 함수를 정의하는 방법은 주로 2가지로 구분됨
 **function declaration 함수 선언식**
 
 ```js
-function 함수명() {}
+function 함수명() {
+  
+}
 ```
 
 **function expression 함수 표현식**
@@ -505,7 +513,7 @@ function 함수명() {}
 
 **호이스팅 - 선언식**
 
-- 함수 선언식으로 정의한 함수는 var 로 정의한 변수처럼 호이스팅이 발생
+- 함수 선언식으로 정의한 함수는 `var` 로 정의한 변수처럼 호이스팅이 발생
 - 즉 함수 호출 이후에 선언해도 동작
 
 **호이스팅 - 표현식**
@@ -515,10 +523,10 @@ function 함수명() {}
 
 **선언식과 표현식 정리**
 
-|        | declaration 선언식                  | expression 표현식                 |
-| ------ | ----------------------------------- | --------------------------------- |
-| 차이점 | 익명 함수 불가능<br />호이스팅 있음 | 익명 함수 가능<br />호이스팅 없음 |
-| 비고   |                                     | Airbnb Style Guide 권장 방식      |
+|        | declaration 선언식                  | expression 표현식                                            |
+| ------ | ----------------------------------- | ------------------------------------------------------------ |
+| 차이점 | 익명 함수 불가능<br />호이스팅 있음 | 익명 함수 가능<br />호이스팅 없음                            |
+| 비고   |                                     | [Airbnb Style Guide](https://github.com/airbnb/javascript#functions) 권장 방식 |
 
 ### Arrow Function
 
@@ -592,7 +600,7 @@ function 함수명() {}
 
 - 순서를 보장하는 특징이 있음
 
-- 주로 대괄호([])를 이용하여 생성하고, 0을 포함한 양의 정수 인덱스로 특정 값에 접근 가능
+- 주로 대괄호`[ ]`를 이용하여 생성하고, 0을 포함한 양의 정수 인덱스로 특정 값에 접근 가능
 
 - 배열의 길이는 `array.length` 형태로 접근 가능
 
@@ -632,7 +640,9 @@ function 함수명() {}
 **Array Helper Methods - forEach**
 
 ```js
-array.forEach((element, index, array) => {})
+array.forEach((element, index, array) => {
+  
+})
 ```
 
 - array.forEach(callback(element[, index[,array]]))
@@ -670,7 +680,9 @@ users.forEach((user) => {
 **Array Helper Methods - map**
 
 ```js
-array.map((element, index, array) => {})
+array.map((element, index, array) => {
+  
+})
 ```
 
 - array.map(callback(element[, index[, array]]))
@@ -765,9 +777,9 @@ array.reduce((acc, element, index, array) => {
 - reduce 메서드의 주요 매개변수
   - acc
     - 이전 callback 함수의 **반환** 값이 누적되는 변수
-  - initialValue(optional)
+  - `initialValue` (optional)
     - 최초 callback 함수 호출 시 acc에 할당되는 값, default 값은 배열의 첫 번째 값
-- reduce의 첫번째 매개변수인 콜백함수의 첫번째 매개변수(`acc`)는 누적된 값(전 단계 까지의 결과)
+- reduce의 첫번째 매개변수인 콜백함수의 첫번째 매개변수(`acc`)는 누적된 값(전 단계까지의 결과)
 - reduce의 두번째 매개변수인 `initialValue`는 누적될 값의 초기값, 지정하지 않을 시 첫번째 요소의 값이 됨
 - **빈 배열의 경우 initialValue를 제공하지 않으면 에러 발생**
 
@@ -889,11 +901,11 @@ chars.forEach((char) => {
 })
 ```
 
-| 방식        | 특징                                                                                                        | 비고                         |
-| ----------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| for loop    | 모든 브라우저 환경에서 지원<br />인덱스를 활용하여 배열의 요소에 접근<br />break, continue 사용 가능        |                              |
-| for…of      | 일부 오래된 환경에서 **지원X**<br />인덱스 없이 배열의 요소에 바로 접근 가능<br />break, continue 사용 가능 |                              |
-| **forEach** | 대부분의 브라우저 환경에서 지원<br />break, continue 사용 **불가능**                                        | Airbnb Style Guide 권장 방식 |
+| 방식        | 특징                                                         | 비고                                                         |
+| ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| for loop    | 모든 브라우저 환경에서 지원<br />인덱스를 활용하여 배열의 요소에 접근<br />break, continue 사용 가능 |                                                              |
+| for…of      | 일부 오래된 환경에서 **지원X**<br />인덱스 없이 배열의 요소에 바로 접근 가능<br />break, continue 사용 가능 |                                                              |
+| **forEach** | 대부분의 브라우저 환경에서 지원<br />break, continue 사용 **불가능** | [Airbnb Style Guide](https://github.com/airbnb/javascript#iterators-and-generators) 권장 방식 |
 
 ### Object
 
@@ -902,7 +914,7 @@ chars.forEach((char) => {
 - key는 문자열 타입만 가능
   - key 이름에 띄어쓰기 등의 구분자가 있으면 따옴표로 묶어서 표현
 - value는 모든 타입(함수 포함) 가능
-- 객체 요소 접근은 점(.) 또는 대괄호([])로 가능
+- 객체 요소 접근은 점`.` 또는 대괄호`[ ]`로 가능
   - key 이름에 띄어쓰기 같은 구분자가 있으면 대괄호 접근만 가능
 
 ```js
@@ -1020,7 +1032,7 @@ fileSummary(savedFile)
 
 **5. Spread syntax (…)**
 
-- 배열과 마찬가지로 전개구문을 사용해 객체 내부에서 객체 전개 가능
+- 배열과 마찬가지로 전개 구문을 사용해 객체 내부에서 객체 전개 가능
 - 얕은 복사에 활용 가능
 
 ```js
@@ -1069,7 +1081,7 @@ console.log(typeof jsonToObj)
 
 - JavaScrpit 기초 문법
 
-  - 세미콜론
+  - 세미콜론`;`
 
   - 들여쓰기와 코드 블럭
 
