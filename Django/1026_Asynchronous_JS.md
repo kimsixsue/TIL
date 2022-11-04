@@ -253,9 +253,7 @@ work1()
 
 ```django
 <!-- base.html -->
-
 <body>
-  
   {% block script %}
   {% endblock script %}
 </body>
@@ -265,7 +263,6 @@ work1()
 
 ```django
 <!-- accounts/profile.html -->
-
 {% block script %}
 <!-- jsDelivr CDN 사용하기: -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -275,6 +272,7 @@ work1()
 ```
 
 - form 요소 선택을 위해 id 속성 지정 및 선택
+
 - 불필요해진 action과 method 속성은 삭제 (요청은 axios로 대체되기 때문)
 
 ```django
@@ -328,18 +326,17 @@ work1()
    <script>
      const form = document.querySelector("#follow-form")
      form.addEventListener("submit", function (event) {
-    event.preventDefault()
+       event.preventDefault()
        
        const userId = event.target.dataset.userId
        
        axios({
          method: "post", // 요청을 생성할때 사용되는 메소드
          url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-    })
+   		 })
      })
    </script>
    ```
-
 
 **`data-*` attributes**
 
@@ -474,57 +471,52 @@ work1()
 - 해당 요소를 선택할 수 있도록 span 태그와 id 속성 작성
 
   ```django
-<!-- accounts/profile.html -->
-
-{% extends 'base.html' %} 
-
-{% block content %}
-<h1>{{ person.username }}님의 프로필</h1>
-<div>
-  팔로워 :
-  <span id="followers-count">{{ person.followers.all|length }}</span> /
-  팔로잉 :
-  <span id="followings-count">{{ person.followings.all|length }}</span>
-</div>
-
-<script>
-  
-  axios({
-    method: "post", // 요청을 생성할때 사용되는 메소드
-    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-    headers: { // 사용자 지정 헤더
-      "X-CSRFToken": csrftoken,
-    },
-  }).then(function (response) {
-    
-    const followersCountTag = document.querySelector("#followers-count")
-    const followingsCountTag = document.querySelector("#followings-count")
-    })
-</script>
+  <!-- accounts/profile.html -->
+  {% extends 'base.html' %} 
+  {% block content %}
+  <h1>{{ person.username }}님의 프로필</h1>
+  <div>
+    팔로워 :
+    <span id="followers-count">{{ person.followers.all|length }}</span> /
+    팔로잉 :
+    <span id="followings-count">{{ person.followings.all|length }}</span>
+  </div>
+  <script>
+      axios({
+      method: "post", // 요청을 생성할때 사용되는 메소드
+      url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+      headers: { // 사용자 지정 헤더
+        "X-CSRFToken": csrftoken,
+      },
+    }).then(function (response) {
+  const followersCountTag = document.querySelector("#followers-count")
+  const followingsCountTag = document.querySelector("#followings-count")
+  })
+    </script>
   ```
 
-  - 팔로워, 팔로잉 인원 수 연산은 view 함수에서 진행하여 결과를 응답으로 전달
+- 팔로워, 팔로잉 인원 수 연산은 view 함수에서 진행하여 결과를 응답으로 전달
 
-    ```python
-    # accounts/views.py
-    
-    from django.http import JsonResponse
-    from django.shortcuts import redirect
-    from django.views.decorators.http import require_POST
-    
-    
-    @require_POST
-    def follow(request, user_pk):
-    
-                context = {
-                    'is_followed': is_followed,
-                    'followers_count': you.followers.count(),
-                    'followings_count': you.followings.count(),
-                }
-                return JsonResponse(context)
-            return redirect('accounts:profile', you.username)
-        return redirect('accounts:login')
-    ```
+  ```    python
+# accounts/views.py
+
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.views.decorators.http import require_POST
+
+
+@require_POST
+def follow(request, user_pk):
+
+  context = {
+    'is_followed': is_followed,
+    'followers_count': you.followers.count(),
+    'followings_count': you.followings.count(),
+  }
+  return JsonResponse(context)
+return redirect('accounts:profile', you.username)
+return redirect('accounts:login')
+  ```
 
   - view 함수에서 응답한 연산 결과를 사용해 각 태그의 인원 수 값 변경하기
 
@@ -547,7 +539,7 @@ work1()
         followingsCountTag.innerText = followingsCount
       })
     </script>
-    ```
+  ```
 
 **최종 코드**
 
@@ -568,7 +560,7 @@ work1()
 {% if request.user != person %}
 <div>
   <form id="follow-form" data-user-id="{{ person.pk }}">
-    {% csrf_tokne %} 
+    {% csrf_token %} 
     {% if request.user in person.followers.all %}
     <input type="submit" value="언팔로우" />
     {% else %} 
