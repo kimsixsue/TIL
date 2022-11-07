@@ -61,9 +61,8 @@
 
 ```html
 <body>
-  
   <script>
-    console.log('hello, javascript')
+    console.log("hello, javascript")
   </script>
 </body>
 ```
@@ -74,7 +73,6 @@
 
   ```html
   <body>
-    
     <script type="text/javascript" src="hello.js"></script>
   </body>
   ```
@@ -123,29 +121,29 @@
 
 **식별자 정의와 특징**
 
-- **camelCase** 카멜 케이스 (lower-cammel–case)
-  
+- **camelCase** 카멜 케이스 (lower-camel–case)
+
   - 변수, 객체, 함수에 사용
-  
+
     ```js
     let variableName
-    const userInfo = { a: 'B', n: 10}
+    const userInfo = { a: "B", n: 10 }
     function addNumber() {}
     ```
-  
+
 - **PascalCase** 파스칼 케이스 (upper-camel-case)
-  
+
   - 클래스, 생성자에 사용
-  
+
     ```js
-    class User {  }
-    fuunction User(options) { }
+    class User {}
+    function User(options) {}
     ```
-  
+
 - **SNAKE_CASE** 대문자 스네이크 케이스
-  
+
   - constants 상수에 사용
-  
+
     ```js
     const PI = Math.PI
     const NUMBERS = [1, 2, 3]
@@ -209,7 +207,7 @@
 ### 데이터 타입
 
 - JavaScript의 모든 값은 특정한 데이터 타입을 가짐
-- 크게 **Primitive type 원시 타입**과 **Refernece type 참조타입**으로 분류됨
+- 크게 **Primitive type 원시 타입**과 **Reference type 참조타입**으로 분류됨
 
 **Number**
 
@@ -220,8 +218,8 @@
 - **`NaN`을 반환하는 경우**
   1. 숫자로서 읽을 수 없음 (`parseInt("abc")`, `Number(undefined)`)
   2. 결과가 허수인 수학 계산식 (`Math.sqrt(-1)`)
-  3. 피연산자가 NaN (7 ** `NaN`)
-  4. 정의할 수 없는 계산식 ( 0 * `Infinity`)
+  3. 피연산자가 NaN (7 \*\* `NaN`)
+  4. 정의할 수 없는 계산식 ( 0 \* `Infinity`)
   5. 문자열을 포함하면서 덧셈이 아닌 계산식
 
 **String**
@@ -232,13 +230,13 @@
 
 - 곱셈, 나눗셈, 뺄셈은 안되지만, 덧셈을 통해 문자열 붙일 수 있음
 
-  > https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/repeat
+  > <https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/repeat>
 
 - Quote를 사용하면 선언 시 줄 바꿈이 안 됨
 
 - 대신 escape sequence를 사용할 수 있기 때문에 `\n` 를 사용해야 함
 
-- **Tempate Literal**을 사용하면 줄바꿈이 되며, 문자열 사이에 변수도 삽입도 가능
+- **Template Literal**을 사용하면 줄바꿈이 되며, 문자열 사이에 변수도 삽입도 가능
 
 - (단, escape sequence를 사용할 수 없다)
 
@@ -283,7 +281,7 @@
 
 **ToBoolean Conversions (자동 형변환)**
 
-> https://tc39.es/ecma262/#sec-toboolean
+> <https://tc39.es/ecma262/#sec-toboolean>
 
 | 데이터 타입 | false        | true             |
 | ----------- | ------------ | ---------------- |
@@ -302,7 +300,7 @@
 
 **비교 연산자**
 
-- 피연산자들을 비교하고 결과값을 blloean 으로 반환하는 연산자
+- 피연산자들을 비교하고 결과값을 boolean 으로 반환하는 연산자
 - 문자열은 유니코드 값을 사용하며 표준 사전 순서를 기반으로 비교
   - 소문자가 대문자보다 더 크다
 
@@ -329,7 +327,7 @@
 **Ternary Operator 삼항 연산자**
 
 - 3개의 피연산자를 사용하여 조건에 따라 값을 반환하는 연산자
-- 가장 앞의 조건식이 참이면 `:` (콜론) 앞의 값이 반환되며, 그 반대일 경우 `: `뒤의 값이 반환되는 연산자
+- 가장 앞의 조건식이 참이면 `:` (콜론) 앞의 값이 반환되며, 그 반대일 경우 `:`뒤의 값이 반환되는 연산자
 - 삼항 연산자의 결과 값이기 때문에 변수에 할당 가능
 
 ### 조건문
@@ -337,40 +335,36 @@
 **조건문의 종류와 특징**
 
 - `if` statement
-  
+
   - 조건 표현식의 결과값을 **boolean 타입을 변환 후 참/거짓을 판단**
-  
+
     ```js
-    if (name === 'admin') {
-      
-    } else if (name === 'manager') {
-      
-    } else { 
-    
+    if (name === "admin") {
+    } else if (name === "manager") {
+    } else {
     }
     ```
-  
+
   - 조건은 **condition `()` 소괄호** 안에 작성
-  
+
   - 실행할 코드는 **`{ }` 중괄호** 안에 작성
-  
+
   - 블록 스코프 생성
-  
+
 - `switch` statement
-  
+
   - 조건 표현식의 결과값이 **어느 값(`case`)에 해당하는지 판별**
-  
+
   - 주로 특정 변수의 값에 따라 조건을 분기할 때 활용
+
     - 조건이 많아질 경우 if문보다 가독성이 나올 수 있음
-    
+
     ```js
-    switch(expression) {
-      case 'first': {
-        
+    switch (expression) {
+      case "first": {
         break // 선택적
       }
-      case 'second': {
-        
+      case "second": {
         break // 선택적
       }
       default: {
@@ -378,19 +372,19 @@
       }
     }
     ```
-    
+
   - expression 표현식의 결과값을 이용한 조건문
-  
+
   - 표현식의 결과값과 `case`문의 오른쪽 값을 비교
-  
+
   - `break` 및 `default`문은 [선택적]으로 사용 가능
-  
+
   - break문이 없는 경우 `break`문을 만나거나 `default`문을 실행할 때까지 다음 조건문 실행
-  
+
   - 블록 스코프 생성
-  
+
   - **Fall-through 현상**
-    
+
     - `break`를 작성하면 의도한대로 동작
 
 **if / switch**
@@ -407,9 +401,7 @@
   - 조건문이 참이기만 하면 문장을 계속해서 수행
 
     ```js
-    while (조건문) {
-      
-    }
+    while (조건문) {}
     ```
 
 - `for`
@@ -417,15 +409,13 @@
   - 특정한 조건이 거짓으로 판별될 때까지 반복
 
     ```js
-    for ([초기문]; [조건문]; [증감문]) {
-      
-    }
-    
+    for ([초기문]; [조건문]; [증감문]) {}
+
     for (let i = 0; i < 6; i++) {
       console.log(i)
     }
     ```
-    
+
     1. 반복문 진입 및 변수 i 선언
     2. 조건문 평가 후 코드 블럭 실행
     3. 코드 블록 실행 이후 i 값 증가
@@ -440,11 +430,10 @@
 
   ```js
   for (variable in object) {
-    
   }
-  
+
   const fruits = { a: "apple", b: "banana" }
-  
+
   for (const key in fruits) {
     console.log(key)
     console.log(fruits[key])
@@ -457,14 +446,13 @@
   - **iterable** 순회 적합
   - **반복 가능한 객체**를 순회할 때 사용
     - iterable 반복 가능한 객체의 종류 : **Array, Set, String** 등
-  
+
   ```js
   for (variable of object) {
-    
   }
-  
+
   const numbers = [0, 1, 2, 3]
-  
+
   for (const number of numbers) {
     console.log(number, typeof num)
   }
@@ -473,9 +461,9 @@
 **[참고] for…in, for…of 와 const**
 
 - `for`문
-  
+
   - 최초 정의한 i 를 재할당 하면서 사용하기 때문에 const를 사용하면 **에러 발생**
-  
+
     ```js
     function palindrome(str) {
       N = str.length
@@ -490,7 +478,7 @@
     console.log(palindrome("level"))
     console.log(palindrome("hi"))
     ```
-  
+
     ```js
     let line = 5
     let result = ""
@@ -505,12 +493,12 @@
     }
     console.log(result)
     for (let i = 1; i < 10; i += 2) {
-      console.log(''.repeat((9 - 1) / 2) + '*'.repeat(i))
+      console.log("".repeat((9 - 1) / 2) + "*".repeat(i))
     }
     ```
-  
+
 - `for`(...`in`...), `for`(...`of`...)
-  
+
   - 재할당이 아니라, 매 반복 시 해당 변수를 새로 정의하여 사용하므로 **에러가 발생하지 않음**
 
 **조건문과 반복문 정리**
@@ -598,7 +586,7 @@ const sub = function (num1, num2) {
   const threeArgs = function (arg1, arg2, arg3) {
     return [arg1, arg2, arg3]
   }
-  
+
   threeArgs(1, 2) // [1, 2, undefined]
   ```
 
@@ -621,20 +609,20 @@ const sub = function (num1, num2) {
      const restOpr = function (arg1, arg2, ...restArgs) {
        return [arg1, arg2, restArgs]
      }
-     
+
      restArgs(1, 2, 3, 4, 5) // [1, 2, [3, 4, 5]]
-     
+
      function addNumbers(...numbers) {
        return numbers.reduce((sum, number) => {
          return sum + number
        }, 0)
      }
      console.log(addNumbers(1, 2, 3, 4, 5))
-     
+
      const defaultColors = ["red", "green", "blue"]
      const favoriteColors = ["navy", "black", "gold", "white"]
      const palette = [...defaultColors, ...favoriteColors]
-     
+
      const info1 = { name: "Tom", age: 30 }
      const info2 = { isMarried: true, balance: 3000 }
      const fullInfo = { ...info1, ...info2 }
@@ -649,8 +637,8 @@ const sub = function (num1, num2) {
 - 선언식 함수와 표현식 함수 모두 타입은 `function`으로 동일
 
   ```js
-  function sub(args) { }
-  const add = function (args) { }
+  function sub(args) {}
+  const add = function (args) {}
   ```
 
 **hoisting - 선언식**
@@ -665,9 +653,9 @@ const sub = function (num1, num2) {
 
 **선언식과 표현식 정리**
 
-|        | declaration 선언식                  | expression 표현식                                            |
-| ------ | ----------------------------------- | ------------------------------------------------------------ |
-| 차이점 | 익명 함수 불가능<br />hoisting 있음 | 익명 함수 가능<br />hoisting 없음                            |
+|        | declaration 선언식                  | expression 표현식                                                              |
+| ------ | ----------------------------------- | ------------------------------------------------------------------------------ |
+| 차이점 | 익명 함수 불가능<br />hoisting 있음 | 익명 함수 가능<br />hoisting 없음                                              |
 | 비고   |                                     | [Airbnb Style Guide](https://github.com/airbnb/javascript#functions) 권장 방식 |
 
 ### Arrow Function
@@ -692,30 +680,32 @@ const sub = function (num1, num2) {
     return `hello, ${name}`
   }
   // 1. function 키워드 삭제
-  const arrow2 = (name) => { 
-    return `hello, ${name}` 
+  const arrow2 = (name) => {
+    return `hello, ${name}`
   }
   // 2. 인자가 1개일 경우에만 () 생략 가능
-  const arrow3 = name => { 
-    return `hello, ${name}` 
+  const arrow3 = (name) => {
+    return `hello, ${name}`
   }
   // 3. 함수 바디가 return을 포함한 표현식 1개일 경우에 {} & return 삭제 가능
-  const arrow4 = name => `hello, ${name}`
+  const arrow4 = (name) => `hello, ${name}`
   ```
-  
+
   ```js
   // 1. 인자가 없다면? () or _ 로 표시 가능.
   let noArgs = () => "No args"
-  noArgs = _ => "No args"
-  
+  noArgs = (_) => "No args"
+
   // 2-1. object 를 return 한다면, return 을 명시적으로 적어준다.
-  let returnObject = () => { return { key: "value" } }
-  
+  let returnObject = () => {
+    return { key: "value" }
+  }
+
   // 2-2. return 을 적지 않으려면 괄호를 붙여야 한다.
   returnObject = () => ({ key: "value" })
   ```
 
-**즉시 실행 함수 (IIFE, Immediaely Invoked Function Expression)**
+**즉시 실행 함수 (IIFE, Immediately Invoked Function Expression)**
 
 - 선언과 동시에 실행되는 함수
 
@@ -737,7 +727,7 @@ const sub = function (num1, num2) {
 
 ## 4. Array_Object
 
-- JavaScript의 데이터 타입 중 refernce 참조 타입에 해당 하는 타입은 **array**와 **object**이며, 객체라고 말함
+- JavaScript의 데이터 타입 중 reference 참조 타입에 해당 하는 타입은 **array**와 **object**이며, 객체라고 말함
 - 객체는 속성들의 collection 모음
 
 ### Array
@@ -751,11 +741,10 @@ const sub = function (num1, num2) {
 - 배열의 길이는 `array.length` 형태로 접근 가능
 
   - 배열의 마지막 원소는 `array.length - 1` 로 접근
-  
+
   ```js
   const numbers = [1, 2, 3, 4, 5]
   ```
-  
 
 ### Array method 기초
 
@@ -787,22 +776,20 @@ def index(request):
 - 메서드 호출 시 인자로 **callback 함수**를 받는 것이 특징
   - **callback 함수**: 어떤 함수의 내부에서 실행될 목적으로 인자로 넘겨받는 함수
 
-| 메서드       | 설명                                                         | 비고         |
-| ------------ | ------------------------------------------------------------ | ------------ |
-| `.forEach()` | 배열의 각 요소에 대해 콜백 함수를 한 번씩 실행               | 반환 값 없음 |
-| `.map()`     | **콜백 함수의 반환 값**을 요소로 하는 **새로운 배열 반환**   |              |
+| 메서드       | 설명                                                                  | 비고         |
+| ------------ | --------------------------------------------------------------------- | ------------ |
+| `.forEach()` | 배열의 각 요소에 대해 콜백 함수를 한 번씩 실행                        | 반환 값 없음 |
+| `.map()`     | **콜백 함수의 반환 값**을 요소로 하는 **새로운 배열 반환**            |              |
 | `.filter()`  | **콜백 함수의 반환 값이 참인 요소들만** 모아서 **새로운 배열을 반환** |              |
-| `.reduce()`  | **콜백 함수의 반환 값들을 하나의 값(acc)에 누적 후 반환**    |              |
-| .find()      | 콜백 함수의 **반환 값이 참이면 해당 요소를 반환**            |              |
-| .some()      | 배열의 **요소 중 하나라도 판별 함수를 통과**하면 참을 반환   |              |
-| .every()     | 배열의 **모든 요소가 판별 함수를 통과**하면 참을 반환        |              |
+| `.reduce()`  | **콜백 함수의 반환 값들을 하나의 값(acc)에 누적 후 반환**             |              |
+| .find()      | 콜백 함수의 **반환 값이 참이면 해당 요소를 반환**                     |              |
+| .some()      | 배열의 **요소 중 하나라도 판별 함수를 통과**하면 참을 반환            |              |
+| .every()     | 배열의 **모든 요소가 판별 함수를 통과**하면 참을 반환                 |              |
 
 **Array Helper Methods - forEach**
 
 ```js
-array.forEach((element, index, array) => {
-  
-})
+array.forEach((element, index, array) => {})
 ```
 
 - array`.forEach(`callback(element[, index[,array]])`)`
@@ -840,9 +827,7 @@ users.forEach((user) => {
 **Array Helper Methods - map**
 
 ```js
-array.map((element, index, array) => {
-  
-})
+array.map((element, index, array) => {})
 ```
 
 - array`.map(`callback(element[, index[, array]])`)`
@@ -884,9 +869,7 @@ const newUsers = users.map((user) => {
 **Array Helper Methods - filter**
 
 ```js
-array.filter((element, index, array) => {
-  
-})
+array.filter((element, index, array) => {})
 ```
 
 - array`.filter(`callback(element[, index[, array]])`)`
@@ -926,12 +909,10 @@ const marriedUsers = users.filter((user) => user.isMarried)
 **Array Helper Methods - reduce**
 
 ```js
-array.reduce((acc, element, index, array) => {
-  
-}, initialValue)
+array.reduce((acc, element, index, array) => {}, initialValue)
 ```
 
-- array`.reduce(`callback(`acc`, element, [index[, array]])[, initialValue]`)`
+- array`.reduce[`callback(`acc`, element, [index[, array]]](, initialValue)`)`
 - 인자로 주어지는 함수(콜백 함수)를 배열의 각 요소에 대해 한 번씩 실행해서, 하나의 결과 값을 **반환**.
 - 즉, 배열을 하나의 값으로 계산하는 동작이 필요할 때 사용(총합, 평균 등)
 - map, filter 등 여러 배열 메서드 동작을 대부분 대체할 수 있음
@@ -958,7 +939,8 @@ const sumNum = numbers.reduce((result, number) => {
   return result + number
 }, 0)
 
-const avgNum = numbers.reduce((result, number) => result + number, 0) / numbers.length
+const avgNum =
+  numbers.reduce((result, number) => result + number, 0) / numbers.length
 
 const sumNum = numbers.reduce((result, number) => result + number, 0)
 
@@ -968,9 +950,7 @@ const totalBalance = users.reduce((total, user) => total + user.balance, 0)
 **Array Helper Methods - find**
 
 ```js
-array.find((element, index, array) => {
-  
-})
+array.find((element, index, array) => {})
 ```
 
 - array`.find(`callback(element[, index[, array]])`)`
@@ -980,9 +960,9 @@ array.find((element, index, array) => {
 
 ```js
 const avengers = [
-  { name: 'Tony Stark', age: 45 },
-  { name: 'Steve Rogers', age: 32 },
-  { name: 'Thor', age: 40 },
+  { name: "Tony Stark", age: 45 },
+  { name: "Steve Rogers", age: 32 },
+  { name: "Thor", age: 40 },
 ]
 
 const avenger = avengers.find(function (avenger) {
@@ -990,7 +970,7 @@ const avenger = avengers.find(function (avenger) {
 })
 
 const avenger = avengers.find((avenger) => {
-  return avenger.name === 'Tony Stark'
+  return avenger.name === "Tony Stark"
 })
 
 console.log(avenger)
@@ -1003,9 +983,7 @@ const tom = users.find((user) => user.name === "Tom")
 **Array Helper Methods - some**
 
 ```js
-array.some((element, index, array) => {
-  
-})
+array.some((element, index, array) => {})
 ```
 
 - array`.some(`callback(element[, index[, array]])`)`
@@ -1028,9 +1006,7 @@ console.log(result)
 **Array Helper Methods - every**
 
 ```js
-array.every((element, index, array) => {
-  
-})
+array.every((element, index, array) => {})
 ```
 
 - array`.every(`callback(element[, index[, array]])`)`
@@ -1075,42 +1051,43 @@ chars.forEach((char) => {
 })
 ```
 
-| 방식          | 특징                                                         | 비고                                                         |
-| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| for loop      | 모든 브라우저 환경에서 지원<br />인덱스를 활용하여 배열의 요소에 접근<br />break, continue 사용 가능 |                                                              |
-| for(...of...) | 일부 오래된 환경에서 **지원X**<br />인덱스 없이 배열의 요소에 바로 접근 가능<br />break, continue 사용 가능 |                                                              |
-| `.forEach()`  | 대부분의 브라우저 환경에서 지원<br />break, continue 사용 **불가능** | [Airbnb Style Guide](https://github.com/airbnb/javascript#iterators-and-generators) 권장 방식 |
+| 방식          | 특징                                                                                                        | 비고                                                                                          |
+| ------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| for loop      | 모든 브라우저 환경에서 지원<br />인덱스를 활용하여 배열의 요소에 접근<br />break, continue 사용 가능        |                                                                                               |
+| for(...of...) | 일부 오래된 환경에서 **지원X**<br />인덱스 없이 배열의 요소에 바로 접근 가능<br />break, continue 사용 가능 |                                                                                               |
+| `.forEach()`  | 대부분의 브라우저 환경에서 지원<br />break, continue 사용 **불가능**                                        | [Airbnb Style Guide](https://github.com/airbnb/javascript#iterators-and-generators) 권장 방식 |
 
 ### Object
 
 - 객체는 property 속성의 집합이며, 중괄호 내부에 key와 value의 쌍으로 표현
 
 - **key**
+
   - 문자열 타입만 가능
   - key 이름에 띄어쓰기 등의 구분자가 있으면 따옴표로 묶어서 표현
 
-- **value** 
+- **value**
+
   - 모든 타입(함수 포함) 가능
 
 - 객체 요소 접근
-  -  점`.` 또는 대괄호`[ ]`로 가능
+  - 점`.` 또는 대괄호`[ ]`로 가능
   - key 이름에 띄어쓰기 같은 구분자가 있으면 대괄호 접근만 가능
-
 
 ```js
 const myInfo = {
-  name: 'jack',
-  phoneNumber: '123456',
-  'samsung product': {
-    buds: 'Buds pro',
-    galaxy: 'S99',
+  name: "jack",
+  phoneNumber: "123456",
+  "samsung product": {
+    buds: "Buds pro",
+    galaxy: "S99",
   },
 }
 
 console.log(myInfo.name)
-console.log(myInfo['name'])
-console.log(myInfo['samsung product'])
-console.log(myInfo['samsung product'].galaxy)
+console.log(myInfo["name"])
+console.log(myInfo["samsung product"])
+console.log(myInfo["samsung product"].galaxy)
 ```
 
 ### Object 관련 문법
@@ -1154,10 +1131,10 @@ const request = {
 
 ```js
 const obj = {
-  name: 'jack',
+  name: "jack",
   greeting() {
-    console.log('hi!')
-  }
+    console.log("hi!")
+  },
 }
 
 console.log(obj.name)
@@ -1176,8 +1153,8 @@ const tom = {
 - 객체를 정의할 때 key의 이름을 표현식을 이용하여 동적으로 생성 가능
 
 ```js
-const key = 'country'
-const value = ['한국', '미국', '일본', '중국']
+const key = "country"
+const value = ["한국", "미국", "일본", "중국"]
 
 const myObj = {
   [key]: value,
@@ -1245,8 +1222,8 @@ const fullInfo = { ...info1, ...info2 }
 
 ```js
 const jsonData = {
-  coffee: 'Americano',
-  iceCream: 'Cookie and cream',
+  coffee: "Americano",
+  iceCream: "Cookie and cream",
 }
 ```
 
@@ -1274,7 +1251,7 @@ console.log(jsonToObj.coffee)
 
 ## finish
 
-- JavaScrpit 기초 문법
+- JavaScript 기초 문법
 
   - 세미콜론`;`
 
@@ -1287,9 +1264,9 @@ console.log(jsonToObj.coffee)
   - 타입과 연산자
     - 원시 자료형
   - 조건문
-  
+
   - 반복문
-  
+
 - 함수
   - 선언식과 표현식
   - 화살표 함수

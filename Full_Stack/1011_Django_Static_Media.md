@@ -1,38 +1,23 @@
 [Django Static Media](#django-static-media)
 
 1. [Managing static files](#1-managing-static-files)
-
-   + [Static files](#static-files)
-
-   + [Static files organization](#static-files-organization)
-
-   + [Static files Use](#static-files-use)
-
+   - [Static files](#static-files)
+   - [Static files organization](#static-files-organization)
+   - [Static files Use](#static-files-use)
 2. [Image Upload](#2-image-upload)
-
-   + [ImageField](#imagefield)
-
-   + [CREATE](#create)
-
-   + [READ](#read)
-
-   + [UPDATE](#update)
-
-   + [upload_to argument](#upload_to-argument)
-
+   - [ImageField](#imagefield)
+   - [CREATE](#create)
+   - [READ](#read)
+   - [UPDATE](#update)
+   - [upload_to argument](#upload_to-argument)
 3. [Image Resizing](#3-image-resizing)
-
 4. [QuerySet API Advanced](#4-queryset-api-advanced)
+   - [CRUD basics](#crud-basics)
+   - [Sorting data](#sorting-data)
+   - [Filtering data](#filtering-data)
+   - [Aggregation(Grouping data)](#aggregationgrouping-data)
 
-   + [CRUD basics](#crud-basics)
-
-   + [Sorting data](#sorting-data)
-
-   + [Filtering data](#filtering-data)
-
-   + [Aggregation(Grouping data)](#aggregationgrouping-data)
-
-* [finish](#finish)
+- [finish](#finish)
 
 # Django Static Media
 
@@ -60,6 +45,7 @@
 **웹 서버와 정적 파일**
 
 - 웹 서버의 기본동작은
+
   - URL 특정 위치에 있는 자원을 HTTP request 요청 받아서
   - HTTP response 응답을 처리하고 serving 제공하는 것
 
@@ -83,7 +69,7 @@
 
    ```django
    {% load static %}
-   
+
    <img src="{% static 'sample_img.jpg' %}" alt="sample image">
    ```
 
@@ -116,7 +102,7 @@
 
 2. STATICFILES_DIRS
 
-   - Dafault: [] (Empty list)
+   - Default: [] (Empty list)
 
    - **app/static/** 디렉토리 경로를 사용하는 것(기본 경로) 외에 추가적인 정적 파일 경로 목록을 정의하는 리스트
 
@@ -136,7 +122,7 @@
 
    - 개발 단계에서는 실제 정적 파일들이 저장되어 있는 app/static/ 경로 (기본 경로) 및 STATICFILES_DIRS에 정의된 추가 경로들을 탐색
 
-   - **실제 파일이나 디렉토리가 아니며, URL로만 존재** 
+   - **실제 파일이나 디렉토리가 아니며, URL로만 존재**
 
    - 비어 있지 않은 값으로 설정 한다면 반드시 slash(/) 로 끝나야 함
 
@@ -159,7 +145,7 @@
         ```django
         {% extends 'base.html' %}
         {% load static %}
-        
+
         {% block content %}
           <img src="{% static 'articles/sample_img_1.png' %}" alt="sample-img">
         ```
@@ -181,7 +167,7 @@
         ```django
         {% extends 'base.html' %}
         {% load static %}
-        
+
         {% block content %}
           <img src="{% static 'sample_img_2.png' %}" alt="sample-img">
         ```
@@ -191,7 +177,7 @@
 - Django가 해당 이미지를 클라이언트에게 응답하기 위해 만든 image url 확인하기
   - 개발자도구 - Inspect 버튼을 통해 확인
 - “**STATIC_URL + static file 경로**”로 설정됨
-  - http://127.0.0.1:8000/`static`/articles/sample_img_1.png
+  - <http://127.0.0.1:8000/>`static`/articles/sample_img_1.png
 
 ## 2. Image Upload
 
@@ -208,16 +194,16 @@ Django ImageField를 사용해 사용자가 업로드한 정적 파일(미디어
 
 **FileField()**
 
-- FiledField(max_length=100, upload_to=‘’, storage=None, **options)
+- FiledField(max_length=100, upload_to=‘’, storage=None, \*\*options)
 
 - 파일 업로드에 사용하는 모델 필드
 
 - 2개의 선택 인자를 가지고 있음
-  
+
   1. upload_to
-  
-     >https://docs.djangoproject.com/en/3.2/ref/models/fields/#django.db.models.FileField.upload_to
-  
+
+     > <https://docs.djangoproject.com/en/3.2/ref/models/fields/#django.db.models.FileField.upload_to>
+
   2. storage
 
 **FileField / ImageField를 사용하기 위한 단계**
@@ -239,7 +225,7 @@ Django ImageField를 사용해 사용자가 업로드한 정적 파일(미디어
 
   ```python
   # settings.py
-  
+
   MEDIA_ROOT = BASE_DIR / 'media'
   ```
 
@@ -259,8 +245,8 @@ Django ImageField를 사용해 사용자가 업로드한 정적 파일(미디어
 
   ```python
   # settings.py
-  
-  MDIA_URL = '/media/'
+
+  MEDIA_URL = '/media/'
   ```
 
 **개발 단계에서 사용자가 업로드한 미디어 파일 제공하기**
@@ -331,9 +317,9 @@ class Article(models.Model):
 
   ```django
   <!-- articles/create.html -->
-  
+
   {% extends 'base.html' %}
-  
+
   {% block content %}
     <form action="{% url 'articles:create' %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
@@ -348,14 +334,13 @@ class Article(models.Model):
 
   ```python
   # articles/views.py
-  
+
   @login_required
   @require_http_methods(['GET', 'POST'])
   def create(request):
       if request.method == 'POST':
           form = ArticleForm(request.POST, request.FILES)
   ```
-
 
 **이미지 첨부하기**
 
@@ -372,9 +357,9 @@ class Article(models.Model):
 
   ```django
   <!-- articles/detail.html -->
-  
+
   {% extends 'base.html' %}
-  
+
   {% block content %}
     <img src="{{ article.image.url }}" alt="{{ article.image }}">
   ```
@@ -389,9 +374,9 @@ class Article(models.Model):
 
     ```django
     <!-- articles/detail.html -->
-    
+
     {% extends 'base.html' %}
-    
+
     {% block content %}
       {% if article.image %}
         <img src="{{ article.image.url }}" alt="{{ article.image }}">
@@ -410,9 +395,9 @@ class Article(models.Model):
 
   ```django
   <!-- articles/update.html -->
-  
+
   {% extends 'base.html' %}
-  
+
   {% block content %}
     <form action="{% url 'articles:update' article.pk %}" method="POST" enctype="multipart/form-data">
     </form>
@@ -422,7 +407,7 @@ class Article(models.Model):
 
   ```python
   # articles/views.py
-  
+
   @login_required
   @require_http_methods(['GET', 'POST'])
   def update(request, pk):
@@ -444,14 +429,14 @@ class Article(models.Model):
 
        ```python
        # articles/models.py
-       
+
        class Article(models.Model):
            image = models.ImageField(blank=True, upload_to='images/ ' )
        ```
 
        ```bash
-       $ python manage.py makemigrations
-       $ python manage.py migrate
+       python manage.py makemigrations
+       python manage.py migrate
        ```
 
      - MEDIA_ROOT 이후 경로가 추가 되는 것
@@ -460,14 +445,14 @@ class Article(models.Model):
 
        ```python
        # articles/models.py
-       
+
        class Article(models.Model):
            image = models.ImageField(blank=True, upload_to='%Y/%m/%d/ ' )
        ```
 
        ```bash
-       $ python manage.py makemigrations
-       $ python manage.py migrate
+       python manage.py makemigrations
+       python manage.py migrate
        ```
 
   2. 함수 호출 방법
@@ -476,10 +461,10 @@ class Article(models.Model):
 
        ```python
        # articles/models.py
-       
+
        def articles_image_path(instance, filename):
            return f'images/{instance.user.username}/{filename}'
-       
+
        class Article(models.Model):
            image = models.ImageField(blank=True, upload_to=articles_image_path)
        ```
@@ -494,8 +479,8 @@ class Article(models.Model):
         - 기존 파일 이름
 
         ```bash
-        $ python manage.py makemigrations
-        $ python manage.py migrate
+        python manage.py makemigrations
+        python manage.py migrate
         ```
 
 ## 3. Image Resizing
@@ -508,13 +493,13 @@ class Article(models.Model):
 - django-imagekit 모듈 설치 및 등록
 
   ```bash
-  $ pip install django-imagekit
-  $ pip freeze > requirements.txt
+  pip install django-imagekit
+  pip freeze > requirements.txt
   ```
 
   ```python
   # settings.py
-  
+
   INSTALLED_APPS = [
       'imagekit',
   ]
@@ -530,14 +515,14 @@ class Article(models.Model):
 
      ```python
      # articles/models.py
-     
+
      from imagekit.processors import Thumbnail
      from imagekit.models import ProcessedImageField
-     
+
      class Article(models.Model):
          image = ProcessedImageField(
              blank=True,
-             uploadt_to='thumbnails/',
+             upload_to='thumbnails/',
              processors=[Thumbnail(200,300)],
              format='JPEG',
              options={'quality': 80},
@@ -545,20 +530,20 @@ class Article(models.Model):
      ```
 
      ```bash
-     $ python manage.py makemigrations
-     $ python manage.py migrate
+     python manage.py makemigrations
+     python manage.py migrate
      ```
 
   2. 원본 이미지 저장 O
 
      ```python
      # articles/models.py
-     
+
      from imagekit.processors import Thumbnail
      from imagekit.models import ProcessedImageField, ImageSpecField
      from django.db import models
-     from django.confg import settings
-     
+     from django.config import settings
+
      class Article(models.Model):
          image = models.ImageField(blank=True)
          image_thumbnail = ImageSpecField(
@@ -570,17 +555,17 @@ class Article(models.Model):
      ```
 
      ```bash
-     $ python manage.py makemigrations
-     $ python manage.py migrate
+     python manage.py makemigrations
+     python manage.py migrate
      ```
 
      - 기본적으로 원본 이미지가 업로드 되고 출력됨
 
      ```django
      <!-- articles/detail.html -->
-     
+
      {% extends 'base.html' %}
-     
+
      {% block content %}
        {% if article. image %}
          <img src="{{ article.image.url }}" alt=="{{ article.image }}">
@@ -601,13 +586,13 @@ class Article(models.Model):
 3. migrate 진행
 
    ```bash
-   $ python manage.py migrate
+   python manage.py migrate
    ```
 
 4. sqlite3에서 csv 데이터 import 하기
 
    ```bash
-   $ sqlite3 db.sqlite3
+   sqlite3 db.sqlite3
    ```
 
    ```sql
@@ -619,7 +604,7 @@ class Article(models.Model):
 - shell_plus 실행
 
   ```bash
-  $ python manage.py shell_plus
+  python manage.py shell_plus
   ```
 
 ### CRUD basics
@@ -737,13 +722,13 @@ User.objects.distinct().values('first_name', 'country').order_by('country')
 나이가 30인 사람들의 이름 조회
 
 ```sql
-User.ojbects.filter(age=30).values('first_name')
+User.objects.filter(age=30).values('first_name')
 ```
 
 나이가 30살 이상인 사람들의 이름과 나이 조회하기
 
 ```sql
-User.ojbects.filter(age__gte=30).values('first_name')
+User.objects.filter(age__gte=30).values('first_name')
 ```
 
 **Field lookups**
@@ -760,8 +745,7 @@ User.ojbects.filter(age__gte=30).values('first_name')
     field__lookuptype=value
     ```
 
-  
-  > https://docs.djangoproject.com/en/3.2/ref/models/querysets/#field-lookups
+  > <https://docs.djangoproject.com/en/3.2/ref/models/querysets/#field-lookups>
 
 나이가 30살 이상이고 계좌 잔고가 50만원 초과인 사람들의 이름, 나이, 계좌 잔고 조회하기
 
@@ -829,7 +813,7 @@ User.objects.filter(Q(age=30) | Q(last_name='김')
 
   ```python
   from django.db.models import Q
-  
+
   Q(question__startswith='What')
   ```
 
@@ -909,13 +893,13 @@ User.objects.values('country').annotate(Count('country'))
 User.objects.values('country').annotate(num_of_country=Count('country'))
 ```
 
-각 지역별로 몇 명씩 살고 있는지  + 지역별 계좌 잔액 평균 조회하기
+각 지역별로 몇 명씩 살고 있는지 + 지역별 계좌 잔액 평균 조회하기
 
 - 한번에 여러 값을 계산해 조회할 수 있음
 
   ```sql
   User.objects.values('country').annotate(
-      Count('country'), 
+      Count('country'),
       avg_balance=Avg('balance')
   )
   ```

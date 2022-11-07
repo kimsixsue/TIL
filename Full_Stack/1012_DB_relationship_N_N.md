@@ -1,24 +1,21 @@
 [DB relationship N-N](#db-relationship-n-n)
 
 1. [Many to many relationship](#1-many-to-many-relationship)
-   + [Intro](#intro)
+   - [Intro](#intro)
 2. [ManyToManyField](#2-manytomanyfield)
 3. [M-N Article-User](#3-m-n-article-user)
-   + [Like](#like)
+   - [Like](#like)
 4. [M-N User-User](#4-m-n-user-user)
+   - [Profile](#profile)
+   - [Follow](#follow)
 
-   + [Profile](#profile)
-   
-   + [Follow](#follow)
-   
-* [finish](#finish)
+- [finish](#finish)
 
 # DB relationship N-N
 
 ## 1. Many to many relationship
 
 **RDB에서의 관계**
-
 M:N
 
 - Many-to-many relationships
@@ -37,6 +34,7 @@ M:N
 **Django ManyToManyField**
 
 - ManyToManyField를 통해 중개 테이블을 자동으로 생성
+
   ```sql
   patient1.doctors.add(doctor1)
   doctor1.patient_set.all()
@@ -54,13 +52,13 @@ M:N
 
 - 가장 일반적인 용도는 **중개테이블에 추가 데이터를 사용**해 다대다 관계와 연결하려는 경우
 
-- through 설정, Resrvation Class에 필드 추가
+- through 설정, Reservation Class에 필드 추가
 
   ```sql
   reservation1 = Reservation(
       doctor=doctor1, patient=patient1, symptom='headache')
   ```
-  
+
   ```sql
   patient2.doctors.add(doctor1, through_defaults={'symptom': 'flu'})
   ```
@@ -164,7 +162,7 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
 
   ```python
   # articles/models.py
-  
+
   class Article(models.Model):
       user = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)
@@ -185,7 +183,7 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
 
   ```python
   # articles/models.py
-  
+
   class Article(models.Model):
       user = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)
@@ -210,19 +208,19 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
 
   ```python
   # articles/urls.py
-  
+
   urlpatterns = [
-    
+
       path('<int:article_pk>/likes/', views.likes, name='likes'),
   ]
   ```
 
   ```python
   # articles/views.py
-  
+
   def likes(request, article_pk):
       article = Article.objects.get(pk=article_pk)
-      
+
       if article.like_users.filter(pk=request.user.pk).exists():
           article.like_users.remove(request.user)
       else:
@@ -237,13 +235,13 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
 
   ```django
   <!-- articles/index.html -->
-  
+
   {% extends 'base.html' %}
-  
+
   {% block content %}
-  
+
   {% for article in articles %}
-  
+
   <div>
     <form action="{% url 'articles:likes' article.pk %}" method="POST">
       {% csrf_token %}
@@ -255,7 +253,7 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
     </form>
   </div>
   {% endfor %}
-  
+
   {% endblock content %}
   ```
 
@@ -263,18 +261,18 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
 
   ```python
   # articles/views.py
-  
+
   @require_POST
   def likes(request, article_pk):
       if request.user.is_authenticated:
-  	    article = Article.objects.get(pk=article_pk)
-      
-  	    if article.like_users.filter(pk=request.user.pk).exists():
-  	        article.like_users.remove(request.user)
-  	    else:
-  	        article.like_users.add(request.user)
-  	    return redirect('articles:index')
-      return redirect('accouts:login')
+       article = Article.objects.get(pk=article_pk)
+
+       if article.like_users.filter(pk=request.user.pk).exists():
+           article.like_users.remove(request.user)
+       else:
+           article.like_users.add(request.user)
+       return redirect('articles:index')
+      return redirect('accounts:login')
   ```
 
 ## 4. M-N User-User
@@ -291,18 +289,18 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
 
   ```python
   # accounts/urls.py
-  
+
   urlpatterns = [
-    
+
       path('profile/<username>/', views.profile, name='profile'),
   ]
   ```
 
   ```python
   # accounts/views.py
-  
+
   from django.contrib.auth import get_user_model
-  
+
   def profile(request, username):
       User = get_user_model()
       person = User.objects.get(username=username)
@@ -316,35 +314,35 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
 
   ```django
   <!-- accounts/index.html -->
-  
+
   {% extends 'base.html' %}
-  
+
   {% block content %}
   <h1>{{ person.username }}님의 프로필 </h1>
-  
+
   <hr>
-  
+
   <h2>{{ person.username }}'s 게시글</h2>
   {% for article in person.article_set.all %}
   <div>{{ article.title }}</div>
   {% endfor %}
-  
+
   <hr>
-  
+
   <h2>{{ person.username }}'s 댓글</h2>
   {% for article in person.comment_set.all %}
   <div>{{ comment.content }}</div>
   {% endfor %}
-  
+
   <hr>
-  
+
   <h2>{{ person.username }}'s 좋아요한 게시글</h2>
   {% for article in person.like_articles.all %}
   <div>{{ article.title }}</div>
   {% endfor %}
-  
+
   <hr>
-  
+
   <a href="{% url 'articles:index' %}">back</a>
   {% endblock content %}
   ```
@@ -353,7 +351,7 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
 
   ```django
   <!-- base.html -->
-  
+
   <body>
     <div class="container">
       {% if request.user.is_authenticated %}
@@ -362,7 +360,7 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
     </div>
   </body>
   ```
-  
+
   ```django
   <!-- articles/index.html -->
   <p>
@@ -378,7 +376,7 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
 
   ```python
   # accounts/models.py
-  
+
   class User(AbstractUser):
       followings = models.ManyToManyField(
           'self', symmetrical=False, related_name='followers')
@@ -390,18 +388,18 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
 
   ```python
   # accounts/urls.py
-  
+
   urlpatterns = [
-    
+
       path('<int:user_pk>/follow/', views.follow, name='follow'),
   ]
   ```
 
   ```python
   # accounts/views.py
-  
+
   from django.contrib.auth import get_user_model
-  
+
   def follow(request, user_pk):
       User = get_user_model()
       person = User.objects.get(pk=user_pk)
@@ -417,11 +415,11 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
 
   ```django
   <!-- accounts/profile.html -->
-  
+
   {% extends 'base.html' %}
-  
+
   {% block content %}
-  
+
   <h1>{{ person.username }}님의 프로필</h1>
   <div>
     <div>
@@ -447,20 +445,20 @@ Article과 User의 M:N 관계 설정을 통한 좋아요 기능 구현하기
 
   ```python
   # accounts/views.py
-  
+
   from django.contrib.auth import get_user_model
-  
+
   @require_POST
   def follow(request, user_pk):
       if request.user.is_authenticated:
-  	    User = get_user_model()
-  	    person = User.objects.get(pk=user_pk)
-  	    if person != request.user:
-  	        if person.followers.filter(pk=request.user.pk).exists():
-  	            person.followers.remove(request.user)
-  	        else:
-  	            person.followers.add(request.user)
-  	    return redirect('accounts:profile', person.username)
+       User = get_user_model()
+       person = User.objects.get(pk=user_pk)
+       if person != request.user:
+           if person.followers.filter(pk=request.user.pk).exists():
+               person.followers.remove(request.user)
+           else:
+               person.followers.add(request.user)
+       return redirect('accounts:profile', person.username)
       return redirect('accounts:login')
   ```
 

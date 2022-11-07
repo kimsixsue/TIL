@@ -1,44 +1,24 @@
 [Django_Auth](#Django_Auth)
 
-  1. [The Django authentication system](#1-the-django-authentication-system)
+1. [The Django authentication system](#1-the-django-authentication-system)
+   - [Substituting a custom User model](#substituting-a-custom-user-model)
+   - [How to substituting a custom User model](#how-to-substituting-a-custom-user-model)
+2. [HTTP Cookies](#2-http-cookies)
+   - [HTTP](#http)
+   - [Cookie 쿠키](#Cookie-쿠키)
+3. [Authentication in Web requests](#3-authentication-in-web-requests)
+   - [Login](#login)
+   - [Authentication with User](#authentication-with-user)
+   - [Logout](#logout)
+4. [Authentication with User](#4-authentication-with-user)
+   - [회원 가입](#회원-가입)
+   - [Custom user & Built-in auth forms](#custom-user--built-in-auth-forms)
+   - [회원 탈퇴](#회원-탈퇴)
+   - [회원정보 수정](#회원정보-수정)
+   - [비밀번호 변경](#비밀번호-변경)
+5. [Limiting access to logged-in users](#5-limiting-access-to-logged-in-users)
 
-       + [Substituting a custom User model](#substituting-a-custom-user-model)
-
-       + [How to substituting a custom User model](#how-to-substituting-a-custom-user-model)
-
-
-  2. [HTTP Cookies](#2-http-cookies)
-
-       + [HTTP](#http)
-
-       + [Cookie 쿠키](#Cookie-쿠키)
-
-
-  3. [Authentication in Web requests](#3-authentication-in-web-requests)
-
-       + [Login](#login)
-
-       + [Authentication with User](#authentication-with-user)
-
-       + [Logout](#logout)
-
-
-  4. [Authentication with User](#4-authentication-with-user)
-
-       + [회원 가입](#회원-가입)
-
-       + [Custom user & Built-in auth forms](#custom-user--built-in-auth-forms)
-
-       + [회원 탈퇴](#회원-탈퇴)
-
-       + [회원정보 수정](#회원정보-수정)
-
-       + [비밀번호 변경](#비밀번호-변경)
-
-
-  5. [Limiting access to logged-in users](#5-limiting-access-to-logged-in-users)
-
-  [마무리](#마무리)
+- [마무리](#마무리)
 
 # Django_Auth
 
@@ -65,9 +45,8 @@ Django authentication system(인증 시스템)은 **Authentication 인증**과 *
 - 두번째 app accounts 생성 및 등록
   - **auth와 관련한 경로나 키워드들을 Django 내부적으로 accounts라는 이름으로 사용하고 있기 때문에 되도록 accounts로 지정하는 것을 권장**
 
-
 ```bash
-$ python manage.py startapp accounts
+python manage.py startapp accounts
 ```
 
 ```python
@@ -84,7 +63,7 @@ INSTALLED_APPS = [
 # 앱/urls.py
 app_name = 'accounts'
 urlpatterns = [
-    
+
 ]
 ```
 
@@ -129,13 +108,13 @@ Django는 기본적인 인증 시스템과 여러 가지 필드가 포함된 Use
 
 settings.py는 사실 **global_settings.py**를 상속받아 재정의하는 파일임
 
-> https://github.com/django/django/blob/main/django/conf/global_settings.py
+> <https://github.com/django/django/blob/main/django/conf/global_settings.py>
 
 ### How to substituting a custom User model
 
 “custom User model로 대체하기”
 
-> https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#substituting-a-custom-user-model
+> <https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#substituting-a-custom-user-model>
 
 **대체하기**
 
@@ -143,14 +122,13 @@ settings.py는 사실 **global_settings.py**를 상속받아 재정의하는 파
 
 - 기존 User 클래스도 AbstractUser 를 상속받기 때문에 커스텀 User 클래스도 완전히 같은 모습을 가지게 됨
 
-  >  https://github.com/django/django/blob/main/django/contrib/auth/models.py#405
+  > <https://github.com/django/django/blob/main/django/contrib/auth/models.py#405>
 
   ```python
   # 앱/models.py
   # User 모델을 정의한다
   from django.contrib.auth.models import AbstractUser
-  
-  
+
   class User(AbstractUser):
       pass  # 비워두게 되면 에러가 발생하므로 pass 를 작성해둠
   ```
@@ -162,10 +140,10 @@ settings.py는 사실 **global_settings.py**를 상속받아 재정의하는 파
   # 이 때 accounts 는 User 클래스를 정의한 application 이름
   AUTH_USER_MODEL = 'accounts.User'
   ```
-  
+
 - admin.py 에 커스텀 User 모델을 등록
 
-  - 기본 User  모델이 아니기 때문에 등록하지 않으면 admin site 에 출력되지 않음
+  - 기본 User 모델이 아니기 때문에 등록하지 않으면 admin site 에 출력되지 않음
 
     ```python
     # 앱/admin.py
@@ -173,7 +151,7 @@ settings.py는 사실 **global_settings.py**를 상속받아 재정의하는 파
     # admin 페이지에 등록
     from django.contrib.auth.admin import UserAdmin  # 기존에 사용하는 User 관리 인터페이스
     
-    # Admin page 에서 user 관리 page의 인터페이스를 설정. 
+    # Admin page 에서 user 관리 page의 인터페이스를 설정.
     from .models import User  # 새롭게 정의한 User 모델
     
     admin.site.register(User, UserAdmin)
@@ -193,7 +171,7 @@ models.Model -> class AbstractBaseUser -> class AbstractUser -> class User
 
   - 데이터베이스 테이블을 만드는 데 사용되지 않으며, 대신 다른 모델의 기본 클래스로 사용되는 경우 해당 필드가 하위 클래스의 필드에 추가 됨
 
-    > https://docs.python.org/3/library/abc.html
+    > <https://docs.python.org/3/library/abc.html>
 
 **데이터베이스 초기화**
 
@@ -221,7 +199,7 @@ Django는 새 프로젝트를 시작하는 경우 비록 기본 User 모델이 �
 
 ## 2. HTTP Cookies
 
-로그인과 로그아웃을 이해하기 전 반드시 알아야하는 HTTP Cookies에 대해  먼저 알아보기
+로그인과 로그아웃을 이해하기 전 반드시 알아야하는 HTTP Cookies에 대해 먼저 알아보기
 
 ### HTTP
 
@@ -243,12 +221,12 @@ Django는 새 프로젝트를 시작하는 경우 비록 기본 User 모델이 �
 **HTTP 특징**
 
 1. **connectionless 비 연결 지향**
+
    - 서버는 요청에 대한 응답을 보낸 후 연결을 끊음
 
 2. **stateless 무상태**
 
    - 연결을 끊는 순간 클라이언트와 서버 간의 통신이 끝나며 상태 정보가 유지되지 않음
-
 
    - 클라이언트와 서버가 주고받는 메시지들은 서로 완전히 독립적
 
@@ -277,7 +255,6 @@ Django는 새 프로젝트를 시작하는 경우 비록 기본 User 모델이 �
 
   - stateless 상태가 없는 HTTP 프로토콜에서 상태 정보를 기억 시켜 주기 때문
 
-
 - 즉, 웹 페이지에 접속하면 웹 페이지를 응답한 서버로부터 쿠키를 받아 브라우저에 저장하고, 클라이언트가 같은 서버에 재요청 시마다 요청과 함께 저장해 두었던 쿠키도 함께 전송
   1. The browser requests a web page
   2. The server sends the page and the cookie
@@ -286,9 +263,11 @@ Django는 새 프로젝트를 시작하는 경우 비록 기본 User 모델이 �
 **쿠키 사용 목적**
 
 1. **Session management 세션 관리**
+
    - **로그인, 아이디 자동완성, 공지 하루 안 보기, 팝업 체크, 장바구니 등의 정보 관리**
 
 2. Personalization 개인화
+
    - 사용자 선호, 테마 등의 설정
 
 3. Tracking 트래킹
@@ -303,7 +282,6 @@ Django는 새 프로젝트를 시작하는 경우 비록 기본 User 모델이 �
   - 클라이언트가 다시 동일한 서버에 접속하면 요청과 함께 쿠키(session id가 저장된)를 서버에 전달
 
   - 쿠키는 요청 때마다 서버에 함께 전송 되므로 서버에서 session id를 확인해 알맞은 로직을 처리
-
 
 - session id 는 세션을 구별하기 위해 필요하며, 쿠키에는 session id 만 저장
 
@@ -324,11 +302,9 @@ Django는 새 프로젝트를 시작하는 경우 비록 기본 User 모델이 �
 
   - session 정보는 Django DB의 **django_session 테이블**에 저장
 
-
   - 설정을 통해 다른 저장방식으로 변경 가능
 
-    > https://docs.djangoproject.com/en/3.2/topics/http/sessions/
-
+    > <https://docs.djangoproject.com/en/3.2/topics/http/sessions/>
 
 - Django는 특정 **session id**를 포함하는 쿠키를 사용해서 각각의 브라우저와 사이트가 연결된 session을 알아냄
 
@@ -338,7 +314,7 @@ Django는 새 프로젝트를 시작하는 경우 비록 기본 User 모델이 �
 
 - Django가 제공하는 인증 관련 built-in forms 익히기
 
-> https://docs.djangoproject.com/en/3.2/topics/auth/default/#module-django.contrib.auth.forms
+> <https://docs.djangoproject.com/en/3.2/topics/auth/default/#module-django.contrib.auth.forms>
 
 ### Login
 
@@ -352,10 +328,9 @@ Django는 새 프로젝트를 시작하는 경우 비록 기본 User 모델이 �
 
   - 기본적으로 username과 password를 받아 데이터가 유효한지 검증
 
-
 - request를 첫번째 인자로 취함
 
-> https://github.com/django/django/blob/main/django/contrib/auth/forms.py#L174
+> <https://github.com/django/django/blob/main/django/contrib/auth/forms.py#L174>
 
 **로그인 페이지 작성**
 
@@ -386,14 +361,14 @@ def login(request):
         # 사용자의 입력 데이터가 채워진 form 을 생성
         form = AuthenticationForm(request, data=request.POST)
         # 입력이 잘 되었는지 그리고 회원인지 확인
-        if form.is_vaild():  # 유효성 검사 이후
+        if form.is_valid():  # 유효성 검사 이후
             # 우리 회원이라면 로그인 처리(session 생성해서 DB에 저장)
-            # 유저 인스턴스가 필요한데 AithenticationForm의 메소드를 이용
+            # 유저 인스턴스가 필요한데 AuthenticationForm의 메소드를 이용
             # form.get_user() 의 반환값은 form에 담긴 user 인스턴스
             auth_login(request, form.get_user())  # 유저 정보
             return redirect('articles:index')
     # 로그인 입력 페이지를 띄울 때는 GET 요청
-    else:  
+    else:
         form = AuthenticationForm()
     context = {
         'form': form,
@@ -444,7 +419,7 @@ def login(request):
 
 - 유효성 검사를 통과했을 경우 로그인 한 사용자 객체를 반환
 
->  https://github.com/django/django/blob/main/django/contrib/auth/forms.py#L244
+> <https://github.com/django/django/blob/main/django/contrib/auth/forms.py#L244>
 
 ### Authentication with User
 
@@ -461,7 +436,6 @@ def login(request):
 - 어떻게 base 템플릿에서 context 데이터 없이 user 변수를 사용할 수 있는 걸까?
   - settings.py의 **context processors** 설정 값 때문
 
-
 **context processors**
 
 - 템플릿이 렌더링 될 때 호출 가능한 컨텍스트 데이터 목록
@@ -474,7 +448,7 @@ def login(request):
 
 - 이외에 더 많은 Built-in template context processors들은 공식문서를 참고
 
-> https://docs.djangoproject.com/en/3.2/ref/templates/api/#built-in-template-context-processors
+> <https://docs.djangoproject.com/en/3.2/ref/templates/api/#built-in-template-context-processors>
 
 ```python
 # 프로젝트/settings.py
@@ -493,7 +467,6 @@ TEMPLATE = [
 
 - 현재 로그인한 사용자를 나타내는 User 클래스의 인스턴스가 템플릿 변수 **{{ user }}** 에 저장됨
   - 클라이언트가 로그인하지 않은 경우 AnonymousUser 클래스 의 인스턴스로 생성
-
 
 ### Logout
 
@@ -577,11 +550,10 @@ User Object와 User CRUD에 대한 이해
 
 - 3개의 필드를 가짐
   1. username (from the user model)
-  1. paassword1
+  1. password1
   1. Password2
 
-
-> https://github.com/django/django/blob/stable/3.2.x/django/contrib/auth/forms.py#L75
+> <https://github.com/django/django/blob/stable/3.2.x/django/contrib/auth/forms.py#L75>
 
 **회원 가입 페이지 작성**
 
@@ -651,14 +623,14 @@ def signup(request):
 
 - 회원가입에 사용하는 UserCreationForm이 대체한 커스텀 유저 모델이 아닌 기존 유저 모델로 인해 작성된 클래스이기 때문
 
-> https://github.com/django/django/blob/main/django/contrib/auth/forms.py#L106
+> <https://github.com/django/django/blob/main/django/contrib/auth/forms.py#L106>
 
 ```python
 from django import forms
 
 
 class UserCreationForm(forms.ModelForm):
-# 실제 UserCreationForm 코드    
+# 실제 UserCreationForm 코드
     class Meta:
         model = User  # 상속 받아서 오버라이딩하기
         fields = ("username",)
@@ -674,6 +646,7 @@ class UserCreationForm(forms.ModelForm):
 **AbstractBaseUser의 모든 subclass와 호환되는 forms**
 
 - 아래 Form 클래스는 User 모델을 대체하더라도 커스텀 하지 않아도 사용가능
+
   1. AuthenticationForm
   2. SetPasswordForm
   3. PasswordChangeForm
@@ -766,7 +739,7 @@ def signup(request):
 
 - user를 반환하는 것을 확인
 
-> https://github.com/django/django/blob/main/django/contrib/auth/forms.py#L139
+> <https://github.com/django/django/blob/main/django/contrib/auth/forms.py#L139>
 
 ```python
 def save(self, commit=True):
@@ -824,7 +797,6 @@ def delete(request):
 - “탈퇴(1) 후 로그아웃(2)”의 순서가 바뀌면 안됨
   - 먼저 로그아웃 해버리면 해당 요청 객체 정보가 없어지기 때문에 탈퇴에 필요한 정보 또한 없어지기 때문
 
-
 ```python
 # 앱/views.py
 from django.contrib.auth import logout as auth_logout
@@ -855,7 +827,6 @@ def delete(request):
 - UserChangeForm 또한 ModelForm이기 때문에 instance 인자로 기존 user 데이터 정보를 받는 구조 또한 동일함
 
 - 이미 이전에 CustomUserChangeForm으로 확장했기 때문에 CustomUserChangeForm을 사용하기
-
 
 **회원정보 수정 페이지 작성**
 
@@ -928,8 +899,8 @@ def update(request):
 **UserChangeForm 사용 시 문제점**
 
 - 일반 사용자가 접근해서는 안 될 fields 정보들까지 모두 수정이 가능해짐
-  - admin 인터페이스에서 사용되는 ModelForm이기 때문
 
+  - admin 인터페이스에서 사용되는 ModelForm이기 때문
 
 - 따라서 UserChangeForm을 상속받아 작성해 두었던 서브 클래스 CustomUserChangeForm 에서 접근 가능한 필드를 조정해야 함
 
@@ -961,23 +932,23 @@ class CustomUserChangeForm(UserChangeForm):
 
    - Meta 클래스를 보면 User라는 model을 참조하는 ModelForm이라는 것을 확인할 수 있음
 
-     > https://github.com/django/django/blob/main/django/contrib/auth/forms.py#L147
+     > <https://github.com/django/django/blob/main/django/contrib/auth/forms.py#L147>
 
 2. User 클래스 구조 확인
 
    - 실제로 User 클래스는 Meta 클래스를 제외한 코드가 없고 AbstractUser 클래스를 상속 받고있음
 
-     >  https://github.com/django/django/blob/main/django/contrib/auth/models.py#L405
+     > <https://github.com/django/django/blob/main/django/contrib/auth/models.py#L405>
 
 3. AbstractUser 클래스 구조 확인
 
    - 클래스 변수명들을 확인해보면 회원수정 페이지에서 봤던 필드들과 일치한다는 것을 확인할 수 있음
 
-     > https://github.com/django/django/blob/main/django/contrib/auth/models.py#L334
+     > <https://github.com/django/django/blob/main/django/contrib/auth/models.py#L334>
 
 4. 마지막으로 공식문서의 User 모델 Fields 확인
 
-     > https://docs.djangoproject.com/en/3.2/ref/contrib/auth/#user-model
+   > <https://docs.djangoproject.com/en/3.2/ref/contrib/auth/#user-model>
 
 ### 비밀번호 변경
 
@@ -1049,7 +1020,6 @@ def change_password(request):
 - 작성 후 비밀번호 변경 확인
   - 변경 후 로그인 상태가 지속되지 못하는 문제 발생
 
-
 **암호 변경 시 세션 무효화 방지하기**
 
 - 비밀번호가 변경되면 기존 세션과의 회원 인증 정보가 일치하지 않게 되어 버려 로그인 상태가 유지되지 못함
@@ -1077,7 +1047,7 @@ def password(request):
         if form.is_valid():
             # 일반 form 을 상속받았지만
             # save 메서드가 정의되어 있다.
-            form.save()  # 공식 문서 방식  
+            form.save()  # 공식 문서 방식
             # 비밀번호가 변경되면 session의 유저데이터와 일치하지 않게 되는 상황이 발생
             # 그렇기 때문에 session의 유저정보를 업데이트 시켜줘야 한다.
             update_session_auth_hash(request, form.user)
@@ -1109,6 +1079,7 @@ def password(request):
 - 사용자가 인증 되었는지 여부를 알 수 있는 방법
 
 - 모든 User 인스턴스에 대해 항상 True인 읽기 전용 속성
+
   - AnonymousUser에 대해서는 항상 False
 
 - 일반적으로 **request.user**에서 이 속성을 사용 (request.user.is_authenticated)
@@ -1116,7 +1087,7 @@ def password(request):
 
 **[참고] is_authenticated 코드 살펴보기**
 
-> https://github.com/django/django/blob/main/django/contrib/auth/base_user.py#L56
+> <https://github.com/django/django/blob/main/django/contrib/auth/base_user.py#L56>
 
 ```python
 from django.db import models
@@ -1133,7 +1104,7 @@ class AbstractBaseUser(models.Model):
         return True
 ```
 
-**is_authenicated 적용하기**
+**is_authenticated 적용하기**
 
 - 로그인과 비로그인 상태에서 출력되는 링크를 다르게 설정하기
 
@@ -1191,6 +1162,7 @@ def login(request):
 - **login_required** decorator
 - 사용자가 로그인 되어 있으면 정상적으로 view 함수를 실행
 - 로그인 하지 않은 사용자의 경우 settings.py의 LOGIN_URL 문자열 주소로 redirect
+
   - [참고] LOGIN_URL의 기본 값은 /accounts/login/
   - 두번째 app 이름을 accounts 로 했던 이유 중 하나
 
@@ -1200,8 +1172,7 @@ def login(request):
   # 앱/views.py
   from django.contrib.auth.decorators import login_required
   from django.views.decorators.http import require_http_methods, require_POST
-  
-  
+
   @login_required
   @require_http_methods(['GET', 'POST'])
   def create(request):
@@ -1215,7 +1186,7 @@ def login(request):
   def update(request, pk):
       pass
   ```
-  
+
 - 인증 성공 시 사용자가 redirect 되어야하는 경로는 “next”라는 쿼리 문자열 매개 변수에 저장됨
 
   - 예시) /accounts/login/**?next=/articles/create/**
@@ -1239,9 +1210,9 @@ def login(request):
     # 로그인 한 사용자가 로그인 페이지를 볼 필요는 없음
     if request.user.is_authenticated:
         return redirect('articles:index')
-    # 실제 로그인 동작이 일어날때 
+    # 실제 로그인 동작이 일어날때
     # session 이 create 되어 DB에 저장
-    # POST 요청일 때 로그인 동작을 처리해야 함    
+    # POST 요청일 때 로그인 동작을 처리해야 함
     if request.method == 'POST':
         # 사용자의 입력 데이터가 채워진 form 을 생성
         form = AuthenticationForm(request, request.POST)
@@ -1265,7 +1236,6 @@ def login(request):
 
 - 해당 action 주소 next 파라미터가 작성 되어있는 현재 url이 아닌 /accounts/login/으로 요청을 보내기 때문
 
-
 ```django
 <!-- 앱/login.html -->
 {% block content %}
@@ -1283,7 +1253,7 @@ def login(request):
 
 1. 먼저 비로그인 상태로 detail 페이지에서 게시글 삭제 시도
 2. delete view 함수의 **@login_required**로 인해 로그인 페이지로 리다이렉트
-   - http://127.0.0.1:8000/accounts/login/?next=/articles/1/delete/
+   - <http://127.0.0.1:8000/accounts/login/?next=/articles/1/delete/>
 3. redirect로 이동한 로그인 페이지에서 로그인 진행
 4. delete view 함수의 **@require_POST**로 인해 405 상태 코드를 받게 됨
    - 405(Method Not Allowed) status code 확인
@@ -1314,7 +1284,6 @@ def login(request):
   from django.views.decorators.http import require_POST
   
   from .models import Article
-  
   
   @require_POST
   def delete(request, pk):
@@ -1361,16 +1330,16 @@ def change_password(request):
 ## 마무리
 
 - The Django authentication system
+
   - User 모델 대체하기
 
-
 - HTTP Cookies
+
   - 상태가 있는 세션 구성
 
-
 - Authentication in Web requests
-  - Auth built-in form 사용하기
 
+  - Auth built-in form 사용하기
 
 - Authentication with User
   - User Object와 User CRUD

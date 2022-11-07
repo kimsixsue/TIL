@@ -1,37 +1,21 @@
 [Django_Model_QuerySet_CRUD](#Django_Model_QuerySet_CRUD)
 
-  1. [Namespace](#1-namespace)
+1. [Namespace](#1-namespace)
+   - [URL namespace](#url-namespace)
+   - [Template namespace](#template-namespace)
+2. [Django Model](#2-django-model)
+   - [Database](#database)
+   - [Model](#model)
+   - [Migrations](#migrations)
+   - [추가 필드 정의](#추가-필드-정의)
+   - [ORM](#orm)
+3. [QuerySet API](#3-queryset-api)
+   - [QuerySet API](#queryset-api)
+   - [QuerySet API 익히기](#QuerySet-API-익히기)
+4. [CRUD with view functions](#4-crud-with-view-functions)
 
-       + [URL namespace](#url-namespace)
-
-       + [Template namespace](#template-namespace)
-
-
-  2. [Django Model](#2-django-model)
-
-       + [Database](#database)
-
-       + [Model](#model)
-
-       + [Migrations](#migrations)
-
-       + [추가 필드 정의](#추가-필드-정의)
-
-       + [ORM](#orm)
-
-
-  3. [QuerySet API](#3-queryset-api)
-
-       + [QuerySet API](#queryset-api)
-
-       + [QuerySet API 익히기](#QuerySet-API-익히기)
-
-
-  4. [CRUD with view functions](#4-crud-with-view-functions)
-+ [Admin site](#admin-site)
-
-
-  [마무리](#마무리)
+- [Admin site](#admin-site)
+- [마무리](#마무리)
 
 # Django_Model_QuerySet_CRUD
 
@@ -48,14 +32,14 @@
   ```python
   # 앱/urls.py
   app_name = "앱"
-  urlpattern = [
+  urlpatterns = [
       ...,
   ]
   ```
-  
+
   ```django
   # url 태그에서 반드시
-  {% url 'app_name:url_name' %}  
+  {% url 'app_name:url_name' %}
   # 형태 안 맞으면 NoReverseMatch 에러 발생
   ```
 
@@ -128,6 +112,7 @@ Django는 웹 애플리케이션의 데이터를 구조화하고 조작하기 �
 - Relation 관계라고도 부름
 
 1. field(필드)
+
    - 속성, Column 컬럼
 
 2. record(레코드)
@@ -177,9 +162,9 @@ Django는 Model을 통해 데이터에 접속하고 관리
 새 프로젝트(crud), 앱(articles) 작성 및 앱 등록
 
 ```bash
-$ django-admin startproject crud .
+django-admin startproject crud .
 
-$ python manage.py startapp articles
+python manage.py startapp articles
 ```
 
 ```python
@@ -199,12 +184,10 @@ models.py 작성
   ```python
   # 앱/models.py
   from django.db import models
-  
-  
-  class Article(models.Model):
-      title = models.CharField(max_length=10)
-      content = models.TextField()
-      # id 컬럼은 테이블 생성시 Django가 자동으로 생성
+      class Article(models.Model):
+          title = models.CharField(max_length=10)
+          content = models.TextField()
+          # id 컬럼은 테이블 생성시 Django가 자동으로 생성
   ```
 
 **Model 이해하기**
@@ -215,20 +198,16 @@ models.py 작성
 
   - **클래스 상속 기반 형태의 Django 프레임워크 개발**
     - 프레임워크에서는 잘 만들어진 도구를 가져다가 잘 쓰는 것
-    
-
 
 - models 모듈을 통해 어떠한 타입의 DB 필드(컬럼)을 정의할 것인지 정의
   - 클래스 변수 title과 content는 DB 필드를 나타냄
 
-
 1. 클래스 변수(속성)명
-   - DB 필드의 이름
 
+   - DB 필드의 이름
 
 2. 클래스 변수 값 (models 모듈의 Field 클래스)
    - DB 필드의 데이터 타입
-
 
 **Django Model Field**
 
@@ -240,27 +219,23 @@ models.py 작성
 
   - DataField(), CharFIeld(), IntegerField() 등
 
-  >  https://docs.djangoproject.com/en/3.2/ref/models/fields/
+  > <https://docs.djangoproject.com/en/3.2/ref/models/fields/>
 
 **사용할 모델 필드 알아보기**
 
-- **CharField(max_length=None, `**options`)**
-
+- **CharField(max_length=None, `options`)**
   - 길이의 제한이 있는 문자열을 넣을 때 사용
-
+  
   - **max_length**
     - 필드의 최대 길이(문자)
     - CharField의 필수 인자
     - 데이터베이스와 Django의 유효성 검사(값을 검증하는 것)에서 활용됨
-
-
-- **TextField(`**options`)**
-
+  
+- **TextField(`options`)**
   - 글자의 수가 많을 때 사용
-
+  
   - max_length 옵션 작성 시 사용자 입력 단계에서는 반영 되지만, 모델과 데이터베이스 단계에는 적용되지 않음 (CharField를 사용해야 함)
     - 실제로 저장될 때 길이에 대한 유효성을 검증하지 않음
-
 
 **데이터베이스 스키마**
 
@@ -292,7 +267,7 @@ Django가 모델에 생긴 변화(필드 추가, 모델 삭제 등)를 DB에 반
 - “테이블을 만들기 위한 설계도를 생성하는 것”
 
 ```bash
-$ python manage.py makemigrations
+python manage.py makemigrations
 ```
 
 - 명령어 실행 후 migrations/0001_initial.py 가 생성된 것을 확인
@@ -308,9 +283,8 @@ $ python manage.py makemigrations
   - **“모델과 DB의 동기화”**
 
     ```bash
-    $ python manage.py migrate
+    python manage.py migrate
     ```
-
 
 **[참고] Migrations 기타 명령어**
 
@@ -321,7 +295,7 @@ $ python manage.py showmigrations
 ```
 
 ```bash
-$ python manage.py sqlmigrate [appication_name] [migration_number]
+$ python manage.py sqlmigrate [application_name] [migration_number]
 # 해당 migrations 파일이 SQL 문으로 어떻게 해석 될 지 미리 확인 할 수 있음
 ```
 
@@ -347,14 +321,13 @@ class Article(models.Model):
 ```
 
 ```bash
-$ python manage.py makemigrations
+python manage.py makemigrations
 ```
 
 - 기존에 id, title, content 컬럼을 가진 테이블에 2개의 컬럼이 추가되는 상황
 
 - Django 입장에서는 이미 존재하는 테이블에 새로운 컬럼이 추가되는 요구 사항을 받았는데, 이 컬럼들은 기본적으로 빈 값으로 추가될 수 없음
   - 그래서 Django는 우리에게 추가되는 컬럼에 대한 기본 값을 설정해야 하니 어떻게 어떤 값을 설정할 것인지를 물어보는 과정을 진행
-
 
 ```bash
 You are trying to add the field 'created_at' with 'auto_now_add=True' to article without a default; the database needs something to populate existing rows.
@@ -366,7 +339,7 @@ Select an option:
 
 - 각 보기 번호의 의미
 
-  1) 다음 화면으로 넘어가서 새 컬럼의 기본 값을 직접 입력하는 방법
+  1. 다음 화면으로 넘어가서 새 컬럼의 기본 값을 직접 입력하는 방법
 
   2. 현재 과정에서 나가고 모델 필드에 default 속성을 직접 작성하는 방법
 
@@ -393,7 +366,7 @@ Type 'exit' to exit this prompt
   (아직 DB에는 변경사항이 반영하지 않았기 때문)
 
 ```bash
-$ python manage.py migrate
+python manage.py migrate
 ```
 
 **`반드시` 기억해야 할 migration 3단계**
@@ -456,10 +429,8 @@ $ python manage.py migrate
 
   - 객체 지향적 접근으로 인한 높은 생산성
 
-
 - 단점
   - ORM 만으로 완전한 서비스를 구현하기 어려운 경우가 있음
-
 
 **ORM을 사용하는 이유**
 
@@ -490,28 +461,27 @@ pip install django-extensions
 # 프로젝트/settings.py
 INSTALLED_APPS = [
     'articles',
-    'django_extensions',    
+    'django_extensions',
 ]
 ```
 
 - 패키지 목록 업데이트
 
 ```bash
-$ pip freeze > requirements.txt
+pip freeze > requirements.txt
 ```
 
 **[참고] IPython & django-extensions**
 
 - IPython
-  - 파이썬 기본 쉘보다 더 강력한 파이썬 쉘
 
+  - 파이썬 기본 쉘보다 더 강력한 파이썬 쉘
 
 - django_extensions
 
   - Django 확장 프로그램 모음
 
   - shell_plus, graph model 등 다양한 확장 기능 제공
-
 
 **[참고] Shell**
 
@@ -526,15 +496,15 @@ $ pip freeze > requirements.txt
 **[참고] Python Shell**
 
 - 파이썬 코드를 실행해주는 인터프리터
-  - 인터프리터 : 코드를 한 줄 씩 읽어 내려가며 실행하는 프로그램
 
+  - 인터프리터 : 코드를 한 줄 씩 읽어 내려가며 실행하는 프로그램
 
 - 인터렉티브 혹은 대화형 shell 이라고 부름
 
 - Python 명령어를 실행하여 그 결과를 바로 제공
 
 ```bash
-$ python -i
+python -i
 ```
 
 **Django shell**
@@ -588,17 +558,16 @@ Out[1]: <QuerySet []>
 - 데이터베이스에 특정한 데이터를 보여 달라는 요처
 
   - “쿼리문을 작성한다.”
-    
-    -> 원하는 데이터를 얻기 위해 데이터베이스에 요청을 보낼 코드를 작성한다.
 
+    -> 원하는 데이터를 얻기 위해 데이터베이스에 요청을 보낼 코드를 작성한다.
 
 - 이 때, 파이썬으로 작성한 코드가 ORM의 의해 SQL로 변환되어 데이터베이스에 전달되며, 데이터베이스의 응답 데이터를 ORM이 **QuerySet**이라는 자료 형태로 변환하여 우리에게 전달
 
 **QuerySet**
 
 - 데이터베이스에게서 전달 받은 객체 목록(데이터 모음)
-  - 순회가 가능한 데이터로써 1개 이상의 데이터를 불러와 사용할 수 있음
 
+  - 순회가 가능한 데이터로써 1개 이상의 데이터를 불러와 사용할 수 있음
 
 - Django ORM을 통해 만들어진 자료형이며, 필터를 걸거나 정렬 등을 수행할 수 있음
 
@@ -617,8 +586,8 @@ Queryset API를 활용해 데이터를 생성하고, 읽고, 수정하고 삭제
 **CRUD**
 
 - Create / Read / Update / Delete
-  - 생성 / 조회 / 수정 / 삭제
 
+  - 생성 / 조회 / 수정 / 삭제
 
 - 대부분의 컴퓨터 소프트웨어가 가지는 기본적인 데이터 처리 기능 4가지를 묶어서 일컫는 말
 
@@ -629,9 +598,11 @@ Queryset API를 활용해 데이터를 생성하고, 읽고, 수정하고 삭제
 - 첫번째 방법
 
   1. article = Article()
+
      - 클래스를 통한 인스턴스 생성
 
   2. article.title
+
      - 클래스 변수명과 같은 이름의 인스턴스 변수를 생성 후 값 할당
 
   3. article.save()
@@ -651,7 +622,7 @@ article.save()
 
 - 인스턴스 생성 시 초기 값을 함께 작성하여 생성
 
-```python
+```bash
 article = Article(title='second', content='django!')
 article.save()
 ```
@@ -660,7 +631,7 @@ article.save()
 
 - QuerySet API 중 **create()** 메서드 활용
 
-```python
+```bash
 # 위 2가지 방식과는 다르게 바로 생성된 데이터가 반환된다.
 Article.objects.create(title='third',content='django!')
 ```
@@ -672,8 +643,8 @@ Article.objects.create(title='third',content='django!')
 - 객체를 데이터베이스에 저장함
 
 - 데이터 생성 시 save를 호출하기 전에는 객체의 id 값은 None
-  - id 값은 Django가 아니라 데이터베이스에서 계산되기 때문
 
+  - id 값은 Django가 아니라 데이터베이스에서 계산되기 때문
 
 - 단순히 모델 클래스를 통해 인스턴스를 생성하는 것은 DB에 영향을 미치지 않기 때문에 반드시 save를 호출해야 테이블에 레코드가 생성됨
 
@@ -721,7 +692,7 @@ Article.objects.all()
 
   **uniqueness 고유성을 보장하는 조회에서 사용해야 함**
 
-```python
+```bash
 Article.objects.get(pk=1)
 ```
 
@@ -743,7 +714,7 @@ Article.objects.get(pk=1)
 
 - QuerySet 메서드 filter(), exclude() 및 get()에 대한 키워드 인자로 지정됨
 
-> https://docs.djangoproject.com/en/3.2/ref/models/querysets/#field-lookups
+> <https://docs.djangoproject.com/en/3.2/ref/models/querysets/#field-lookups>
 
 ```python
 Article.objects.filter(content__contains='ja')
@@ -759,9 +730,9 @@ Article.objects.filter(content__contains='ja')
 
 3. save() 인스턴스 메서드 호출
 
-```python
+```bash
 article = Article.objects.get(pk=1)
-article.title = 'byebye'
+article.title = 'bye bye'
 article.save()
 ```
 
@@ -773,7 +744,7 @@ article.save()
 
 2. delete() 인스턴스 메서드 호출
 
-```python
+```bash
 article = Article.objects.get(pk=1)
 article.delete()
 ```
@@ -791,7 +762,7 @@ def __str__(self):
 
 - Django shell에서 변화된 출력 확인
 
-```python
+```bash
 >>> article = Article.objects.get(pk=1)
 >>> article
 <QuerySet [<Article: 'first']>
@@ -831,12 +802,12 @@ QuerySet API를 통해 view 함수에서 직접 CRUD 구현하기
   
   </html>
   ```
-  
+
   ```python
   # 프로젝트/settings.py
   TEMPLATES = [
       {
-  		...,
+    ...,
           'DIRS': [BASE_DIR / 'templates'],
           ...,
       },
@@ -941,7 +912,6 @@ def index(request):
 - 글의 pk 번호를 활용해서 하나의 뷰 함수와 템플릿 함수로 대응
   - Variable Routing
 
-
 **urls**
 
 - URL로 특정 게시글을 조회할 수 있는 번호를 받음
@@ -967,14 +937,13 @@ def index(request):
   
   from .models import Article
   
-  
   # 글 내용 조회 (하나의 글 데이터 필요)
   def detail(request, pk):
       # query api 에서 get 메소드는 유일한 값을 이용해서 데이터를 찾음
       article = Article.objects.get(pk=pk)
       # 전달 받은 아이디로 데이터를 가져온다. (데이터 확보)
       context = {
-          'article': article,
+           'article': article,
       }
       return render(request, 'articles/detail.html', context)
   ```
@@ -1020,7 +989,7 @@ from django.shortcuts import redirect
 
 def create(request):
     # 글 작성을 완료하고 나면 다음 뜨는 페이지
-    return redirect('articels:detail', article.pk)
+    return redirect('articles:detail', article.pk)
 ```
 
 ### CREATE
@@ -1047,13 +1016,12 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   # 앱/views.py
   from django.shortcuts import render
   
-  
   # 글 쓰기 버튼을 눌렀을 때
   # 사용자 입력 페이지 (글쓰기 페이지) 응답으로 전달
   def new(request):
       return render(request, 'articles/new.html')
   ```
-
+  
   ```django
   <!-- 앱/templates/앱/new.html -->
   {% extends 'base.html' %}
@@ -1072,7 +1040,7 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   <a href="{% url 'articles:index' %}">[back]</a>
   {% endblock content %}
   ```
-
+  
   - new 페이지로 이동할 수 있는 하이퍼 링크 작성
 
   ```django
@@ -1085,7 +1053,7 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   ...
   {% endblock content %}
   ```
-
+  
 - 사용자가 입력한 데이터를 전송 받아 DB에 저장하는 함수 1개
 
   - **“create” view function**
@@ -1100,13 +1068,12 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
       path('create/', views.create, name='create'),
   ]
   ```
-  
+
   ```python
   # 앱/views.py
   from django.shortcuts import render
   
   from .models import Article
-  
   
   # 사용자가 작성한 데이터를 받아서 DB에 저장하는 역할
   def create(request):
@@ -1118,11 +1085,11 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
       article.save()  # 확보한 데이터를 DB에 저장
       return render(request, 'articles/create.html')
   ```
-  
+
   - create 메서드가 더 간단해 보이지만 추후 데이터가 저장되기 전에 유효성 검사 과정을 거치게 될 예정
   - 유효성 검사가 진행된 후에 save 메서드가 호출되는 구조를 택하기 위함
   - 게시글 작성 후 확인
-  
+
   ```django
   <!-- 앱/templates/앱/create.html -->
   {% extends 'base.html' %}
@@ -1130,7 +1097,7 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   <h1>성공적으로 글이 작성되었습니다.</h1>
   {% endblock content %}
   ```
-  
+
   ```django
   <!-- 앱/templates/앱/new.html -->
   {% extends 'base.html' %}
@@ -1149,13 +1116,12 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   <a href="{% url 'articles:index' %}">[back]</a>
   {% endblock content %}
   ```
-  
+
   - 게시글 작성 후 index 페이지로 돌아고도록 함
-  
+
   ```python
   # 앱/view.py
   from django.shortcuts import render
-  
   
   def create(request):
       return render(request, 'articles/index.html')
@@ -1164,7 +1130,7 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
 **Django shortcut function - "redirect()"**
 
 - 인자에 작성된 곳으로 요청을 보냄
-  -  view name (URL pattern name)
+  - view name (URL pattern name)
 
 ```python
 # 앱/views.py
@@ -1232,7 +1198,6 @@ def create(request):
 
   - CRUD에서 R 역할을 담당
 
-
 - POST
 
   - 서버로 데이터를 전송할 때 사용
@@ -1245,11 +1210,11 @@ def create(request):
 
   - CRUD에서 C/U/D 역할을 담당
 
-
 **HTML method 적용하기**
 
 - 로그인에 GET이 아닌 POST를 사용
 - 검색에서는 GET을 사용
+
   - 검색은 서버에 영향을 미치는 것이 아닌 특정 데이터를 조회만 하는 요청이기 때문
   - 특정 페이지를 조회하는 요청을 보내는 HTML의 a tag 또한 GET을 사용
 
@@ -1285,7 +1250,6 @@ def create(request):
 
   - Django는 DTL에서 csrf_token 템플릿 태그를 제공
 
-
 **csrf_token 템플릿 태그**
 
 ```django
@@ -1295,12 +1259,12 @@ def create(request):
 - 해당 태그가 없다면 Django 서버는 요청에 대해 403 forbidden으로 응답
 
 - 템플릿에서 내부 URL로 향하는 Post form을 사용하는 경우에 사용
-  - 외부 URL로 향하는 POST form에 대해서는 CSRF 토큰이 유출되어 취약성을 유발할 수 있기 때문에 사용해서는 안됨
 
+  - 외부 URL로 향하는 POST form에 대해서는 CSRF 토큰이 유출되어 취약성을 유발할 수 있기 때문에 사용해서는 안됨
 
 - input type이 hidden으로 작성되며 value는 Django에서 생성한 hash 값으로 설정
 
--  "csrk_token 은 해당 POST 요청이 내가 보낸 것 인지를 검증하는 것"
+- "csrf_token 은 해당 POST 요청이 내가 보낸 것 인지를 검증하는 것"
 
 ### DELETE
 
@@ -1363,17 +1327,17 @@ def delete(request, pk):
     ```python
     # 앱/urls.py
     from django.urls import path
-    
+
     from . import views
-    
+
     urlpatterns = [
         path('<int:pk>/edit/', views.edit, name='edit'),
     ]
     ```
-  
+
     ```python
     # 앱/views.py
-    
+
     def edit(request, pk):
         article = Article.objects.get(pk=pk)
         context = {
@@ -1381,11 +1345,11 @@ def delete(request, pk):
         }
         return render(request, 'articles/edit.html', context)
     ```
-  
+
   - html 태그의 value 속성을 사용해 기존에 입력 되어 있던 데이터를 출력
-  
+
     - **textarea 태그는 value 속성이 없으므로 태그 내부 값으로 작성해야 한다.**
-  
+
     ```django
     <!-- 앱/templates/앱/edit.html -->
     {% extends 'base.html' %}
@@ -1404,9 +1368,9 @@ def delete(request, pk):
     <a href="{% url 'articles:index' %}">[back]</a>
     {% endblock content %}
     ```
-    
+
   - Edit 페이지로 이동하기 위한 하이퍼 링크 작성
-  
+
     ```django
     <!-- 앱/templates/앱/detail.html -->
     {% extends 'base.html' %}
@@ -1429,7 +1393,6 @@ def delete(request, pk):
     {% endblock content %}
     ```
 
-
 - 사용자가 입력한 데이터를 전송 받아 DB에 저장하는 함수 1개
 
   - "update" view function
@@ -1444,14 +1407,13 @@ def delete(request, pk):
         path('<int:pk/update/', views.update, name='update'),
     ]
     ```
-    
+
     ```python
     # 앱/view.py
     from django.shortcuts import redirect
     
     from .models import Article
-    
-    
+
     def update(request, pk):
         # 1. 수정할 글 데이터를 찾아온다.
         article = Article.objects.get(pk=pk)
@@ -1476,7 +1438,6 @@ def delete(request, pk):
     {% endblock content %}
     ```
 
-
 ### Admin site
 
 - **Django의 가장 강력한 기능 중 하나**인 automatic admin interface 알아보기
@@ -1489,11 +1450,10 @@ def delete(request, pk):
 
   - 레코드 생성 여부 확인에 매우 유용하며 직접 레코드를 삽입할 수도 있음
 
-
 **admin 계정 생성**
 
 ```bash
-$ python manage.py createsuperuser
+python manage.py createsuperuser
 ```
 
 - username과 password를 입력해 관리자 계정을 생성
@@ -1504,7 +1464,7 @@ $ python manage.py createsuperuser
 
 **admin site 로그인**
 
-- http://127.0.0.1:8000/admin/ 로 접속 후 로그인
+- <http://127.0.0.1:8000/admin/> 로 접속 후 로그인
 
 - 계정만 만든 경우 Django 관리자 화면에서 모델 클래스는 보이지 않음
 

@@ -1,34 +1,19 @@
 [Django_Form_ModelForm](#Django_Form_ModelForm)
 
-  1. [Django Form](#1-django-form)
+1. [Django Form](#1-django-form)
+   - [The Django Form Class](#The-Django-Form-Class)
+   - [Widgets](#widgets)
+2. [Django ModelForm](#2-django-modelform)
+   - [ModelForm with view functions](#ModelForm-with-view-functions)
+   - [Widgets 활용하기](#Widgets-활용하기)
+3. [Handling HTTP requests](#3-handling-http-requests)
+4. [View decorators](#4-view-decorators)
+   - [Allowed HTTP methods](#Allowed-HTTP-methods)
+5. [Working with form templates](#5-working-with-form-templates)
+   - [Rendering fields manually](#Rendering-fields-manually)
+   - [Looping over the form’s fields](#looping-over-the-forms-fields)
 
-       + [The Django Form Class](#The-Django-Form-Class)
-
-       + [Widgets](#widgets)
-
-
-  2. [Django ModelForm](#2-django-modelform)
-
-       + [ModelForm with view functions](#ModelForm-with-view-functions)
-
-       + [Widgets 활용하기](#Widgets-활용하기)
-
-
-  3. [Handling HTTP requests](#3-handling-http-requests)
-  
-  4. [View decorators](#4-view-decorators)
-  
-       + [Allowed HTTP methods](#Allowed-HTTP-methods)
-
-
-  5. [Working with form templates](#5-working-with-form-templates)
-
-       + [Rendering fields manually](#Rendering-fields-manually)
-
-       + [Looping over the form’s fields](#looping-over-the-forms-fields)
-
-
-  [마무리](#마무리)
+- [마무리](#마무리)
 
 # Django_Form_ModelForm
 
@@ -62,21 +47,20 @@ Form Class
 
 - Form Class를 선언하는 것은 Model Class를 선언하는 것과 비슷하다.
 
-  비슷한 이름의 필드 타입을 많이 가지고 있다. 
+  비슷한 이름의 필드 타입을 많이 가지고 있다.
 
   (다만 이름만 같은 뿐 같은 필드는 아님)
 
-- Model과 마찬가지로 상속을 통해 선언 
+- Model과 마찬가지로 상속을 통해 선언
 
   (forms 라이브러리의 Form 클래스를 상속받음)
 
-- 앱 폴더에 forms.py 를 생성 후  ArticleForm Class 선언
+- 앱 폴더에 forms.py 를 생성 후 ArticleForm Class 선언
 
   ```python
   # 앱/forms.py
   from django import forms
-  
-  
+
   class ArticleForm(forms.Form):
       title = forms.CharField(max_length=10)
       content = forms.CharField()
@@ -136,13 +120,11 @@ def new(request):
 
    - 입력에 대한 유효성 검사 로직을 처리
 
-
    - 템플릿에서 직접 사용됨
 
      ```python
      forms.CharField()
      ```
-
 
 2. Widgets
 
@@ -150,13 +132,11 @@ def new(request):
 
      - input 요소의 단순한 출력 부분을 담당
 
-
    - Widget은 반드시 form fields에 할당 됨
 
      ```python
      forms.CharField(widget=forms.Textarea)
      ```
-
 
 ### Widgets
 
@@ -180,7 +160,7 @@ class ArticleForm(forms.Form):
 
 다양한 built-in 위젯
 
-- https://docs.djangoproject.com/ko/3.2/ref/forms/widgets/#built-in-widgets
+- <https://docs.djangoproject.com/ko/3.2/ref/forms/widgets/#built-in-widgets>
 
 **Form fields와 widget 응용하기**
 
@@ -227,9 +207,8 @@ ModelForm을 사용하면 Form을 더 쉽게 작성할 수 있음
   
   from .models import Article
   
-  
   class ArticleForm(forms.ModelForm):
-      
+  
       class Meta:
           model = Article  # 어떤 모델을 기반으로 할지
           fields = '__all__'  # 어떤 모델필드 중 어떤 것을 출력할지
@@ -258,8 +237,7 @@ ModelForm을 사용하면 Form을 더 쉽게 작성할 수 있음
   from django import forms
   
   from .models import Article
-  
-  
+
   class ArticleForm(forms.ModelForm):
       class Meta:
           model = Article  # 어떤 모델을 기반으로 할지
@@ -275,9 +253,9 @@ ModelForm을 사용하면 Form을 더 쉽게 작성할 수 있음
 
     ```python
     from django.urls import path
-    
+  
     from . import views
-    
+  
     urlpatterns = [
         path('', views.index, name='index'),
     ]
@@ -295,11 +273,11 @@ ModelForm을 사용하면 Form을 더 쉽게 작성할 수 있음
 
 - 더불어 이 경우에는 인스턴스가 필요한 것이 아닌, 실제 Article 모델의 참조 값을 통해 해당 클래스의 필드나 속성 등을 내부적으로 참조하기 위한 이유도 있음
 
->  https://github.com/django/django/blob/main/django/forms/models.py#L552
+> <https://github.com/django/django/blob/main/django/forms/models.py#L552>
 
 ### ModelForm with view functions
 
-ModelForm으로 인한 view 함수의 구조 변화 알아보기 
+ModelForm으로 인한 view 함수의 구조 변화 알아보기
 
 **CREATE**
 
@@ -323,7 +301,7 @@ def create(request):
     return render(request, 'articles/new.html', context)
 ```
 
-**“is_vaild()” method**
+**“is_valid()” method**
 
 - 유효성 검사를 실행하고, 데이터가 유효한지 여부를 boolean으로 반환
 
@@ -340,8 +318,7 @@ def create(request):
   from django.shortcuts import redirect
   
   from .forms import ArticleForm
-  
-  
+
   def create(request):
       form = ArticleForm(request.POST)
       if form.is_valid():
@@ -358,7 +335,6 @@ def create(request):
   from django.shortcuts import redirect, render
   
   from .forms import ArticleForm
-  
   
   def create(request):
       form = ArticleForm(request.POST)
@@ -413,9 +389,8 @@ def create(request):
    from .forms import ArticleForm
    from .models import Article
    
-   
    def edit(request, pk):
-       article = Article.objectes.get(pk=pk)
+       article = Article.objects.get(pk=pk)
        form = ArticleForm(instance=article)
        context = {
            'article': article,
@@ -433,7 +408,7 @@ def create(request):
        }  # 유효성 검증을 실패했을 때 사용자에게 실패 결과 메세지를 출력해줄 수 있음
        return render(request, 'articles/edit.html', context)
    ```
-   
+
    ```django
    <!-- 앱/templates/앱/edit.html -->
    {% extends 'base.html' %}
@@ -451,7 +426,7 @@ def create(request):
 
 **[참고] ModelForm 키워드 인자 data와 instance**
 
-> https://github.com/django/django/blob/main/django/forms/models.py#L332
+> <https://github.com/django/django/blob/main/django/forms/models.py#L332>
 
 ```python
 class BaseModelForm(BaseForm):
@@ -477,7 +452,7 @@ class BaseModelForm(BaseForm):
 
     일부 데이터만 사용될 때
 
-    (예시 - 로그인, 사용자의 데이터를 받아 인증 과정에서만 사용 후 별도로 DB에 저장하지 않음) 
+    (예시 - 로그인, 사용자의 데이터를 받아 인증 과정에서만 사용 후 별도로 DB에 저장하지 않음)
 
 - **ModelForm**
 
@@ -487,9 +462,9 @@ class BaseModelForm(BaseForm):
 
 ### Widgets 활용하기
 
-> https://getbootstrap.com/docs/5.2/forms/overview/#overview
+> <https://getbootstrap.com/docs/5.2/forms/overview/#overview>
 >
-> https://django-bootstrap-v5.readthedocs.io/en/latest/
+> <https://django-bootstrap-v5.readthedocs.io/en/latest/>
 
 ```python
 # 앱/forms.py
@@ -500,18 +475,18 @@ from .models import Article
 
 class ArticleForm(forms.ModelForm):
     title = forms.CharField(
-    	label='제목',
+     label='제목',
         widget=forms.TextInput(
-        	attrs={
+         attrs={
                 'class': 'my-title form-control',
                 'placeholder': 'Enter the title',
             }
         ),
     )
     content = forms.CharField(
-    	label='내용',
+     label='내용',
         widget=forms.Textarea(
-        	attrs={
+         attrs={
                 'class': 'my-content form-control',
                 'placeholder': 'Enter the content',
                 'rows': 5,
@@ -558,39 +533,38 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
   
   from .forms import ArticleForm  # Article Model을 바탕으로 만들어진 Form
   
-  
   def create(request):
       if request.method == 'POST':  # CREATE  # DB의 내용 변경
           # 게시글을 DB에 저장하기 위한 단계
           # ModelForm 에 전달 받은 데이터를 넣어서 인스턴스를 생성한다.
-          form = ArticleForm(request.POST)
+            form = ArticleForm(request.POST)
           # 인스턴스에 담긴 데이터가 저장해도 되는 데이터인지 검수한다. (유효성 검사)
-          if form.is_valid():  # 유효성 검사를 통과하면 True, 실패하면 False
+            if form.is_valid():  # 유효성 검사를 통과하면 True, 실패하면 False
               # 유효성 검사를 통과 했다면?
-              article = form.save()  # 필요하다면 저장되는 데이터를 인스턴스로 받아서 사용한다.
+                article = form.save()  # 필요하다면 저장되는 데이터를 인스턴스로 받아서 사용한다.
               # 저장이 완료 되었으면 디테일 페이지로 이동한다.
-              return redirect('articles:detail', article.pk)
+                return redirect('articles:detail', article.pk)
           # 유효성 검사를 통과하지 못했다면? 에러 메세지를 보여줘야 한다. 에러페이지 X
           # 유효성 검사를 통과하지 못하면 error 메시지가 form에 알아서 담긴다.
           # error message가 담긴 담긴 form 을 딕셔너리로 담아서 렌더링 해준다.
           # else: 갈 곳이 없으면, context로
-      else:  # NEW / GET / 데이터를 조회, page를 요청
+        else:  # NEW / GET / 데이터를 조회, page를 요청
           # 게시글을 작성할 수 있는 페이지를 보여줘야 할 필요가 있음
           # 게시글 요청은 GET method 로 요청된다
           # ModelForm을 이용해서 빈 인스턴스를 생성한다.
-          form = ArticleForm()
+            form = ArticleForm()
       # GET , POST 요청의 공통된 내용
       # 빈 인스턴스를 딕셔너리 형태로 담아서 html로 렌더링해준다.
-      context = {
-          'form': form,
-      }
-      return render(request, 'articles/create.html', context)     
+        context = {
+            'form': form,
+        }
+        return render(request, 'articles/create.html', context)
   ```
-  
+
 - 이제는 불필요해진 new의 view 함수와 url path를 삭제
 - new.html -> create.html 이름변경 및 action 속성 값 수정
 - new.html -> create.html 이름변경으로 인한 템플릿 경로 수정
-- index   페이지에 있던 new 관련 링크 수정
+- index 페이지에 있던 new 관련 링크 수정
 
 **Update**
 
@@ -602,13 +576,12 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
   
   from .forms import ArticleForm
   from .models import Article
-  
-  
+
   def update(request, pk):
       article = Article.objects.get(pk=pk)
       if request.method == 'POST':  # DB
           form = ArticleForm(request.POST, instance=article)
-          if form.is_vaild():
+          if form.is_valid():
               form.save()
               return redirect('articles:detail', article.pk)
       else:  # GET, EDIT
@@ -619,7 +592,7 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
       }
       return render(request, 'articles/update.html', context)
   ```
-  
+
 - 불필요해진 edit의 view 함수와 url path를 삭제
 
 - edit.html -> update.html 이름변경으로 인한 관련 정보 수정
@@ -634,8 +607,7 @@ new-create, edit-update의 view 함수 역할을 잘 살펴보면 하나의 공�
   
   from .models import Article
   
-  
-  def delete(request, pk):  
+  def delete(request, pk):
       if request.method == 'POST':  # DB
           article = Article.objects.get(pk=pk)
           article.delete()
@@ -655,18 +627,16 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
   ```python
   def hello(func):
       def wrapper():
-          print('HIHI')
+          print('HI HI')
           func()
-          print('HIHI')
+          print('HI HI')
       return wrapper
-  
   
   @hello
   def bye():
-      print('byebye')
+      print('bye bye')
   
-  
-  bye()  # HIHI, byebye, HIHI
+  bye()  # HI HI, bye bye, HI HI
   ```
 
 ### Allowed HTTP methods
@@ -697,14 +667,12 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
   # 앱/views.py
   from django.views.decorators.http import require_http_methods
   
-  
   @require_http_methods(['GET','POST'])
   def create(request):
       pass
   @require_http_methods(['GET','POST'])
   def update(request, pk):
       pass
-  
   ```
 
 **require_POST()**
@@ -717,7 +685,6 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
   from django.views.decorators.http import require_POST
   
   from .models import Article
-  
   
   @ require_POST
   def delete(request, pk):
@@ -740,7 +707,6 @@ View decorators 를 사용해 view 함수를 단단하게 만들기
   ```python
   # 앱/views.py
   from django.views.decorators.http import require_safe
-  
   
   @require_safe
   def index(request):  # GET

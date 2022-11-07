@@ -44,7 +44,6 @@
   - Geolocation API
   - WebGL
 
-
 **브라우저가 웹 페이지를 불러오는 과정**
 
 - 웹 페이지를 브라우저로 불러오면, 브라우저는 코드(HTML, CSS, JavaScript)를 실행 환경(브라우저 탭)에서 실행
@@ -87,9 +86,9 @@
 - 탭 기능이 있는 브라우저에서는 각각의 탭을 각각의 window 객체로 나타냄
 
   ```js
-  window.open()  // 새 탭 열기
-  window.alert()  // 경고 대화 상자 열기
-  window.print()  // 인쇄 대화 상자 열기
+  window.open() // 새 탭 열기
+  window.alert() // 경고 대화 상자 열기
+  window.print() // 인쇄 대화 상자 열기
   ```
 
 **`document` object**
@@ -99,7 +98,7 @@
 - 페이지 컨텐츠의 진입점 역할을 하며, `<body>` 등과 같은 수많은 다른 요소들을 포함하고 있음
 
   ```js
-  document.title = 'JavaScript'
+  document.title = "JavaScript"
   ```
 
 - [참고] document는 window의 속성이다.
@@ -128,12 +127,12 @@
   - 제공한 CSS `selector`를 만족하는 NodeList를 반환
 
 ```js
-console.log(document.querySelector('#title'))
-console.log(document.querySelectorAll('.text'))
-console.log(document.querySelector('.text'))
-console.log(document.querySelectorAll('body > ul > li'))
-liTags = document.querySelectorAll('body > ul > li')
-liTags.forEach(element => {
+console.log(document.querySelector("#title"))
+console.log(document.querySelectorAll(".text"))
+console.log(document.querySelector(".text"))
+console.log(document.querySelectorAll("body > ul > li"))
+liTags = document.querySelectorAll("body > ul > li")
+liTags.forEach((element) => {
   console.log(element)
 })
 ```
@@ -156,7 +155,6 @@ liTags.forEach(element => {
   - 사람이 읽을 수 있는 요소만 남김
   - 즉, 줄 바꿈을 인식하고 숨겨진 내용을 무시하는 등 최종적으로 스타일링이 적용된 모습으로 표현됨
 
-
 **조작 관련 메서드 (추가)**
 
 - **Node`.appendChild()`**
@@ -172,9 +170,9 @@ liTags.forEach(element => {
   - 제거된 Node를 반환
 
 ```js
-const title = document.createElement('h1')
-title.innerText = 'DOM 조작'
-const div = document.querySelector('div')
+const title = document.createElement("h1")
+title.innerText = "DOM 조작"
+const div = document.querySelector("div")
 div.appendChild(title)
 div.removeChild(title)
 ```
@@ -182,18 +180,18 @@ div.removeChild(title)
 ```html
 <div id="app"></div>
 <script>
-const divApp = document.querySelector('#app')
-const h1Tag = document.createElement('h1')
-h1Tag.innerText = '오늘의 Todo'
-const ulTag = document.createElement('ul')
-const todoList = ['양치하기', '공부하기', '휴식하기']
-todoList.forEach((todo) => {
-  const li = document.createElement('li')
-  li.innerText = todo
-  ulTag.appendChild(li)
-})
-divApp.appendChild(h1Tag)
-divApp.appendChild(ulTag)
+  const divApp = document.querySelector("#app")
+  const h1Tag = document.createElement("h1")
+  h1Tag.innerText = "오늘의 Todo"
+  const ulTag = document.createElement("ul")
+  const todoList = ["양치하기", "공부하기", "휴식하기"]
+  todoList.forEach((todo) => {
+    const li = document.createElement("li")
+    li.innerText = todo
+    ulTag.appendChild(li)
+  })
+  divApp.appendChild(h1Tag)
+  divApp.appendChild(ulTag)
 </script>
 ```
 
@@ -206,19 +204,19 @@ divApp.appendChild(ulTag)
   - 지정된 요소의 값을 설정
   - 속성이 이미 존재하면 값을 갱신, 존재하지 않으면 지정된 이름과 값으로 새 속성을 추가
 
-> https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Default_parameters
+> <https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Default_parameters>
 
 ```js
-const aTag = document.createElement('a')
-aTag.setAttribute('href', 'https://google.com')
-aTag.innerText = '구글'
-const divTag = document.querySelector('div')
+const aTag = document.createElement("a")
+aTag.setAttribute("href", "https://google.com")
+aTag.innerText = "구글"
+const divTag = document.querySelector("div")
 divTag.appendChild(aTag)
-console.log(aTag.getAttribute('href'))
+console.log(aTag.getAttribute("href"))
 
-const h1 = document.querySelector('h1')
+const h1 = document.querySelector("h1")
 console.log(h1.classList)
-h1.classList.toggle('blue')
+h1.classList.toggle("blue")
 console.log(h1.classList)
 ```
 
@@ -238,7 +236,7 @@ console.log(h1.classList)
 
 - **Event**란 프로그래밍하고 있는 시스템에서 일어나는 action 사건 혹은 occurrence 발생으로, 각 이벤트에 대해 조작할 수 있도록 특정 시점을 시스템이 알려주는 것
 
-  > https://developer.mozilla.org/ko/docs/Learn/JavaScript/Building_blocks/Events
+  > <https://developer.mozilla.org/ko/docs/Learn/JavaScript/Building_blocks/Events>
 
 ### Event Intro
 
@@ -246,6 +244,7 @@ console.log(h1.classList)
 
 - 네트워크 활동이나 사용자와의 상호작용 같은 사건의 발생을 알리기 위한 객체
 - Event 발생
+
   - 마우스를 클릭하거나 키보드를 누르는 등 사용자 행동으로 발생할 수도 있고
   - 특정 메서드를 호출하여 프로그래밍적으로도 만들어 낼 수 있음
 
@@ -254,14 +253,14 @@ console.log(h1.classList)
 - 받은 Event를 "**처리**"할 수 있음
   - Event 처리는 주로 **`addEventListener()`**라는 Event handler 처리기를 다양한 html 요소에 "**부착**"하게 됨
 
-**Event handler - `addEventListner()`**
+**Event handler - `addEventListener()`**
 
 ```js
 // 대상에.(특정 Event가 발생하면, 할 일을 등록하자)
 EventTarget.addEventListener(type, listener)
 ```
 
-- **EventTraget.addEventListner(`type`, `listener`[, options])**
+- **EventTarget.addEventListener(`type`, `listener`[, options])**
 
   - 지정한 Event가 대상에 전달될 때마다 호출할 함수를 설정
 
@@ -273,10 +272,10 @@ EventTarget.addEventListener(type, listener)
 
     - `input`, `click`, `submit`
 
-      > https://developer.mozilla.org/docs/Web/Events
+      > <https://developer.mozilla.org/docs/Web/Events>
       >
-      > https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event
-  
+      > <https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event>
+
   - **listener**
     - 지정된 타입의 Event를 수신할 객체
     - JavaScript function 객체(콜백 함수)여야 함
@@ -285,11 +284,11 @@ EventTarget.addEventListener(type, listener)
 ### Event 실습
 
 ```js
-const btn = document.querySelector('#btn')
+const btn = document.querySelector("#btn")
 let countNum = 0
 
-btn.addEventListener('click', function (event) {
-  const pTag = document.querySelector('#counter')
+btn.addEventListener("click", function (event) {
+  const pTag = document.querySelector("#counter")
   countNum += 1
   pTag.innerText = countNum
 })
@@ -342,19 +341,19 @@ btn.addEventListener("click", function (event) {
 <h1>Theme Switcher</h1>
 <p>테마를 바꿔봅시다.</p>
 <script>
-const bodyTag = document.querySelector('body')
-const grayB = document.querySelector('#grayButton')
-const whitB = document.querySelector('#whiteButton')
-const navyB = document.querySelector('#navyButton')
-grayB.addEventListener('click', function (event) {
-  bodyTag.setAttribute('style', 'background-color:gray; color:white')
-})
-whitB.addEventListener('click', function (event) {
-  bodyTag.setAttribute('style', 'background-color:white; color:black')
-})
-navyB.addEventListener('click', function (event) {
-  bodyTag.setAttribute('style', 'background-color:navy; color:white')
-})
+  const bodyTag = document.querySelector("body")
+  const grayB = document.querySelector("#grayButton")
+  const whitB = document.querySelector("#whiteButton")
+  const navyB = document.querySelector("#navyButton")
+  grayB.addEventListener("click", function (event) {
+    bodyTag.setAttribute("style", "background-color:gray; color:white")
+  })
+  whitB.addEventListener("click", function (event) {
+    bodyTag.setAttribute("style", "background-color:white; color:black")
+  })
+  navyB.addEventListener("click", function (event) {
+    bodyTag.setAttribute("style", "background-color:navy; color:white")
+  })
 </script>
 ```
 
@@ -372,7 +371,6 @@ navyB.addEventListener('click', function (event) {
   - `a` 태그 : 클릭 시 특정 주소로 이동
   - `form` : form 데이터 전송
 
-
 ### Event 취소 실습
 
 ```js
@@ -385,13 +383,12 @@ h1.addEventListener("copy", function (event) {
 
 ### Event 종합 실습
 
-```html
+```js
 const aTag = document.createElement("a")
 aTag.setAttribute("href", "https://www.google.com/")
 aTag.innerText = "GOOGLE"
 const bodyTag = document.querySelector("body")
 bodyTag.appendChild(aTag)
-
 aTag.addEventListener("click", function (event) {
   event.preventDefault()
 })
@@ -421,7 +418,7 @@ aTag.setAttribute('target', '_blank')
 - array, object 등 자료구조를 다룰 때 사용하는 유용하고 간편한 유틸리티 함수들을 제공
 - `reverse`, `sortBy`, `range`, `random`
 
-> https://lodash.com/
+> <https://lodash.com/>
 
 ```js
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
@@ -471,11 +468,11 @@ const addTodo = function (event) {
 formTag.addEventListener("submit", addTodo)
 ```
 
-> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll
+> <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll>
 
 ```js
-const userInput = document.querySelector('#userInput')
-const output = document.querySelector('#output')
+const userInput = document.querySelector("#userInput")
+const output = document.querySelector("#output")
 function filterMessage(event) {
   let filteredInput = event.target.value
   for (i = 0; i < badWords.length; i++) {
@@ -483,7 +480,7 @@ function filterMessage(event) {
   }
   output.innerText = filteredInput
 }
-userInput.addEventListener('input', filterMessage)
+userInput.addEventListener("input", filterMessage)
 ```
 
 ```html
@@ -556,6 +553,7 @@ formTag.addEventListener('submit', function (event) {
   - 함수 내부에서 this의 값은 함수를 호출한 방법에 의해 좌우됨
 
 1. 단순 호출
+
    - 전역 객체를 가리킴
 
    - 전역은 브라우저에서는 `window`, Node.js는 `global`을 의미함
@@ -566,8 +564,9 @@ formTag.addEventListener('submit', function (event) {
      }
      myFunc()
      ```
-   
+
 2. Method (Function in Object, 객체의 메서드로서)
+
    - 메서드로 선언하고 호출한다면, 객체의 메서드이므로 해당 객체가 바인딩
 
      ```js
@@ -576,11 +575,11 @@ formTag.addEventListener('submit', function (event) {
        myFunc() {
          console.log(this)
          console.log(this.data)
-       }
+       },
      }
      myObj.myFunc()
      ```
-   
+
 3. Nested (`Function` 키워드)
 
    ```js
@@ -592,15 +591,15 @@ formTag.addEventListener('submit', function (event) {
          console.log(number) // 1
          console.log(this) // window
        })
-     }
+     },
    }
    myObj.myFunc()
    ```
-   
+
    - forEach의 콜백 함수에서의 this가 메서드의 객체를 가리키지 못하고 전역 객체 window를 가리킴
    - 단순 호출 방식으로 사용되었기 때문
    - 이를 해결하기 위해 등장한 함수 표현식이 바로 "화살표 함수"
-   
+
 4. Nested (화살표 함수)
 
    ```js
@@ -612,11 +611,11 @@ formTag.addEventListener('submit', function (event) {
          console.log(number) // 1
          console.log(this) // myObj
        })
-     }
+     },
    }
    myObj.myFunc()
    ```
-   
+
    - 일반 function 키워드와 달리 메서드의 객체를 잘 가리킴
    - 화살표 함수에서 this는 자신을 감싼 정적 범위
    - 자동으로 한 단계 상위의 scope의 context를 바인딩
@@ -631,7 +630,7 @@ formTag.addEventListener('submit', function (event) {
 
 **this와 addEventListener**
 
-- addEventListener에서의 콜백 함수는 특별하게 function 키워드의 경우, 
+- addEventListener에서의 콜백 함수는 특별하게 function 키워드의 경우,
 
   addEventListener를 호출한 대상(`event.target`)을 뜻함
 
@@ -640,14 +639,14 @@ formTag.addEventListener('submit', function (event) {
   - "addEventListener 의 콜백 함수는 `function` 키워드를 사용하기"
 
   ```js
-  const functionButton = document.querySelector('#function')
-  const arrowButton = document.querySelector('#arrow')
-  
-  functionButton.addEventListener('click', function (event) {
+  const functionButton = document.querySelector("#function")
+  const arrowButton = document.querySelector("#arrow")
+
+  functionButton.addEventListener("click", function (event) {
     console.log(this) // <button id="function">function</button>
   })
-  
-  arrowButton.addEventListener('click', event => {
+
+  arrowButton.addEventListener("click", (event) => {
     console.log(this) // window
   })
   ```

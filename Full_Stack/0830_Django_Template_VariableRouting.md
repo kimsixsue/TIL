@@ -1,51 +1,26 @@
 [Django_Template_VariableRouting](#Django_Template_VariableRouting)
 
 1. [Django Intro](#1-django-intro)
-
-   + [Django 시작하기](#Django-시작하기)
-
-   + [Web 이해하기](#Web-이해하기)
-
-   + [클라이언트와 서버](#클라이언트와-서버)
-
-   + [Web browser와 Web page](#Web-browser와-Web-page)
-
-
+   - [Django 시작하기](#Django-시작하기)
+   - [Web 이해하기](#Web-이해하기)
+   - [클라이언트와 서버](#클라이언트와-서버)
+   - [Web browser와 Web page](#Web-browser와-Web-page)
 2. [Django 구조 이해하기 (MTV Design Pattern)](#2-django-구조-이해하기-mtv-design-pattern)
-
-   + [Design Pattern](#design-pattern)
-
-   + [Django's Design Pattern](#djangos-design-pattern)
-
-
+   - [Design Pattern](#design-pattern)
+   - [Django's Design Pattern](#djangos-design-pattern)
 3. [Django Quick Start](#3-django-quick-start)
-
-   + [기본 설정](#기본-설정)
-
-   + [요청과 응답](#요청과-응답)
-
-
+   - [기본 설정](#기본-설정)
+   - [요청과 응답](#요청과-응답)
 4. [Django Template](#4-django-template)
-   + [Template inheritance](#template-inheritance)
-
-
+   - [Template inheritance](#template-inheritance)
 5. [Sending and Retrieving form data](#5-sending-and-retrieving-form-data)
-
-   + [Sending from data (Client)](#sending-from-data-client)
-
-   + [Retrieving the data (Server)](#retrieving-the-data-server)
-
-
+   - [Sending from data (Client)](#sending-from-data-client)
+   - [Retrieving the data (Server)](#retrieving-the-data-server)
 6. [Django URLs](#6-django-urls)
-
-   + [Trailing URL Slashes](#trailing-url-slashes)
-
-   + [Variable routing](#variable-routing)
-
-   + [App URL mapping](#app-url-mapping)
-   
-   + [Naming URL patterns](#naming-url-patterns)
-   
+   - [Trailing URL Slashes](#trailing-url-slashes)
+   - [Variable routing](#variable-routing)
+   - [App URL mapping](#app-url-mapping)
+   - [Naming URL patterns](#naming-url-patterns)
 
 # Django_Template_VariableRouting
 
@@ -55,16 +30,16 @@
 
 '웹 서비스 개발'에는 무엇이 필요할까?
 
-* 로그인, 로그아웃, 회원관리, 데이터베이스, 서버, 클라이언트, 보안 등
+- 로그인, 로그아웃, 회원관리, 데이터베이스, 서버, 클라이언트, 보안 등
 
 **Framework 이해하기**
 
 - 누군가 만들어 놓은 코드를 재사용 하는 것은 이미 익숙한 개발 문화
 
 - 그러한 코드들을 모아 놓은 것, **즉 서비스 개발에 필요한 기능들을 미리 구현해서 모아 놓은 것 = Framework 프레임워크**
-  
+
   - 제공받은 도구들과 뼈대, 규약을 가지고 무언가를 만드는 일
-  
+
   - 특정 프로그램을 개발하기 위한 여러 도구들과 규약을 제공하는 것
 
 - "소프트웨어 프레임워크"는 복잡한 문제를 해결하거나 서술하는 데 사용되는 기본 개념 구조
@@ -76,13 +51,13 @@
 **Django를 배워야 하는 이유**
 
 - Python으로 작성된 프레임워크
-  
+
   - Python이라는 언어의 강력함과 거대한 커뮤니티
 
 - 수많은 여러 유용한 기능들
 
 - 검증된 웹 프레임워크
-  
+
   - 유명한 많은 서비스들이 사용한다는 것 == 안정적으로 서비스를 할 수 있다는 검증
 
 ### Web 이해하기
@@ -96,24 +71,24 @@
 - 전세계는 아주 두껍고 튼튼한 해저케이블로 연결 되어있음
 
 - 하지만 이러한 유선 연결은 한계가 있음
-  
+
   - "정보의 빈곤"
 
 **전세계를 무선으로 연결하기**
 
 - "스타링크 프로젝트" - Space X
-  
+
   - 지구를 아주 많은 소형 위성으로 감싸서, 케이블이 아닌 위성끼리 데이터를 교환
 
 - "스타링크 프로젝트"의 문제점
-  
+
   - Starlink Train
-  
+
   - 우주 쓰레기
 
 **정리**
 
-- 결국 인터넷을 이용한다는 건, 전세계의 컴퓨터가 연결되어 있는 하나의 인프라를 이용하는 것   
+- 결국 인터넷을 이용한다는 건, 전세계의 컴퓨터가 연결되어 있는 하나의 인프라를 이용하는 것
 
 ### 클라이언트와 서버
 
@@ -124,19 +99,19 @@
 - **클라이언트**와 **서버** 역시 하나의 컴퓨터이며 이들이 상호작용. CLIENT 클라이언트가 requests 요청하면, SERVER 서버가 responses 응답
 
 - 클라이언트
-  
+
   - 웹 사용자의 인터넷에 연결된 장치 (예를 들어 wi-fi에 연결된 컴퓨터 또는 모바일)
-  
+
   - Chrome 또는 Firefox와 같은 웹 브라우저
-  
+
   - 서비스를 요청하는 주체
 
 - 서버
-  
+
   - 웹 페이지, 사이트 또는 앱을 저장하는 컴퓨터
-  
+
   - 클라이언트가 웹 페이지에 접근하려고 할 때 서버에서 클라이언트 컴퓨터로 웹 페이지 데이터를 응답해 사용자의 웹 브라우저에 표시됨
-  
+
   - 요청에 대해 서비스를 응답하는 주체
 
 **정리**
@@ -158,13 +133,13 @@
 **웹 페이지란?**
 
 - 웹에 있는 문서
-  
+
   - 보는 화면 각각 한 장 한 장이 웹 페이지
 
 - 웹 페이지 종류
-  
+
   - 정적 웹 페이지
-  
+
   - 동적 웹 페이지
 
 **정적 웹 페이지**
@@ -174,9 +149,9 @@
 - 있는 그대로를 제공하는 것(served as-is)을 의미
 
 - 한 번 작성된 HTML 파일의 내용이 변하지 않고 모든 사용자에게 동일한 모습으로 전달되는 것
-  
+
   == 서버에 미리 저장된 HTML 파일 그대로 전달된 웹 페이지
-  
+
   == 같은 상황에서 모든 사용자에게 동일한 정보를 표시
 
 **동적 웹 페이지**
@@ -186,13 +161,13 @@
 - 사용자의 요청에 따라 웹 페이지에 추가적인 수정이 되어 클라이언트에게 전달되는 웹 페이지
 
 - 웹 페이지의 내용을 바꿔주는 주체 == **서버**
-  
+
   - 서버에서 동작하고 있는 프로그램이 웹 페이지를 변경해줌
-    
+
     이렇게 사용자의 요청을 받아서 적절한 응답을 만들어주는 프로그램을 쉽게 만들 수 있게 도와주는 프레임워크가 바로 **Django**
 
 - 다양한 서버 사이드 프로그래밍 언어(python, java, c++ 등) 사용 가능
-  
+
   파일을 처리하고 데이터베이스와의 상호작용이 이루어짐
 
 - 이 중에서 Python을 이용해서 개발할 수 있는 프레임워크인 Django를 학습하는 것
@@ -206,9 +181,9 @@
 - 현수교를 여러 번 짓다보니 **자주 사용되는 구조가 있다는 것**을 알게 되었고 **이를 일반화해서 하나의 공법**으로 만들어 둔 것
 
 - 소프트웨어에서의 관점
-  
+
   - 각기 다른 기능을 가진 다양한 응용 소프트웨어를 개발할 때 공통적인 설계 문제가 존재하며, 이를 처리하는 해결책 사이에도 공통점이 있다는 것을 발견
-  
+
   - 이러한 유사점을 패턴이라 함
 
 **소프트웨어 디자인 패턴**
@@ -228,7 +203,7 @@
 **소프트웨어 디자인 패턴의 장점**
 
 - 디자인 패턴을 알고 있다면 서로 복잡한 커뮤니케이션이 매우 간단해짐
-  
+
   - "우리 이거 클라이언트-서버 구조로 구현하자"
 
 - **다수의 엔지니어들이 일반화된 패턴으로 소프트웨어 개발을 할 수 있도록 한 규칙, 커뮤니케이션의 효율성을 높이는 기법**
@@ -245,15 +220,15 @@
 
 - Model - View - Controller
 
-       데이터 및 논리 제어를 구현하는데 널리 사용되는 소프트웨어 디자인 패턴
+데이터 및 논리 제어를 구현하는데 널리 사용되는 소프트웨어 디자인 패턴
 
 - 하나의 큰 프로그램을 세가지 역할로 구분한 개발 방법론
 
-    1. Model : 데이터와 관련된 로직을 관리
+1. Model : 데이터와 관련된 로직을 관리
 
-    2. View : 레이아웃과 화면을 처리
+2. View : 레이아웃과 화면을 처리
 
-    3. Controller : 명령을 model과 view 부분으로 연결
+3. Controller : 명령을 model과 view 부분으로 연결
 
 **MVC 소프트웨어 디자인 패턴의 목적**
 
@@ -262,54 +237,54 @@
 - 더 나은 업무의 분리와 향상된 관리를 제공
 
 - 각 부분을 독립적으로 개발할 수 있어, 하나를 수정하고 싶을 때 모두 건들지 않아도 됨
-  
+
   == 개발 효율성 및 유지보수가 쉬워짐
-  
+
   == 다수의 멤버로 개발하기 용이함
 
 **Django에서의 디자인 패턴**
 
 - Django는 MVC 패턴을 기반으로 한 MTV 패턴을 사용
 
-    두 패턴은 서로 크게 다른 점은 없으며 일부 역할에 대해 부르는 이름이 다름
+두 패턴은 서로 크게 다른 점은 없으며 일부 역할에 대해 부르는 이름이 다름
 
-| MVC        | MTV      |
-|:----------:|:--------:|
-| Model      | Model    |
-| View       | Template |
-| Controller | View     |
+|    MVC     |   MTV    |
+| :--------: | :------: |
+|   Model    |  Model   |
+|    View    | Template |
+| Controller |   View   |
 
 **MTV 디자인 패턴**
 
 - Model
-  
+
   - MVC 패턴에서 Model의 역할에 해당
-  
+
   - 데이터와 관련된 로직을 관리
-  
+
   - 응용프로그램의 데이터 구조를 정의하고 데이터베이스의 기록을 관리
 
 - Template
-  
+
   - 레이아웃과 화면을 처리
-  
+
   - 화면상의 사용자 인터페이스 구조와 레이아웃을 정의
-  
+
   - MVC 패턴에서 View의 역할에 해당
 
 - View
-  
+
   - Model & Template과 관련한 로직을 처리해서 응답을 반환
-  
+
   - 클라이언트의 요청에 대해 처리를 분기하는 역할
-    
+
     - 데이터가 필요하다면 model에 접근해서 데이터를 가져오고
-      
+
       가져온 데이터를 template로 보내 화면을 구성하고
-      
+
       구성된 화면을 응답으로 만들어 클라이언트에게 반환
-  
-  - MVC 패턴에서 Controller의 역할에 해당 
+
+  - MVC 패턴에서 Controller의 역할에 해당
 
 **장고 서비스 흐름**
 
@@ -340,7 +315,7 @@
   ```bash
   $ python -m venv [venv_name]
   $ source [venv_name]/Scripts/activate
-  
+
   (venv_name)
   $
   ```
@@ -356,7 +331,7 @@
 - 패키지 목록 생성
 
   ```bash
-  $ pip freeze > requirements.txt
+  pip freeze > requirements.txt
   ```
 
 **Django Project**
@@ -364,21 +339,21 @@
 - 프로젝트 생성
 
   ```bash
-  $ django-admin startproject [project_folder_name] .
+  django-admin startproject [project_folder_name] .
   ```
 
-  - **Project 이름에는  Python이나 Django에서 사용 중인 키워드 및 `-` (하이픈) 사용 불가**
-  -  **`.` (dot)을 붙이지 않을 경우 현재 디렉토리에 프로젝트 디렉토리를 새로 생성하게 됨**
+  - **Project 이름에는 Python이나 Django에서 사용 중인 키워드 및 `-` (하이픈) 사용 불가**
+  - **`.` (dot)을 붙이지 않을 경우 현재 디렉토리에 프로젝트 디렉토리를 새로 생성하게 됨**
 
 - 서버 실행
 
   ```bash
-  $ python manage.py runserver
+  python manage.py runserver
   ```
 
 - 서버 실행 후 메인 페이지 확인
 
-  http://127.0.0.1:8000/
+  <http://127.0.0.1:8000/>
 
 **프로젝트 구조**
 
@@ -422,10 +397,10 @@
 - 애플리케이션(앱) 생성
 
   ```bash
-  $ python manage.py startapp [application_names]
+  python manage.py startapp [application_names]
   ```
 
-  * **일반적으로 애플리케이션 이름은 '복수형'으로 작성하는 것을 권장**
+  - **일반적으로 애플리케이션 이름은 '복수형'으로 작성하는 것을 권장**
 
 **애플리케이션 구조**
 
@@ -440,10 +415,10 @@
 - `tests.py`
   - 프로젝트의 테스트 코드를 작성하는 곳
   - TDD
--  `views.py`
-  - view 함수들이 정의 되는 곳
-  - MTV 패턴의 V에 해당
-  - MVC 패턴의 C에 해당
+- `views.py`
+- view 함수들이 정의 되는 곳
+- MTV 패턴의 V에 해당
+- MVC 패턴의 C에 해당
 
 **애플리케이션 등록**
 
@@ -460,10 +435,10 @@
   INSTALLED_APPS = [
       # 유저가 생성한 어플리케이션
       'application_names',      # , 필수
-      
+  
       # 중간
       # 서드파티 앱
-      
+  
       # 마지막
       # 장고 순수 앱
       'django.contrib.XXXX',
@@ -477,7 +452,7 @@
   - 프로젝트는 앱의 집합
   - 프로젝트에는 여러 앱이 포함될 수 있음
   - 앱은 여러 프로젝트에 있을 수 있음
-- Aplication
+- Application
   - 앱은 실제 요청을 처리하고 페이지를 보여주는 등의 역할을 담당
     - 일반적으로 앱은 하나의 역할 및 기능 단위로 작성하는 것을 권장함
 
@@ -518,25 +493,23 @@
   ```python
   # 앱/views.py
   from django.shortcuts import render
-  
-  
-  def index(request):
-      return render(request, 'index.html')
+    def index(request):
+        return render(request, 'index.html')
   ```
 
 **render()**
 
-```python
+  ```python
 render(request, template_name, context)
-```
+  ```
 
-* 주어진 템플릿을 주어진 컨텍스트 데이터와 결합하고 렌더링 된 텍스트와 함께 `HttpResponse`(응답) 객체를 반환하는 함수
-* request
-  * 응답을 생성하는 데 사용되는 요청 객체
-* template_name
-  * 템플릿의 전체 이름 또는 템플릿 이름의 경로
-* context
-  * 템플릿에서 사용할 데이터 (딕셔너리 타입으로 작성)
+- 주어진 템플릿을 주어진 컨텍스트 데이터와 결합하고 렌더링 된 텍스트와 함께 `HttpResponse`(응답) 객체를 반환하는 함수
+- request
+  - 응답을 생성하는 데 사용되는 요청 객체
+- template_name
+  - 템플릿의 전체 이름 또는 템플릿 이름의 경로
+- context
+  - 템플릿에서 사용할 데이터 (딕셔너리 타입으로 작성)
 
 **Templates**
 
@@ -547,10 +520,9 @@ render(request, template_name, context)
 - Template 파일의 기본 경로
   - app 폴더 안의 templates 폴더
   - `app_name/templates/`
-  
 - 템플릿 폴더 이름은 반드시 **`templates`** 라고 지정해야 함
 
-  ```python
+  ```html
   <!-- 앱/templates/index.html -->
   <!DOCTYPE html>
   <html lang="en">
@@ -566,19 +538,17 @@ render(request, template_name, context)
   </html>
   ```
 
-
 **코드 작성 순서**
 
 - 앞으로 Django에서의 코드 작성은 URL -> View -> Template 순으로 작성
 
 - **"데이터의 흐름 순서"**
 
-  | 작성 순서 |                                                              |
-  | --------- | ------------------------------------------------------------ |
-  | URL       | path('index/', **views.index**)                              |
-  | View      | def `index`(request):<br />    return render(request, '**index.html**') |
-  | Template  | 앱/templates/`index.html`                                    |
-  
+  | 작성 순서 |                                                                      |
+  | --------- | -------------------------------------------------------------------- |
+  | URL       | path('index/', **views.index**)                                      |
+  | View      | def `index`(request):<br /> return render(request, '**index.html**') |
+  | Template  | 앱/templates/`index.html`                                            |
 
 **[참고] 추가 설정**
 
@@ -588,13 +558,13 @@ render(request, template_name, context)
 
   - 이 설정이 적용 되려면 USE_I18N 이 True 활성화 되어 있어야 함
 
-    > http://www.i18nguy.com/unicode/language-identifiers.html
+    > <http://www.i18nguy.com/unicode/language-identifiers.html>
 
     ```python
     # 프로젝트/settings.py
     LANGUAGE_CODE = 'ko-kr'
     ```
-  
+
 - **USE_I18N**
 
   - Django의 번역 시스템을 활성화해야 하는지 여부를 지정
@@ -609,7 +579,7 @@ render(request, template_name, context)
 
 **Django Template Language**
 
-> https://docs.djangoproject.com/en/3.2/ref/templates/builtins/
+> <https://docs.djangoproject.com/en/3.2/ref/templates/builtins/>
 
 - Django template에서 사용하는 built-in template system
 - 조건, 반복, 변수 치환, 필터 등의 기능을 제공
@@ -629,7 +599,7 @@ render(request, template_name, context)
 `{{ variable }}`
 
 - 값을 표현
-- 변수명은 영어, 숫자와 밑줄(_)의 조합으로 구성될 수 있으나 밑줄로는 시작 할 수 없음
+- 변수명은 영어, 숫자와 밑줄(\_)의 조합으로 구성될 수 있으나 밑줄로는 시작 할 수 없음
   - 공백이나 구두점 문자 또한 사용할 수 없음
 - dot(`.`)를 사용하여 변수 속성에 접근할 수 있음
 - render()의 세번째 인자로 `{'key': value}`와 같이 딕셔너리 형태로 넘겨주며, 여기서 정의한 key에 해당하는 문자열이 template에서 사용 가능한 변수명이 됨
@@ -644,7 +614,6 @@ render(request, template_name, context)
 
 - 예시)
   - name 변수를 모두 소문자로 출력 `{{ name|lower }}`
-  
 - 60개의 built-in template filters를 제공
 
 - chained가 가능하며 일부 필터는 인자를 받기도 함 `{{name|truncatewords:30 }}`
@@ -659,46 +628,43 @@ render(request, template_name, context)
       path('dinner/', views.dinner),
   ]
   ```
-  
+
   ```python
   # 앱/views.py
   import random
   
   from django.shortcuts import render
-  
-  
-  def dinner(request):
-      foods = ['족발', '햄버거', '치킨', '초밥',]
-      pick = random.choice(foods)
-      context = {
-          'pick': pick,
-          'foods': foods,
-      }
-      return render(request, 'dinner.html', context)
-  ```
-  
+    def dinner(request):
+        foods = ['족발', '햄버거', '치킨', '초밥',]
+        pick = random.choice(foods)
+        context = {
+            'pick': pick,
+            'foods': foods,
+        }
+        return render(request, 'dinner.html', context)
+
   ```django
-  <!-- 앱/templates/dinner.html -->
-  <!DOCTYPE html>
-  <html lang="en">
-  
-  <head>
-    ...
-  </head>
-  
-  <body>
-    <p>{{ pick }}은 {{ pick|length }}글자</p>
-    <p>{{ foods|join:", "}}</p>
-    <p>메뉴판</p>
-    <ul>
-      {% for food in foods %}
-      <li>{{ food }}</li>
-      {% endfor %}
-    </ul>
-    <a href="/index/">뒤로</a>
-  </body>
-  
-  </html>
+<!-- 앱/templates/dinner.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+</head>
+
+<body>
+<p>{{ pick }}은 {{ pick|length }}글자</p>
+<p>{{ foods|join:", "}}</p>
+<p>메뉴판</p>
+<ul>
+  {% for food in foods %}
+    <li>{{ food }}</li>
+  {% endfor %}
+</ul>
+<a href="/index/">뒤로</a>
+</body>
+
+</html>
   ```
 
 **Tags**
@@ -723,7 +689,7 @@ render(request, template_name, context)
 
 - 한 줄 주석에만 사용할 수 있음 (줄 바꿈이 허용되지 않음)
 
-- 여러 줄 주석은 `{% comment %}`와  `{% endcomment %}` 사이에 입력
+- 여러 줄 주석은 `{% comment %}`와 `{% endcomment %}` 사이에 입력
 
   ```django
   {% comment %}
@@ -747,8 +713,8 @@ render(request, template_name, context)
 
 - 공통으로 사용되는 코드를 만들어 놓고
 
-* 자식(하위)템플릿이 부모 템플릿을 확장한다는 것을 알림
-* 반드시 템플릿 최상단에 작성 되어야 함 (즉, 2개 이상 사용할 수 없음)
+- 자식(하위)템플릿이 부모 템플릿을 확장한다는 것을 알림
+- 반드시 템플릿 최상단에 작성 되어야 함 (즉, 2개 이상 사용할 수 없음)
 
 `{% block content %}{% endblock content %}`
 
@@ -766,20 +732,20 @@ render(request, template_name, context)
   <!-- 앱/templates/base.html -->
   <!DOCTYPE html>
   <html lang="en">
-  
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- bootstrap CDN 작성 -->
     <title>Document</title>
   </head>
-  
+
   <body>
     {% block content %}
     {% endblock content %}
     <!-- bootstrap CDN 작성 -->
   </body>
-  
+
   </html>
   ```
 
@@ -797,13 +763,13 @@ render(request, template_name, context)
 
 **추가 템플릿 경로 추가하기**
 
-* `base.html`의 위치를 앱 안의 templates 디렉토리가 아닌 프로젝트 최상단의 templates 디렉토리 안에 위치하고 싶다면 어떻게 해야 할까?
+- `base.html`의 위치를 앱 안의 templates 디렉토리가 아닌 프로젝트 최상단의 templates 디렉토리 안에 위치하고 싶다면 어떻게 해야 할까?
 
-* 기본 template 경로가 아닌 다른 경로를 추가하기위해 다음과 같은 코드를 작성
+- 기본 template 경로가 아닌 다른 경로를 추가하기위해 다음과 같은 코드를 작성
 
-* app_name/templates/ 디렉토리 경로 외 추가 경로를 설정한 것
+- app_name/templates/ 디렉토리 경로 외 추가 경로를 설정한 것
 
-  ``` python
+  ```python
   # 프로젝트/settings.py
   TEMPLATES = [
       {
@@ -827,7 +793,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
   - 운영체제별로 파일 경로 표기법이 다르기 때문에 어떤 운영체제에서 실행되더라도 각 운영체제 표기법에 맞게 해석될 수 있도록 하기 위해 사용
 
-    > https://docs.python.org/ko/3.9/library/pathlib.html#module-pathlib
+    > <https://docs.python.org/ko/3.9/library/pathlib.html#module-pathlib>
 
 ```python
 # 프로젝트/urls.py
@@ -857,7 +823,7 @@ urlpatterns = [
 **HTML `<form>` element**
 
 - 데이터가 전송되는 방법을 정의
-- 웹에서 사용자 정보를 입력하는 여러 방식(text, button, submit  등)을 제공하고, **사용자로부터 할당된 데이터를 서버로 전송**하는 역할을 담당
+- 웹에서 사용자 정보를 입력하는 여러 방식(text, button, submit 등)을 제공하고, **사용자로부터 할당된 데이터를 서버로 전송**하는 역할을 담당
 - "데이터를 action 어디로 어떤 method 방식으로 보낼지"
 - 핵심 속성
   - action
@@ -873,14 +839,13 @@ urlpatterns = [
 
    - 만약 이 속성을 지정하지 않으면 데이터는 현재 form이 있는 페이지의 URL로 보내짐
 
-
 2. **method**
 
    - 데이터를 어떻게 보낼 것인지 정의
 
    - 입력 데이터의 HTTP request methods를 지정
 
-   -  HTML form 데이터는 오직 2가지 방법으로만 전송 할 수 있는데 바로 GET 방식과 POST 방식
+   - HTML form 데이터는 오직 2가지 방법으로만 전송 할 수 있는데 바로 GET 방식과 POST 방식
 
    ```python
    # 프로젝트/urls.py
@@ -892,24 +857,21 @@ urlpatterns = [
        path('throw', view.throw),
    ]
    ```
-   
+
    ```python
    # 앱/views.py
    from django.shortcuts import render
-   
-   
-   def throw(request):
-       return render(request, 'throw.html')
-   ```
-   
+       def throw(request):
+           return render(request, 'throw.html')
+
    ```django
-   <!-- 앱/templates/throw.html -->
-   {% extends 'base.html' %}
-   {% block content %}
-   <h1>Throw</h1>
-   <form action="#" method="#">
-   </form>
-   {% endblock content %}
+<!-- 앱/templates/throw.html -->
+{% extends 'base.html' %}
+{% block content %}
+<h1>Throw</h1>
+<form action="#" method="#">
+</form>
+{% endblock content %}
    ```
 
 **HTML `<input>` element**
@@ -928,7 +890,7 @@ urlpatterns = [
   - form을 통해 데이터를 submit 제출했을 때 name 속성에 설정된 값을 서버로 전송하고, 서버는 name 속성에 설정된 값을 통해 사용자가 입력한 데이터 값에 접근할 수 있음
 
   - 주요 용도는 GET/POST 방식으로 서버에 전달하는 파라미터(name은 key, value는 value)로 매핑하는 것
-    - ​	GET 방식에서는 URL에서 `‘?key=value&key=value/’` 형식으로 데이터를 전달
+    -  GET 방식에서는 URL에서 `‘?key=value&key=value/’` 형식으로 데이터를 전달
 
   ```django
   <!-- 앱/templates/throw.html -->
@@ -946,8 +908,8 @@ urlpatterns = [
 **HTTP request methods**
 
 - HTTP
-  - HTML 문서와 같은 리소스(데이터, 자원)들을 가져올 수 있도록 해주는 프로토콜(규칙, 규약)
 
+  - HTML 문서와 같은 리소스(데이터, 자원)들을 가져올 수 있도록 해주는 프로토콜(규칙, 규약)
 
 - 웹에서 이루어지는 모든 데이터 교환의 기초
 
@@ -960,18 +922,16 @@ urlpatterns = [
 - HTTP Method 예시
   - GET, POST, PUT, DELETE
 
-
 **GET**
 
 - 서버로부터 정보를 조회하는 데 사용
-  - 즉, 서버에게 리소스를 요청하기 위해 사용
 
+  - 즉, 서버에게 리소스를 요청하기 위해 사용
 
 - 데이터를 가져올 때만 사용해야 함
 
 - 데이터를 서버로 전송할 때 Query String Parameters를 통해 전송
   - 데이터는 URL에 포함되어 서버로 보내짐
-
 
 **GET 메서드 작성**
 
@@ -997,16 +957,16 @@ urlpatterns = [
 - 사용자가 입력 데이터를 전달하는 방법 중 하나로, url 주소에 데이터를 파라미터를 통해 넘기는 것
 
 - 이러한 문자열은 &(앰퍼샌드)로 연결된 key=value 쌍으로 구성되며 기본 URL과 ?(물음표)로 구분됨
-  - http://host:port/path `?key=value&key=value`
 
+  - <http://host:port/path> `?key=value&key=value`
 
 - Query String이라고도 함
 
 - 정해진 주소 이후에 물음표를 쓰는 것으로 Query String이 시작함을 알림
 
 - “key=value”로 필요한 파라미터의 값을 적음
-  - “=”로 key와 value가 구분됨
 
+  - “=”로 key와 value가 구분됨
 
 - 파라미터가 여러 개일 경우 “&”를 붙여 여러 개의 파라미터를 넘길 수 있음
 
@@ -1152,7 +1112,7 @@ def catch(request):
 
 - 페이지가 요청되면 Django는 요청에 대한 메타데이터를 포함하는 HttpRequest object를 생성
 - 그리고 해당하는 적절한 view 함수를 로드하고 HttpRequest를 첫번째 인자로 전달
-- 마지막으로 view 함수는 HttpRespones object를 반환
+- 마지막으로 view 함수는 HttpResponse object를 반환
 
 ## 6. Django URLs
 
@@ -1170,15 +1130,13 @@ def catch(request):
 
   - 그러나 모든 프레임워크가 이렇게 동작하는 것은 아님
 
+- Django의 url 설계 철학을 통해 먼저 살펴보면 다음과 같이 설명함
 
--  Django의 url 설계 철학을 통해 먼저 살펴보면 다음과 같이 설명함
+"기술적인 측면에서, `foo.com/bar` 와 `foo.com/bar/`는 서로 다른 URL이다."
 
-  "기술적인 측면에서, `foo.com/bar` 와 `foo.com/bar/`는 서로 다른 URL이다."
+- 검색 엔진 로봇이나 웹 트래픽 분석 도구에서는 그 둘을 서로 다른 페이지로 봄
 
-  - 검색 엔진 로봇이나 웹 트래픽 분석 도구에서는 그 둘을 서로 다른 페이지로 봄
-
-  - 그래서 Django는 URL을 정규화하여 검색 엔진 로봇이 혼동하지 않게 해야 함
-
+- 그래서 Django는 URL을 정규화하여 검색 엔진 로봇이 혼동하지 않게 해야 함
 
 **[참고] URL 정규화**
 
@@ -1217,7 +1175,7 @@ URL의 일부를 변수로 지정하여 view 함수의 인자로 넘길 수 있�
 2. int
    - 0 또는 양의 정수와 매치
 
-``` python
+```python
 # 앱/urls.py
 from django.urls import path
 
@@ -1293,7 +1251,7 @@ def hello(request, name):
 
 **Including other URLconfs**
 
-- urlpattern은 언제든지 다른 URLconf 모듈을 include 포함 할 수 있음
+- urlpatterns은 언제든지 다른 URLconf 모듈을 include 포함 할 수 있음
 
 - **include되는 앱의 url.py에 urlpatterns가 작성되어 있지 않다면 에러가 발생**
 
@@ -1303,21 +1261,21 @@ def hello(request, name):
   # 프로젝트/urls.py
   from django.contrib import admin
   from django.urls import include, path
-  
+
   urlpatterns = [
       path('admin/', admin.site.urls),
       path('articles/', include('articles.urls')),
       path('pages/', include('pages.urls')),
   ]
   ```
-  
-- http://127.0.0.1:8000 **/index/** -> http://127.0.0.1:8000 **`/articles/index/`**
+
+- <http://127.0.0.1:8000> **/index/** -> <http://127.0.0.1:8000> **`/articles/index/`**
 
 **include()**
 
 - 다른 URLconf(app1/urls.py)들을 참조할 수 있도록 돕는 함수
 
-- 함수 include()를 만나게 되면 URL의 그 시점까지 일치하는 부분을 잘라내고, 
+- 함수 include()를 만나게 되면 URL의 그 시점까지 일치하는 부분을 잘라내고,
 
   남은 문자열 부분을 후속 처리를 위해 include된 URLconf로 전달
 
@@ -1377,4 +1335,3 @@ Django는 URL에 이름을 지정하는 방법을 제공함으로써 view 함수
 <!-- 앱/templates/dinner.html, 앱/templates/greeting.html -->
 <a href="{% url 'index' %}">뒤로</a>
 ```
-

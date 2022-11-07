@@ -13,7 +13,8 @@
    - [Data in components](#data-in-components)
    - [Pass Props](#pass-props)
    - [Emit Event](#emit-event)
-* [finish](#finish)
+
+- [finish](#finish)
 
 # Vue CLI
 
@@ -44,7 +45,7 @@
 - 설치
 
   ```bash
-  $ npm install -g @vue/cli
+  npm install -g @vue/cli
   ```
 
 - 프로젝트 생성
@@ -52,7 +53,7 @@
   - vscode terminal에서 진행
 
   ```bash
-  $ vue create vue-cli
+  vue create vue-cli
   ```
 
 - Vue 버전 선택(Vue 2)
@@ -62,13 +63,13 @@
   - 프로젝트 디렉토리로 이동
 
     ```bash
-    $ cd vue-cli
+    cd vue-cli
     ```
 
   - 프로젝트 실행
 
     ```bash
-    $ npm run serve
+    npm run serve
     ```
 
 ### Vue CLI 프로젝트 구조
@@ -167,9 +168,9 @@
 
 - 하나의 컴포넌트를 만들어주면 반복되는 UI를 쉽게 처리할 수 있음
 
-  > https://v2.vuejs.org/v2/guide/components.html#Organizing-Components
+  > <https://v2.vuejs.org/v2/guide/components.html#Organizing-Components>
 
-**Componet based architecture 특징**
+**Component based architecture 특징**
 
 - 관리가 용이
   - 유지/보수 비용 감소
@@ -208,15 +209,14 @@
   - HTML의 body 부분
   - 눈으로 보여지는 요소 작성
   - 다른 컴포넌트를 HTML 요소처럼 추가 가능
-  
 - JavaScript 스크립트
   - JavaScript 코드가 작성되는 곳
   - 컴포넌트 정보, 데이터, 메서드 등 vue 인스턴스를 구성하는 대부분이 작성 됨
-  
 - CSS 스타일
+
   - CSS가 작성되며 컴포넌트의 스타일을 담당
-  
-    >  https://forum.vuejs.org/t/use-google-font-into-my-project/12331
+
+    > <https://forum.vuejs.org/t/use-google-font-into-my-project/12331>
 
 **Vue component 구조 정리**
 
@@ -296,19 +296,20 @@ export default {
 ```
 
 1. 불러오기
+
    - **`import {instance name} from {위치}`**
-   
+
    - instance name은 instance 생성 시 작성한 name
-   
+
    - `@` 는 src 의 shortcut
-   
+
      ```json
      "compilerOptions": {
        "paths": {
          "@/*": [
            "src/*"
      ```
-   
+
    - `.vue` 생략 가능
 
 ```vue
@@ -504,7 +505,7 @@ export default {
 
 - 컴포넌트를 문서화할 뿐만 아니라, 잘못된 타입이 전달하는 경우 브라우저의 자바스크립트 콘솔에서 사용자에게 경고
 
-  > https://v2.vuejs.org/v2/guide/components-props.html#Prop-Validation
+  > <https://v2.vuejs.org/v2/guide/components-props.html#Prop-Validation>
 
 **MyComponent to MyComponentItem**
 
@@ -564,19 +565,18 @@ export default {
     <h1>This is my component</h1>
     <MyComponentItem
       static-props="component에서 componentItem으로"
-      v-bind:dynamic-props="dynamicProps"
-      /><!-- Dynamic props -->
+      v-bind:dynamic-props="dynamicProps" /><!-- Dynamic props -->
   </div>
 </template>
 
 <script>
 export default {
   // Dynamic props
-  data : function () {
+  data: function () {
     return {
-      dynamicProps : "It's in data"
+      dynamicProps: "It's in data",
     }
-  }
+  },
 }
 </script>
 ```
@@ -588,7 +588,7 @@ export default {
     <h3>This is componentItem</h3>
     <p>{{ staticProps }}</p>
     <p>{{ dynamicProps }}</p>
-     <!-- Dynamic props -->
+    <!-- Dynamic props -->
   </div>
 </template>
 
@@ -616,11 +616,11 @@ data: function () {
 
 - 각 vue 인스턴스는 같은 data 객체를 공유하므로 새로운 data 객체를 return 반환하여 사용해야 함
 
-  > https://v2.vuejs.org/v2/guide/components.html#data-Must-Be-a-Function
+  > <https://v2.vuejs.org/v2/guide/components.html#data-Must-Be-a-Function>
 
 **Pass Props**
 
-- `v-bind:dynaimc-props="dynamicProps"` 는
+- `v-bind:dynamic-props="dynamicProps"` 는
 
   앞의 key값(`dynamic-props`) 이란 이름으로
 
@@ -637,8 +637,7 @@ data: function () {
     <h1>This is my component</h1>
     <MyComponentItem
       static-props="component에서 componentItem으로"
-      v-bind:my-props="dynamicProps"
-    />
+      v-bind:my-props="dynamicProps" />
   </div>
 </template>
 ```
@@ -680,14 +679,13 @@ export default {
 
 - 부모 속성이 업데이트되면 자식으로 흐르지만 반대 방향은 아님
   - 부모 컴포넌트가 업데이트될 때마다 자식 컴포넌트의 모든 prop 들이 최신 값으로 새로고침 됨
-  
 - 목적
 
   - 하위 컴포넌트가 실수로 상위 컴포넌트 상태를 변경하여 앱의 데이터 흐름을 이해하기 힘들게 만드는 것을 방지
 
 - 하위 컴포넌트에서 prop 를 변경하려고 시도해서는 안되며 그렇게 하면 Vue 는 콘솔에서 경고를 출력함
 
-  > https://v2.vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow
+  > <https://v2.vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow>
 
   > All props form a **one-way-down binding** between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent’s state, which can make your app’s data flow harder to understand.
 
@@ -712,9 +710,7 @@ export default {
 ```vue
 <!-- MyComponentItem.vue -->
 <template>
-  <div>
-    <button v-on:click="childToParent">클릭</button><br />
-  </div>
+  <div><button v-on:click="childToParent">클릭</button><br /></div>
 </template>
 
 <script>
@@ -736,9 +732,7 @@ export default {
 <template>
   <div class="border">
     <h1>This is my component</h1>
-    <MyComponentItem 
-      v-on:child-to-parent="parentGetEvent" 
-      />
+    <MyComponentItem v-on:child-to-parent="parentGetEvent" />
   </div>
 </template>
 
@@ -766,9 +760,7 @@ export default {
 ```vue
 <!-- MyComponentItem.vue -->
 <template>
-  <div>
-    <button v-on:click="childToParent">클릭</button><br />
-  </div>
+  <div><button v-on:click="childToParent">클릭</button><br /></div>
 </template>
 
 <script>
@@ -789,9 +781,7 @@ export default {
 <template>
   <div class="border">
     <h1>This is my component</h1>
-    <MyComponentItem 
-      v-on:child-to-parent="parentGetEvent" 
-      />
+    <MyComponentItem v-on:child-to-parent="parentGetEvent" />
   </div>
 </template>
 
@@ -817,7 +807,7 @@ export default {
 
    - 이벤트에 데이터(`child data`)를 함께 전달
 
-3. 부모 컴포넌트는 자식 컴포넌트의 이벤트(`chilc-to-parent`)를 청취하여
+3. 부모 컴포넌트는 자식 컴포넌트의 이벤트(`child-to-parent`)를 청취하여
 
    연결된 핸들러 함수(`parentGetEvent`) 호출,
 
@@ -893,11 +883,7 @@ export default {
 <!-- MyComponentItem.vue -->
 <template>
   <div>
-    <input
-      type="text"
-      v-model="childInputData"
-      v-on:keyup.enter="childInput"
-    />
+    <input type="text" v-model="childInputData" v-on:keyup.enter="childInput" />
   </div>
 </template>
 
@@ -924,9 +910,7 @@ export default {
 <template>
   <div class="border">
     <h1>This is my component</h1>
-    <MyComponentItem 
-      v-on:child-input="getDynamicData" 
-      />
+    <MyComponentItem v-on:child-input="getDynamicData" />
   </div>
 </template>
 
@@ -969,9 +953,9 @@ export default {
 
 - `:` 을 통해 전달된 인자에 따라 특별한 modifiers (수식어)가 있을 수 있음
 
-  > https://v2.vuejs.org/v2/api/#v-on
+  > <https://v2.vuejs.org/v2/api/#v-on>
   >
-  > https://v2.vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components
+  > <https://v2.vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components>
 
   - **`.native`** - listen for a **native** event on the root element of component.
 
@@ -1076,8 +1060,7 @@ export default {
     <AppChild
       v-bind:app-data="appData"
       v-bind:parent-data="parentData"
-      v-on:child-data="getChild"
-    />
+      v-on:child-data="getChild" />
   </div>
 </template>
 
@@ -1135,8 +1118,7 @@ export default {
     <AppParent
       v-bind:app-data="appData"
       v-on:parent-data="getParent"
-      v-on:send-child="getChild"
-    />
+      v-on:send-child="getChild" />
   </div>
 </template>
 

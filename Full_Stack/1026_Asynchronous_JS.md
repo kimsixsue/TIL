@@ -27,7 +27,6 @@ JavaScript에서의 비동기 처리
 - 요청과 응답을 동기식으로 처리한다면
   - 요청을 보내고 응답이 올때까지 기다렸다가 다음 로직을 처리
 
-
 ### Asynchronous 비동기
 
 - 작업을 시작한 후 **결과를 기다리지 않고** 다음 작업을 처리하는 것 (병렬적 수행)
@@ -35,26 +34,26 @@ JavaScript에서의 비동기 처리
 
 ```js
 function slowRequest(callBack) {
-  console.log('1. 오래 걸리는 작업 시작 ...')
+  console.log("1. 오래 걸리는 작업 시작 ...")
   setTimeout(function () {
     callBack()
   }, 3000)
 }
 
 function myCallBack() {
-  console.log('2. 콜백함수 실행됨')
+  console.log("2. 콜백함수 실행됨")
 }
 
 slowRequest(myCallBack)
-console.log('3. 다른 작업 실행')
+console.log("3. 다른 작업 실행")
 
-console.log('Hi')
+console.log("Hi")
 
 setTimeout(function () {
-  console.log('KIM')
+  console.log("KIM")
 }, 0)
 
-console.log('Bye')
+console.log("Bye")
 ```
 
 **Asynchronous 비동기를 사용하는 이유**
@@ -68,6 +67,7 @@ console.log('Bye')
 **Single Thread 언어, JavaScript**
 
 - **JavaScript는 한번에 하나의 일만 수행할 수 있는 Single Thread 언어**로 동시에 여러 작업을 처리할 수 없음
+
   - [참고] Thread
     - 작업을 처리할 때 실제로 작업을 수행하는 주체로, multi-thread라면 업무를 수행할 수 있는 주체가 여러 개라는 의미
 
@@ -124,9 +124,9 @@ JavaScript는 한 번에 하나의 작업을 수행하는 Single Thread 언어�
 - 확장 가능하나 인터페이스와 쉽게 사용할 수 있는 비동기 통신 기능을 제공
 - node 환경은 npm을 이용해서 설치 후 사용할 수 있고, browser 환경은 CDN을 이용해서 사용할 수 있음
 
-> https://axios-http.com/kr/docs/intro
+> <https://axios-http.com/kr/docs/intro>
 >
-> https://github.com/axios/axios
+> <https://github.com/axios/axios>
 
 ### Axios 기본 구조
 
@@ -144,10 +144,9 @@ axios.get('요청할 URL') // method를 지정하지 않으면 GET방식이 기�
 - `catch`를 이용해서 실패하면 수행할 로직을 작성
 
 ```js
-axios.get('https://api.example.com/data')
-	.then(function (response) {
-		console.log(response)
-	})
+axios.get("https://api.example.com/data").then(function (response) {
+  console.log(response)
+})
 ```
 
 **고양이 사진 가져오기 (동기)**
@@ -199,28 +198,29 @@ axios({ // Promise 객체를 리턴하는 axios 라이브러리
 <button>야옹아 이리온</button>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-console.log('고양이는 야옹')
-const catImageSearchURL = 'https://api.thecatapi.com/v1/images/search'
-const btn = document.querySelector('button')
-// Promise 객체를 리턴하는 axios 라이브러리
-btn.addEventListener('click', function () {
-  axios({ // 권장 표기 방식
-    method: 'get',
-    url: catImageSearchURL,
+  console.log("고양이는 야옹")
+  const catImageSearchURL = "https://api.thecatapi.com/v1/images/search"
+  const btn = document.querySelector("button")
+  // Promise 객체를 리턴하는 axios 라이브러리
+  btn.addEventListener("click", function () {
+    axios({
+      // 권장 표기 방식
+      method: "get",
+      url: catImageSearchURL,
+    })
+      .then((response) => {
+        imgElem = document.createElement("img")
+        return imgElem
+      })
+      .then((imgElem) => {
+        imgElem.setAttribute("src", response.data[0].url)
+        document.body.appendChild(imgElem)
+      })
+      .catch((error) => {
+        console.log("실패했다옹")
+      })
+    console.log("야옹야옹")
   })
-    .then((response) => {
-      imgElem = document.createElement('img')
-      return imgElem
-    })
-    .then((imgElem) => {
-      imgElem.setAttribute('src', response.data[0].url)
-      document.body.appendChild(imgElem)
-    })
-    .catch((error) => {
-      console.log('실패했다옹')
-    })
-  console.log('야옹야옹')
-})
 </script>
 ```
 
@@ -230,27 +230,28 @@ btn.addEventListener('click', function () {
 <button id="dog-btn">멍멍아 이리온</button>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-const dogImageSearchURL = 'https://dog.ceo/api/breeds/image/random'
-const dogBtn = document.querySelector('#dog-btn')
-// Promise 객체를 리턴하는 axios 라이브러리
-dogBtn.addEventListener('click', function (event) {
-  axios({ // 권장 표기 방식
-    method: 'get',
-    url: dogImageSearchURL
+  const dogImageSearchURL = "https://dog.ceo/api/breeds/image/random"
+  const dogBtn = document.querySelector("#dog-btn")
+  // Promise 객체를 리턴하는 axios 라이브러리
+  dogBtn.addEventListener("click", function (event) {
+    axios({
+      // 권장 표기 방식
+      method: "get",
+      url: dogImageSearchURL,
+    })
+      .then((response) => {
+        const imgSrc = response.data.message
+        return imgSrc
+      })
+      .then((imgSrc) => {
+        const imgTag = document.createElement("img")
+        imgTag.setAttribute("src", imgSrc)
+        document.body.appendChild(imgTag)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   })
-    .then((response) => {
-      const imgSrc = response.data.message
-      return imgSrc
-    })
-    .then((imgSrc) => {
-      const imgTag = document.createElement('img')
-      imgTag.setAttribute('src', imgSrc)
-      document.body.appendChild(imgTag)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-})
 </script>
 ```
 
@@ -271,7 +272,7 @@ dogBtn.addEventListener('click', function (event) {
 
   - 콜백 함수를 사용하자
 
-### Callback Function 콜백 함수 
+### Callback Function 콜백 함수
 
 **콜백 함수란?**
 
@@ -279,12 +280,12 @@ dogBtn.addEventListener('click', function (event) {
 
 - 비동기에만 사용되는 함수가 아니며 동기, 비동기 상관없이 사용 가능
 
-- 시간이 걸리는 **비동기 작업이 완료된 후 실행할 작업을 명시하는 데 사용**되는 콜백 함수를 **asynchonous callback 비동기 콜백**이라 부름
+- 시간이 걸리는 **비동기 작업이 완료된 후 실행할 작업을 명시하는 데 사용**되는 콜백 함수를 **asynchronous callback 비동기 콜백**이라 부름
 
   ```js
-  const btn = document.querySelector('button')
-  btn.addEventListener('click', () => {
-    alert('Completed')
+  const btn = document.querySelector("button")
+  btn.addEventListener("click", () => {
+    alert("Completed")
   })
   ```
 
@@ -318,6 +319,7 @@ dogBtn.addEventListener('click', function (event) {
 - "작업이 끝나면 실행 시켜줄게"라는 promise 약속
 - **비동기 작업의 완료 또는 실패를 나타내는 객체**
 - Promise 기반의 클라이언트가 `Axios` 라이브러리
+
   - "Promise based HTTP client for the browser and node.js"
   - 성공에 대한 약속 `then()`
   - 실패에 대한 약속 `catch()`
@@ -325,11 +327,9 @@ dogBtn.addEventListener('click', function (event) {
 - `then(callback)`
   - 요청한 작업이 성공하면 callback 실행
   - callback은 **이전 작업의 성공 결과를 인자로 전달 받음**
-  
 - `catch(callback)`
   - then()이 하나라도 실패하면 callback 실행
   - callback은 이전 작업의 실패 객체를 인자로 전달 받음
-  
 - then과 catch 모두 항상 promise 객체를 반환
 
   즉 계속해서 **chaining을 할 수 있음**
@@ -353,21 +353,21 @@ axios.get('요청할 URL') // Promise 객체 return
 ```js
 // promise 방식
 axios({
-  method: 'get',
+  method: "get",
   url: URL,
 })
-  .then(response => {
+  .then((response) => {
     console.log(response)
     return response.data
   })
-  .then(response => {
+  .then((response) => {
     console.log(response)
     return response.title
   })
-  .then(response => {
+  .then((response) => {
     console.log(response)
   })
-  .catch(error => {
+  .catch((error) => {
     console.log(error)
   })
 ```
@@ -394,7 +394,7 @@ axios({
 
 ### 비동기 적용하기
 
-> https://axios-http.com/kr/docs/intro
+> <https://axios-http.com/kr/docs/intro>
 
 **follow 팔로우**
 
@@ -404,7 +404,7 @@ axios({
 <!-- base.html -->
 
 <body>
-  
+
 {% block script %}
 {% endblock script %}
 </body>
@@ -430,7 +430,7 @@ axios({
 <!-- accounts/profile.html -->
 
 <form id="follow-form">
-  
+
 </form>
 
 <script>
@@ -480,7 +480,7 @@ const form = document.querySelector("#follow-form")
 form.addEventListener("submit", function (event) {
   event.preventDefault()
   const userId = event.target.dataset.userId
-  
+
     axios({
       method: "post", // 요청을 생성할때 사용되는 메소드
       url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
@@ -495,7 +495,7 @@ form.addEventListener("submit", function (event) {
 
 > [https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/data-\*](https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/data-*)
 >
-> https://developer.mozilla.org/ko/docs/Learn/HTML/Howto/Use_data_attributes
+> <https://developer.mozilla.org/ko/docs/Learn/HTML/Howto/Use_data_attributes>
 
 - data-test-value 라는 이름의 특성을 지정했다면
 
@@ -506,18 +506,17 @@ form.addEventListener("submit", function (event) {
   - 세미콜론을 포함해서는 안됨
   - 대문자를 포함해서는 안됨
 
-
-2. **csrktoken 보내기**
+2. **csrftoken 보내기**
 
 ```html
 <form id="follow-form" data-user-id="1">
-  <input type="hidden" name="crftmiddlewaretoke" value="">
+  <input type="hidden" name="csrfmiddlewaretoken" value="" />
 </form>
 ```
 
 - hidden 타입으로 숨겨져있는 csrf 값을 가진 input 태그를 선택해야 함
 
-> https://docs.djangoproject.com/en/3.2/ref/csrf/#acquiring-the-token-if-csrf-use-sessions-or-csrf-cookie-httponly-is-true
+> <https://docs.djangoproject.com/en/3.2/ref/csrf/#acquiring-the-token-if-csrf-use-sessions-or-csrf-cookie-httponly-is-true>
 
 ```django
 <!-- accounts/profile.html -->
@@ -529,9 +528,9 @@ const csrftoken = document.querySelector(
 </script>
 ```
 
-- AJAX로 csrfktoken을 보내는 방법
+- AJAX로 csrftoken을 보내는 방법
 
-> https://docs.djangoproject.com/en/3.2/ref/csrf/#setting-the-token-on-the-ajax-request
+> <https://docs.djangoproject.com/en/3.2/ref/csrf/#setting-the-token-on-the-ajax-request>
 
 ```django
 <!-- accounts/profile.html -->
@@ -562,7 +561,7 @@ form.addEventListener("submit", function (event) {
 
 ```python
 # accounts/views.py
-  
+
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse  # JsonResponse
 from django.shortcuts import redirect
@@ -640,7 +639,7 @@ axios({
 </div>
 
 <script>
-  
+
 axios({
   method: "post", // 요청을 생성할때 사용되는 메소드
   url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
@@ -650,7 +649,7 @@ axios({
   },
 })
 .then((response) => {
-  
+
   const followersCountTag = document.querySelector("#followers-count")
   const followingsCountTag = document.querySelector("#followings-count")
 })
@@ -696,7 +695,7 @@ def follow(request, user_pk):
 <!-- accounts/profile.html -->
 
 <script>
-  
+
 axios({
   method: "post", // 요청을 생성할때 사용되는 메소드
   url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
@@ -705,7 +704,7 @@ axios({
   },
 })
 .then((response) => {
-  
+
   const followersCountTag = document.querySelector("#followers-count")
   const followingsCountTag = document.querySelector("#followings-count")
   followersCountTag.innerText = followersCount
@@ -719,7 +718,7 @@ axios({
 ```django
 <!-- accounts/profile.html -->
 
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block content %}
 <h1>{{ person.username }}님의 프로필</h1>
@@ -733,7 +732,7 @@ axios({
 {% if user != person %}
 <div>
   <form class="follow-form" data-user-id="{{ person.pk }}">
-    {% csrf_token %} 
+    {% csrf_token %}
     {% if user in followers %}
     <input id="follow-btn" type="submit" value="언팔로우" />
     {% else %}
@@ -741,9 +740,9 @@ axios({
     {% endif %}
   </form>
 </div>
-{% endif %} 
+{% endif %}
 {% endwith %}
-{% endblock content %} 
+{% endblock content %}
 
 {% block script %}
 <script>
@@ -823,7 +822,7 @@ def follow(request, user_pk):
 ```django
 <!-- articles/index.html -->
 
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block content %}
 <div class="d-flex">
@@ -832,7 +831,7 @@ def follow(request, user_pk):
   <a href="{% url 'articles:create' %}">CREATE</a>
   {% else %}
   <a href="{% url 'accounts:login' %}">[새 글을 작성하려면 로그인하세요.]</a>
-  {% endif %}  
+  {% endif %}
 </div>
 <hr />
 
@@ -848,7 +847,7 @@ def follow(request, user_pk):
 
 <div>
   <form class="like-forms" data-article-id="{{ article.pk }}">
-    {% csrf_token %} 
+    {% csrf_token %}
     {% if request.user in article.like_users.all %}
     <button id="like-{{ article.pk }}">좋아요 취소</button>
     {% else %}
@@ -862,8 +861,8 @@ def follow(request, user_pk):
 
 <a href="{% url 'articles:detail' article.pk %}">상세 페이지</a>
 <hr />
-{% endfor %} 
-{% endblock content %} 
+{% endfor %}
+{% endblock content %}
 
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -887,7 +886,7 @@ forms.forEach((form) => { // 이벤트 리스너를 달아준다.
       // 사용자 지정 헤더
       headers: { "X-CSRFToken": csrftoken }, // csrf token 값을 header로 전달
     })
-      .then((response) => { // response.data 에는 좋아요 눌렸는지 여부를 확인할 수 있는 data가 있음  
+      .then((response) => { // response.data 에는 좋아요 눌렸는지 여부를 확인할 수 있는 data가 있음
       const isLiked = response.data.is_liked
       const likeBtn = document.querySelector(`#like-${articleId}`)
       // data 를 이용해서 좋아요가 눌렸는지 DOM 조작을 통해 수정

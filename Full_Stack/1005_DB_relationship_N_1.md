@@ -1,46 +1,27 @@
 [DB relationship N-1](#db-relationship-n-1)
 
 1. [A many-to-one relationship](#1-a-many-to-one-relationship)
-
-   + [Intro](#intro)
-
-   + [Foreign Key](#foreign-key)
-
+   - [Intro](#intro)
+   - [Foreign Key](#foreign-key)
 2. [N-1 (Comment - Article)](#2-n-1-comment---article)
-   + [Django Relationship fields](#django-relationship-fields)
-   
-   + [Comment Model](#comment-model)
-   
-   + [Related manager](#related-manager)
-   
-   + [Comment 1](#comment-1)
-   
-   + [Comment 2](#comment-2)
-   
+   - [Django Relationship fields](#django-relationship-fields)
+   - [Comment Model](#comment-model)
+   - [Related manager](#related-manager)
+   - [Comment 1](#comment-1)
+   - [Comment 2](#comment-2)
 3. [N-1 (Article - User)](#3-n-1-article---user)
-   + [Referencing the User model](#referencing-the-user-model)
-   
-   + [model relationship](#model-relationship)
-   
-   + [CREATE](#create)
-   
-   + [DELETE](#delete)
-   
-   + [UPDATE](#update)
-   
-   + [READ](#read)
-   
+   - [Referencing the User model](#referencing-the-user-model)
+   - [model relationship](#model-relationship)
+   - [CREATE](#create)
+   - [DELETE](#delete)
+   - [UPDATE](#update)
+   - [READ](#read)
 4. [N-1 (Comment - User)](#4-n-1-comment---user)
-
-   + [model relationship](#model-relationship-1)
-
-   + [CREATE](#create-1)
-
-   + [READ](#read-1)
-
-   + [DELETE](#delete-1)
-
-   + [is_authenticated](#is_authenticated)
+   - [model relationship](#model-relationship-1)
+   - [CREATE](#create-1)
+   - [READ](#read-1)
+   - [DELETE](#delete-1)
+   - [is_authenticated](#is_authenticated)
 
 # DB relationship N-1
 
@@ -102,7 +83,7 @@
 3. ManyToManyField()
    - A many-to-many relationship
 
-**`ForeignKey`(`to`, `on_delete`, `**options`)**
+**`ForeignKey`(`to`, `on_delete`, `**options`)\*\*
 
 - A many-to-one relationship을 담당하는 Django의 모델 필드 클래스
 
@@ -114,7 +95,7 @@
      - 어떤 모델 클래스와 관계를 가질건지 (부모 클래스)
   2. **on_delete** 옵션
 
-  > https://docs.djangoproject.com/en/3.2/ref/models/fields/#foreignkey
+  > <https://docs.djangoproject.com/en/3.2/ref/models/fields/#foreignkey>
 
 ### Comment Model
 
@@ -150,7 +131,7 @@ class Comment(models.Model):  # 댓글 N:1 글
 - models.py에서 모델에 대한 수정사항이 발생했기 때문에 migration 과정을 진행
 
   ```bash
-  $ python manage.py makemigrations
+  python manage.py makemigrations
   ```
 
 - 마이그레이션 파일 **0002_comment.py** 생성 확인
@@ -158,7 +139,7 @@ class Comment(models.Model):  # 댓글 N:1 글
 - migrate 진행
 
   ```bash
-  $ python manage.py migrate
+  python manage.py migrate
   ```
 
 - migrate 후 Comment 모델 클래스로 인해 생성된 테이블 확인
@@ -171,7 +152,7 @@ class Comment(models.Model):  # 댓글 N:1 글
 - shell_plus 실행
 
   ```bash
-  $ python manage.py shell_plus
+  python manage.py shell_plus
   ```
 
 1. 댓글 생성
@@ -179,49 +160,49 @@ class Comment(models.Model):  # 댓글 N:1 글
    ```bash
    # Comment 클래스의 인스턴스 comment 생성
    comment = Comment()
-   
+
    # 인스턴스 변수 저장
    comment.content = 'first comment'
-   
+
    # DB에 댓글 저장
    comment.save()
-   
+
    # 에러 발생
    django.db.utils.IntegrityError: NOT NULL constraint failed: articles_comment.article_id
    # articles_comment 테이블의 ForeignKeyField, article_id 값이 저장시 누락되었기 때문
-   
+
    # 게시글 생성 및 확인
    article = Article.objects.create(title='title', content='content')
    article
    => <article: title>
-   
+
    # 외래 키 데이터 입력
    # 다음과 같이 article 객체 자체를 넣을 수 있음
    comment.article = article
-   
+
    # DB에 댓글 저장 및 확인
    comment.save()
-   comemnt
+   comment
    => <Comment: first comment>
    ```
 
-2.  댓글 속성 값 확인
+2. 댓글 속성 값 확인
 
-   ```bash
-   comment.pk
-   => 1
-   
-   comment.content
-   => 'first comment'
-   
-   # 클래스 변수명인 article로 조회 시 해당 참조하는 게시물 객체를 조회할 수 있음
-   comment.article
-   => <Article: title>
-   
-   # article_pk는 존재하지 않는 필드이기 때문에 사용 불가
-   comment.article_id
-   => 1	
-   ```
+```bash
+comment.pk
+=> 1
+
+comment.content
+=> 'first comment'
+
+# 클래스 변수명인 article로 조회 시 해당 참조하는 게시물 객체를 조회할 수 있음
+comment.article
+=> <Article: title>
+
+# article_pk는 존재하지 않는 필드이기 때문에 사용 불가
+comment.article_id
+=> 1
+```
 
 3. comment 인스턴스를 통한 article 값 접근하기
 
@@ -229,7 +210,7 @@ class Comment(models.Model):  # 댓글 N:1 글
    # 1번 댓글이 작성된 게시물의 pk 조회
    comment.article.pk
    => 1
-   
+
    # 1번 댓글이 작성된 게시물의 content 조회
    comment.article.content
    => 'content'
@@ -261,7 +242,7 @@ class Comment(models.Model):  # 댓글 N:1 글
 
   - 모델 생성 시 **object**라는 매니저를 통해 queryset api를 사용했던 것처럼, related manager를 통해 queryset api를 사용할 수 있게 됨
 
-  > https://docs.djangoproject.com/en/3.2/ref/models/relations/
+  > <https://docs.djangoproject.com/en/3.2/ref/models/relations/>
 
 **역참조**
 
@@ -278,7 +259,7 @@ article.comment_set.method()
 - article. comment 형식으로는 댓글 객체를 참조할 수 없음
   - 실제로 Article 클래스에는 Comment 모델과의 어떠한 관계도 작성되어 있지 않음
 - 대신 Django가 역참조 할 수 있는 **comment_set** manager를 자동으로 생성해 article.comment_set 형태로 댓글 객체를 참조할 수 있음
-  - **N:1 관계에서 생성되는 Related manager의 이름은 참조하는 “모델명_set” 이름 규칙으로 만들어짐**
+  - **N:1 관계에서 생성되는 Related manager의 이름은 참조하는 “모델명\_set” 이름 규칙으로 만들어짐**
 - 반면 참조 상황(Comment -> Article)에서는 실제 ForeignKey 클래스로 작성한 인스턴스가 Comment 클래스의 클래스 변수이기 때문에 comment.article 형태로 작성 가능
 
 **Related manager 연습하기**
@@ -286,7 +267,7 @@ article.comment_set.method()
 - shell_plus 실행
 
   ```bash
-  $ python manage.py shell_plus
+  python manage.py shell_plus
   ```
 
 1. 1번 게시글 조회하기
@@ -299,7 +280,7 @@ article.comment_set.method()
 
    ```bash
    dir(article)
-   
+
    [
     ...중략...
     'comment_set',
@@ -367,10 +348,9 @@ class Comment(models.Model):
   from django import forms
   
   from .models import Comment
-  
-  
+
   class CommentForm(forms.ModelForm):
-  
+
       class Meta:
           model = Comment
           fields = '__all__'
@@ -381,11 +361,10 @@ class Comment(models.Model):
   ```python
   # articles/views.py
   from django.shortcuts import render
-  
+
   from .forms import CommentForm
   from .models import Article
-  
-  
+
   def detail(request, pk):
       article = Article.objects.get(pk=pk)
       comment_form = CommentForm()
@@ -413,7 +392,7 @@ class Comment(models.Model):
   </form>
   {% endblock content %}
   ```
-  
+
 - detail 페이지에 출력된 CommentForm
 
 - 실 서비스에서는 댓글을 작성할 때 댓글을 어떤 게시글에 작성하는지 직접 게시글 번호를 선택하지 않음
@@ -431,8 +410,7 @@ class Comment(models.Model):
   from django import forms
   
   from .models import Comment
-  
-  
+
   class CommentForm(forms.ModelForm):
       class Meta:
           model = Comment
@@ -450,22 +428,21 @@ class Comment(models.Model):
   ```python
   # articles/urls.py
   from django.urls import path
-  
+
   from . import views
-  
+
   urlpatterns = [
       path('<int:pk>/comments/', views.comments_create, name='comments_create'),
   ]
   ```
-  
+
   ```python
   # articles/views.py
   from django.shortcuts import redirect
-  
+
   from .forms import CommentForm
   from .models import Article
-  
-  
+
   def comments_create(request, pk):
       article = Article.objects.get(pk=pk)
       comment_form = CommentForm(request.POST)
@@ -474,7 +451,7 @@ class Comment(models.Model):
           comment_form.save()
       return redirect('articles:detail', article.pk)
   ```
-  
+
   ```django
   <!-- articles/detail.html -->
   {% extends 'base.html' %}
@@ -486,7 +463,7 @@ class Comment(models.Model):
   </form>
   {% endblock content %}
   ```
-  
+
 - 작성을 마치고 보면 article 객체 저장이 이루어질 타이밍이 보이지 않음
 
 - 그래서 save() 메서드는 데이터베이스에 저장하기 전에 객체에 대한 추가적인 작업을 진행할 수 있도록 인스턴스만을 반환해주는 옵션 값을 제공
@@ -499,7 +476,7 @@ class Comment(models.Model):
   - 아직 데이터베이스에 저장되지 않은 인스턴스를 반환
   - 저장하기 전에 객체에 대한 사용자 지정 처리를 수행할 때 유용하게 사용
 
-  > https://docs.djangoproject.com/en/3.2/topics/forms/modelforms/#the-save-method
+  > <https://docs.djangoproject.com/en/3.2/topics/forms/modelforms/#the-save-method>
 
 - save 메서드의 commit 옵션을 사용해 DB에 저장되기 전 article 객체 저장하기
 
@@ -509,7 +486,6 @@ class Comment(models.Model):
   
   from .forms import CommentForm
   from .models import Article
-  
   
   def comments_create(request, pk):
       article = Article.objects.get(pk=pk)
@@ -530,11 +506,10 @@ class Comment(models.Model):
   ```python
   # articles/views.py
   from django.shortcuts import render
-  
+
   from .forms import CommentForm
   from .models import Article
-  
-  
+
   def detail(request, pk):
       article = Article.objects.get(pk=pk)
       comment_form = CommentForm()
@@ -586,8 +561,7 @@ class Comment(models.Model):
   from django.shortcuts import redirect
   
   from .models import Comment
-  
-  
+
   def comments_delete(request, article_pk, comment_pk):
       comment = Comment.objects.get(pk=comment_pk)
       comment.delete()
@@ -637,7 +611,7 @@ class Comment(models.Model):
 
    ```django
    {{ comments|length }}
-   
+
    {{ article.comment_set.all|length }}
    ```
 
@@ -722,7 +696,6 @@ class Comment(models.Model):
   from django.conf import settings
   from django.db import models
   
-  
   class Article(models.Model):
       user = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE)
@@ -750,7 +723,7 @@ class Comment(models.Model):
 
   ```bash
   Please enter the default value now, as valid Python
-  The datetime and jango.utils.timezone modules are available, 
+  The datetime and django.utils.timezone modules are available,
   so you can do e.g. timezone.now
   Type 'exit' to exit this prompt
   >>>
@@ -758,7 +731,7 @@ class Comment(models.Model):
 
 - 두번째 화면
 
-  - article의  user_id에 어떤 데이터를 넣을 것인지 직접 입력해야 함
+  - article의 user_id에 어떤 데이터를 넣을 것인지 직접 입력해야 함
   - 마찬가지로 1 입력하고 Enter 진행
   - 그러면 기존에 작성된 게시글이 있다면 모두 1번 회원이 작성한 것으로 처리됨
 
@@ -770,7 +743,7 @@ class Comment(models.Model):
 **ArticleForm**
 
 - ArticleForm 출력을 확인해보면 create 템플릿에서 불필요한 user 필드가 출력됨
-- 사용자로부터 받는 것이 아니라  request 객체를 통해 처리해야 함
+- 사용자로부터 받는 것이 아니라 request 객체를 통해 처리해야 함
 
 - ArticleForm의 출력 필드 수정
 
@@ -779,7 +752,6 @@ class Comment(models.Model):
   from django import forms
   
   from .models import Article
-  
   
   class ArticleForm(forms.ModelForm):
       class Meta:
@@ -802,7 +774,6 @@ class Comment(models.Model):
   from django.views.decorators.http import require_http_methods
   
   from .forms import ArticleForm
-  
   
   @login_required
   @require_http_methods(['GET', 'POST'])
@@ -829,7 +800,6 @@ class Comment(models.Model):
   
   from .models import Article
   
-  
   @require_POST
   def delete(request, pk):
       article = Article.objects.get(pk=pk)
@@ -854,8 +824,7 @@ class Comment(models.Model):
   
   from .forms import ArticleForm
   from .models import Article
-  
-  
+
   @login_required
   @require_http_methods(['GET', 'POST'])
   def update(request, pk):
@@ -908,7 +877,7 @@ class Comment(models.Model):
   {% endfor %}
   {% endblock content %}
   ```
-  
+
   ```django
   <!-- articles/detail.html -->
   {% extends 'base.html' %}
@@ -942,7 +911,6 @@ class Comment(models.Model):
   from django.conf import settings
   from django.db import models
   
-  
   class Comment(models.Model):
       article = models.ForeignKey(Article, on_delete=models.CASCADE)
       user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -954,7 +922,7 @@ class Comment(models.Model):
 - 기존에 존재하던 테이블에 새로운 컬럼이 추가되어야 하는 상황이기 때문에 migrations 파일이 곧바로 만들어지지 않고 일련의 과정이 필요
 
   ```bash
-  $ python manage.py makemigrations
+  python manage.py makemigrations
   ```
 
   ```bash
@@ -965,7 +933,7 @@ class Comment(models.Model):
    2) Quit, and let me add a default in models.py
   Select an option:
   ```
-  
+
 - 첫번째 화면
 
   - 기본적으로 모든 컬럼은 NOT NULL 제약조건이 있기 때문에 데이터가 없이는 새로 추가되는 외래 키 필드 user_id가 생성되지 않음
@@ -974,7 +942,7 @@ class Comment(models.Model):
 
   ```bash
   Please enter the default value now, as valid Python
-  The datetime and jango.utils.timezone modules are available, 
+  The datetime and django.utils.timezone modules are available,
   so you can do e.g. timezone.now
   Type 'exit' to exit this prompt
   >>>
@@ -982,10 +950,9 @@ class Comment(models.Model):
 
 - 두번째 화면
 
-  - comment의  user_id에 어떤 데이터를 넣을 것인지 직접 입력해야 함
+  - comment의 user_id에 어떤 데이터를 넣을 것인지 직접 입력해야 함
   - 마찬가지로 1 입력하고 Enter 진행
   - 그러면 기존에 작성된 게시글이 있다면 모두 1번 회원이 작성한 것으로 처리됨
-  
 
 ### CREATE
 
@@ -997,7 +964,7 @@ class Comment(models.Model):
 
 - CommentForm 출력을 확인해보면 create 템플릿에서 불필요한 user 필드가 출력됨
 
-- 사용자로부터 받는 것이 아니라  request 객체를 통해 처리해야 함
+- 사용자로부터 받는 것이 아니라 request 객체를 통해 처리해야 함
 
 - CommentForm의 출력 필드 수정
 
@@ -1006,7 +973,6 @@ class Comment(models.Model):
   from django import forms
   
   from .models import Comment
-  
   
   class CommentForm(forms.ModelForm):
       class Meta:
@@ -1030,7 +996,6 @@ class Comment(models.Model):
   
   from .forms import CommentForm
   from .models import Article
-  
   
   def comments_create(request, pk):
       article = Article.objects.get(pk=pk)
@@ -1079,8 +1044,7 @@ class Comment(models.Model):
   from django.shortcuts import redirect
   
   from .models import Comment
-  
-  
+
   def comments_delete(request, article_pk, comment_pk):
       comment = Comment.objects.get(pk=comment_pk)
       if request.user == comment.user:
@@ -1179,4 +1143,4 @@ def comments_delete(request, article_pk, comment_pk):
      - Referencing the User model
   3. Comment - User
 
-> https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/#imports
+> <https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/#imports>

@@ -1,39 +1,23 @@
 [DB SQL](#db-sql)
 
 1. [Database](#1-database)
-   + [Intro](#intro)
-   
-   + [RDB](#rdb)
-   
+   - [Intro](#intro)
+   - [RDB](#rdb)
 2. [SQL](#2-sql)
-
-   + [SQL Commands](#sql-commands)
-
-   + [SQL Syntax](#sql-syntax)
-
+   - [SQL Commands](#sql-commands)
+   - [SQL Syntax](#sql-syntax)
 3. [Data Definition Language](#3-data-definition-language)
-
-   + [CREATE TABLE](#create-table)
-
-   + [SQLite Data Types](#sqlite-data-types)
-
-   + [Constraints](#constraints)
-
-   + [ALTER TABLE](#alter-table)
-
-   + [DROP TABLE](#drop-table)
-
+   - [CREATE TABLE](#create-table)
+   - [SQLite Data Types](#sqlite-data-types)
+   - [Constraints](#constraints)
+   - [ALTER TABLE](#alter-table)
+   - [DROP TABLE](#drop-table)
 4. [Data Manipulation Language](#4-data-manipulation-language)
-
-   + [Simple query](#simple-query)
-
-   + [Sorting rows](#sorting-rows)
-
-   + [Filtering data](#filtering-data)
-
-   + [Grouping data](#grouping-data)
-
-   + [Changing data](#changing-data)
+   - [Simple query](#simple-query)
+   - [Sorting rows](#sorting-rows)
+   - [Filtering data](#filtering-data)
+   - [Grouping data](#grouping-data)
+   - [Changing data](#changing-data)
 
 # DB SQL
 
@@ -55,8 +39,9 @@
     - 데이터를 구조적으로 정리하기에 어려움
     - 확장이 불가능한 구조
 - **스프레드 시트**를 이용한 데이터 관리
-  
+
   - 스프레드 시트는 컬럼(열)을 통해 데이터의 유형을 지정하고 레코드(행)을 통해 구체적인 데이터 값을 포함
+
 - 스프레드 시트와 달리 프로그래밍 언어를 사용해 작동 시킬 수 있음
 - 데이터베이스는 많은 형태가 있지만 실제 가장 많이 쓰이는 유형은 RDB(Relational Database)라고 부르는 **관계형 데이터베이스**
 - RDB는 각각의 데이터를 테이블에 기입함 (마치 스프레드 시트에 작성하는 것처럼)
@@ -195,11 +180,11 @@
   2. DML (Data Manipulation Language)
   3. DCL (Data Control Language)
 
-| 분류                                                     | 개념                                                         | SQL 키워드                                  |
-| -------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------- |
+| 분류                                                     | 개념                                                                                | SQL 키워드                                  |
+| -------------------------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------- |
 | DDL - 데이터 정의 언어<br />(Data Definition Language)   | 관계형 데이터베이스 구조(테이블, 스키마)를 정의(생성, 수정 및 삭제)하기 위한 명령어 | CREATE<br />DROP<br />ALTER                 |
-| DML - 데이터 조작 언어<br />(Data Manipulation Language) | 데이터를 조작(추가, 조회, 변경, 삭제) 하기 위한 명령어       | INSERT<br />SELECT<br />UPDATE<br />DELETE  |
-| DCL - 데이터 제어 언어<br />(Data Control Language)      | 데이터의 보안, 수행제어, 사용자 권한 부여 등을 정의 하기 위한 명령어 | GRANT<br />REVOKE<br />COMMIT<br />ROLLBACK |
+| DML - 데이터 조작 언어<br />(Data Manipulation Language) | 데이터를 조작(추가, 조회, 변경, 삭제) 하기 위한 명령어                              | INSERT<br />SELECT<br />UPDATE<br />DELETE  |
+| DCL - 데이터 제어 언어<br />(Data Control Language)      | 데이터의 보안, 수행제어, 사용자 권한 부여 등을 정의 하기 위한 명령어                | GRANT<br />REVOKE<br />COMMIT<br />ROLLBACK |
 
 - **SQLite는 파일로 관리되는 DB이기 때문에 SQL을 이용한 접근 제한이 아닌 운영 체제의 파일 접근 권한으로만 제어 가능**
 - **그래서 SQLite에는 권한 설정을 담당하는 GRANT(권한부여)와 REVOKE(권한회수)는 지원하지 않아 DCL 부분은 생략**
@@ -320,7 +305,8 @@ FROM table_name;
 
 **SQLite Datatypes 특징**
 
-- SQLite는 다른 모든 SQL 데이터베이스 엔진(MySQL, PostgreSQL 등)의 static, rigit typing 정적이고 엄격한 타입이 아닌 **dynamic type system 동적 타입 시스템**을 사용
+- SQLite는 다른 모든 SQL 데이터베이스 엔진(MySQL, PostgreSQL 등)의 static, rigid typing 정적이고 엄격한 타입이 아닌 **dynamic type system 동적 타입 시스템**을 사용
+
   - 컬럼에 선언된 데이터 타입에 의해서가 아니라 **컬럼에 저장된 값에 따라 데이터 타입이 결정**됨
 
 - 또한 테이블을 생성할 때 컬럼에 대해 특정 데이터 타입을 선언하지 않아도 됨
@@ -336,6 +322,7 @@ FROM table_name;
 - “타입 선호도”
 - 특정 컬럼에 저장된 데이터에 권장되는 타입
 - 데이터 타입 작성 시 SQLite의 5가지 데이터 타입이 아닌 다른 데이터 타입을 선언한다면, 내부적으로 각 타입의 지정된 선호도에 따라 5가지 선호도로 인식됨
+
   1. INTEGER
   2. TEXT
   3. BLOB
@@ -502,7 +489,7 @@ FROM table_name;
 
 **개요**
 
-- “Remove a talbe from the database.”
+- “Remove a table from the database.”
 
 - 데이터베이스에서 테이블을 제거
 
@@ -527,6 +514,7 @@ FROM table_name;
 
 - “데이터 정의 언어”
 - CREATE TABLE
+
   - 데이터 타입과 제약조건
 
 - ALTER TABLE
@@ -543,7 +531,7 @@ FROM table_name;
 - DML을 통해 데이터를 조작하기 (CRUD)
 - INSERT, SELECT, UPDATE, DELETE
 
-**command-line progoram - `sqlite3`**
+**command-line program - `sqlite3`**
 
 - SQL 문 및 commands을 사용하여 SQLite 데이터베이스와 상호 작용할 수 있는 간단한 command-line tool
 
@@ -552,7 +540,7 @@ FROM table_name;
 1. 시작하기
 
    ```bash
-   $ sqlite3
+   sqlite3
    ```
 
 2. 데이터베이스 파일 열기
@@ -562,7 +550,7 @@ FROM table_name;
    ```
 
    ```bash
-   $ sqlite3 mydb.sqlite3
+   sqlite3 mydb.sqlite3
    ```
 
 3. sqlite3 종료하기
@@ -593,7 +581,7 @@ FROM table_name;
 3. 데이터베이스 파일 열기
 
    ```bash
-   $ sqlite3 mydb.sqlite3
+   sqlite3 mydb.sqlite3
    ```
 
 4. .mode 모드를 csv로 설정
@@ -627,6 +615,7 @@ FROM table_name;
 - “Query data from a table”
 - 특정 테이블에서 데이터를 조회하기 위해 사용
 - 문법 규칙
+
   1. SELECT 절에서 컬럼 또는 쉼표로 구분된 컬럼 목록을 지정
   2. FROM clause 절에서 데이터를 가져올 테이블을 지정
 
@@ -686,10 +675,11 @@ ORDER BY column_1 ASC,
 - ORDER BY 절은 FROM 절 뒤에 위치함
 - 하나 이상의 컬럼을 기준으로 결과를 오름차순, 내림차순으로 정렬할 수 있음
 - 이를 위해 ORDER BY 절 다음에 ‘ ASC ’ 또는 ‘ DESC ’ 키워드를 사용
+
   - ASC : 오름차순 (기본 값)
   - DESC : 내림차순
 
- **ORDER BY clause 실습**
+  **ORDER BY clause 실습**
 
 - 이름과 나이를 나이 순서대로 조회하기
 
@@ -732,7 +722,7 @@ ORDER BY column_1 ASC,
 **`SELECT DISTINCT` clause**
 
 ```sqlite
-SELECT DISTANCT select_list
+SELECT DISTINCT select_list
 FROM table_name;
 ```
 
@@ -855,7 +845,7 @@ left_expression COMPARISON_OPERATOR right_expression
 - SQLite는 패턴 구성을 위한 두 개의 wildcards 와일드카드를 제공
   1. % percent
      - 0개 이상의 문자가 올 수 있음을 의미
-  2. _ underscore
+  2. \_ underscore
      - 단일(1개) 문자가 있음을 의미
 
 **`%` wildcard 예시**
@@ -871,14 +861,14 @@ left_expression COMPARISON_OPERATOR right_expression
 
 **wildcard 종합 예시**
 
-| 패턴            | 의미                                                         |
-| --------------- | ------------------------------------------------------------ |
-| `2%`            | 2로 시작하는 패턴                                            |
-| `%2`            | 2로 끝나는 패턴                                              |
-| `%2%`           | 2를 포함하는 패턴                                            |
+| 패턴            | 의미                                                                       |
+| --------------- | -------------------------------------------------------------------------- |
+| `2%`            | 2로 시작하는 패턴                                                          |
+| `%2`            | 2로 끝나는 패턴                                                            |
+| `%2%`           | 2를 포함하는 패턴                                                          |
 | `_2%`           | 첫번째 자리에 아무 값이 하나 있고 두 번째가 2로 시작하는 패턴 (최소 2자리) |
-| `1___`          | 1로 시작하는 4자리 패턴 (반드시 4자리)                       |
-| `2_%-% or 2__%` | 2로 시작하고 최소 3자리인 패턴 (3자리 이상)                  |
+| `1___`          | 1로 시작하는 4자리 패턴 (반드시 4자리)                                     |
+| `2_%-% or 2__%` | 2로 시작하고 최소 3자리인 패턴 (3자리 이상)                                |
 
 **LIKE 실습**
 
@@ -1018,7 +1008,7 @@ test_expression BETWEEN low_expression AND high_expression
 **`LIMIT` clause**
 
 ```sqlite
-SELECT cloumn_list
+SELECT column_list
 FROM table_name
 LIMIT row_count;
 ```
@@ -1142,7 +1132,7 @@ GROUP BY column_1,
 - Aggregation Function의 COUNT를 사용
 
   - **각 지역별로 그룹이 나뉘어졌기 때문에 `COUNT(*)`는 지역별 데이터 개수를 세게 됨**
-  
+
     ```sqlite
     SELECT country,
       COUNT(*)
