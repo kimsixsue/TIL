@@ -40,7 +40,7 @@
 
 16. [2022-10-31 월] [Vue.js](./Web/1031_Vue.js.md) : instance, Syntax, Directives, StyleGuide
 17. [2022-11-02 수] [Vue CLI](./Web/1102_Vue_CLI.md) : SFC, PassProps, EmitEvents
-18. [2022-11-07 월] [1107_Vuex](./Web/1107_Vuex.md) : 컴포넌트 간 데이터 통신, Lifecycle Hooks
+18. [2022-11-07 월] [Vuex](./Web/1107_Vuex.md) : 컴포넌트 간 데이터 통신, Lifecycle Hooks
 
 
 ## [Algorithm](/Algorithm/README.md) 정리
