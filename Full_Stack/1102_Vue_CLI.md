@@ -45,7 +45,7 @@
 - 설치
 
   ```bash
-  npm install -g @vue/cli
+  $ npm install -g @vue/cli
   ```
 
 - 프로젝트 생성
@@ -53,7 +53,7 @@
   - vscode terminal에서 진행
 
   ```bash
-  vue create vue-cli
+  $ vue create vue-cli
   ```
 
 - Vue 버전 선택(Vue 2)
@@ -63,13 +63,13 @@
   - 프로젝트 디렉토리로 이동
 
     ```bash
-    cd vue-cli
+    $ cd vue-cli
     ```
 
   - 프로젝트 실행
 
     ```bash
-    npm run serve
+    $ npm run serve
     ```
 
 ### Vue CLI 프로젝트 구조
