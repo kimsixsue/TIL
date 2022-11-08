@@ -10,7 +10,7 @@ from itertools import combinations
 def solution(info, query):  # 정답률 : 정확성 44.07%, 효율성 4.49%
     answer = list()
     # 누락된 값을 제공하기 위해 팩토리 함수를 호출하는 딕셔너리 서브 클래스
-    # 첫  번째 인자는 default_factory 어트리뷰트의 초깃값을 제공합니다
+    # 첫 번째 인자는 default_factory 어트리뷰트의 초깃값을 제공합니다
     dictionary = defaultdict(list)
     # 지원자들을 그룹별로 적절하게 미리 분류
     for i in info:
