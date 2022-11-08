@@ -23,15 +23,17 @@
 ### Node.js
 
 - 자바스크립트는 브라우저를 조작하는 유일한 언어
+  - 하지만 브라우저 밖에서는 구동할 수 없었음
+
 - 자바스크립트를 구동하기 위한 런타임 환경인 Node.js 로 인해 브라우저가 아닌 환경에서도 구동할 수 있게 됨
   - Chrome V8 엔진을 제공하여 여러 OS 환경에서 실행할 수 있는 환경을 제공
   - Browser만 조작 가능했으나, Server-Side-Programming 또한 가능해짐
 
-**NPM (Node Package Manage)**
+**NPM (Node Package Manager)**
 
 - 자바스크립트 패키지 관리자
   - 다양한 의존성 패키지를 관리
-- Node.js의 기본 패키지 관리자
+- Node.js 의 기본 패키지 관리자
 - Node.js 설치 시 함께 설치됨
 
 ### Vue CLI
@@ -58,6 +60,12 @@
 
 - Vue 버전 선택(Vue 2)
 
+  ```bash
+  > Default ([Vue 2] babel, eslint)
+  ```
+
+- 프로젝트 생성 성공
+
 - 출력된 명령어 실행
 
   - 프로젝트 디렉토리로 이동
@@ -71,6 +79,8 @@
     ```bash
     $ npm run serve
     ```
+
+- 주소 ctrl + 클릭
 
 ### Vue CLI 프로젝트 구조
 
@@ -93,14 +103,11 @@
 - "static module bundler"
 - 모듈 간의 의존성 문제를 해결하기 위한 도구
 - 프로젝트에 필요한 모든 모듈을 매핑하고 내부적으로 종속성 그래프를 빌드함
-- modules with dependencies => bundle your scripts => static assets
-- 의존성을 Webpack 이 담당해 주므로 개발자는 `npm install` 을 사용해 다양한 모듈을 한 번에 설치하고 각 모듈을 사용해 개발에 집중할 수 있음
-  - `package-lock.json` 디렉토리에서 `$ npm install`
 
 **`Module`**
 
 - 개발하는 애플리케이션의 크기가 커지고 복잡해지면 파일 하나에 모든 기능을 담기가 어려워짐
-- 따라서 자연스럽게 파일을 여러 개로 분리하여 관리를 하게 되었고, 이때 분리된 파일 각각이 module 즉, js 파일 하나가 하나의 모듈
+- 따라서 자연스럽게 파일을 여러 개로 분리하여 관리를 하게 되었고, 이때 분리된 파일 각각이 module 모듈 즉, js 파일 하나가 하나의 모듈
 - 모듈은 대개 기능 단위로 분리하며, 클래스 하나 혹은 특정한 목적을 가진 복수의 함수로 구성된 라이브러리 하나로 구성됨
 - 여러 모듈 시스템
   - ESM(ECMA Script Module), AMD, CommonJS, UMD
@@ -119,6 +126,11 @@
 - snowpack, parcel, rollup.js 등의 webpack 이외에도 다양한 모듈 번들러 존재
 - **Vue CLI는 이러한 Babel, WebPack 에 대한 초기 설정이 자동으로 되어 있음**
 
+**Webpack - static module `bundler`**
+
+- modules with dependencies => bundle your scripts => static assets
+- 의존성을 Webpack 이 담당해 주므로 개발자는 `npm install` 을 사용해 다양한 모듈을 한 번에 설치하고 각 모듈을 사용해 개발에 집중할 수 있음
+
 **package.json**
 
 - 프로젝트의 종속성 목록과 지원되는 브라우저에 대한 구성 옵션을 포함
@@ -134,10 +146,9 @@
 
 - Vue 앱의 뼈대가 되는 html 파일
 - Vue 앱과 연결될 요소가 있음
-
-```html
-<div id="app"></div>
-```
+  ```html
+  <div id="app"></div>
+  ```
 
 **src/**
 
@@ -157,10 +168,10 @@
 
 ### Component
 
-- UI 를 독립적이고 재 사용 가능한 조각들로 나눈 것
+- UI를 독립적이고 재사용 가능한 조각들로 나눈 것
   - 즉, 기능 별로 분화한 코드 조각
 - CS에서는 다시 사용할 수 있는 범용성을 위해 개발된 소프트웨어 구성 요소를 의미
-- 하나의 app을 구성할 때 중첩된 컴포넌트들의 tree 로 구성하는 것이 보편적임
+- 하나의 app을 구성할 때 중첩된 컴포넌트들의 tree로 구성하는 것이 보편적임
   - Vue에서는 src/App.vue 를 root node 로 하는 tree의 구조를 가짐
 - 컴포넌트는 유지보수를 쉽게 만들어 줄 뿐만 아니라 재사용성의 측면에서도 매우 강력한 기능을 제공
 
@@ -188,7 +199,9 @@
 
 **SFC (Single File Component)**
 
-- 하나의 `.vue` 파일이 하나의 `Vue instance` 이고, 하나의 `컴포넌트` 이다
+- 하나의 **.vue** 파일이 하나의 **Vue instance** 이고, 하나의 **컴포넌트** 이다
+  - 즉, Single File Component
+
 - Vue instance 에서는 HTML, CSS, JavaScript 코드를 한번에 관리
 
   - 이 Vue instance 를 기능 단위로 작성하는 것이 핵심
@@ -197,9 +210,9 @@
 
 **정리**
 
-- HTML, CSS, 그리고 JavaScript 를`.vue` 라는 확장자를 가진 파일 안에서 관리하며 개발
+- HTML, CSS, 그리고 JavaScript 를 .vue 라는 확장자를 가진 파일 안에서 관리하며 개발
 - 이 파일을 Vue instance, 또는 Vue component 라고 하며, 기능 단위로 작성
-- Vue CLI 가 Vue 를 Component based 하게 사용하도록 도와줌
+- Vue CLI 가 Vue를 Component based 하게 사용하도록 도와줌
 
 ### Vue component
 
@@ -235,6 +248,7 @@
 
 ```vue
 <!-- App.vue -->
+
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
@@ -247,6 +261,7 @@
 
 ```vue
 <!-- MyComponent.vue -->
+
 <template>
   <div>
     <h1>This is my component</h1>
@@ -259,7 +274,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+</style>
 ```
 
 1. src/components/ 안에 생성
@@ -273,6 +289,7 @@ export default {
 
 ```vue
 <!-- App.vue -->
+
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
@@ -283,7 +300,7 @@ export default {
 
 <script>
 // 1. 불러오기
-import HelloWorld from "./components/HelloWorld"
+import HelloWorld from "./components/HelloWorld.vue"
 
 export default {
   name: "App",
@@ -297,72 +314,87 @@ export default {
 
 1. 불러오기
 
+2. 등록하기
+
+3. 보여주기
+
+**component 등록 - 불러오기**
+
+```vue
+<!-- App.vue -->
+
+<script>
+import HelloWorld from "./components/HelloWorld"
+import MyComponent from "@/components/MyComponent" // 불러오기
+
+export default {
+  name: "App",
+  components: {
+    HelloWorld,
+  },
+}
+</script>
+```
+
    - **`import {instance name} from {위치}`**
 
    - instance name은 instance 생성 시 작성한 name
 
    - `@` 는 src 의 shortcut
-
-     ```json
-     "compilerOptions": {
-       "paths": {
-         "@/*": [
-           "src/*"
-     ```
-
+   
    - `.vue` 생략 가능
+
+**component 등록 - 등록하기**
 
 ```vue
 <!-- App.vue -->
+
 <script>
 import HelloWorld from "./components/HelloWorld"
-// 1. 불러오기
 import MyComponent from "@/components/MyComponent"
 
 export default {
   name: "App",
   components: {
     HelloWorld,
-    MyComponent, // 2. 등록하기
+    MyComponent, // 등록하기
   },
 }
 </script>
 ```
 
-2. 등록하기
+**component 등록 - 보여주기**
 
-3. 보여주기
+```vue
+<!-- App.vue -->
 
-   - 닫는 태그만 있는 요소처럼 사용
+<template>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <MyComponent />  <!-- 보여주기 -->
+    <HelloWorld msg="Welcome to Your Vue/js App" />
+  </div>
+</template>
+```
 
-     - 로고와 기존 컴포넌트 사이에 위치
+- 닫는 태그만 있는 요소처럼 사용
 
-     ```vue
-     <!-- App.vue -->
-     <template>
-       <div id="app">
-         <img alt="Vue logo" src="./assets/logo.png" />
-         <MyComponent />
-         <!-- 3. 보여주기 -->
-         <HelloWorld msg="Welcome to Your Vue/js App" />
-       </div>
-     </template>
-     ```
+  - 로고와 기존 컴포넌트 사이에 위치
+
 
 **자식 컴포넌트 작성**
 
 ```vue
 <!-- MyComponent.vue -->
+
 <template>
   <div class="border">
-    <!-- 추가 -->
     <h1>This is my component</h1>
   </div>
 </template>
 
 <style>
 .border {
-  /* 추가 */
   border: solid;
 }
 </style>
@@ -372,15 +404,16 @@ export default {
 
 ```vue
 <!-- MyComponentItem.vue -->
+
 <template>
   <div>
-    <h3>This is componentItem</h3>
+    <h3>This is Item component</h3>
   </div>
 </template>
 
 <script>
 export default {
-  name: "MyComponentItem", // 생성
+  name: "MyComponentItem",
 }
 </script>
 ```
@@ -389,22 +422,21 @@ export default {
 
 ```vue
 <!-- MyComponent.vue -->
+
 <template>
   <div class="border">
     <h1>This is my component</h1>
     <MyComponentItem />
-    <!-- MyComponentItem 등록 -->
   </div>
 </template>
 
 <script>
-// MyComponentItem 등록
 import MyComponentItem from "@/components/MyComponentItem"
 
 export default {
   name: "MyComponent",
   components: {
-    MyComponentItem, // MyComponentItem 등록
+    MyComponentItem,
   },
 }
 </script>
@@ -414,13 +446,12 @@ export default {
 
 ```vue
 <!-- App.vue -->
+
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <MyComponent />
-    <!-- 재사용성 -->
     <MyComponent />
-    <!-- 재사용성 -->
     <HelloWorld msg="Welcome to Your Vue/js App" />
   </div>
 </template>
@@ -432,7 +463,9 @@ export default {
 
 ### Data in components
 
-- 동적 웹페이지에서 다뤄야 할 데이터가 등장
+- 동적 웹페이지를 만들고 있음
+  - 즉, 웹페이지에서 다뤄야 할 데이터가 등장
+
 - 한 페이지 내에서 같은 데이터를 공유 해야 함
 
   - 하지만 페이지들은 component 로 구분이 되어있음
@@ -445,9 +478,9 @@ export default {
 **pass props & emit event**
 
 - 부모 => 자식으로의 데이터의 흐름
-  - pass **props** 의 방식
+  - pass `props` 의 방식
 - 자식 => 부모로의 데이터의 흐름
-  - **emit** event 의 방식
+  - `emit` event 의 방식
 
 ### Pass Props
 
@@ -455,8 +488,11 @@ export default {
 - props는 부모(상위) 컴포넌트의 정보를 전달하기 위한 사용자 지정 특성
 - 자식(하위) 컴포넌트는 props 옵션을 사용하여 수신하는 props 를 명시적으로 선언해야 함
 
+**props in HelloWorld**
+
 ```vue
 <!-- App.vue -->
+
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
@@ -466,19 +502,23 @@ export default {
 </template>
 ```
 
-- props
-  - HelloWorld 컴포넌트 msg라는 property 넘김
-  - msg 사용 출력
-- App.vue 의 `<HelloWorld/>` 요소에 `msg="~"` 라는 property 를 설정하였고, 하위 컴포넌트인 HelloWorld는 자신에게 부여된 msg property 를 template 에서 `{{ msg }}` 의 형태로 사용한 것
+- Vue app은 이미 props를 사용하고 있었다
+- Vue CLI를 설치할 때 만들어주었던 App.vue의 HelloWorld 컴포넌트를 살펴보면 msg라는 property가 작성되 어 있음
 
 ```vue
 <!-- HelloWorld.vue -->
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-  </div>
-</template>
 ```
+
+- HelloWorld.vue에서 msg를 사용한 것을 확인할 수 있음
+
+**props in HelloWorld 정리**
+
+- App.vue 의 `<HelloWorld/>` 요소에 **msg="~"** 라는 property 를 설정하였고, 하위 컴포넌트인 HelloWorld는 자신에게 부여된 msg property 를 template 에서 **{{ msg }}** 의 형태로 사용한 것
+
+- msg property의 value를 바꾸면 화면에 보이는 문장이 달라짐
 
 - 부모 => 자식으로의 data 전달 방식을 pass props 라고 함
 - 정적인 데이터를 전달하는 경우 static props 라고 명시하기도 함
@@ -487,6 +527,7 @@ export default {
 
 ```vue
 <!-- HelloWorld.vue -->
+
 <script>
 export default {
   name: "HelloWorld",
@@ -499,18 +540,19 @@ export default {
 
 - Prop 명시
 
-- 데이터를 받는 쪽, 즉 하위 컴포넌트에서도 props에 대해 명시적으로 작성 해주어야 함
+- 데이터를 받는 쪽, 즉 하위 컴포넌트에서도 `props` 에 대해 명시적으로 작성 해주어야 함
 
-- 전달 받은 props 를 type과 함께 명시
+- 전달 받은 `props` 를 type과 함께 명시
 
 - 컴포넌트를 문서화할 뿐만 아니라, 잘못된 타입이 전달하는 경우 브라우저의 자바스크립트 콘솔에서 사용자에게 경고
 
-  > <https://v2.vuejs.org/v2/guide/components-props.html#Prop-Validation>
+- <https://v2.vuejs.org/v2/guide/components-props.html#Prop-Validation>
 
 **MyComponent to MyComponentItem**
 
 ```vue
 <!-- MyComponent.vue -->
+
 <template>
   <div class="border">
     <h1>This is my component</h1>
@@ -521,9 +563,10 @@ export default {
 
 ```vue
 <!-- MyComponentItem.vue -->
+
 <template>
   <div>
-    <h3>This is componentItem</h3>
+    <h3>This is Item component</h3>
     <p>{{ staticProps }}</p>
   </div>
 </template>
@@ -534,6 +577,7 @@ export default {
   props: {
     staticProps: String,
   },
+  
 }
 </script>
 ```
@@ -542,12 +586,12 @@ export default {
 
 - 부모에서 넘겨주는 props
 
-  - `kebab-case`
+  - **kebab-case**
 
     (HTML 속성명은 대소문자를 구분하지 않기 때문)
 
 - 자식에서 받는 props
-  - `camelCase`
+  - **camelCase**
 - 부모 html 템플릿에서 kebab-case 로 넘긴 변수를 자식의 vue 스크립트에서 자동으로 camelCase 로 변환하여 인식함
 
 **Dynamic props**
@@ -560,18 +604,20 @@ export default {
 
 ```vue
 <!-- MyComponent.vue -->
+
 <template>
   <div class="border">
     <h1>This is my component</h1>
     <MyComponentItem
       static-props="component에서 componentItem으로"
-      v-bind:dynamic-props="dynamicProps" /><!-- Dynamic props -->
+      :dynamic-props="dynamicProps"
+      />
   </div>
 </template>
 
 <script>
 export default {
-  // Dynamic props
+
   data: function () {
     return {
       dynamicProps: "It's in data",
@@ -583,12 +629,12 @@ export default {
 
 ```vue
 <!-- MyComponentItem.vue -->
+
 <template>
   <div>
-    <h3>This is componentItem</h3>
+    <h3>This is Item component</h3>
     <p>{{ staticProps }}</p>
-    <p>{{ dynamicProps }}</p>
-    <!-- Dynamic props -->
+    <p>{{ dynamicProps }}</p> 
   </div>
 </template>
 
@@ -597,7 +643,6 @@ export default {
   name: "MyComponentItem",
   props: {
     staticProps: String,
-    // Dynamic props
     dynamicProps: String,
   },
 }
@@ -615,38 +660,40 @@ data: function () {
 ```
 
 - 각 vue 인스턴스는 같은 data 객체를 공유하므로 새로운 data 객체를 return 반환하여 사용해야 함
-
-  > <https://v2.vuejs.org/v2/guide/components.html#data-Must-Be-a-Function>
+- <https://v2.vuejs.org/v2/guide/components.html#data-Must-Be-a-Function>
 
 **Pass Props**
 
-- `v-bind:dynamic-props="dynamicProps"` 는
+- `:dynamic-props="dynamicProps"` 는
 
   앞의 key값(`dynamic-props`) 이란 이름으로
 
-  뒤의 `" "` 안에 오는 데이터(`dynamicProps`) 를 전달하겠다는 뜻
+  뒤의 **" "** 안에 오는 데이터(`dynamicProps`) 를 전달하겠다는 뜻
 
-- 즉, `v-bind:my-props="dynamicProps"` 로 데이터를 넘긴다면,
+- 즉, `:my-props="dynamicProps"` 로 데이터를 넘긴다면,
 
   자식 컴포넌트에서 `myProps` 로 데이터를 받아야 함
 
 ```vue
 <!-- MyComponent.vue -->
+
 <template>
   <div class="border">
     <h1>This is my component</h1>
     <MyComponentItem
       static-props="component에서 componentItem으로"
-      v-bind:my-props="dynamicProps" />
+      :my-props="dynamicProps"
+      />
   </div>
 </template>
 ```
 
 ```vue
 <!-- MyComponentItem.vue -->
+
 <template>
   <div>
-    <h3>This is componentItem</h3>
+    <h3>This is Item component</h3>
     <p>{{ staticProps }}</p>
     <p>{{ myProps }}</p>
   </div>
@@ -663,14 +710,14 @@ export default {
 </script>
 ```
 
-- `v-bind` 로 묶여있는 `" "` 안의 구문은 javascript 의 구문으로 볼 수 있음
-  - 따라서 `dynamicProps` 라고 하는 변수에 대한 `data` 를 전달할 수 있는 것
+- `v-bind` 로 묶여있는 **" "**안의 구문은 javascript 의 구문으로 볼 수 있음
+  - 따라서 `dynamicProps` 라고 하는 변수에 대한 data 를 전달할 수 있는 것
 
 ```vue
 <!-- static props 로 string 으로써의 "1" 을 전달 -->
 <SomeComponent num-props="1" />
 <!-- dynamic props 로 숫자로써의 1 을 전달 -->
-<SomeComponent v-bind:num-props="1" />
+<SomeComponent :num-props="1" />
 ```
 
 **`단방향 데이터 흐름`**
@@ -685,13 +732,13 @@ export default {
 
 - 하위 컴포넌트에서 prop 를 변경하려고 시도해서는 안되며 그렇게 하면 Vue 는 콘솔에서 경고를 출력함
 
-  > <https://v2.vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow>
-
   > All props form a **one-way-down binding** between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent’s state, which can make your app’s data flow harder to understand.
+  >
+  > <https://v2.vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow>
 
 ### Emit Event
 
-- 부모 컴포넌트에서 자식 컴포넌트로 데이터를 전달할 때는 `이벤트를 발생시킴`
+- 부모 컴포넌트에서 자식 컴포넌트로 데이터를 전달할 때는 **이벤트를 발생시킴**
 - 이벤트를 발생시키는 게 어떻게 데이터를 전달하는 것이냐?
   1. 데이터를 이벤트 리스너의 **콜백함수의 인자로 전달**
   2. 상위 컴포넌트는 해당 **이벤트를 통해 데이터를 받음**
@@ -699,8 +746,8 @@ export default {
 **`$emit`**
 
 - **`$emit`** 메서드를 통해 부모 컴포넌트에 이벤트를 발생
-  - **`$emit('event-name')`** 형식으로 사용하며 부모컴포넌트에 **`event-name`** 이라는 이벤트가 발생했다는 것을 알림
-  - 마치 사용자가 **마우스 클릭**을 하면 `click` 이벤트가 발생하는 것처럼 `$emit('event-name')` 가 실행되면 `event-name` 이벤트가 발생하는 것
+  - **`$emit('event-name')`** 형식으로 사용하며 부모 컴포넌트에 **`event-name`** 이라는 이벤트가 발생했다는 것을 알림
+  - 마치 사용자가 **마우스 클릭**을 하면 `click` 이벤트가 발생하는 것처럼 **`$emit('event-name')`** 가 실행되면 **`event-name`** 이벤트가 발생하는 것
 - 참고) `$`
   - javascript 는 변수에 `_`, `$` 두개의 특수문자를 사용 가능
   - 이때, 기존에 사용하던 변수, 메서드들과 겹치지 않게 하기 위해서 vue 는 `$emit` 를 이벤트 이벤트 전달을 위한 방식으로 택하였다.
@@ -709,12 +756,17 @@ export default {
 
 ```vue
 <!-- MyComponentItem.vue -->
+
 <template>
-  <div><button v-on:click="childToParent">클릭</button><br /></div>
+  <div>
+    
+    <button @click="childToParent">클릭</button><br />
+  </div>
 </template>
 
 <script>
 export default {
+  
   methods: {
     ChildToParent: function () {
       this.$emit("child-to-parent")
@@ -729,15 +781,20 @@ export default {
 
 ```vue
 <!-- MyComponent.vue -->
+
 <template>
   <div class="border">
     <h1>This is my component</h1>
-    <MyComponentItem v-on:child-to-parent="parentGetEvent" />
+    <MyComponentItem
+                     
+      @child-to-parent="parentGetEvent"
+      />
   </div>
 </template>
 
 <script>
 export default {
+  
   methods: {
     parentGetEvent: function () {
       console.log("자식 컴포넌트에서 발생한 이벤트")
@@ -759,12 +816,17 @@ export default {
 
 ```vue
 <!-- MyComponentItem.vue -->
+
 <template>
-  <div><button v-on:click="childToParent">클릭</button><br /></div>
+  <div>
+    
+    <button @click="childToParent">클릭</button><br />
+  </div>
 </template>
 
 <script>
 export default {
+  
   methods: {
     ChildToParent: function () {
       this.$emit("child-to-parent", "child data")
@@ -774,19 +836,24 @@ export default {
 </script>
 ```
 
-- 이벤트를 emit 발생시킬 때 인자로 **`데이터를 전달`** 가능
+- 이벤트를 emit 발생시킬 때 인자로 데이터를 전달 가능
 
 ```vue
 <!-- MyComponent.vue -->
+
 <template>
   <div class="border">
     <h1>This is my component</h1>
-    <MyComponentItem v-on:child-to-parent="parentGetEvent" />
+    <MyComponentItem 
+                     
+      @child-to-parent="parentGetEvent"
+      />
   </div>
 </template>
 
 <script>
 export default {
+  
   methods: {
     parentGetEvent: function (inputData) {
       console.log("자식 컴포넌트에서 발생한 이벤트")
@@ -878,24 +945,32 @@ export default {
 **emit with dynamic data**
 
 - pass props 와 마찬가지로 동적인 데이터도 전달 가능
+- 자식 컴포넌트에서 입력받은 데이터를 부모 컴포넌트에게 전달하여 출력
 
 ```vue
 <!-- MyComponentItem.vue -->
+
 <template>
   <div>
-    <input type="text" v-model="childInputData" v-on:keyup.enter="childInput" />
+
+    <input 
+      type="text"
+      v-model="childInputData"
+      @keyup.enter="childInput"
+   />
   </div>
 </template>
 
 <script>
 export default {
-  name: "MyComponentItem",
+
   data: function () {
     return {
       childInputData: null,
     }
   },
   methods: {
+    
     childInput: function () {
       this.$emit("child-input", this.childInputData)
       this.childInputData = ""
@@ -907,10 +982,14 @@ export default {
 
 ```vue
 <!-- MyComponent.vue -->
+
 <template>
   <div class="border">
     <h1>This is my component</h1>
-    <MyComponentItem v-on:child-input="getDynamicData" />
+    <MyComponentItem 
+                     
+      @child-input="getDynamicData"
+      />
   </div>
 </template>
 
@@ -918,11 +997,9 @@ export default {
 import MyComponentItem from "@/components/MyComponentItem"
 
 export default {
-  name: "MyComponent",
-  components: {
-    MyComponentItem,
-  },
+
   methods: {
+  
     getDynamicData: function (inputData) {
       console.log(`child component로부터 ${inputData}를 입력받음`)
     },
@@ -947,16 +1024,23 @@ export default {
 
    함수의 인자로 전달된 데이터가 포함되어 있음
 
-4. 호출된 함수에서 `console.log(입력받은 데이터)` 실행
+4. 호출된 함수에서 **console.log(`입력받은 데이터`)** 실행
+
+**정리**
+
+- 자식 컴포넌트에서 부모 컴포넌트로 이벤트를 발생시킴
+  - 이벤트에 데이터를 담아 전달 가능
+- 부모 컴포넌트에서는 자식 컴포넌트의 이벤트를 청취
+  - 전달받은 데이터는 이벤트 핸들러 함수의 인자로 사용
 
 **Directives `v-on`**
 
+>  <https://v2.vuejs.org/v2/api/#v-on>
+
 - `:` 을 통해 전달된 인자에 따라 특별한 modifiers (수식어)가 있을 수 있음
 
-  > <https://v2.vuejs.org/v2/api/#v-on>
-  >
   > <https://v2.vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components>
-
+  
   - **`.native`** - listen for a **native** event on the root element of component.
 
   - 부모가 자식 컴포넌트의 이벤트를 v-on으로 청취할 때, 이게 일반 이벤트인지 emit 으로 발생하는 이벤트인지 구분을 못한다.
@@ -968,25 +1052,18 @@ export default {
     <my-component v-on:click.native="onClick"></my-component>
     ```
 
-**정리**
-
-- 자식 컴포넌트에서 부모 컴포넌트로 이벤트를 발생시킴
-  - 이벤트에 데이터를 담아 전달 가능
-- 부모 컴포넌트에서는 자식 컴포넌트의 이벤트를 청취
-  - 전달받은 데이터는 이벤트 핸들러 함수의 인자로 사용
-
 **pass props / emit event 컨벤션**
 
-- HTML 요소에서 사용할 때는 `kebab-case`
-- JavaScript 에서 사용할 때는 `camelCase`
+- HTML 요소에서 사용할 때는 **kebab-case**
+- JavaScript 에서 사용할 때는 **camelCase**
 - props
 
-  - 상위 => 하위 흐름에서 HTML 요소로 내려줌 : `kebab-case`
-  - 하위에서 받을 때 JavaScript 에서 받음 : `camelCase`
+  - 상위 => 하위 흐름에서 HTML 요소로 내려줌 : **kebab-case**
+  - 하위에서 받을 때 JavaScript 에서 받음 : **camelCase**
 
 - emit
-  - emit 이벤트를 발생시키면 HTML 요소가 이벤트를 청취함 : `kebab-cases`
-  - 메서드, 변수명 등은 JavaScript 에서 사용함 : `camelCase`
+  - emit 이벤트를 발생시키면 HTML 요소가 이벤트를 청취함 : **kebab-case**
+  - 메서드, 변수명 등은 JavaScript 에서 사용함 : **camelCase**
 
 ## finish
 
