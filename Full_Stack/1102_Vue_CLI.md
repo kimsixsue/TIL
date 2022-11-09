@@ -171,7 +171,7 @@
 - UI를 독립적이고 재사용 가능한 조각들로 나눈 것
   - 즉, 기능 별로 분화한 코드 조각
 - CS에서는 다시 사용할 수 있는 범용성을 위해 개발된 소프트웨어 구성 요소를 의미
-- 하나의 app을 구성할 때 중첩된 컴포넌트들의 tree로 구성하는 것이 보편적임
+- [하나의 app을 구성할 때 중첩된 컴포넌트들의 tree로 구성하는 것이 보편적임](<https://v2.vuejs.org/v2/guide/components.html#Organizing-Components>)
   - Vue에서는 src/App.vue 를 root node 로 하는 tree의 구조를 가짐
 - 컴포넌트는 유지보수를 쉽게 만들어 줄 뿐만 아니라 재사용성의 측면에서도 매우 강력한 기능을 제공
 
@@ -179,7 +179,6 @@
 
 - 하나의 컴포넌트를 만들어주면 반복되는 UI를 쉽게 처리할 수 있음
 
-  > <https://v2.vuejs.org/v2/guide/components.html#Organizing-Components>
 
 **Component based architecture 특징**
 
@@ -539,14 +538,9 @@ export default {
 ```
 
 - Prop 명시
-
 - 데이터를 받는 쪽, 즉 하위 컴포넌트에서도 `props` 에 대해 명시적으로 작성 해주어야 함
-
 - 전달 받은 `props` 를 type과 함께 명시
-
-- 컴포넌트를 문서화할 뿐만 아니라, 잘못된 타입이 전달하는 경우 브라우저의 자바스크립트 콘솔에서 사용자에게 경고
-
-- <https://v2.vuejs.org/v2/guide/components-props.html#Prop-Validation>
+- 컴포넌트를 문서화할 뿐만 아니라, [잘못된 타입이 전달하는 경우 브라우저의 자바스크립트 콘솔에서 사용자에게 경고](<https://v2.vuejs.org/v2/guide/components-props.html#Prop-Validation>)
 
 **MyComponent to MyComponentItem**
 
@@ -649,7 +643,7 @@ export default {
 </script>
 ```
 
-**컴포넌트의 data 함수**
+**컴포넌트의 data 함수** <https://v2.vuejs.org/v2/guide/components.html#data-Must-Be-a-Function>
 
 ```js
 data: function () {
@@ -660,7 +654,6 @@ data: function () {
 ```
 
 - 각 vue 인스턴스는 같은 data 객체를 공유하므로 새로운 data 객체를 return 반환하여 사용해야 함
-- <https://v2.vuejs.org/v2/guide/components.html#data-Must-Be-a-Function>
 
 **Pass Props**
 
@@ -720,7 +713,7 @@ export default {
 <SomeComponent :num-props="1" />
 ```
 
-**`단방향 데이터 흐름`**
+**`단방향 데이터 흐름`** <https://v2.vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow>
 
 - 모든 props 는 부모에서 자식으로 즉 아래로 단방향 바인딩을 형성
 
@@ -734,7 +727,6 @@ export default {
 
   > All props form a **one-way-down binding** between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent’s state, which can make your app’s data flow harder to understand.
   >
-  > <https://v2.vuejs.org/v2/guide/components-props.html#One-Way-Data-Flow>
 
 ### Emit Event
 
@@ -942,6 +934,37 @@ export default {
 </script>
 ```
 
+```vue
+<!-- App.vue -->
+<template>
+  <div id="app">
+    <TodoList />
+  </div>
+</template>
+
+<script>
+import TodoList from "@/components/TodoList"
+
+export default {
+  name: "App",
+  components: {
+    TodoList,
+  },
+}
+</script>
+
+<style>
+#app {
+  font-family: D2Coding, Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+```
+
 **emit with dynamic data**
 
 - pass props 와 마찬가지로 동적인 데이터도 전달 가능
@@ -951,14 +974,10 @@ export default {
 <!-- MyComponentItem.vue -->
 
 <template>
-  <div>
+<div>
 
-    <input 
-      type="text"
-      v-model="childInputData"
-      @keyup.enter="childInput"
-   />
-  </div>
+  <input type="text" v-model="childInputData" @keyup.enter="childInput" />
+</div>
 </template>
 
 <script>
@@ -973,7 +992,7 @@ export default {
     
     childInput: function () {
       this.$emit("child-input", this.childInputData)
-      this.childInputData = ""
+      this.childInputData = null
     },
   },
 }
@@ -1033,16 +1052,12 @@ export default {
 - 부모 컴포넌트에서는 자식 컴포넌트의 이벤트를 청취
   - 전달받은 데이터는 이벤트 핸들러 함수의 인자로 사용
 
-**Directives `v-on`**
-
->  <https://v2.vuejs.org/v2/api/#v-on>
+**Directives `v-on`** <https://v2.vuejs.org/v2/api/#v-on>
 
 - `:` 을 통해 전달된 인자에 따라 특별한 modifiers (수식어)가 있을 수 있음
 
-  > <https://v2.vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components>
+  - **[`.native`](<https://v2.vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components>)** - listen for a **native** event on the root element of component.
   
-  - **`.native`** - listen for a **native** event on the root element of component.
-
   - 부모가 자식 컴포넌트의 이벤트를 v-on으로 청취할 때, 이게 일반 이벤트인지 emit 으로 발생하는 이벤트인지 구분을 못한다.
 
     - 컴포넌트에서 일반 이벤트를 사용할 때 작성한다. 일반 이벤트라면 뒤에 .native 를 붙인다.
@@ -1067,9 +1082,9 @@ export default {
 
 ## finish
 
-1. Vue CLI
-2. SFC
-3. Pass Props & Emit Events
+1. [Vue CLI](#1-vue-cli)
+2. [SFC](#2-sfc)
+3. [Pass Props & Emit Events](#3-pass-props--emit-events)
 
 ```vue
 <!-- AppChild.vue -->
@@ -1137,7 +1152,8 @@ export default {
     <AppChild
       v-bind:app-data="appData"
       v-bind:parent-data="parentData"
-      v-on:child-data="getChild" />
+      v-on:child-data="getChild"
+    />
   </div>
 </template>
 
@@ -1195,7 +1211,8 @@ export default {
     <AppParent
       v-bind:app-data="appData"
       v-on:parent-data="getParent"
-      v-on:send-child="getChild" />
+      v-on:send-child="getChild"
+    />
   </div>
 </template>
 
@@ -1239,4 +1256,133 @@ export default {
   margin-top: 60px;
 }
 </style>
+
 ```
+
+---
+
+```vue
+<!-- App.vue -->
+<template>
+<div id="app">
+  <TodoList :todos="todos" @delete-todo="deleteTodo" />
+  <TodoForm @create-todo="createTodo" />
+</div>
+</template>
+
+<script>
+import TodoForm from "@/components/TodoForm"
+import TodoList from "@/components/TodoList"
+
+export default {
+  name: "App",
+  components: {
+    TodoForm,
+    TodoList,
+  },
+  data: function () {
+    return {
+      todos: [],
+    }
+  },
+  methods: {
+    createTodo: function (todoTitle) {
+      const todo = {
+        title: todoTitle,
+      }
+      this.todos.push(todo)
+    },
+    deleteTodo: function (todo) {
+      const index = this.todos.indexOf(todo)
+      this.todos.splice(index, 1)
+    },
+  },
+}
+</script>
+```
+
+```vue
+<!-- components/TodoList.vue -->
+<template>
+<div>
+  <ul>
+    <TodoListItem
+      v-for="(todo, index) in todos"
+      :key="index"
+      :todo="todo"
+      @delete-todo="deleteTodo"
+    />
+  </ul>
+</div>
+</template>
+
+<script>
+import TodoListItem from "@/components/TodoListItem"
+
+export default {
+  name: "TodoList",
+  components: {
+    TodoListItem,
+  },
+  props: {
+    todos: Array,
+  },
+  methods: {
+    deleteTodo: function (todo) {
+      this.$emit("delete-todo", todo)
+    },
+  },
+}
+</script>
+```
+
+```vue
+<!-- components/TodoListItem.vue -->
+<template>
+<li>
+  {{ todo.title }}
+  <button @click="deleteTodo">X</button>
+</li>
+</template>
+
+<script>
+export default {
+  name: "TodoListItem",
+  props: {
+    todo: Object,
+  },
+  methods: {
+    deleteTodo: function () {
+      this.$emit("delete-todo", this.todo)
+    },
+  },
+}
+</script>
+```
+
+```vue
+<!-- components/TodoForm.vue -->
+<template>
+<div>
+  <input type="text" v-model="todoTitle" @keyup.enter="createTodo" />
+</div>
+</template>
+
+<script>
+export default {
+  name: "TodoForm",
+  data: function () {
+    return {
+      todoTitle: null,
+    }
+  },
+  methods: {
+    createTodo: function () {
+      this.$emit("create-todo", this.todoTitle)
+      this.todoTitle = null
+    },
+  },
+}
+</script>
+```
+
