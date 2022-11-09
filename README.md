@@ -26,6 +26,7 @@
 16. [2022-10-31 월] [Vue.js](./Full_Stack/1031_Vue.js.md) : instance, Syntax, Directives, StyleGuide
 17. [2022-11-02 수] [Vue CLI](./Full_Stack/1102_Vue_CLI.md) : SFC, PassProps, EmitEvents
 18. [2022-11-07 월] [Vuex](./Full_Stack/1107_Vuex.md) : 컴포넌트 간 데이터 통신, Lifecycle Hooks
+19. [2022-11-09-수] [Vue Router](./Full_Stack/1109_Vue_Router.md) : UX & UI, Navigation Guard
 
 ## [Algorithm](/Algorithm/README.md) 정리
 

@@ -122,3 +122,13 @@ git push <remote_repository_name> <branch_name>  # local -> remote 업로드
 > https://github.com/kimsixsue?tab=overview&from=2022-08-14&to=2022-08-20
 
 와 같은 주소를 통해, 해당 기간의 Contribution activity를 확인할 수 있다.
+
+## GitLab
+
+```bash
+remote: "The project you were looking for could not be found or you don't have permission to view it"
+```
+
+https://coding-log.tistory.com/180?category=981518
+
+https://velog.io/@likefeb16220/Git-Error-Warning#error-the-project-you-were-looking-for-could-not-be-found-or-you-dont-have-permission-to-view-it
