@@ -410,7 +410,7 @@
 
     ```js
     for ([초기문]; [조건문]; [증감문]) {}
-
+  
     for (let i = 0; i < 6; i++) {
       console.log(i)
     }
@@ -450,9 +450,9 @@
   ```js
   for (variable of object) {
   }
-
+  
   const numbers = [0, 1, 2, 3]
-
+  
   for (const number of numbers) {
     console.log(number, typeof num)
   }
@@ -586,7 +586,7 @@ const sub = function (num1, num2) {
   const threeArgs = function (arg1, arg2, arg3) {
     return [arg1, arg2, arg3]
   }
-
+  
   threeArgs(1, 2) // [1, 2, undefined]
   ```
 
@@ -609,20 +609,20 @@ const sub = function (num1, num2) {
      const restOpr = function (arg1, arg2, ...restArgs) {
        return [arg1, arg2, restArgs]
      }
-
+     
      restArgs(1, 2, 3, 4, 5) // [1, 2, [3, 4, 5]]
-
+     
      function addNumbers(...numbers) {
        return numbers.reduce((sum, number) => {
          return sum + number
        }, 0)
      }
      console.log(addNumbers(1, 2, 3, 4, 5))
-
+     
      const defaultColors = ["red", "green", "blue"]
      const favoriteColors = ["navy", "black", "gold", "white"]
      const palette = [...defaultColors, ...favoriteColors]
-
+     
      const info1 = { name: "Tom", age: 30 }
      const info2 = { isMarried: true, balance: 3000 }
      const fullInfo = { ...info1, ...info2 }
@@ -695,12 +695,12 @@ const sub = function (num1, num2) {
   // 1. 인자가 없다면? () or _ 로 표시 가능.
   let noArgs = () => "No args"
   noArgs = (_) => "No args"
-
+  
   // 2-1. object 를 return 한다면, return 을 명시적으로 적어준다.
   let returnObject = () => {
     return { key: "value" }
   }
-
+  
   // 2-2. return 을 적지 않으려면 괄호를 붙여야 한다.
   returnObject = () => ({ key: "value" })
   ```
@@ -1164,7 +1164,7 @@ console.log(myObj)
 console.log(myObj.country)
 ```
 
-**4. 구조 분해 할당 (destructing assignment)**
+**4. [구조 분해 할당 (Destructuring assignment)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)** 
 
 - 배열 또는 객체를 분해하여 속성을 변수에 쉽게 할당할 수 있는 문법
 

@@ -14,7 +14,7 @@
 10. [2022-10-12 수] [DB relationship N:N](./1012_DB_relationship_N_N.md) : ManyToManyField
 11. [2022-07-31 일] [REST[ful] API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md) : 디자인 원칙, 작동 방식
 12. [2022-10-17 월] [Django REST API](./1017_Django_REST_API.md) : JSON, DRF, ModelSerializer, 역참조, shortcuts
-13. [2022-10-19 수] [JavaScript basic](./1019_JavaScript_basic.md) : 문법, Function, ArrowFunction, Array, Object
+13. [2022-10-19 수] [JavaScript basic](./1019_JavaScript_basic.md) : 문법, Function, ArrowFunction, Array, Object, Object 관련 ES6 문법
 14. [2022-10-24 월] [JS DOM Event this](./1024_JS_DOM_Event_this.md) : addEventListener
 15. [2022-10-26 수] [Asynchronous JS](./1026_Asynchronous_JS.md) : 비동기, Axios, Callback, Promise, AJAX
 16. [2022-10-31 월] [Vue.js](./1031_Vue.js.md) : instance, Syntax, Directives, StyleGuide
