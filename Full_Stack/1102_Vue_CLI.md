@@ -82,6 +82,16 @@
 
 - 주소 ctrl + 클릭
 
+>https://www.markany.com/products/data-security/pc-capture-web-drm/
+>
+>**MarkAny WebDRM NoAX SVC**
+>
+>**WEB 브라우저 클라이언트**에서 Vue Devtools 등 **Extensions** 간헐적 문제 발생
+>
+>https://devtools.vuejs.org/guide/installation.html#standalone
+>
+>In case you are using an unsupported browser, or if you have other specific needs (for example your application is in Electron), you can use the standalone application.
+
 ### Vue CLI 프로젝트 구조
 
 **node_modules**
