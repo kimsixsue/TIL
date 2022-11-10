@@ -69,7 +69,7 @@
 
 - 외부 JavaScript 파일 사용하기
 
-  - .js 확장자를 가진 파일에 JavaScript를 작성하고, 해당 파일을 HTML에 포함 가능
+  - `.js` 확장자를 가진 파일에 JavaScript를 작성하고, 해당 파일을 HTML에 포함 가능
 
   ```html
   <body>
@@ -128,7 +128,7 @@
     ```js
     let variableName
     const userInfo = { a: "B", n: 10 }
-    function addNumber() {}
+    function addNumber() { }
     ```
 
 - **PascalCase** 파스칼 케이스 (upper-camel-case)
@@ -136,8 +136,8 @@
   - 클래스, 생성자에 사용
 
     ```js
-    class User {}
-    function User(options) {}
+    class User { }
+    function User(options) { }
     ```
 
 - **SNAKE_CASE** 대문자 스네이크 케이스
@@ -153,12 +153,18 @@
 
 1. `let`
    - 블록 스코프 지역 변수를 선언 (추가로 동시에 값을 초기화)
+   
    - **재할당 가능** & 재선언 불가능
-   - 블록 스코프를 갖는 지역 변수를 선언, 선언과 동시에 원하는 값으로 초기화 할 수 있음
+   
+   - 블록 스코프를 갖는 지역 변수를 선언,
+   
+     선언과 동시에 원하는 값으로 초기화 할 수 있음
+   
 2. `const`
    - 블록 스코프 읽기 전용 상수를 선언 (추가로 동시에 값을 초기화)
    - 재할당 불가능 & 재선언 불가능
    - 선언 시 반드시 초기값을 설정 해야 하며, 이후 값 변경이 불가능
+   
 3. `var`
    - 변수를 선언 (추가로 동시에 값을 초기화)
    - 재할당 가능 & 재선언 가능
@@ -279,9 +285,7 @@
 - 조건문 또는 반복문에서 유용하게 사용
   - 조건문 또는 반복문에서 boolean이 아닌 데이터 타입은 **자동 형변환 규칙**에 따라 true 또는 false로 변환됨
 
-**ToBoolean Conversions (자동 형변환)**
-
-> <https://tc39.es/ecma262/#sec-toboolean>
+**ToBoolean Conversions (자동 형변환)** <https://tc39.es/ecma262/#sec-toboolean>
 
 | 데이터 타입 | false        | true             |
 | ----------- | ------------ | ---------------- |
@@ -379,12 +383,14 @@
 
   - `break` 및 `default`문은 [선택적]으로 사용 가능
 
-  - break문이 없는 경우 `break`문을 만나거나 `default`문을 실행할 때까지 다음 조건문 실행
+  - break문이 없는 경우 `break`문을 만나거나
+
+    `default`문을 실행할 때까지 다음 조건문 실행
 
   - 블록 스코프 생성
 
   - **Fall-through 현상**
-
+  
     - `break`를 작성하면 의도한대로 동작
 
 **if / switch**
@@ -401,7 +407,7 @@
   - 조건문이 참이기만 하면 문장을 계속해서 수행
 
     ```js
-    while (조건문) {}
+    while (조건문) { }
     ```
 
 - `for`
@@ -409,8 +415,8 @@
   - 특정한 조건이 거짓으로 판별될 때까지 반복
 
     ```js
-    for ([초기문]; [조건문]; [증감문]) {}
-  
+    for ([초기문]; [조건문]; [증감문]) { }
+    
     for (let i = 0; i < 6; i++) {
       console.log(i)
     }
@@ -637,8 +643,8 @@ const sub = function (num1, num2) {
 - 선언식 함수와 표현식 함수 모두 타입은 `function`으로 동일
 
   ```js
-  function sub(args) {}
-  const add = function (args) {}
+  function sub(args) { }
+  const add = function (args) { }
   ```
 
 **hoisting - 선언식**
@@ -721,13 +727,16 @@ const sub = function (num1, num2) {
 
   ```js
   (function (num) { return num ** 3 })(2)  // 8
-  (num) => { return num ** 3 }
-  ((num) => num ** 3)(2) // 8
+  
+  (num) => num ** 3)(2) // 8
   ```
 
 ## 4. Array_Object
 
-- JavaScript의 데이터 타입 중 reference 참조 타입에 해당 하는 타입은 **array**와 **object**이며, 객체라고 말함
+- JavaScript의 데이터 타입 중 reference 참조 타입에
+
+  해당 하는 타입은 **array**와 **object**이며, 객체라고 말함
+
 - 객체는 속성들의 collection 모음
 
 ### Array
@@ -764,8 +773,9 @@ const sub = function (num1, num2) {
 ```python
 # urls.py
 urlpatterns = [
-  path('index/', views.index, name='index'),
+    path('index/', views.index, name='index'),
 ]
+
 # views.py
 def index(request):
 ```
@@ -789,7 +799,7 @@ def index(request):
 **Array Helper Methods - forEach**
 
 ```js
-array.forEach((element, index, array) => {})
+array.forEach((element, index, array) => { })
 ```
 
 - array`.forEach(`callback(element[, index[,array]])`)`
@@ -827,7 +837,7 @@ users.forEach((user) => {
 **Array Helper Methods - map**
 
 ```js
-array.map((element, index, array) => {})
+array.map((element, index, array) => { })
 ```
 
 - array`.map(`callback(element[, index[, array]])`)`
@@ -869,7 +879,7 @@ const newUsers = users.map((user) => {
 **Array Helper Methods - filter**
 
 ```js
-array.filter((element, index, array) => {})
+array.filter((element, index, array) => { })
 ```
 
 - array`.filter(`callback(element[, index[, array]])`)`
@@ -909,7 +919,7 @@ const marriedUsers = users.filter((user) => user.isMarried)
 **Array Helper Methods - reduce**
 
 ```js
-array.reduce((acc, element, index, array) => {}, initialValue)
+array.reduce((acc, element, index, array) => { }, initialValue)
 ```
 
 - array`.reduce[`callback(`acc`, element, [index[, array]]](, initialValue)`)`
@@ -950,7 +960,7 @@ const totalBalance = users.reduce((total, user) => total + user.balance, 0)
 **Array Helper Methods - find**
 
 ```js
-array.find((element, index, array) => {})
+array.find((element, index, array) => { })
 ```
 
 - array`.find(`callback(element[, index[, array]])`)`
@@ -983,7 +993,7 @@ const tom = users.find((user) => user.name === "Tom")
 **Array Helper Methods - some**
 
 ```js
-array.some((element, index, array) => {})
+array.some((element, index, array) => { })
 ```
 
 - array`.some(`callback(element[, index[, array]])`)`
@@ -1006,7 +1016,7 @@ console.log(result)
 **Array Helper Methods - every**
 
 ```js
-array.every((element, index, array) => {})
+array.every((element, index, array) => { })
 ```
 
 - array`.every(`callback(element[, index[, array]])`)`
@@ -1098,7 +1108,7 @@ console.log(myInfo["samsung product"].galaxy)
   1. **속성명 축약**
   2. 메서드명 축약
   3. 계산된 속성명 사용하기
-  4. 구조 분해 할당
+  4. 구조 분해 할당(Destructuring assignment))
   5. 객체 전개 구문(Spread Operator)
 
 **1. 속성명 축약**
@@ -1251,27 +1261,26 @@ console.log(jsonToObj.coffee)
 
 ## finish
 
-- JavaScript 기초 문법
-
+- [JavaScript 기초 문법](#2-javascript-기초-문법)
   - 세미콜론`;`
-
+  
   - 들여쓰기와 코드 블럭
-
+  
   - 스타일 가이드
-
-  - 변수와 식별자
-
+  
+  - [변수와 식별자](#변수와-식별자)
+  
   - 타입과 연산자
     - 원시 자료형
-  - 조건문
-
-  - 반복문
-
-- 함수
-  - 선언식과 표현식
-  - 화살표 함수
-- Array와 Object
-  - 배열
+  - [조건문](#조건문)
+  
+  - [반복문](#반복문)
+  
+- [Function](#3-function)
+  - [선언식과 표현식](#선언식과-표현식)
+  - [Arrow Function](#arrow-function)
+- [Array Object](#4-array_object)
+  - [Array](#array)
     - Array Helper Method
-  - 객체
-    - ES6+ 객체 문법
+  - [Object](#object)
+    - [ES6+ 객체 문법]((#object-관련-문법))

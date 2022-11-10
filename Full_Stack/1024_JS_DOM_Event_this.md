@@ -151,17 +151,26 @@ liTags.forEach((element) => {
 **조작 관련 메서드 (입력)**
 
 - **Node`.innerText`**
-  - Node 객체와 그 자손의 텍스트 컨텐츠(DOMString)를 표현 (해당 요소 내부의 raw text)
+  - Node 객체와 그 자손의 텍스트 컨텐츠(DOMString)를 표현
+  
+    (해당 요소 내부의 raw text)
+  
   - 사람이 읽을 수 있는 요소만 남김
+  
   - 즉, 줄 바꿈을 인식하고 숨겨진 내용을 무시하는 등 최종적으로 스타일링이 적용된 모습으로 표현됨
 
 **조작 관련 메서드 (추가)**
 
 - **Node`.appendChild()`**
   - 한 Node를 특정 부모 Node의 자식 NodeList 중 마지막 자식으로 삽입
+  
   - 한번에 오직 하나의 Node만 추가할 수 있음
+  
   - 추가된 Node 객체를 반환
-  - 만약 주어진 Node가 이미 문서에 존재하는 다른 Node를 참조한다면 현재 위치에서 새로운 위치로 이동
+  
+  - 만약 주어진 Node가 이미 문서에 존재하는 다른 Node를 참조한다면
+  
+    현재 위치에서 새로운 위치로 이동
 
 **조작 관련 메서드 (삭제)**
 
@@ -264,22 +273,28 @@ EventTarget.addEventListener(type, listener)
 
   - 지정한 Event가 대상에 전달될 때마다 호출할 함수를 설정
 
-  - Event를 지원하는 모든 객체를 EventTarget 대상으로 지정 가능
+  - Event를 지원하는 모든 객체(Element, Document, Window 등)를
+
+    EventTarget 대상으로 지정 가능
 
   - **type**
 
     - 반응 할 Event 유형을 나타내는 대소문자 구분 문자열
 
     - `input`, `click`, `submit`
-
+  
       > <https://developer.mozilla.org/docs/Web/Events>
       >
       > <https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event>
-
+  
   - **listener**
     - 지정된 타입의 Event를 수신할 객체
+    
     - JavaScript function 객체(콜백 함수)여야 함
-    - 콜백 함수는 발생한 Event의 데이터를 가진 Event 객체를 유일한 매개변수로 받음
+    
+    - 콜백 함수는 발생한 Event의 데이터를 가진 Event 객체를
+    
+      유일한 매개변수로 받음
 
 ### Event 실습
 
@@ -401,46 +416,45 @@ aTag.addEventListener("click", function (event) {
   }
 </style>
 </head>
+
 <body>
-<a id="anchor" href="">GOOGLE</a>
-<script>
-const aTag = document.querySelector('#anchor')
-aTag.classList.add('text-decoration-none')
-aTag.setAttribute('href', 'https://google.com/')
-aTag.setAttribute('target', '_blank')
-</script>
+  <a id="anchor" href="">GOOGLE</a>
+  <script>
+    const aTag = document.querySelector('#anchor')
+    aTag.classList.add('text-decoration-none')
+    aTag.setAttribute('href', 'https://google.com/')
+    aTag.setAttribute('target', '_blank')
+  </script>
 </body>
 ```
 
-**[참고] lodash**
+**[참고] lodash <https://lodash.com/> **  
 
 - 모듈성, 성능 및 추가 기능을 제공하는 JavaScript 유틸리티 라이브러리
 - array, object 등 자료구조를 다룰 때 사용하는 유용하고 간편한 유틸리티 함수들을 제공
 - `reverse`, `sortBy`, `range`, `random`
 
-> <https://lodash.com/>
-
-```js
+```html
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 <script>
-const button = document.querySelector('#lotto-btn')
-button.addEventListener('click', function (event) {
-  // create container
-  const ballContainer = document.createElement('div')
-  ballContainer.classList.add('ball-container')
-  // random 6 numbers
-  const numbers = _.sampleSize(_.range(1, 46), 6)
-  // create ball
-  numbers.forEach((number) => {
-    const ball = document.createElement('div')
-    ball.innerText = number
-    ball.classList.add('ball')
-    ball.style.backgroundColor = 'crimson'
-    ballContainer.appendChild(ball)
+  const button = document.querySelector("#lotto-btn")
+  button.addEventListener("click", function (event) {
+    // create container
+    const ballContainer = document.createElement("div")
+    ballContainer.classList.add("ball-container")
+    // random 6 numbers
+    const numbers = _.sampleSize(_.range(1, 46), 6)
+    // create ball
+    numbers.forEach((number) => {
+      const ball = document.createElement("div")
+      ball.innerText = number
+      ball.classList.add("ball")
+      ball.style.backgroundColor = "crimson"
+      ballContainer.appendChild(ball)
+    })
+    const resultDiv = document.querySelector("#result")
+    resultDiv.appendChild(ballContainer)
   })
-  const resultDiv = document.querySelector('#result')
-  resultDiv.appendChild(ballContainer)
-})
 </script>
 ```
 
@@ -492,31 +506,31 @@ userInput.addEventListener("input", filterMessage)
 </head>
 
 <body>
-<form action="/todos/">
-  <input type="text">
-  <button>Add</button>
-</form>
-<ul></ul>
-<script>
-const ulTag = document.querySelector('ul')
-const formTag = document.querySelector('form')
-formTag.addEventListener('submit', function (event) {
-  event.preventDefault()
-  const inputTag = document.querySelector('input')
-  const data = inputTag.value
-  if (data.trim()) {
-    const liTag = document.createElement('li')
-    liTag.innerText = data
-    liTag.onclick = function () {
-      liTag.classList.toggle('line')
-    }
-    ulTag.appendChild(liTag)
-    event.target.reset()
-  } else {
-    alert('값을 입력하세요')
-  }
-})
-</script>
+  <form action="/todos/">
+    <input type="text">
+    <button>Add</button>
+  </form>
+  <ul></ul>
+  <script>
+    const ulTag = document.querySelector('ul')
+    const formTag = document.querySelector('form')
+    formTag.addEventListener('submit', function (event) {
+      event.preventDefault()
+      const inputTag = document.querySelector('input')
+      const data = inputTag.value
+      if (data.trim()) {
+        const liTag = document.createElement('li')
+        liTag.innerText = data
+        liTag.onclick = function () {
+          liTag.classList.toggle('line')
+        }
+        ulTag.appendChild(liTag)
+        event.target.reset()
+      } else {
+        alert('값을 입력하세요')
+      }
+    })
+  </script>
 ```
 
 ## 3. this
@@ -641,11 +655,11 @@ formTag.addEventListener('submit', function (event) {
   ```js
   const functionButton = document.querySelector("#function")
   const arrowButton = document.querySelector("#arrow")
-
+  
   functionButton.addEventListener("click", function (event) {
     console.log(this) // <button id="function">function</button>
   })
-
+  
   arrowButton.addEventListener("click", (event) => {
     console.log(this) // window
   })
@@ -661,9 +675,9 @@ formTag.addEventListener('submit', function (event) {
 
 ## finish
 
-- DOM
-  - DOM 조작
-- Event
+- [DOM](#1-dom)
+  - [DOM 조작](#dom-조작)
+- [Event](#2-event)
   - `addEventListener`
-- `this`
+- [this](#3-this)
   - "function" vs "arrow function"

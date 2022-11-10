@@ -59,17 +59,26 @@ console.log("Bye")
 **Asynchronous 비동기를 사용하는 이유**
 
 - **사용자 경험**
-  - 동기식 처리는 특정 로직이 실행되는 동안 다른 로직 실행을 차단하기 때문에 마치 프로그램이 응답하지 않는 듯한 사용자 경험을 만들게 됨
-  - **비동기로 처리한다면 먼저 처리되는 부분부터 보여줄 수 있으므로**, 사용자 경험에 긍정적인 효과를 볼 수 있음
+  - 동기식 처리는 특정 로직이 실행되는 동안 다른 로직 실행을 차단하기 때문에
+  
+    마치 프로그램이 응답하지 않는 듯한 사용자 경험을 만들게 됨
+  
+  - **비동기로 처리한다면 먼저 처리되는 부분부터 보여줄 수 있으므로**,
+  
+    사용자 경험에 긍정적인 효과를 볼 수 있음
 
 ## 2. JavaScript의 비동기 처리
 
 **Single Thread 언어, JavaScript**
 
-- **JavaScript는 한번에 하나의 일만 수행할 수 있는 Single Thread 언어**로 동시에 여러 작업을 처리할 수 없음
+- **JavaScript는 한번에 하나의 일만 수행할 수 있는 Single Thread 언어**로
+
+  동시에 여러 작업을 처리할 수 없음
 
   - [참고] Thread
-    - 작업을 처리할 때 실제로 작업을 수행하는 주체로, multi-thread라면 업무를 수행할 수 있는 주체가 여러 개라는 의미
+    - 작업을 처리할 때 실제로 작업을 수행하는 주체로,
+    
+      multi-thread라면 업무를 수행할 수 있는 주체가 여러 개라는 의미
 
 - **JavaScript는 하나의 작업을 요청한 순서대로 처리**할 수 밖에 없다.
 
@@ -93,7 +102,10 @@ console.log("Bye")
 2. 오래 걸리는 작업이 Call Stack으로 들어오면 **Web API**로 보내 별도로 처리하도록 한다.
 
    - **Web API**
-   - JavaScript 엔진이 아닌 브라우저에서 제공하는 runtime 환경으로 시간이 소요되는 작업을 처리 ([setTimeout](https://developer.mozilla.org/ko/docs/Web/API/setTimeout), DOM Event, AJAX 요청 등)
+
+   - JavaScript 엔진이 아닌 브라우저에서 제공하는 runtime 환경으로
+
+     시간이 소요되는 작업을 처리 ([setTimeout](https://developer.mozilla.org/ko/docs/Web/API/setTimeout), DOM Event, AJAX 요청 등)
 
 3. Web API에서 처리가 끝난 작업들은 곧바로 Call Stack으로 들어가지 못하고 **Task Queue**(FIFO)에 순서대로 들어간다.
 
@@ -108,34 +120,44 @@ console.log("Bye")
 
    - Call Stack과 Task Queue를 지속적으로 모니터링
 
-   - Call Stack이 비어 있는지 확인 후 비어 있다면,
+   - Call Stack이 비어 있는지 확인 후 비어 있다면
 
      Task Queue에서 대기 중인 오래된 작업을 Call Stack으로 Push
 
 **정리**
 
-JavaScript는 한 번에 하나의 작업을 수행하는 Single Thread 언어로 동기적 처리를 하지만, 브라우저 환경에서는 Web API에서 처리된 작업이 지속적으로 Task Queue를 거쳐 Event Loop에 의해 Call Stack에 들어와 순차적으로 실행됨으로써 비동기 작업이 가능한 환경이 된다.
+JavaScript는 한 번에 하나의 작업을 수행하는 Single Thread 언어로
+
+동기적 처리를 하지만, 브라우저 환경에서는 Web API에서 처리된 작업이
+
+지속적으로 Task Queue를 거쳐 Event Loop에 의해 Call Stack에 들어와
+
+순차적으로 실행됨으로써 비동기 작업이 가능한 환경이 된다.
 
 ## 3. Axios 라이브러리
 
 **Axios**
 
 - JavaScript의 HTTP 웹 통신을 위한 라이브러리
-- 확장 가능하나 인터페이스와 쉽게 사용할 수 있는 비동기 통신 기능을 제공
-- node 환경은 npm을 이용해서 설치 후 사용할 수 있고, browser 환경은 CDN을 이용해서 사용할 수 있음
 
-> <https://axios-http.com/kr/docs/intro>
->
-> <https://github.com/axios/axios>
+- 확장 가능하나 인터페이스와 쉽게 사용할 수 있는 비동기 통신 기능을 제공
+
+- node 환경은 npm을 이용해서 설치 후 사용할 수 있고,
+
+  browser 환경은 CDN을 이용해서 사용할 수 있음
+
+- <https://axios-http.com/kr/docs/intro>
+
+- <https://github.com/axios/axios>
 
 ### Axios 기본 구조
 
-```django
+```html
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script> // 요청에 사용될 서버 URL 필수
-axios.get('요청할 URL') // method를 지정하지 않으면 GET방식이 기본값
-  .then( 성공하면 수행할 콜백함수)
-  .catch(실패하면 수행할 콜백함수)
+  axios.get('요청할 URL') // method를 지정하지 않으면 GET방식이 기본값
+    .then(성공하면 수행할 콜백함수)
+    .catch(실패하면 수행할 콜백함수)
 </script>
 ```
 
@@ -169,30 +191,35 @@ print('야옹야옹')
 
 **고양이 사진 가져오기 Axios (비동기)**
 
-```js
+```html
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-console.log('고양이는 야옹')
-const catImageSearchURL = 'https://api.thecatapi.com/v1/images/search'
-
-axios({ // Promise 객체를 리턴하는 axios 라이브러리
-  method: 'get',
-  url: catImageSearchURL,
-})
-  .then((response) => {
-    console.log(response.data)
+  console.log("고양이는 야옹")
+  const catImageSearchURL = "https://api.thecatapi.com/v1/images/search"
+  // Promise 객체를 리턴하는 axios 라이브러리
+  axios({
+    method: "get",
+    url: catImageSearchURL,
   })
-  .catch((error) => {
-    console.log('실패했다옹')
-  })
-  console.log('야옹야옹')
-})
+    .then((response) => {
+      console.log(response.data)
+    })
+    .catch((error) => {
+      console.log("실패했다옹")
+    })
+  console.log("야옹야옹")
+</script>
 ```
 
 **결과 비교**
 
 - 동기식 코드는 위에서부터 순서대로 처리가 되기 때문에 첫번째 print가 출력되고 이미지를 가져오는 처리를 기다렸다가 다음 print 가 출력되는 반면
-- 비동기식 코드 (JavaScript)는 바로 처리가 가능한 작업(console.log)은 바로 처리하고, 오래 걸리는 작업인 이미지를 요청하고 가져오는 일은 요청을 보내 놓고 기다리지 않고 다음 코드로 진행 후 완료가 된 시점에 결과 출력이 진행됨
+
+- 비동기식 코드 (JavaScript)는 바로 처리가 가능한 작업(console.log)은
+
+  바로 처리하고, 오래 걸리는 작업인 이미지를 요청하고 가져오는 일은 요청을
+
+  보내 놓고 기다리지 않고 다음 코드로 진행 후 완료가 된 시점에 결과 출력이 진행됨
 
 ```html
 <button>야옹아 이리온</button>
@@ -203,8 +230,7 @@ axios({ // Promise 객체를 리턴하는 axios 라이브러리
   const btn = document.querySelector("button")
   // Promise 객체를 리턴하는 axios 라이브러리
   btn.addEventListener("click", function () {
-    axios({
-      // 권장 표기 방식
+    axios({ // 권장 표기 방식
       method: "get",
       url: catImageSearchURL,
     })
@@ -234,8 +260,7 @@ axios({ // Promise 객체를 리턴하는 axios 라이브러리
   const dogBtn = document.querySelector("#dog-btn")
   // Promise 객체를 리턴하는 axios 라이브러리
   dogBtn.addEventListener("click", function (event) {
-    axios({
-      // 권장 표기 방식
+    axios({ // 권장 표기 방식
       method: "get",
       url: dogImageSearchURL,
     })
@@ -258,13 +283,18 @@ axios({ // Promise 객체를 리턴하는 axios 라이브러리
 **정리**
 
 - axios는 비동기로 데이터 통신을 가능하게 하는 라이브러리
-- 같은 방식으로 Django REST API로 요청을 보내서 데이터를 받아온 후 처리할 수 있음
+
+- 같은 방식으로 Django REST API로 요청을 보내서
+
+  데이터를 받아온 후 처리할 수 있음
 
 ## 4. Callback과 Promise
 
 **비동기 처리의 단점**
 
-- 비동기 처리의 핵심은 Web API로 들어오는 순서가 아니라 **작업이 완료되는 순서에 따라 처리**한다는 것
+- 비동기 처리의 핵심은 Web API로 들어오는 순서가 아니라
+
+  **작업이 완료되는 순서에 따라 처리**한다는 것
 
 - 그런데 이는 개발자 입장에서 코드의 실행 순서가 불명확하다는 단점이 있음,
 
@@ -280,8 +310,10 @@ axios({ // Promise 객체를 리턴하는 axios 라이브러리
 
 - 비동기에만 사용되는 함수가 아니며 동기, 비동기 상관없이 사용 가능
 
-- 시간이 걸리는 **비동기 작업이 완료된 후 실행할 작업을 명시하는 데 사용**되는 콜백 함수를 **asynchronous callback 비동기 콜백**이라 부름
+- 시간이 걸리는 **비동기 작업이 완료된 후 실행할 작업을 명시하는 데 사용**되는
 
+  콜백 함수를 **asynchronous callback 비동기 콜백**이라 부름
+  
   ```js
   const btn = document.querySelector("button")
   btn.addEventListener("click", () => {
@@ -304,12 +336,20 @@ axios({ // Promise 객체를 리턴하는 axios 라이브러리
 
   이 과정을 작성하다 보면 비슷한 패턴이 계속 발생하게 됨
 
-- 비동기 처리를 위한 콜백을 작성할 때 마주하는 문제를 Callback Hell 콜백 지옥이라 하며, 그때의 코드 작성 형태가 마치 "피라미드와 같다"고 해서 "Pyramid of doom 파멸의 피라미드"라고도 부름
+- 비동기 처리를 위한 콜백을 작성할 때 마주하는 문제를
+
+  Callback Hell 콜백 지옥이라 하며, 그때의 코드 작성 형태가
+
+  마치 "피라미드와 같다"고 해서 "Pyramid of doom 파멸의 피라미드"라고도 부름
 
 **정리**
 
 - 콜백 함수는 비동기 작업을 순차적으로 실행할 수 있게 하는 반드시 필요한 로직
-- 비동기 코드를 작성하다 보면 콜백 함수로 인한 callback hell 콜백 지옥은 반드시 나타나는 문제
+
+- 비동기 코드를 작성하다 보면 콜백 함수로 인한 callback hell 콜백 지옥은
+
+  반드시 나타나는 문제
+
   - 코드의 가독성을 해치고
   - 유지 보수가 어려워짐
 
@@ -376,20 +416,33 @@ axios({
 
 - 비동기 콜백 작성 스타일과 달리 Promise가 보장하는 특징
 
-1. callback 함수는 JavaScript의 Event Loop가 현재 실행 중인 Call Stack을 완료하기 이전에는 절대 호출되지 않음
+1. callback 함수는 JavaScript의 Event Loop가
+
+   현재 실행 중인 Call Stack을 완료하기 이전에는 절대 호출되지 않음
+
    - Promise callback 함수는 Event Queue에 배치되는 엄격한 순서로 호출됨
-2. 비동기 작업이 성공하거나 실패한 뒤에 `.then()` 메서드를 이용하여 추가한 경우에도 1번과 똑같이 동작
+
+2. 비동기 작업이 성공하거나 실패한 뒤에 `.then()` 메서드를 이용하여 추가한 경우에도
+
+   1번과 똑같이 동작
+
 3. `.then()`을 여러 번 사용하여 여러 개의 callback 함수를 추가할 수 있음 (Chaining)
+
    - 각각의 callback은 주어진 순서대로 하나하나 실행하게 됨
    - Chaining은 Promise의 가장 뛰어난 장점
 
 ## 5. AJAX
 
-- 비동기 통신을 이용하면 화면 전체를 새로고침 하지 않아도 서버로 요청을 보내고, 데이터를 받아 화면의 일부분만 업데이트 가능
+- 비동기 통신을 이용하면 화면 전체를 새로고침 하지 않아도
+
+  서버로 요청을 보내고, 데이터를 받아 화면의 일부분만 업데이트 가능
+
 - ''비동기 통신 웹 개발 기술''을 Asynchronous Javascript and XML (AJAX) 라 함
+
 - **AJAX의 특징**
   1. 페이지 새로고침 없이 서버에 요청
   2. 서버로부터 응답(데이터)을 받아 작업을 수행
+  
 - 비동기 웹 통신을 위한 라이브러리 중 하나가 Axios
 
 ### 비동기 적용하기
@@ -405,9 +458,11 @@ axios({
 
 <body>
 
-{% block script %}
-{% endblock script %}
+  {% block script %}
+  {% endblock script %}
 </body>
+
+</html>
 ```
 
 - axios CDN 작성
@@ -434,7 +489,7 @@ axios({
 </form>
 
 <script>
-const form = document.querySelector("#follow-form")
+  const form = document.querySelector("#follow-form")
 </script>
 ```
 
@@ -444,10 +499,10 @@ const form = document.querySelector("#follow-form")
 <!-- accounts/profile.html -->
 
 <script>
-const form = document.querySelector("#follow-form")
-form.addEventListener("submit", function (event) {
-  event.preventDefault()
-})
+  const form = document.querySelector("#follow-form")
+  form.addEventListener("submit", function (event) {
+    event.preventDefault()
+  })
 </script>
 ```
 
@@ -456,14 +511,14 @@ form.addEventListener("submit", function (event) {
 ```django
 <!-- accounts/profile.html -->
 <script>
-const form = document.querySelector("#follow-form")
-form.addEventListener("submit", function (event) {
-  event.preventDefault()
-  axios({
-    method: "post", // 요청을 생성할때 사용되는 메소드
-    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+  const form = document.querySelector("#follow-form")
+  form.addEventListener("submit", function (event) {
+    event.preventDefault()
+    axios({
+      method: "post", // 요청을 생성할때 사용되는 메소드
+      url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+    })
   })
-})
 </script>
 ```
 
@@ -471,27 +526,27 @@ form.addEventListener("submit", function (event) {
 
 ```django
 <!-- accounts/profile.html -->
-<form id="follow-form" data-user-id="{{ person.pk }}">
-
-</form>
+<form id="follow-form" data-user-id="{{ person.pk }}"></form>
 
 <script>
-const form = document.querySelector("#follow-form")
-form.addEventListener("submit", function (event) {
-  event.preventDefault()
-  const userId = event.target.dataset.userId
+  const form = document.querySelector("#follow-form")
+  form.addEventListener("submit", function (event) {
+    event.preventDefault()
+    const userId = event.target.dataset.userId
 
     axios({
       method: "post", // 요청을 생성할때 사용되는 메소드
       url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+    })
   })
-})
 </script>
 ```
 
 **`data-*` attributes**
 
-- 사용자 지정 데이터 특성을 만들어 임의의 데이터를 HTML과 DOM 사이에서 교환 할 수 있는 방법
+- 사용자 지정 데이터 특성을 만들어 임의의 데이터를
+
+  HTML과 DOM 사이에서 교환 할 수 있는 방법
 
 > [https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/data-\*](https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/data-*)
 >
@@ -521,10 +576,8 @@ form.addEventListener("submit", function (event) {
 ```django
 <!-- accounts/profile.html -->
 <script>
-const form = document.querySelector("#follow-form")
-const csrftoken = document.querySelector(
-  "[name=csrfmiddlewaretoken]"
-).value
+  const form = document.querySelector("#follow-form")
+  const csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value
 </script>
 ```
 
@@ -535,27 +588,27 @@ const csrftoken = document.querySelector(
 ```django
 <!-- accounts/profile.html -->
 <script>
-const form = document.querySelector("#follow-form")
-const csrftoken = document.querySelector(
-  "[name=csrfmiddlewaretoken]"
-).value
-form.addEventListener("submit", function (event) {
-  event.preventDefault()
-  const userId = event.target.dataset.userId
-  axios({
-    method: "post", // 요청을 생성할때 사용되는 메소드
-    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-    headers: { // 사용자 지정 헤더
-      "X-CSRFToken": csrftoken,
-    },
+  const form = document.querySelector("#follow-form")
+  const csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value
+  form.addEventListener("submit", function (event) {
+    event.preventDefault()
+    const userId = event.target.dataset.userId
+    axios({
+      method: "post", // 요청을 생성할때 사용되는 메소드
+      url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+      headers: { // 사용자 지정 헤더
+        "X-CSRFToken": csrftoken,
+      },
+    })
   })
-})
 </script>
 ```
 
 - 팔로우 버튼을 토글하기 위해서는 현재 팔로우가 된 상태인지 여부 확인이 필요
 
-- axios 요청을 통해 받는 `response` 객체를 활용해 view 함수를 통해서 팔로우 여부를 파악 할 수 있는 변수를 담아 JSON 타입으로 응답하기
+- axios 요청을 통해 받는 `response` 객체를 활용해 view 함수를 통해서 팔로우 여부를
+
+  파악 할 수 있는 변수를 담아 JSON 타입으로 응답하기
 
 - 팔로우 여부를 확인하기 위한 is_followed 변수 작성 및 JSON 응답
 
@@ -594,26 +647,28 @@ def follow(request, user_pk):
 ```django
 <!-- accounts/profile.html -->
 <script>
-axios({
-  method: "post", // 요청을 생성할때 사용되는 메소드
-  url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-  headers: { // 사용자 지정 헤더
-    "X-CSRFToken": csrftoken,
-  },
-})
-.then((response) => { // 버튼 토글
-  const isFollowed = response.data.is_followed
-  const followBtn = document.querySelector(
-    "#follow-form > input[type=submit]"
-  )
-  if (isFollowed === true) {
-    followBtn.value = "언팔로우"
-  } else {
-    followBtn.value = "팔로우"
-  }
-})
+  axios({
+    method: "post", // 요청을 생성할때 사용되는 메소드
+    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+    headers: { // 사용자 지정 헤더
+      "X-CSRFToken": csrftoken,
+    },
+  }).then((response) => {
+    // 버튼 토글
+    const isFollowed = response.data.is_followed
+    const followBtn = document.querySelector(
+      "#follow-form > input[type=submit]"
+    )
+    if (isFollowed === true) {
+      followBtn.value = "언팔로우"
+    } else {
+      followBtn.value = "팔로우"
+    }
+  })
 </script>
 ```
+
+- 결과 확인 (개발자 도구 - Network)
 
 **[참고] XHR**
 
@@ -629,7 +684,7 @@ axios({
 ```django
 <!-- accounts/profile.html -->
 
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
 {% block content %}
 <h1>{{ person.username }}님의 프로필</h1>
@@ -640,19 +695,18 @@ axios({
 
 <script>
 
-axios({
-  method: "post", // 요청을 생성할때 사용되는 메소드
-  url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-  headers: {
-    // 사용자 지정 헤더
-    "X-CSRFToken": csrftoken,
-  },
-})
-.then((response) => {
-
-  const followersCountTag = document.querySelector("#followers-count")
-  const followingsCountTag = document.querySelector("#followings-count")
-})
+  axios({
+    method: "post", // 요청을 생성할때 사용되는 메소드
+    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+    headers: {
+      // 사용자 지정 헤더
+      "X-CSRFToken": csrftoken,
+    },
+  }).then((response) => {
+    
+    const followersCountTag = document.querySelector("#followers-count")
+    const followingsCountTag = document.querySelector("#followings-count")
+  })
 </script>
 ```
 
@@ -661,6 +715,7 @@ axios({
 ```python
 # accounts/views.py
 
+from django.contrib.auth import get_user_model
 from django.http import JsonResponse  # Response
 from django.shortcuts import redirect
 from django.views.decorators.http import require_POST
@@ -696,20 +751,20 @@ def follow(request, user_pk):
 
 <script>
 
-axios({
-  method: "post", // 요청을 생성할때 사용되는 메소드
-  url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-  headers: { // 사용자 지정 헤더
-    "X-CSRFToken": csrftoken,
-  },
-})
-.then((response) => {
+  axios({
+    method: "post", // 요청을 생성할때 사용되는 메소드
+    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+    headers: { // 사용자 지정 헤더
+      "X-CSRFToken": csrftoken,
+    },
+  })
+    .then((response) => {
 
-  const followersCountTag = document.querySelector("#followers-count")
-  const followingsCountTag = document.querySelector("#followings-count")
-  followersCountTag.innerText = followersCount
-  followingsCountTag.innerText = followingsCount
-})
+      const followersCountTag = document.querySelector("#followers-count")
+      const followingsCountTag = document.querySelector("#followings-count")
+      followersCountTag.innerText = followersCount
+      followingsCountTag.innerText = followingsCount
+    })
 </script>
 ```
 
@@ -718,66 +773,60 @@ axios({
 ```django
 <!-- accounts/profile.html -->
 
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
 {% block content %}
 <h1>{{ person.username }}님의 프로필</h1>
-
 {% with followings=person.followings.all followers=person.followers.all %}
 <div>
-  팔로워 : <span id="followers-count">{{ followers|length }}</span> /
-  팔로잉 : <span id="followings-count">{{ followings|length }}</span>
+  팔로워 : <span id="followers-count">{{ followers|length }}</span> / 팔로잉 :
+  <span id="followings-count">{{ followings|length }}</span>
 </div>
 
 {% if user != person %}
 <div>
   <form class="follow-form" data-user-id="{{ person.pk }}">
-    {% csrf_token %}
-    {% if user in followers %}
+    {% csrf_token %} {% if user in followers %}
     <input id="follow-btn" type="submit" value="언팔로우" />
     {% else %}
     <input id="follow-btn" type="submit" value="팔로우" />
     {% endif %}
   </form>
 </div>
-{% endif %}
-{% endwith %}
-{% endblock content %}
-
-{% block script %}
+{% endif %} {% endwith %} {% endblock content %} {% block script %}
 <script>
-{% if user != person %}
+  {% if user != person %}
 
-const followForm = document.querySelector('.follow-form')
-const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  const followForm = document.querySelector('.follow-form')
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
 
-followForm.addEventListener('submit', function (event) {
-  event.preventDefault()
-  const userId = event.target.dataset.userId
+  followForm.addEventListener('submit', function (event) {
+    event.preventDefault()
+    const userId = event.target.dataset.userId
 
-  axios({
-    method: "post", // 요청을 생성할때 사용되는 메소드
-    url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
-    headers: { 'X-CSRFToken': csrftoken } // 사용자 지정 헤더
-  })
-  .then((response) => { // 버튼 토글
-    const followBtn = document.querySelector('#follow-btn')
-    if (response.data.is_follow) {
-      followBtn.setAttribute('value', '언팔로우')
-    } else {
-      followBtn.setAttribute('value', '팔로우')
-    } // 팔로우, 팔로워 인원 수
-    const followingCnt = document.querySelector('#following-cnt')
-    const followerCnt = document.querySelector('#follower-cnt')
-    followingCnt.innerText = response.data.following_cnt
-    followerCnt.innerText = response.data.follower_cnt
+    axios({
+      method: "post", // 요청을 생성할때 사용되는 메소드
+      url: `/accounts/${userId}/follow/`, // 요청에 사용될 서버 URL 필수
+      headers: { 'X-CSRFToken': csrftoken } // 사용자 지정 헤더
     })
-  .catch((error) => {
-    console.log(error)
+      .then((response) => { // 버튼 토글
+        const followBtn = document.querySelector('#follow-btn')
+        if (response.data.is_follow) {
+          followBtn.setAttribute('value', '언팔로우')
+        } else {
+          followBtn.setAttribute('value', '팔로우')
+        } // 팔로우, 팔로워 인원 수
+        const followingCnt = document.querySelector('#following-cnt')
+        const followerCnt = document.querySelector('#follower-cnt')
+        followingCnt.innerText = response.data.following_cnt
+        followerCnt.innerText = response.data.follower_cnt
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   })
-})
 
-{% endif %}
+  {% endif %}
 </script>
 {% endblock script %}
 ```
@@ -822,7 +871,7 @@ def follow(request, user_pk):
 ```django
 <!-- articles/index.html -->
 
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
 {% block content %}
 <div class="d-flex">
@@ -837,9 +886,11 @@ def follow(request, user_pk):
 
 {% for article in articles %}
 <div>
-  <p><b>작성자 :
-  <a href="{% url 'accounts:profile' article.user %}">{{ article.user }}</a>
-  </b></p>
+  <p>
+    <b>작성자 :
+      <a href="{% url 'accounts:profile' article.user %}">{{ article.user }}</a>
+    </b>
+  </p>
   <p>글 번호 : {{ article.pk }}</p>
   <p>글 제목 : {{ article.title }}</p>
   <p>글 내용 : {{ article.content }}</p>
@@ -847,65 +898,67 @@ def follow(request, user_pk):
 
 <div>
   <form class="like-forms" data-article-id="{{ article.pk }}">
-    {% csrf_token %}
-    {% if request.user in article.like_users.all %}
+    {% csrf_token %} {% if request.user in article.like_users.all %}
     <button id="like-{{ article.pk }}">좋아요 취소</button>
     {% else %}
     <button id="like-{{ article.pk }}">좋아요</button>
     {% endif %}
   </form>
-  <p><span id="like-count-{{ article.pk }}">
-      {{ article.like_users.all|length }}
-  </span>명이 이 글을 좋아합니다.</p>
+  <p>
+    <span id="like-count-{{ article.pk }}">
+      {{ article.like_users.all|length }} </span>명이 이 글을 좋아합니다.
+  </p>
 </div>
 
 <a href="{% url 'articles:detail' article.pk %}">상세 페이지</a>
 <hr />
-{% endfor %}
-{% endblock content %}
+{% endfor %} 
+{% endblock content %} 
 
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-const forms = document.querySelectorAll(".like-forms") // 좋아요 form 태그를 선택
+  const forms = document.querySelectorAll(".like-forms") // 좋아요 form 태그를 선택
 
-forms.forEach((form) => { // 이벤트 리스너를 달아준다.
-  form.addEventListener("submit", function (event) {
-    event.preventDefault() // submit 동작이 되지 않도록, 서버요청X
-    const articleId = event.target.dataset.articleId
-    const csrftoken = document.querySelector("[name=csrfmiddlewaretoken]").value
-    // csrf 토큰을 같이 넣어서 전달해야 함
-    // 왜냐면 form 요청을 preventDefault 로 요청을 막았기 때문에
-    // form 에 작성된 csrf 토큰이 추가된 요청이 이루어 지는 것이 아니고
-    // 따로 axios 로 요청을 하는 것이기 때문에
-    // 이 axios 는 csrf 토큰 정보가 없는 상태
-    // 속성 선택자를 이용해서 {% csrf_token %} 의 csrf_token 데이터를 가져옴
-    axios({
-      method: "post", // 요청을 생성할때 사용되는 메소드
-      url: `/articles/${articleId}/likes/`, // 요청에 사용될 서버 URL 필수
-      // 사용자 지정 헤더
-      headers: { "X-CSRFToken": csrftoken }, // csrf token 값을 header로 전달
-    })
-      .then((response) => { // response.data 에는 좋아요 눌렸는지 여부를 확인할 수 있는 data가 있음
-      const isLiked = response.data.is_liked
-      const likeBtn = document.querySelector(`#like-${articleId}`)
-      // data 를 이용해서 좋아요가 눌렸는지 DOM 조작을 통해 수정
-      if (isLiked === true) {
-        likeBtn.value = "좋아요 취소"
-      } else {
-        likeBtn.value = "좋아요"
-      }
-      // 좋아요 카운트 변경
-      // 응답에서 좋아요 카운트를 얻어와서 DOM 조작
-      const likeCnt = response.data.like_cnt // 좋아요 사람 수
-      const likeCntText = document.querySelector(`#like-count-${articleId}`)
-      likeCntText.innerText = likeCnt
-    })
-    .catch((error) => {
-      console.log(error)
+  forms.forEach((form) => { // 이벤트 리스너를 달아준다.
+    form.addEventListener("submit", function (event) {
+      event.preventDefault() // submit 동작이 되지 않도록, 서버요청X
+      const articleId = event.target.dataset.articleId
+      const csrftoken = document.querySelector(
+        "[name=csrfmiddlewaretoken]"
+      ).value
+      // csrf 토큰을 같이 넣어서 전달해야 함
+      // 왜냐면 form 요청을 preventDefault 로 요청을 막았기 때문에
+      // form 에 작성된 csrf 토큰이 추가된 요청이 이루어 지는 것이 아니고
+      // 따로 axios 로 요청을 하는 것이기 때문에
+      // 이 axios 는 csrf 토큰 정보가 없는 상태
+      // 속성 선택자를 이용해서 {% csrf_token %} 의 csrf_token 데이터를 가져옴
+      axios({
+        method: "post", // 요청을 생성할때 사용되는 메소드
+        url: `/articles/${articleId}/likes/`, // 요청에 사용될 서버 URL 필수
+        headers: { "X-CSRFToken": csrftoken }, // 사용자 지정 헤더
+      }) // csrf token 값을 header로 전달
+        .then((response) => {
+          // response.data 에는 좋아요 눌렸는지 여부를 확인할 수 있는 data가 있음
+          const isLiked = response.data.is_liked
+          const likeBtn = document.querySelector(`#like-${articleId}`)
+          // data 를 이용해서 좋아요가 눌렸는지 DOM 조작을 통해 수정
+          if (isLiked === true) {
+            likeBtn.value = "좋아요 취소"
+          } else {
+            likeBtn.value = "좋아요"
+          }
+          // 좋아요 카운트 변경
+          // 응답에서 좋아요 카운트를 얻어와서 DOM 조작
+          const likeCnt = response.data.like_cnt // 좋아요 사람 수
+          const likeCntText = document.querySelector(`#like-count-${articleId}`)
+          likeCntText.innerText = likeCnt
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     })
   })
-})
 </script>
 {% endblock script %}
 ```
@@ -941,16 +994,23 @@ def likes(request, article_pk):
 
 ## finish
 
-- 동기와 비동기
-- JavaScript의 비동기 처리
+- [동기와 비동기](#1-동기와-비동기)
+
+- [JavaScript의 비동기 처리](#2-javascript의-비동기-처리)
+  
   - Call Stack, Web API, Task Queue, Event Loop
-- Axios 라이브러리
+  
+- [Axios 라이브러리](#3-axios-라이브러리)
+  
   - `then` & `catch`
-- Async Callback과 Promise
+  
+- Async [Callback과 Promise](#4-callback과-promise)
 
-- AJAX
+- [AJAX](#5-ajax)
 
-- **왜 Asynchronous 비동기 방식이 필요할까**
-  - "human-centered design with UX"
-    - "인간 중심으로 설계된 사용자 경험"
-    - 실제 Ajax라는 용어를 처음 논문에서 사용한 Jesse James Garrett이 Ajax를 소개하며 강조한 한 마디
+
+**왜 Asynchronous 비동기 방식이 필요할까**
+
+- "human-centered design with UX"
+  - "인간 중심으로 설계된 사용자 경험"
+  - 실제 Ajax라는 용어를 처음 논문에서 사용한 Jesse James Garrett이 Ajax를 소개하며 강조한 한 마디

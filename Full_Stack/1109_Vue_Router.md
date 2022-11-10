@@ -540,12 +540,15 @@ const routes = [
 
 **네비게이션 가드** https://v3.router.vuejs.org/guide/advanced/navigation-guards.html
 
-- Vue router 를 통해 특정 URL 에 접근할 때 다른 url 로 redirect 를 하거나 해당 URL 로의 접근을 막는 방법
+- Vue router 를 통해 특정 URL 에 접근할 때
+
+  다른 url 로 redirect 를 하거나 해당 URL 로의 접근을 막는 방법
+
   - Ex) 사용자의 인증 정보가 없으면 특정 페이지에 접근하지 못하게 함
 
 **네비게이션 가드의 종류**
 
-- **전역 가드 Global Before Guard **
+- **전역 가드 Global Before Guard**
   - 애플리케이션 전역에서 동작
 - **라우터 가드 Per-Route Guard**
   - 특정  URL 에서만 동작
@@ -662,7 +665,7 @@ router.beforeEach((to, from, next) => {
   const isLoggedIn = false
 
   // 로그인이 필요한 페이지
-  const authPages = ["hello", ]
+  const authPages = ["hello"]
   
   // 앞으로 이동할 페이지(to)가
   // 로그인이 필요한 사이트인지 확인
@@ -885,12 +888,21 @@ const routes = [
 **형식은 유효하지만 특정 리소스를 찾을 수 없는 경우**
 
 - 예시) **articles/1/** 로 요청을 보냈지만, 1번 게시글이 삭제된 상태
-  - 이때는 `path: '*'` 를 만나 404 page 가 렌더링 되는 것이 아니라 기존에 명시한 **articles/:id/** 에 대한 components 가 렌더링됨
+  - 이때는 `path: '*'` 를 만나 404 page 가 렌더링 되는 것이 아니라
+  
+    기존에 명시한 **articles/:id/** 에 대한 components 가 렌더링됨
+  
   - 하지만 데이터가 존재하지 않기 때문에 정상적으로 렌더링이 되지 않음
+  
 - 해결책
   - 데이터가 없음을 명시
   - 404 page 로 이동해야 함
-- Dog API 문서(https://dog.ceo/dog-api/) 를 참고하여 동적 인자로 강아지 품종을 전달해 품종에 대한 랜덤 이미지를 출력하는 페이지를 만들어보기
+  
+- Dog API 문서(https://dog.ceo/dog-api/) 를 참고하여
+
+  동적 인자로 강아지 품종을 전달해
+
+  품종에 대한 랜덤 이미지를 출력하는 페이지를 만들어보기
 
 1. Axios 설치
 2. DogView 컴포넌트 작성

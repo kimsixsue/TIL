@@ -25,7 +25,10 @@
 - 자바스크립트는 브라우저를 조작하는 유일한 언어
   - 하지만 브라우저 밖에서는 구동할 수 없었음
 
-- 자바스크립트를 구동하기 위한 런타임 환경인 Node.js 로 인해 브라우저가 아닌 환경에서도 구동할 수 있게 됨
+- 자바스크립트를 구동하기 위한 런타임 환경인 Node.js 로 인해 브라우저가 아닌
+  
+  환경에서도 구동할 수 있게 됨
+  
   - Chrome V8 엔진을 제공하여 여러 OS 환경에서 실행할 수 있는 환경을 제공
   - Browser만 조작 가능했으나, Server-Side-Programming 또한 가능해짐
 
@@ -102,11 +105,19 @@
 **node_modules - `Babel`**
 
 - "JavaScript compiler"
+
 - 자바스크립트의 ES6+ 코드를 구버전으로 번역/변환 해주는 도구
+
 - 자바스크립트의 파편화, 표준화의 영향으로 작성된 코드의 스펙트럼이 매우 다양
   - 최신 문법을 사용해도 브라우저의 버전 별로 동작하지 않는 상황이 발생
-  - 버전에 따른 같은 의미의 다른 코드를 작성하는 등의 대응이 필요해졌고, 이러한 문제를 해결하기 위한 도구
-  - 원시 코드(최신 버전)를 목적 코드(구 버전)으로 옮기는 번역기가 등장하면서 더 이상 코드가 특정 브라우저에서 동작하지 않는 상황에 대해 크게 고민하지 않을 수 있음
+  
+  - 버전에 따른 같은 의미의 다른 코드를 작성하는 등의 대응이 필요해졌고,
+  
+    이러한 문제를 해결하기 위한 도구
+  
+  - 원시 코드(최신 버전)를 목적 코드(구 버전)으로 옮기는 번역기가 등장하면서 더 이상
+  
+    코드가 특정 브라우저에서 동작하지 않는 상황에 대해 크게 고민하지 않을 수 있음
 
 **node_modules - `Webpack`**
 
@@ -116,15 +127,27 @@
 
 **`Module`**
 
-- 개발하는 애플리케이션의 크기가 커지고 복잡해지면 파일 하나에 모든 기능을 담기가 어려워짐
-- 따라서 자연스럽게 파일을 여러 개로 분리하여 관리를 하게 되었고, 이때 분리된 파일 각각이 module 모듈 즉, js 파일 하나가 하나의 모듈
-- 모듈은 대개 기능 단위로 분리하며, 클래스 하나 혹은 특정한 목적을 가진 복수의 함수로 구성된 라이브러리 하나로 구성됨
+- 개발하는 애플리케이션의 크기가 커지고 복잡해지면
+
+  파일 하나에 모든 기능을 담기가 어려워짐
+
+- 따라서 자연스럽게 파일을 여러 개로 분리하여 관리를 하게 되었고,
+
+  이때 분리된 파일 각각이 module 모듈 즉, js 파일 하나가 하나의 모듈
+
+- 모듈은 대개 기능 단위로 분리하며,
+
+  클래스 하나 혹은 특정한 목적을 가진 복수의 함수로 구성된 라이브러리 하나로 구성됨
+
 - 여러 모듈 시스템
   - ESM(ECMA Script Module), AMD, CommonJS, UMD
 
 **Module 의존성 문제**
 
-- 모듈의 수가 많아지고 라이브러리 혹은 모듈 간의 의존성(연결성)이 깊어지면서 특정한 곳에서 발생한 문제가 어떤 모듈 간의 문제인지 파악하기 어려움
+- 모듈의 수가 많아지고 라이브러리 혹은 모듈 간의 의존성(연결성)이 깊어지면서
+
+  특정한 곳에서 발생한 문제가 어떤 모듈 간의 문제인지 파악하기 어려움
+
   - Webpack은 이 모듈 간의 의존성 문제를 해결하기 위해 등장
 
 **`Bundler`**
@@ -139,7 +162,10 @@
 **Webpack - static module `bundler`**
 
 - modules with dependencies => bundle your scripts => static assets
-- 의존성을 Webpack 이 담당해 주므로 개발자는 `npm install` 을 사용해 다양한 모듈을 한 번에 설치하고 각 모듈을 사용해 개발에 집중할 수 있음
+
+- 의존성을 Webpack 이 담당해 주므로 개발자는 `npm install` 을 사용해 다양한
+
+  모듈을 한 번에 설치하고 각 모듈을 사용해 개발에 집중할 수 있음
 
 **package.json**
 
@@ -180,10 +206,15 @@
 
 - UI를 독립적이고 재사용 가능한 조각들로 나눈 것
   - 즉, 기능 별로 분화한 코드 조각
+  
 - CS에서는 다시 사용할 수 있는 범용성을 위해 개발된 소프트웨어 구성 요소를 의미
+
 - [하나의 app을 구성할 때 중첩된 컴포넌트들의 tree로 구성하는 것이 보편적임](<https://v2.vuejs.org/v2/guide/components.html#Organizing-Components>)
   - Vue에서는 src/App.vue 를 root node 로 하는 tree의 구조를 가짐
-- 컴포넌트는 유지보수를 쉽게 만들어 줄 뿐만 아니라 재사용성의 측면에서도 매우 강력한 기능을 제공
+  
+- 컴포넌트는 유지보수를 쉽게 만들어 줄 뿐만 아니라
+
+  재사용성의 측면에서도 매우 강력한 기능을 제공
 
 - 웹 서비스는 여러 개의 컴포넌트로 이루어져 있음
 
@@ -219,8 +250,12 @@
 
 **정리**
 
-- HTML, CSS, 그리고 JavaScript 를 .vue 라는 확장자를 가진 파일 안에서 관리하며 개발
+- HTML, CSS, 그리고 JavaScript 를 .vue 라는 확장자를 가진 파일 안에서
+
+  관리하며 개발
+
 - 이 파일을 Vue instance, 또는 Vue component 라고 하며, 기능 단위로 작성
+
 - Vue CLI 가 Vue를 Component based 하게 사용하도록 도와줌
 
 ### Vue component
@@ -231,9 +266,14 @@
   - HTML의 body 부분
   - 눈으로 보여지는 요소 작성
   - 다른 컴포넌트를 HTML 요소처럼 추가 가능
+  
 - JavaScript 스크립트
   - JavaScript 코드가 작성되는 곳
-  - 컴포넌트 정보, 데이터, 메서드 등 vue 인스턴스를 구성하는 대부분이 작성 됨
+  
+  - 컴포넌트 정보, 데이터, 메서드 등
+  
+    vue 인스턴스를 구성하는 대부분이 작성 됨
+  
 - CSS 스타일
 
   - CSS가 작성되며 컴포넌트의 스타일을 담당
@@ -252,7 +292,10 @@
 
 **현재 구조**
 
-- Vue CLI 를 실행하면 이미 HelloWorld.vue 라는 컴포넌트가 생성되어 있고 App.vue 에 등록되어 사용되고 있음
+- Vue CLI 를 실행하면 이미 HelloWorld.vue 라는 컴포넌트가 생성되어 있고
+
+  App.vue 에 등록되어 사용되고 있음
+
   - `npm run serve` 명령어를 진행 했을 때 나온 화면의 대부분이 HelloWorld.vue
 
 ```vue
@@ -260,7 +303,10 @@
 
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <img
+      alt="Vue logo"
+      src="./assets/logo.png"
+    />
     <HelloWorld msg="Welcome to Your Vue/js App" />
   </div>
 </template>
@@ -284,6 +330,7 @@ export default {
 </script>
 
 <style>
+
 </style>
 ```
 
@@ -301,7 +348,10 @@ export default {
 
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <img
+      alt="Vue logo"
+      src="./assets/logo.png"
+    />
     <!-- 3. 보여주기 -->
     <HelloWorld msg="Welcome to Your Vue/js App" />
   </div>
@@ -379,8 +429,12 @@ export default {
 
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <MyComponent />  <!-- 보여주기 -->
+    <img
+      alt="Vue logo"
+      src="./assets/logo.png"
+    />
+    <MyComponent />
+    <!-- 보여주기 -->
     <HelloWorld msg="Welcome to Your Vue/js App" />
   </div>
 </template>
@@ -458,7 +512,10 @@ export default {
 
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <img
+      alt="Vue logo"
+      src="./assets/logo.png"
+    />
     <MyComponent />
     <MyComponent />
     <HelloWorld msg="Welcome to Your Vue/js App" />
@@ -480,8 +537,13 @@ export default {
   - 하지만 페이지들은 component 로 구분이 되어있음
 
 - 각 Component는 독립적이므로 서로 다른 data 를 갖게 될 것이다.
-- 컴포넌트는 부모-자식 관계를 가지고 있으므로, 부모-자식 관계만 데이터를 주고받게 하자
+
+- 컴포넌트는 부모-자식 관계를 가지고 있으므로,
+
+  부모-자식 관계만 데이터를 주고받게 하자
+
 - 데이터의 흐름을 파악하기 용이
+
 - 유지 보수하기 쉬워짐
 
 **pass props & emit event**
@@ -494,8 +556,12 @@ export default {
 ### Pass Props
 
 - 요소의 property 속성을 사용하여 데이터 전달
+
 - props는 부모(상위) 컴포넌트의 정보를 전달하기 위한 사용자 지정 특성
-- 자식(하위) 컴포넌트는 props 옵션을 사용하여 수신하는 props 를 명시적으로 선언해야 함
+
+- 자식(하위) 컴포넌트는 props 옵션을 사용하여
+
+  수신하는 props 를 명시적으로 선언해야 함
 
 **props in HelloWorld**
 
@@ -504,7 +570,10 @@ export default {
 
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <img
+      alt="Vue logo"
+      src="./assets/logo.png"
+    />
     <MyComponent />
     <HelloWorld msg="Welcome to Your Vue/js App" />
   </div>
@@ -512,26 +581,58 @@ export default {
 ```
 
 - Vue app은 이미 props를 사용하고 있었다
-- Vue CLI를 설치할 때 만들어주었던 App.vue의 HelloWorld 컴포넌트를 살펴보면 msg라는 property가 작성되 어 있음
+
+- Vue CLI를 설치할 때 만들어주었던 App.vue의 HelloWorld 컴포넌트를 살펴보면
+
+  msg라는 property가 작성되어 있음
 
 ```vue
 <!-- HelloWorld.vue -->
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <p>
 ```
 
 - HelloWorld.vue에서 msg를 사용한 것을 확인할 수 있음
 
 **props in HelloWorld 정리**
 
-- App.vue 의 `<HelloWorld/>` 요소에 **msg="~"** 라는 property 를 설정하였고, 하위 컴포넌트인 HelloWorld는 자신에게 부여된 msg property 를 template 에서 **{{ msg }}** 의 형태로 사용한 것
+- App.vue 의 `<HelloWorld/>` 요소에 **msg="~"** 라는 property 를 설정하였고, 
+
+  하위 컴포넌트인 HelloWorld는 자신에게 부여된 msg property 를 
+
+  template 에서 **{{ msg }}** 의 형태로 사용한 것
+
+**props in HelloWorld 실습**
 
 - msg property의 value를 바꾸면 화면에 보이는 문장이 달라짐
 
+```vue
+<!-- App.vue -->
+
+<template>
+  <div id="app">
+    <img
+      alt="Vue logo"
+      src="./assets/logo.png"
+    />
+    <MyComponent />
+    <HelloWorld msg="App.vue에서 작성한 msg입니다" />
+  </div>
+</template>
+```
+
+**Pass Props**
+
 - 부모 => 자식으로의 data 전달 방식을 pass props 라고 함
+
 - 정적인 데이터를 전달하는 경우 static props 라고 명시하기도 함
-- 요소에 속성을 작성하듯이 사용 가능하여, `prop-data-name="value"` 의 형태로 데이터를 전달
+
+- 요소에 속성을 작성하듯이 사용 가능하여, 
+
+  `prop-data-name="value"` 의 형태로 데이터를 전달
+
   - 이때 속성의 키 값은 kebab-case 를 사용
 
 ```vue
@@ -548,9 +649,16 @@ export default {
 ```
 
 - Prop 명시
-- 데이터를 받는 쪽, 즉 하위 컴포넌트에서도 `props` 에 대해 명시적으로 작성 해주어야 함
+
+- 데이터를 받는 쪽, 즉 하위 컴포넌트에서도 
+
+  `props` 에 대해 명시적으로 작성 해주어야 함
+
 - 전달 받은 `props` 를 type과 함께 명시
-- 컴포넌트를 문서화할 뿐만 아니라, [잘못된 타입이 전달하는 경우 브라우저의 자바스크립트 콘솔에서 사용자에게 경고](<https://v2.vuejs.org/v2/guide/components-props.html#Prop-Validation>)
+
+- 컴포넌트를 문서화할 뿐만 아니라,
+
+  [잘못된 타입이 전달하는 경우 브라우저의 자바스크립트 콘솔에서 사용자에게 경고](<https://v2.vuejs.org/v2/guide/components-props.html#Prop-Validation>)
 
 **MyComponent to MyComponentItem**
 
@@ -596,13 +704,20 @@ export default {
 
 - 자식에서 받는 props
   - **camelCase**
-- 부모 html 템플릿에서 kebab-case 로 넘긴 변수를 자식의 vue 스크립트에서 자동으로 camelCase 로 변환하여 인식함
+  
+- 부모 html 템플릿에서 kebab-case 로 넘긴 변수를 
+
+  자식의 vue 스크립트에서 자동으로 camelCase 로 변환하여 인식함
 
 **Dynamic props**
 
 - 변수를 props 로 전달할 수 있음
+
 - v-bind directive 를 사용해 데이터를 동적으로 바인딩
-- 부모 컴포넌트의 데이터가 업데이트 되면 자식 컴포넌트로 전달되는 데이터 또한 업데이트 됨
+
+- 부모 컴포넌트의 데이터가 업데이트 되면 
+
+  자식 컴포넌트로 전달되는 데이터 또한 업데이트 됨
 
 **Dynamic props 실습**
 
@@ -615,7 +730,7 @@ export default {
     <MyComponentItem
       static-props="component에서 componentItem으로"
       :dynamic-props="dynamicProps"
-      />
+    />
   </div>
 </template>
 
@@ -638,7 +753,7 @@ export default {
   <div>
     <h3>This is Item component</h3>
     <p>{{ staticProps }}</p>
-    <p>{{ dynamicProps }}</p> 
+    <p>{{ dynamicProps }}</p>
   </div>
 </template>
 
@@ -655,15 +770,17 @@ export default {
 
 **컴포넌트의 data 함수** <https://v2.vuejs.org/v2/guide/components.html#data-Must-Be-a-Function>
 
-```js
-data: function () {
-  return {
-    // component's data in here
-  }
-},
-```
+- 각 vue 인스턴스는 같은 data 객체를 공유하므로 
 
-- 각 vue 인스턴스는 같은 data 객체를 공유하므로 새로운 data 객체를 return 반환하여 사용해야 함
+  새로운 data 객체를 return 반환하여 사용해야 함
+
+```js
+data: function (){ 
+  return { 
+    // component's data in here 
+  } 
+}
+```
 
 **Pass Props**
 
@@ -686,7 +803,7 @@ data: function () {
     <MyComponentItem
       static-props="component에서 componentItem으로"
       :my-props="dynamicProps"
-      />
+    />
   </div>
 </template>
 ```
@@ -728,13 +845,20 @@ export default {
 - 모든 props 는 부모에서 자식으로 즉 아래로 단방향 바인딩을 형성
 
 - 부모 속성이 업데이트되면 자식으로 흐르지만 반대 방향은 아님
-  - 부모 컴포넌트가 업데이트될 때마다 자식 컴포넌트의 모든 prop 들이 최신 값으로 새로고침 됨
+  - 부모 컴포넌트가 업데이트될 때마다 자식 컴포넌트의 모든 prop 들이
+  
+    최신 값으로 새로고침 됨
+  
 - 목적
 
-  - 하위 컴포넌트가 실수로 상위 컴포넌트 상태를 변경하여 앱의 데이터 흐름을 이해하기 힘들게 만드는 것을 방지
+  - 하위 컴포넌트가 실수로 상위 컴포넌트 상태를 변경하여 앱의 데이터 흐름을
 
-- 하위 컴포넌트에서 prop 를 변경하려고 시도해서는 안되며 그렇게 하면 Vue 는 콘솔에서 경고를 출력함
+    이해하기 힘들게 만드는 것을 방지
 
+- 하위 컴포넌트에서 prop 를 변경하려고 시도해서는 안되며
+
+  그렇게 하면 Vue 는 콘솔에서 경고를 출력함
+  
   > All props form a **one-way-down binding** between the child property and the parent one: when the parent property updates, it will flow down to the child, but not the other way around. This prevents child components from accidentally mutating the parent’s state, which can make your app’s data flow harder to understand.
   >
 
@@ -748,11 +872,20 @@ export default {
 **`$emit`**
 
 - **`$emit`** 메서드를 통해 부모 컴포넌트에 이벤트를 발생
-  - **`$emit('event-name')`** 형식으로 사용하며 부모 컴포넌트에 **`event-name`** 이라는 이벤트가 발생했다는 것을 알림
-  - 마치 사용자가 **마우스 클릭**을 하면 `click` 이벤트가 발생하는 것처럼 **`$emit('event-name')`** 가 실행되면 **`event-name`** 이벤트가 발생하는 것
+  - **`$emit('event-name')`** 형식으로 사용하며 부모 컴포넌트에 
+  
+    **`event-name`** 이라는 이벤트가 발생했다는 것을 알림
+  
+  - 마치 사용자가 **마우스 클릭**을 하면 `click` 이벤트가 발생하는 것처럼
+  
+    **`$emit('event-name')`** 가 실행되면 **`event-name`** 이벤트가 발생하는 것
+  
 - 참고) `$`
   - javascript 는 변수에 `_`, `$` 두개의 특수문자를 사용 가능
-  - 이때, 기존에 사용하던 변수, 메서드들과 겹치지 않게 하기 위해서 vue 는 `$emit` 를 이벤트 이벤트 전달을 위한 방식으로 택하였다.
+  
+  - 이때, 기존에 사용하던 변수, 메서드들과 겹치지 않게 하기 위해서
+  
+    vue 는 `$emit` 를 이벤트 이벤트 전달을 위한 방식으로 택하였다.
 
 **Emit Event**
 
@@ -788,15 +921,15 @@ export default {
   <div class="border">
     <h1>This is my component</h1>
     <MyComponentItem
-                     
+    
       @child-to-parent="parentGetEvent"
-      />
+    />
   </div>
 </template>
 
 <script>
 export default {
-  
+
   methods: {
     parentGetEvent: function () {
       console.log("자식 컴포넌트에서 발생한 이벤트")
@@ -810,9 +943,15 @@ export default {
 
 **Emit Event 흐름 정리**
 
-1. 자식 컴포넌트에 있는 버튼 클릭 이벤트를 청취하여 연결된 핸들러 함수 (`ChildToParent`) 호출
+1. 자식 컴포넌트에 있는 버튼 클릭 이벤트를 청취하여
+
+   연결된 핸들러 함수 (`ChildToParent`) 호출
+
 2. 호출된 함수에서 **`$emit`** 을 통해 상위 컴포넌트에 이벤트(`child-to-parent`) 발생
-3. 상위 컴포넌트는 자식 컴포넌트가 발생시킨 이벤트(`child-to-parent`)를 청취하여 연결된 핸들러 함수(`parentGetEvent`) 호출
+
+3. 상위 컴포넌트는 자식 컴포넌트가 발생시킨 이벤트(`child-to-parent`)를 청취하여
+
+   연결된 핸들러 함수(`parentGetEvent`) 호출
 
 **emit with data**
 
@@ -828,7 +967,7 @@ export default {
 
 <script>
 export default {
-  
+
   methods: {
     ChildToParent: function () {
       this.$emit("child-to-parent", "child data")
@@ -847,15 +986,15 @@ export default {
   <div class="border">
     <h1>This is my component</h1>
     <MyComponentItem 
-                     
-      @child-to-parent="parentGetEvent"
-      />
+    
+      @child-to-parent="parentGetEvent" 
+    />
   </div>
 </template>
 
 <script>
 export default {
-  
+
   methods: {
     parentGetEvent: function (inputData) {
       console.log("자식 컴포넌트에서 발생한 이벤트")
@@ -866,11 +1005,15 @@ export default {
 </script>
 ```
 
-- 이렇게 전달한 데이터는 이벤트와 연결된 부모 컴포넌트의 핸들러 함수의 인자로 사용 가능
+- 이렇게 전달한 데이터는
+
+  이벤트와 연결된 부모 컴포넌트의 핸들러 함수의 인자로 사용 가능
 
 **emit with data 흐름 정리**
 
-1. 자식 컴포넌트에 있는 버튼 클릭 이벤트를 청취하여 연결된 핸들러 함수 (`ChildToParent`) 호출
+1. 자식 컴포넌트에 있는 버튼 클릭 이벤트를 청취하여
+
+   연결된 핸들러 함수 (`ChildToParent`) 호출
 
 2. 호출된 함수에서 **`$emit`** 을 통해 부모 컴포넌트에 이벤트(`child-to-parent`)를 발생
 
@@ -888,7 +1031,10 @@ export default {
 <!-- TodoListInput.vue -->
 <template>
   <div>
-    <input type="text" v-model="inputData" />
+    <input
+      type="text"
+      v-model="inputData"
+    />
     <!-- TodoListInput 컴포넌트의 버튼을 누르면 add-todo 이벤트가 발생한다.  -->
     <button v-on:click="onClick">추가</button>
   </div>
@@ -984,10 +1130,14 @@ export default {
 <!-- MyComponentItem.vue -->
 
 <template>
-<div>
+  <div>
 
-  <input type="text" v-model="childInputData" @keyup.enter="childInput" />
-</div>
+    <input
+      type="text"
+      v-model="childInputData"
+      @keyup.enter="childInput"
+    />
+  </div>
 </template>
 
 <script>
@@ -1016,9 +1166,9 @@ export default {
   <div class="border">
     <h1>This is my component</h1>
     <MyComponentItem 
-                     
-      @child-input="getDynamicData"
-      />
+
+      @child-input="getDynamicData" 
+    />
   </div>
 </template>
 
@@ -1028,7 +1178,7 @@ import MyComponentItem from "@/components/MyComponentItem"
 export default {
 
   methods: {
-  
+    
     getDynamicData: function (inputData) {
       console.log(`child component로부터 ${inputData}를 입력받음`)
     },
@@ -1068,10 +1218,14 @@ export default {
 
   - **[`.native`](<https://v2.vuejs.org/v2/guide/components-custom-events.html#Binding-Native-Events-to-Components>)** - listen for a **native** event on the root element of component.
   
-  - 부모가 자식 컴포넌트의 이벤트를 v-on으로 청취할 때, 이게 일반 이벤트인지 emit 으로 발생하는 이벤트인지 구분을 못한다.
+  - 부모가 자식 컴포넌트의 이벤트를 v-on으로 청취할 때,
 
-    - 컴포넌트에서 일반 이벤트를 사용할 때 작성한다. 일반 이벤트라면 뒤에 .native 를 붙인다.
+    이게 일반 이벤트인지 emit 으로 발생하는 이벤트인지 구분을 못한다.
 
+    - 컴포넌트에서 일반 이벤트를 사용할 때 작성한다.
+    
+      일반 이벤트라면 뒤에 .native 를 붙인다.
+    
     ```html
     <!-- native event on component -->
     <my-component v-on:click.native="onClick"></my-component>
@@ -1106,7 +1260,11 @@ export default {
       2. 입력할 때 마다 emit으로 데이터를 전달하기위해 input 이벤트를 이용하여 sendData 메서드를 실행한다.
         - 엔터칠 때 마다 데이터를 전달하고 싶으면 @keyup.enter 이벤트를 사용하면 됨
      -->
-    <input type="text" v-model="childData" v-on:input="sendData" />
+    <input
+      type="text"
+      v-model="childData"
+      v-on:input="sendData"
+    />
     <p>App Data : {{ appData }}</p>
     <p>Parent Data : {{ parentData }}</p>
     <p>Child Data : {{ childData }}</p>
@@ -1124,8 +1282,7 @@ export default {
     parentData: String,
   },
   data: function () {
-    return {
-      // 입력 데이터를 저장하기 위해 선언
+    return { // 입력 데이터를 저장하기 위해 선언
       childData: null,
     }
   },
@@ -1151,7 +1308,11 @@ export default {
       2. 입력할 때 마다 emit으로 데이터를 전달하기위해 input 이벤트를 이용하여 sendData 메서드를 실행한다.
         - 엔터칠 때 마다 데이터를 전달하고 싶으면 @keyup.enter 이벤트를 사용하면 됨
      -->
-    <input type="text" v-model="parentData" v-on:input="sendData" />
+    <input
+      type="text"
+      v-model="parentData"
+      v-on:input="sendData"
+    />
     <p>AppData : {{ appData }}</p>
     <p>ChildData : {{ childData }}</p>
     <!-- 
@@ -1210,7 +1371,10 @@ export default {
     <!-- 
       입력한 TEXT 를 childData 와 v-model로 양방향 바인딩하여 사용자가 입력한 값을 저장한다.
     -->
-    <input type="text" v-model="appData" />
+    <input
+      type="text"
+      v-model="appData"
+    />
     <p>Parent Data : {{ parentData }}</p>
     <p>Child Data : {{ childData }}</p>
     <!-- 
@@ -1266,7 +1430,6 @@ export default {
   margin-top: 60px;
 }
 </style>
-
 ```
 
 ---
@@ -1274,10 +1437,13 @@ export default {
 ```vue
 <!-- App.vue -->
 <template>
-<div id="app">
-  <TodoList :todos="todos" @delete-todo="deleteTodo" />
-  <TodoForm @create-todo="createTodo" />
-</div>
+  <div id="app">
+    <TodoList
+      :todos="todos"
+      @delete-todo="deleteTodo"
+    />
+    <TodoForm @create-todo="createTodo" />
+  </div>
 </template>
 
 <script>
@@ -1314,16 +1480,16 @@ export default {
 ```vue
 <!-- components/TodoList.vue -->
 <template>
-<div>
-  <ul>
-    <TodoListItem
-      v-for="(todo, index) in todos"
-      :key="index"
-      :todo="todo"
-      @delete-todo="deleteTodo"
-    />
-  </ul>
-</div>
+  <div>
+    <ul>
+      <TodoListItem
+        v-for="(todo, index) in todos"
+        :key="index"
+        :todo="todo"
+        @delete-todo="deleteTodo"
+      />
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -1349,10 +1515,10 @@ export default {
 ```vue
 <!-- components/TodoListItem.vue -->
 <template>
-<li>
-  {{ todo.title }}
-  <button @click="deleteTodo">X</button>
-</li>
+  <li>
+    {{ todo.title }}
+    <button @click="deleteTodo">X</button>
+  </li>
 </template>
 
 <script>
@@ -1373,9 +1539,13 @@ export default {
 ```vue
 <!-- components/TodoForm.vue -->
 <template>
-<div>
-  <input type="text" v-model="todoTitle" @keyup.enter="createTodo" />
-</div>
+  <div>
+    <input
+      type="text"
+      v-model="todoTitle"
+      @keyup.enter="createTodo"
+    />
+  </div>
 </template>
 
 <script>
@@ -1395,4 +1565,3 @@ export default {
 }
 </script>
 ```
-
