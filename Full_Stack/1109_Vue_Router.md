@@ -29,19 +29,26 @@
 
 ### INTRO
 
-- 비슷한 것끼리 묶거나 내용을 구성해서 인지하는 것이 편하다.
+- 비슷한 것끼리 묶거나 내용을 구성해서 인지하는 것이 편하다. 만약 그렇지 않을 경우
 
-  만약 그렇지 않을 경우 불편하다는 느낌을 받거나 의사결정을 하는데 많은 시간이 걸리기도 한다.
+  불편하다는 느낌을 받거나 의사결정을 하는데 많은 시간이 걸리기도 한다.
 
-- 이러한 요소들은 유저와 밀접한 부분이기에 매우 중요하며 모든 서비스에서 반드시 고려되어야 한다.
+- 이러한 요소들은 유저와 밀접한 부분이기에
 
-- 단순한 느낌이나 심미적인 부분만 고려하는 것이 아닌 **체계적인 설계를 통해 기획**해야 한다.
+  매우 중요하며 모든 서비스에서 반드시 고려되어야 한다.
+
+- 단순한 느낌이나 심미적인 부분만 고려하는 것이 아닌
+
+  **체계적인 설계를 통해 기획**해야 한다.
 
 ### UX & UI
 
 **UX (User Experience)**
 
-- 유저와 가장 가까이에 있는 분야, 데이터를 기반으로 유저를 조사하고 분석해서 개발자, 디자이너가 이해할 수 있게 소통
+- 유저와 가장 가까이에 있는 분야, 데이터를 기반으로 유저를 조사하고 분석해서
+
+  개발자, 디자이너가 이해할 수 있게 소통
+
 - 유저가 느끼는 느낌, 태도 그리고 행동을 디자인
   - 로딩이 너무 길어서 사용하고 싶지 않았던 사이트
 
@@ -53,27 +60,44 @@
 **UI (User Interface)**
 
 - 유저에게 보여지는 화면을 디자인
-- UX를 고려한 디자인을 반영, 이 과정에서 기능 개선 혹은 추가가 필요한 경우 Front-end 개발자와 가장 많이 소통
+
+- UX를 고려한 디자인을 반영, 이 과정에서 기능 개선 혹은 추가가 필요한 경우
+
+  Front-end 개발자와 가장 많이 소통
 
 **[참고] Interface**
 
 - 서로 다른 두 개의 시스템, 장치 사이에서 정보나 신호를 주고받는 경우의 접점
   - 즉, 사용자가 기기를 쉽게 동작 시키는데 도움을 주는 시스템
-  - CLI(command-line interface) 나 GUI (Graphic User Interface) 를 사용해서 컴퓨터를 조작
+  
+  - CLI(command-line interface) 나 GUI (Graphic User Interface) 를
+  
+    사용해서 컴퓨터를 조작
 
 **좋은 UI를 설계하기 위해서는**
 
-- 예쁜 디자인 즉 심미적인 부분만 중요하다기보다는 사용자가 보다 쉽고 편리하게 사용할 수 있도록 하는 부분까지 고려되어야 함
+- 예쁜 디자인 즉 심미적인 부분만 중요하다기보다는 사용자가 보다 쉽고
+
+  편리하게 사용할 수 있도록 하는 부분까지 고려되어야 함
+
 - 통일된 디자인을 위한 디자인 시스템, 소통을 위한 중간 산출물, 프로토타입 등이 필요
+
 - UI 디자인에 있어 가장 중요한 것은 **협업**
 
 **디자이너와 기획자 그리고 개발자**
 
-- 많은 회사에서 UX/UI 디자인을 함께하는 디자이너를 채용하거나 UX는 기획자, UI는 디자이너의 역할로 채용하기도 함
+- 많은 회사에서 UX/UI 디자인을 함께하는 디자이너를 채용하거나
+
+  UX는 기획자, UI는 디자이너의 역할로 채용하기도 함
 
 - **UX (직무: UX Researcher, User Researcher)**
+
 - **UI (직무 : Product Designer, Interaction Designer)**
-- 개발자는 단순히 기능 개발만 하는 사람이 아니며 제품에 대해 고민하고 소통하는 능력이 반드시 필요
+
+- 개발자는 단순히 기능 개발만 하는 사람이 아니며 제품에 대해 고민하고
+
+  소통하는 능력이 반드시 필요
+
 - 즉 다양한 분야와의 협업이 필수적이기에 기본적인 UX/UI 에 대한 이해가 있어야 함
 
 ### 생각하는 UX & UI 디자인
@@ -90,14 +114,16 @@
 
 - 하나의 학문으로서 연구되고 있는 분야이며 심리학과도 밀접한 연관이 있음
 
-  UX/UI 그리고 HCI
+- UX/UI 그리고 HCI
 
   - GUI: 유저가 보는 일반적인 시각적인 디자인
   - UI: 유저가 보거나 듣는 등 비시각적인 부분까지 포함한 디자인
   - UX: 유저가 겪는 모든 경험(컴퓨터와 관련이 없는 부분까지도 포함)
   - HCI(Human Computer Interaction): 인간과 컴퓨터 사이의 상호작용에 대한 학문
+  
+- 점점 더 복잡해지는 기술과 반대로 점점 더 단순하고 대중화 되어야하는
 
-- 점점 더 복잡해지는 기술과 반대로 점점 더 단순하고 대중화 되어야하는 유저에 대한 경험으로 인해 계속해서 연구되는 중요한 분야
+  유저에 대한 경험으로 인해 계속해서 연구되는 중요한 분야
 
 - 예술에 정답이 없듯, 디자인에도 정답이 정해져 있지 않음
 
@@ -115,8 +141,13 @@
 
 **Prototyping Tool 시장**
 
-- UI/UX 디자인을 prototyping 하기 위한 도구는 굉장히 많고 빠른 패러다임의 변화로 인해 치열한 경쟁이 계속되고 있음
-- 이전까지는 Sketch 라는 툴이 굉장히 많이 사용되었지만, 현재에는 **Figma** 라는 툴이 약 70%의 시장 점유율을 보이고 있음
+- UI/UX 디자인을 prototyping 하기 위한 도구는 굉장히 많고 빠른 패러다임의
+
+  변화로 인해 치열한 경쟁이 계속되고 있음
+
+- 이전까지는 Sketch 라는 툴이 굉장히 많이 사용되었지만,
+
+  현재에는 **Figma** 라는 툴이 약 70%의 시장 점유율을 보이고 있음
 
 **Figma**
 
@@ -136,8 +167,15 @@
 **Figma 성공의 이유**
 
 - 성능의 희생을 일부 감수하고 웹 기반으로 원활한 협업이 이루어지도록 함
-- 기존 서비스들의 모든 불필요한 과정을 생략하고 **디자인** 그 자체에만 집중 할 수 있게 함
-- 이를 따라잡기 위해 시장 업계 1위 Adobe도 Adobe XD라는 프로그램을 앞세우며 많은 노력을 했지만 경쟁이 불가함을 인정한 Adobe는 결국
+
+- 기존 서비스들의 모든 불필요한 과정을 생략하고
+
+  **디자인** 그 자체에만 집중 할 수 있게 함
+
+- 이를 따라잡기 위해 시장 업계 1위 Adobe도 Adobe XD라는 프로그램을 앞세우며
+
+  많은 노력을 했지만 경쟁이 불가함을 인정한 Adobe는 결국
+
 - "Adobe, Figma 28조원에 인수 (2022.09)"
 
 **프로젝트를 시작하기 전에**
@@ -150,7 +188,10 @@
 **프로젝트와 협업**
 
 - 협업은 프로젝트와 팀이 성공하기 위한 토대
-- 어떻게 효과적으로 잘 협업할 수 있는지 다양한 방법과 도구를 찾아보고 학습하며 여러 프로젝트를 경험하는 과정이 반드시 필요
+
+- 어떻게 효과적으로 잘 협업할 수 있는지 다양한 방법과 도구를 찾아보고
+
+  학습하며 여러 프로젝트를 경험하는 과정이 반드시 필요
 
 ## 2. Vue Router
 
@@ -171,13 +212,19 @@
 **Routing in SPA / CSR**
 
 - 서버는 하나의 HTML(index.html) 만을 제공
+
 - 이후에 모든 동작은 하나의 HTML 문서 위에서 JavaScript 코드를 활용
-  - DOM을 그리는데 필요한 추가적인 데이터가 있다면 axios와 같은 AJAX 요청을 보낼 수 있는 도구를 사용하여 데이터를 가져오고 처리
+  - DOM을 그리는데 필요한 추가적인 데이터가 있다면
+  
+    axios와 같은 AJAX 요청을 보낼 수 있는 도구를 사용하여
+  
+    데이터를 가져오고 처리
+  
 - 즉, **하나의 URL만 가질 수 있음**
 
 **Why routing?**
 
-- 유저의 사용성 관점세어는 동작에 따라 URL이 바뀌는 것이 반드시 필요함
+- 유저의 사용성 관점에서는 동작에 따라 URL이 바뀌는 것이 반드시 필요함
 - Routing이 없다면,
   - 유저가 URL을 통한 페이지의 변화를 감지할 수 없음
   - 페이지가 무엇을 렌더링 중인지에 대한 상태를 알 수 없음
@@ -194,7 +241,7 @@
   - SPA의 단점 중 하나인 **"URL이 변경되지 않는다." 를 해결**
 - [참고] MPA (Multiple Page Application)
   - 여러 개의 페이지로 구성된 애플리케이션
-- SSR 방식으로 렌더링
+  - SSR 방식으로 렌더링
 
 **Vue Router 시작하기**
 
@@ -204,7 +251,9 @@ $ cd vue-router-app         # 디렉토리 이동
 $ vue add router            # Vue CLI를 통해 router plugin 적용
 ```
 
-- **기존에 프로젝트를 진행하고 있던 도중에 router를 추가하게 되면 App.vue를 덮어쓰므로 필요한 경우 명령을 실행하기 전에 파일을 백업해두어야 함** 
+- **기존에 프로젝트를 진행하고 있던 도중에 router를 추가하게 되면 App.vue를 덮어쓰므로**
+
+  **필요한 경우 명령을 실행하기 전에 파일을 백업해두어야 함** 
 
 ```bash
 ? Use history mode for router? (Requires proper server
@@ -217,12 +266,16 @@ setup for index fallback in production) (Y,n)
 
 - 브라우저의 History API를 활용한 방식
   - 새로고침 없이 URL 이동 기록을 남길 수 있음
+  
 - 우리에게 익숙한 URL 구조로 사용 가능
   - 예시) http://localhost:8080/index
 
-- [참고] History mode를 설정하지 않으면 Default 값인 hash mode로 설정됨 (`#` 을 통해 URL을 구분하는 방식)
+- [참고] History mode를 설정하지 않으면
+  
+  Default 값인 hash mode로 설정됨 (`#` 을 통해 URL을 구분하는 방식)
+  
   - 예시) http://localhost:8080#index
-
+  
 - App.vue
 
   - `router-link` 요소 및 `router-view` 가 추가됨
@@ -231,7 +284,7 @@ setup for index fallback in production) (Y,n)
   <template>
     <div id="app">
       <nav>
-        <router-link to="/">Home</router-link>
+        <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>
       </nav>
       <router-view />
@@ -249,9 +302,17 @@ setup for index fallback in production) (Y,n)
 
 - a 태그와 비슷한 기능 -> URL을 이동시킴
   - `routes` 에 등록된 컴포넌트와 매핑됨
-  - 히스토리 모드에서 `router-link` 는 클릭 이벤트를 차단하여 a 태그와 달리 브라우저가 페이지를 다시 로드 하지 않도록 함
+  
+  - 히스토리 모드에서 `router-link` 는 클릭 이벤트를 차단하여
+  
+    a 태그와 달리 브라우저가 페이지를 다시 로드 하지 않도록 함
+  
 - 목표 경로는 **`'to'`** 속성으로 지정됨
-- 기능에 맞게 HTML에서 a 태그로 rendering 되지만, 필요에 따라 다른 태그로 바꿀 수 있음
+
+- 기능에 맞게 HTML에서 a 태그로 rendering 되지만,
+
+  필요에 따라 다른 태그로 바꿀 수 있음
+
 - 개발자 도구 확인
 
 **` router-view`**
@@ -280,27 +341,36 @@ const routes = [
     component: HomeView,
   },
   {
-    // lazy-loading 방식
-    // 첫 로딩에 렌더링 하지않고 해당 라우터가 동작할 때 컴포넌트를 렌더링 한다
     path: "/about",
     name: "about",
-
+    // lazy-loading 방식
+    // 첫 로딩에 렌더링 하지않고 해당 라우터가 동작할 때 컴포넌트를 렌더링 한다
     component: () => import("../views/AboutView.vue"),
-  }
+  },
 ]
 ```
 
 **src/Views**
 
 - `router-view` 에 들어갈 component 작성
-- 기존에 컴포넌트를 작성하던 곳은 components 폴더 뿐이었지만 이제 두 폴더로 나뉘어짐
+
+- 기존에 컴포넌트를 작성하던 곳은 components 폴더 뿐이었지만 이제
+
+  두 폴더로 나뉘어짐
+
 - 각 폴더 안의 `.vue` 파일들이 기능적으로 다른 것은 아님
 
 - 이제 폴더별 컴포넌트 배치는 다음과 같이 진행 (규약은 아님)
+
 - `views/`
-  - `routes` 에 매핑되는 컴포넌트, 즉 `<router-view>` 의 위치에 렌더링 되는 컴포넌트를 모아두는 폴더
+  - `routes` 에 매핑되는 컴포넌트,
+  
+    즉 `<router-view>` 의 위치에 렌더링 되는 컴포넌트를 모아두는 폴더
+  
   - 다른 컴포넌트와 구분하기 위해 View 로 끝나도록 만드는 것을 권장
+  
   - ex) App 컴포넌트 내부의 AboutView & 컴포넌트
+  
 - `components/`
   - `routes` 에 매핑된 컴포넌트의 하위 컴포넌트를 모아두는 폴더
   - ex) HomeView  컴포넌트 내부의 HelloWorld 컴포넌트
@@ -333,40 +403,60 @@ const routes = [
 
 - Named Routes : 이름을 가지는 `routes`
 
+```js
+// router/index.js
+
+const routes = [
+  {
+    path: "/",
+    name: "home",
+    component: HomeView,
+  },
+]
+```
+
 - 동적인 값을 사용하기 때문에 `v-bind` 를 사용해야 정상적으로 작동
 
 ```vue
 <!-- App.vue -->
 
 <template>
-<div id="app">
-  <nav>
-    <router-link :to="{ name: 'home' }">Home</router-link> |
-    <router-link :to="{ name: 'about' }">About</router-link>
-  </nav>
-  <router-view />
-</div>
+  <div id="app">
+    <nav>
+      <router-link :to="{ name: 'home' }">Home</router-link> |
+      <router-link :to="{ name: 'about' }">About</router-link>
+    </nav>
+    <router-view />
+  </div>
 </template>
 ```
 
 **프로그래밍 방식 네비게이션**
 
 - Vue 인스턴스 내부에서 라우터 인스턴스에 **`$router`** 로 접근 할 수 있음
+
 - 다른 URL로 이동하려면 **`this.$router.push`** 를 사용
   - history stack 에 이동할 URL을 `push` 넣는 방식
-  - history stack 에 기록이 남기 때문에 사용자가 브라우저의 뒤로 가기 버튼을 클릭하면 이전 URL 로 이동할 수 있음
-- 결국 **`<router-link :to="...">`** 를 클릭하는 것과 **`$router.push(...)`** 를 호출하는 것은 같은 동작
+  
+  - history stack 에 기록이 남기 때문에 사용자가 브라우저의 뒤로 가기 버튼을
+  
+    클릭하면 이전 URL 로 이동할 수 있음
+  
+- 결국 **`<router-link :to="...">`** 를 클릭하는 것과
+
+  **`$router.push(...)`** 를 호출하는 것은 같은 동작
+
 - 동작 원리는 선언적 방식과 같음
 
 ```vue
 <!-- AboutView.vue -->
 
 <template>
-<div class="about">
-  <h1>This is an about page</h1>
-  <router-link :to="{ name: 'home' }">홈으로!</router-link>
-  <button @click="toHome">홈으로!</button>
-</div>
+  <div class="about">
+    <h1>This is an about page</h1>
+    <router-link :to="{ name: 'home' }">홈으로!</router-link> |
+    <button @click="toHome">홈으로!</button>
+  </div>
 </template>
 
 <script>
@@ -391,7 +481,7 @@ export default {
 ```js
 // router/index.js
 
-import HelloView from "@/views/HelloView"
+import HelloView from "@/views/HelloView.vue"
 
 const routes = [
 
@@ -425,9 +515,9 @@ export default {
 <!-- views/HelloView.vue -->
 
 <template>
-<div>
-  <h1>hello, {{ userName }}</h1>
-</div>
+  <div>
+    <h1>hello, {{ userName }}</h1>
+  </div>
 </template>
 
 <script>
@@ -451,13 +541,12 @@ export default {
 <!-- App.vue -->
 
 <template>
-<div id="app">
-  <nav>
-    <router-link :to="{ name: 'home' }">Home</router-link> |
-    <router-link :to="{ name: 'about' }">About</router-link> |
-    <router-link :to="{ name: 'hello', params: { userName: 'kim' } }">
-      Hello 
-    </router-link>
+  <div id="app">
+    <nav>
+      <router-link :to="{ name: 'home' }">Home</router-link> |
+      <router-link :to="{ name: 'about' }">About</router-link>
+      <router-link :to="{ name: 'hello', params: { userName: 'kim' } }">
+        Hello</router-link> |
     </nav>
     <router-view />
   </div>
@@ -466,16 +555,22 @@ export default {
 
 **Dynamic Route Matching - 프로그래밍 방식 네비게이션**
 
-- AboutView 에서 데이터를 입력 받아 HelloView 로 이동하여 입력받은 데이터에게 인사하기
+- AboutView 에서 데이터를 입력 받아 HelloView 로 이동하여
+
+  입력받은 데이터에게 인사하기
 
 ```vue
 <!-- AboutView.vue -->
 
 <template>
-<div class="about">
-    
-  <input type="text" v-model="inputData" @keyup.enter="goToHello" />
-</div>
+  <div class="about">
+
+    <input
+      type="text"
+      @keyup.enter="goToHello"
+      v-model="inputData"
+    />
+  </div>
 </template>
 
 <script>
@@ -487,7 +582,7 @@ export default {
     }
   },
   methods: {
-    
+
     goToHello() {
       this.$router.push({
         name: "hello",
@@ -513,7 +608,7 @@ const routes = [
     path: "/",
     name: "home",
     component: HomeView,
-  },
+  }, // 기존 방식
 ]
 ```
 
@@ -525,15 +620,22 @@ const routes = [
     path: "/about",
     name: "about",
     component: () => import("../views/AboutView.vue"),
-  },
+  }, // Lazy-loading
 ]
 ```
 
 **lazy-loading**
 
 - 모든 파일을 한 번에 로드하려고 하면 모든 걸 다 읽는 시간이 매우 오래 걸림
-- 미리 로드를 하지 않고 특정 라우트에 방문할 때 매핑된 컴포넌트의 코드를 로드하는 방식을 활용할 수 있음
-  - 모든 파일을 한 번에 로드하지 않아도 되기 때문에 최초에 로드하는 시간이 빨라짐
+
+- 미리 로드를 하지 않고 특정 라우트에 방문할 때
+
+  매핑된 컴포넌트의 코드를 로드하는 방식을 활용할 수 있음
+
+  - 모든 파일을 한 번에 로드하지 않아도 되기 때문에
+
+    최초에 로드하는 시간이 빨라짐
+
   - 당장 사용하지 않을 컴포넌트는 먼저 로드하지 않는 것이 핵심
 
 ## 3. Navigation Guard
@@ -581,9 +683,9 @@ const routes = [
 // router/index.js
 
 router.beforeEach((to, from, next) => {
-  console.log('to', to)
-  console.log('from', from)
-  console.log('next', next)  
+  console.log("to", to)
+  console.log("from", from)
+  console.log("next", next)
 })
 ```
 
@@ -593,9 +695,9 @@ router.beforeEach((to, from, next) => {
 // router/index.js
 
 router.beforeEach((to, from, next) => {
-  console.log('to', to)
-  console.log('from', from)
-  console.log('next', next)  
+  console.log("to", to)
+  console.log("from", from)
+  console.log("next", next)
   next()
 })
 ```
@@ -612,9 +714,9 @@ router.beforeEach((to, from, next) => {
 <!-- views/LoginView.vue -->
 
 <template>
-<div>
-  <h1>로그인 페이지</h1>
-</div>
+  <div>
+    <h1>This is Login Page</h1>
+  </div>
 </template>
 
 <script>
@@ -645,10 +747,11 @@ const routes = [
 <!-- App.vue -->
 
 <template>
-<div id="app">
-  <nav>
-    <router-link :to="{ name: 'login' }">Login</router-link>
-  </nav>
+  <div id="app">
+    <nav>
+      
+      <router-link :to="{ name: 'login' }">Login</router-link> |
+    </nav>
 ```
 
 - HelloView 에 로그인을 해야만 접근할 수 있도록 만들어 보기
@@ -661,30 +764,36 @@ const routes = [
 // router/index.js
 
 router.beforeEach((to, from, next) => {
+
   // 로그인 여부
-  const isLoggedIn = false
+  const isLoggedIn = true
 
   // 로그인이 필요한 페이지
   const authPages = ["hello"]
-  
+
   // 앞으로 이동할 페이지(to)가
   // 로그인이 필요한 사이트인지 확인
   const isAuthRequired = authPages.includes(to.name)
 })
 ```
 
-- isAuthRequired 값에 따라 로그인이 필요한 페이지이고 로그인이 되어있지 않으면
+- isAuthRequired 값에 따라 로그인이 필요한 페이지이고
+
+  로그인이 되어있지 않으면
+
   - Login 페이지로 이동
+
 - 그렇지 않으면
   - 기존 루트로 이동
+  
 - `next()` 인자가 없을 경우 `to` 로 이동
-  - `next()` 가 한번만 호출되도록 유의
+  - **`next()` 가 한번만 호출되도록 유의**
 
 ```js
 // router/index.js
 
 router.beforeEach((to, from, next) => {
-
+  
   if (isAuthRequired && !isLoggedIn) {
     console.log("Login으로 이동!")
     next({ name: "login" })
@@ -701,7 +810,7 @@ router.beforeEach((to, from, next) => {
 
 - isLoggedIn 이 false 인 경우 (비로그인 상태에서 로그인이 필요한 페이지로 접속)
 
-  - **/hello/harry/** 을 렌더링하지 않고 Login 페이지로 이동됨
+  - **/hello/harry/** 를 렌더링하지 않고 Login 페이지로 이동됨
 
 - Home => Login 으로 이동했는데 console 창에 log 가 2개가 찍힌 이유
 
@@ -711,7 +820,10 @@ router.beforeEach((to, from, next) => {
 
   - 두번째 출력은 /login 으로 이동 요청 할 때 출력
 
-- **/hello/:userName** 페이지를 제외하고는 전역 가드에서 기존 주소로 이동하기 때문에 정상적으로 작동
+- **/hello/:userName** 페이지를 제외하고는
+
+  전역 가드에서 기존 주소로 이동하기 때문에 정상적으로 작동
+
 - 로그인이 필요한 페이지에 추가하면 비로그인 시 해당 페이지에 접근 불가
 
 ```js
@@ -733,21 +845,29 @@ router.beforeEach((to, from, next) => {
 
   // const authPages = ["hello", "home", "about"]
   const allowAllPages = ["login"]
-  
+
   // const isAuthRequired = authPages.includes(to.name)
   const isAuthRequired = !allowAllPages.includes(to.name)
-  
+
 })
 ```
 
 ### 라우터 가드
 
 - Per-Route Guard
+
 - 전체 route 가 아닌 특정 route 에 대해서만 가드를 설정하고 싶을 때 사용
+
 - **`beforeEnter()`**
+  
   - route 에 진입했을 때 실행됨
+  
   - 라우터를 등록한 위치에 추가
-  - 단 매개변수, 쿼리, 해시 값이 변경될 때는 실행되지 않고 다른 경로에서 탐색할 때만 실행됨
+  
+  - 단 매개변수, 쿼리, 해시 값이 변경될 때는 실행되지 않고
+  
+    다른 경로에서 탐색할 때만 실행됨
+  
   - 콜백 함수는 `to, from, next` 를 인자로 받음
 
 **Login 여부에 따른 라우팅 처리**
@@ -772,7 +892,7 @@ const routes = [
     component: LoginView,
     beforeEnter(to, from, next) {
       if (isLoggedIn === true) {
-        console.log('이미 로그인함')
+        console.log("이미 로그인함")
         next({ name: "home" })
       } else {
         next()
@@ -786,8 +906,12 @@ const routes = [
   - **/login** 으로 접속을 시도하면 Home 으로 이동
 
 - Login 여부에 따른 라우팅 처리
-  - Login 을 제외한 다른 페이지로 이동하면 라우터 가드를 따로 설정해주지 않았기 때문에 라우터 가드가 동작하지 않음
+  - Login 을 제외한 다른 페이지로 이동하면 라우터 가드를 따로 설정해주지
+  
+    않았기 때문에 라우터 가드가 동작하지 않음
+  
   - 이런식으로 특정 라우트만 따로 가드를 하고 싶은 경우에는 라우터 가드를 사용
+  
   - isLoggedIn = false 로 변경하면 Login 페이지로 정상 이동 가능
 
 ### 컴포넌트 가드
@@ -816,7 +940,7 @@ const routes = [
 <script>
 export default {
   name: "HelloView",
-  data() {
+  data: function () {
     return {
       userName: this.$route.params.userName,
     }
@@ -837,9 +961,9 @@ export default {
 <!-- views/NotFound404.vue -->
 
 <template>
-<div>
-  <h1>404 Not Found</h1>
-</div>
+  <div>
+    <h1>404 Not Found</h1>
+  </div>
 </template>
 
 <script>
@@ -865,7 +989,10 @@ const routes = [
 ```
 
 - http://localhost:8080/404 확인
-- 이렇게 직접 요청하는 방식이 아닌, 요청한 리소스가 존재하지 않을 때 404 로 이동하도록 하려면 어떻게 해야 할까?
+
+- 이렇게 직접 요청하는 방식이 아닌, 요청한 리소스가 존재하지 않을 때
+
+  404 로 이동하도록 하려면 어떻게 해야 할까?
 
 **요청한 리소스가 존재하지 않는 경우**
 
@@ -951,9 +1078,9 @@ const routes = [
 <!-- views/DogView.vue -->
 
 <template>
-<div>
-  <img v-if="imgSrc" :src="imgSrc" alt="" />
-</div>
+  <div>
+    <img v-if="imgSrc" :src="imgSrc" alt="" /><br />
+  </div>
 </template>
 
 <script>
@@ -969,11 +1096,10 @@ export default {
   methods: {
     getDogImage() {
       const breed = this.$route.params.breed
-      const dogImageUrl = `https://dog.ceo/api/breed/${breed}/images/random`
-      
+      const dogImageSearchUrl = `https://dog.ceo/api/breed/${breed}/images/random`
       axios({
         method: "get",
-        url: dogImageUrl,
+        url: dogImageSearchUrl,
       })
         .then((response) => {
           console.log(response)
@@ -981,7 +1107,7 @@ export default {
           this.imgSrc = imgSrc
         })
         .catch((error) => console.log(error))
-    }
+    },
   },
   created() {
     this.getDogImage()
@@ -996,15 +1122,15 @@ export default {
 <!-- views/DogView.vue -->
 
 <template>
-<div>
-  <p v-if="!imgSrc">{{ message }}</p>
-  <img :src="imgSrc" alt="" />
-</div>
+  <div>
+    <p v-if="!imgSrc">{{ message }}</p>
+    <img v-if="imgSrc" :src="imgSrc" alt="" /><br />
+  </div>
 </template>
 
 <script>
 export default {
-  data() {
+  data: function () {
     return {
       imgSrc: null,
       message: "로딩중...",
@@ -1017,22 +1143,23 @@ export default {
 
 - axios 요청이 실패할 경우 자료가 없음을 표현하기
 
-```js
+```vue
 <!-- views/DogView.vue -->
 
+<script>
 axios({
   method: "get",
-  url: dogImageUrl,
+  url: dogImageSearchUrl,
 })
   .then((response) => {
-    console.log(response)
     const imgSrc = response.data.message
     this.imgSrc = imgSrc
   })
   .catch((error) => {
-    // this.message = `${this.$route.params.breed}은 없는 품종입니다.`
+    this.message = `${this.$route.params.breed}은 없는 품종입니다.`
     console.log(error)
   })
+</script>
 ```
 
 - **/dog/abc** 에 접속
@@ -1043,15 +1170,15 @@ axios({
 
   axios 요청이 실패할 경우 404 페이지로 이동 시킬 수도 있음
 
-```js
+```vue
 <!-- views/DogView.vue -->
 
+<script>
 axios({
   method: "get",
-  url: dogImageUrl,
+  url: dogImageSearchUrl,
 })
   .then((response) => {
-    console.log(response)
     const imgSrc = response.data.message
     this.imgSrc = imgSrc
   })
@@ -1059,6 +1186,7 @@ axios({
     this.$router.push("/404")
     console.log(error)
   })
+</script>
 ```
 
 ## 4. Articles app with Vue
@@ -1100,8 +1228,12 @@ $ vue add router
 **Index 구현**
 
 - `state`
+
 - 게시글의 필드는 id, 제목, 내용, 생성일자
-- DB 의 AUTO INCREMENT 를 표현하기 위해 article_id 를 추가로 정의해줌 (다음 article의 id로 사용 예정)
+
+- DB 의 AUTO INCREMENT 를 표현하기 위해
+
+  article_id 를 추가로 정의해줌 (다음 article의 id 로 사용 예정)
 
 ```js
 // store/index.js
@@ -1111,7 +1243,7 @@ state: {
   articles: [
     {
       id: 1,
-      title: "title",
+      title: "title1",
       content: "content",
       createdAt: new Date().getTime(),
     },
@@ -1169,7 +1301,7 @@ const routes = [
 
 <script>
 export default {
-  name: 'IndexView',
+  name: "IndexView",
   computed: {
     articles() {
       return this.$store.state.articles
@@ -1202,19 +1334,19 @@ export default {
 <!-- views/IndexView.vue -->
 
 <template>
-<div>
-  <h1>Articles</h1>
-  <ArticleItem
-    v-for="article in articles"
-    :key="article.id"
-    :article="article"
-  />
-</div>
+  <div>
+    <h1>Articles</h1>
+    <ArticleItem
+      v-for="article in articles"
+      :key="article.id"
+      :article="article"
+    />
+  </div>
 </template>
 
 <script>
 import ArticleItem from "@/components/ArticleItem"
-  
+
 export default {
   name: "IndexView",
   components: {
@@ -1235,11 +1367,11 @@ export default {
 <!-- components/ArticleItem.vue -->
 
 <template>
-<div>
-  <p>글 번호 : {{ article.id }}</p>
-  <p>글 제목 : {{ article.title }}</p>
-  <hr />
-</div>
+  <div>
+    <p>글 번호 : {{ article.id }}</p>
+    <p>제목 : {{ article.title }}</p>
+    <hr />
+  </div>
 </template>
 
 <script>
@@ -1291,19 +1423,19 @@ const routes = [
 <!-- views/CreateView.vue -->
 
 <template>
-<div>
-  <h1>게시글 작성</h1>
-  <form>
-    <label for="title">제목 : </label>
-    <input type="text" id="title" v-model="title"><br>
-    <label for="content">내용 : </label>
-    <textarea
-      id="content" cols="30" rows="10"
-      v-model="content"
-    ></textarea><br>
-    <input type="submit">
-  </form>
-</div>
+  <div>
+    <h1>게시글 작성</h1>
+    <form>
+      <label for="title">제목 : </label>
+      <input type="text" id="title" v-model="title" /><br />
+      <label for="content">내용 : </label>
+      <textarea 
+        id="content" cols="30" rows="10" 
+        v-model="content"
+      ></textarea><br />
+      <input type="submit" />
+    </form>
+  </div>
 </template>
 
 <script>
@@ -1325,12 +1457,12 @@ export default {
 <!-- views/CreateView.vue -->
 
 <template>
-<div>
-  <h1>게시글 작성</h1>
-  <form @submit.prevent="createArticle">
+  <div>
+    <h1>게시글 작성</h1>
+    <form @submit.prevent="createArticle">
       
-  </form>
-</div>
+    </form>
+  </div>
 </template>
 ```
 
@@ -1341,7 +1473,7 @@ export default {
 
 <script>
 export default {
-
+  
   methods: {
     createArticle() {
       const title = this.title
@@ -1363,19 +1495,22 @@ export default {
 <!-- views/CreateView.vue -->
 
 <template>
-<div>
-  <h1>게시글 작성</h1>
-  <form>
-    <label for="title">제목 : </label>
-    <input type="text" id="title" v-model.trim="title"><br>
-    <label for="content">내용 : </label>
-    <textarea
-      id="content" cols="30" rows="10"
-      v-model.trim="content"
-    ></textarea><br>
-    <input type="submit" />
-  </form>
-</div>
+  <div>
+    <h1>게시글 작성</h1>
+    <form>
+      <label for="title">제목 : </label>
+      <input type="text" id="title" v-model.trim="title" /><br />
+      <label for="content">내용 : </label>
+      <textarea
+        id="content"
+        cols="30"
+        rows="10"
+        v-model.trim="content"
+      ></textarea
+      ><br />
+      <input type="submit" />
+    </form>
+  </div>
 </template>
 ```
 
@@ -1384,18 +1519,19 @@ export default {
 ```vue
 <script>
 export default {
-
+  
   methods: {
     createArticle() {
       const title = this.title
       const content = this.content
       if (!title) {
-        alert('제목을 입력해주세요')
+        alert("제목을 입력해주세요")
       } else if (!content) {
-        alert('내용을 입력해주세요')
+        alert("내용을 입력해주세요")
       } else {
         const payload = {
-          title, content
+          title,
+          content,
         }
         this.$store.dispatch("createArticle", payload)
       }
@@ -1444,19 +1580,20 @@ mutations: {
 <!-- views/CreateView.vue -->
 
 <template>
-<div>
-  <h1>게시글 작성</h1>
-    
-  <router-link :to="{ name: 'index' }">뒤로가기</router-link>
-</div>
+  <div>
+    <h1>게시글 작성</h1>
+
+    <router-link :to="{ name: 'index' }">뒤로가기</router-link>
+  </div>
 </template>
 ```
 
 - 게시글 생성 후 Index 페이지로 이동하도록 네비게이터 작성
 
 ```js
-// views/CreateView.vue
+<!-- views/CreateView.vue -->
 
+<script>
   methods: {
     createArticle() {
 
@@ -1464,7 +1601,6 @@ mutations: {
       this.$router.push({ name: "index" })
     },
   },
-}
 ```
 
 - IndexView 컴포넌트에 게시글 작성 페이지로 이동하는 링크 추가
@@ -1473,15 +1609,16 @@ mutations: {
 <!-- views/IndexView.vue -->
 
 <template>
-<div>
-  <h1>Articles</h1>
-  <router-link :to="{ name: 'create' }">게시글 작성</router-link>
-  <ArticleItem
-    v-for="article in articles"
-    :key="article.id"
-    :article="article"
-  />
-</div>
+  <div>
+    <h1>Articles</h1>
+    <router-link :to="{ name: 'create' }">게시글 작성</router-link>
+    <hr />
+    <ArticleItem
+      v-for="article in articles"
+      :key="article.id"
+      :article="article"
+    />
+  </div>
 </template>
 ```
 
@@ -1512,7 +1649,7 @@ export default {
 // router/index.js
 
 const routes = [
-  
+
   {
     path: "/:id",
     name: "detail",
@@ -1523,9 +1660,9 @@ const routes = [
 
 - article 정의 및 `state` 에서 articles 가져오기
 
-```js
+```vue
 <!-- views/DetailView.vue -->
-
+<script>
 export default {
   data() {
     return {
@@ -1537,14 +1674,16 @@ export default {
       return this.$store.state.articles
     },
   },
+}
+</script>
 ```
 
 - articles 에서 동적인자를 통해 받은 id 에 해당하는 article 가져오기
 - 이때, 동적 인자를 통해 받은 id 는 str 이므로 형변환을 해서 비교
 
-```js
+```vue
 <!-- views/DetailView.vue -->
-
+<script>
 methods: {
   getArticleById() {
     const id = this.$route.params.id
@@ -1554,8 +1693,9 @@ methods: {
         break
       }
     }
-  },
+  }
 }
+</script>
 ```
 
 - article 출력
@@ -1564,21 +1704,23 @@ methods: {
 <!-- views/DetailView.vue -->
 
 <template>
-<div>
-  <h1>Detail</h1>
-  <p>글 번호 : {{ article?.id }}</p>
-  <p>글 제목 : {{ article?.title }}</p>
-  <p>글 내용 : {{ article?.content }}</p>
-  <p>작성시간 : {{ articleCreatedAt }}</p>
-</div>
+  <div>
+    <h1>Detail</h1>
+    <p>글 번호 : {{ article.id }}</p>
+    <p>제목 : {{ article.title }}</p>
+    <p>내용 : {{ article.content }}</p>
+    <p>작성시간 : {{ article.createdAt }}</p>
+  </div>
 </template>
 ```
 
-- `created` lifecycle hook을 통해 인스턴스가 생성되었을 때 article 을 가져오는 함수 호출
+- `created` lifecycle hook을 통해
 
-```js
+  인스턴스가 생성되었을 때 article 을 가져오는 함수 호출
+
+```vue
 <!-- views/DetailView.vue -->
-
+<script>
 methods: {
   getArticleById(id) {
     for (const article of this.articles) {
@@ -1587,11 +1729,12 @@ methods: {
         break
       }
     }
-  },
+  }
 },
   created() {
     this.getArticleById(this.$route.params.id)
-  },
+  }
+</script>
 ```
 
 **만약 서버에서 데이터를 가져왔다면?**
@@ -1605,9 +1748,9 @@ methods: {
 
 <script>
 export default {
- // created() {
- //   this.getArticleById(this.$route.params.id)
- // },
+  // created() {
+  //   this.getArticleById(this.$route.params.id)
+  // },
 }
 ```
 
@@ -1638,19 +1781,22 @@ export default {
 
 **[참고] [Optional Chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining)** 
 
-- Optional chaining (**`?.`**) 앞의 평가 대상이 undefined 나 null 이면 에러가 발생하지 않고 undefined 를 반환 (ES2020 에서 추가된 문법)
+- Optional chaining (**`?.`**) 앞의 평가 대상이 undefined 나 null 이면
 
-```js
+  에러가 발생하지 않고 undefined 를 반환 (ES2020 에서 추가된 문법)
+
+```vue
+<script>
 const userInfo = {
   name: {
-    last: 'Stark',
+    last: "Stark",
   },
   address: {
-    city: 'Seoul',
+    city: "Seoul",
   },
   getInfo() {
     console.log(this.name)
-  }
+  },
 }
 
 // Optional chaining 미사용
@@ -1661,33 +1807,37 @@ const myCity = userInfo.address?.city
 
 // Optional chaining 사용 (메서드 호출 시)
 userInfo.getInfo?.()
+</script>
 ```
 
 **Date in JavaScript**
 
-- JavaScript 에서 시간을 나타내는 `Date` 객체는 1970년 1월 1일 UTC(협정 세계시) 자정과의 시간 차이를 밀리초로 나타내는 정수 값을 담음
+- JavaScript 에서 시간을 나타내는 `Date` 객체는 1970년 1월 1일 UTC(협정 세계시)
+
+  자정과의 시간 차이를 밀리초로 나타내는 정수 값을 담음
+
   - **`Data().toLocaleString()`** 을 사용하여 변환
+
 - 로컬시간으로 변환해주는 `computed` 값 작성 및 출력
 
 ```vue
 <!-- views/DetailView.vue -->
 
 <template>
-<div>
-  <h1>Detail</h1>
-  <p>글 번호 : {{ article?.id }}</p>
-  <p>글 제목 : {{ article?.title }}</p>
-  <p>글 내용 : {{ article?.content }}</p>
+  <div>
+    <h1>Detail</h1>
+    <p>글 번호 : {{ article?.id }}</p>
+    <p>제목 : {{ article?.title }}</p>
+    <p>내용 : {{ article?.content }}</p>
 <!-- <p>글 작성시간 : {{ article?.createdAt }}</p> -->
-  <p>작성시간 : {{ articleCreatedAt }}</p>
-</div>
+    <p>작성시간 : {{ articleCreatedAt }}</p>
+  </div>
 </template>
 
 <script>
 export default {
-  
   computed: {
-    
+
     articleCreatedAt() {
       const article = this.article
       const createdAt = new Date(article?.createdAt).toLocaleString()
@@ -1703,10 +1853,10 @@ export default {
 <!-- views/DetailView.vue -->
 
 <template>
-<div>
+  <div>
     
-  <router-link :to="{ name: 'index' }">뒤로가기</router-link>
-</div>
+    <router-link :to="{ name: 'index' }">뒤로가기</router-link>
+  </div>
 </template>
 ```
 
@@ -1717,19 +1867,15 @@ export default {
 <!-- components/ArticleItem.vue -->
 
 <template>
-<div @click="goDetail(article.id)">
-  <p>글 번호 : {{ article.id }}</p>
-  <p>글 제목 : {{ article.title }}</p>
-  <hr />
-</div>
+  <div @click="goDetail(article.id)">
+    <p>글 번호 : {{ article.id }}</p>
+    <p>제목 : {{ article.title }}</p>
+    <hr />
+  </div>
 </template>
 
 <script>
 export default {
-  name: "ArticleItem",
-  props: {
-    article: Object,
-  },
   methods: {
     goDetail(id) {
       this.$router.push({ name: "detail", params: { id } })
@@ -1749,11 +1895,11 @@ export default {
 <!-- views/DetailView.vue -->
 
 <template>
-<div>
-
-  <button @click="deleteArticle">삭제</button><br />
-  <router-link :to="{ name: 'index' }">뒤로가기</router-link>
-</div>
+  <div>
+    
+    <button @click="deleteArticle">삭제</button><br />
+    <router-link :to="{ name: 'index' }">뒤로가기</router-link>
+  </div>
 </template>
 
 <script>
@@ -1773,12 +1919,11 @@ export default {
 // store/index.js
 
 mutations: {
-  
-  DELETE_ARTICLE(state, article_id) {
+  DELETE_ARTICLE(state, id) {
     state.articles = state.articles.filter((article) => {
-      return !(article.id === article_id)
+      return !(article.id === id)
     })
-  },
+  }
 },
 ```
 
@@ -1811,9 +1956,9 @@ export default {
 <!-- views/NotFound404.vue -->
 
 <template>
-<div>
-  <h1>404 Not Found</h1>
-</div>
+  <div>
+    <h1>404 Not Found</h1>
+  </div>
 </template>
 
 <script>
@@ -1848,7 +1993,6 @@ const routes = [
 
 <script>
 export default {
-  
   methods: {
     getArticleById(id) {
       for (const article of this.articles) {
@@ -1857,7 +2001,7 @@ export default {
           break
         }
       }
-      if (this.article === null) {
+      if (!this.article) {
         this.$router.push({ name: "NotFound404" })
       }
     },
@@ -1866,7 +2010,10 @@ export default {
 </script>
 ```
 
-- 요청한 리소스가 존재하지 않는 경우 없는 id 가 아닌 전혀 다른 요청에도 대비하여 404 page 로 `redirect` 시키기
+- 요청한 리소스가 존재하지 않는 경우
+
+  없는 id 가 아닌 전혀 다른 요청에도 대비하여 404 page 로 `redirect` 시키기
+
   - **`$router.push`** 와 마찬가지로 `name` 을 이용하여 이동할 수 있음
     - **최하단에 작성해야 함**
 
@@ -1874,7 +2021,7 @@ export default {
 // router/index.js
 
 const routes = [
-  
+
   {
     path: "*",
     redirect: { name: "NotFound404" },
