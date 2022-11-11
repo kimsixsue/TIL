@@ -330,7 +330,7 @@ setup for index fallback in production) (Y,n)
 ``` js
 import Vue from "vue"
 import VueRouter from "vue-router"
-import HomeView from "../views/HomeView.vue"
+import HomeView from "@/views/HomeView"
 
 Vue.use(VueRouter)
 
@@ -344,8 +344,8 @@ const routes = [
     path: "/about",
     name: "about",
     // lazy-loading 방식
-    // 첫 로딩에 렌더링 하지않고 해당 라우터가 동작할 때 컴포넌트를 렌더링 한다
-    component: () => import("../views/AboutView.vue"),
+    // 첫 로딩에 렌더링 하지않고 해당 라우터가 동작할 때 컴포넌트를 렌더링 한다.
+    component: () => import("@/views/AboutView"),
   },
 ]
 ```
@@ -544,9 +544,10 @@ export default {
   <div id="app">
     <nav>
       <router-link :to="{ name: 'home' }">Home</router-link> |
-      <router-link :to="{ name: 'about' }">About</router-link>
+      <router-link :to="{ name: 'about' }">About</router-link> |
       <router-link :to="{ name: 'hello', params: { userName: 'kim' } }">
-        Hello</router-link> |
+        Hello
+      </router-link>
     </nav>
     <router-view />
   </div>
@@ -565,10 +566,10 @@ export default {
 <template>
   <div class="about">
 
-    <input
-      type="text"
-      @keyup.enter="goToHello"
-      v-model="inputData"
+    <input 
+      type="text" 
+      v-model="inputData" 
+      @keyup.enter="goToHello" 
     />
   </div>
 </template>
@@ -615,13 +616,13 @@ const routes = [
 ```js
 // router/index.js
 
-const routes = [
   {
     path: "/about",
     name: "about",
-    component: () => import("../views/AboutView.vue"),
-  }, // Lazy-loading
-]
+    // lazy-loading 방식
+    // 첫 로딩에 렌더링 하지않고 해당 라우터가 동작할 때 컴포넌트를 렌더링 한다.
+    component: () => import("@/views/AboutView"),
+  },
 ```
 
 **lazy-loading**
@@ -715,7 +716,7 @@ router.beforeEach((to, from, next) => {
 
 <template>
   <div>
-    <h1>This is Login Page</h1>
+    <h1>로그인 페이지</h1>
   </div>
 </template>
 
@@ -750,7 +751,7 @@ const routes = [
   <div id="app">
     <nav>
       
-      <router-link :to="{ name: 'login' }">Login</router-link> |
+      <router-link :to="{ name: 'login' }">Login</router-link>
     </nav>
 ```
 
@@ -940,7 +941,7 @@ const routes = [
 <script>
 export default {
   name: "HelloView",
-  data: function () {
+  data() {
     return {
       userName: this.$route.params.userName,
     }
@@ -1096,23 +1097,26 @@ export default {
   methods: {
     getDogImage() {
       const breed = this.$route.params.breed
-      const dogImageSearchUrl = `https://dog.ceo/api/breed/${breed}/images/random`
+      const dogImageUrl = `https://dog.ceo/api/breed/${breed}/images/random`
+
       axios({
         method: "get",
-        url: dogImageSearchUrl,
+        url: dogImageUrl,
       })
         .then((response) => {
           console.log(response)
           const imgSrc = response.data.message
           this.imgSrc = imgSrc
         })
-        .catch((error) => console.log(error))
+          console.log(error)
+        })
     },
   },
   created() {
     this.getDogImage()
   },
 }
+</script>
 ```
 
 - /dog/hound 에 접속하면 hound 품종에 대한 랜덤 사진이 출력
@@ -1130,7 +1134,8 @@ export default {
 
 <script>
 export default {
-  data: function () {
+  
+  data() {
     return {
       imgSrc: null,
       message: "로딩중...",
@@ -1147,18 +1152,18 @@ export default {
 <!-- views/DogView.vue -->
 
 <script>
-axios({
-  method: "get",
-  url: dogImageSearchUrl,
-})
-  .then((response) => {
-    const imgSrc = response.data.message
-    this.imgSrc = imgSrc
+  axios({
+    method: "get",
+    url: dogImageUrl,
   })
-  .catch((error) => {
-    this.message = `${this.$route.params.breed}은 없는 품종입니다.`
-    console.log(error)
-  })
+    .then((response) => {
+      const imgSrc = response.data.message
+      this.imgSrc = imgSrc
+    })
+    .catch((error) => {
+      this.message = `${this.$route.params.breed}은 없는 품종입니다.`
+      console.log(error)
+    })
 </script>
 ```
 
@@ -1174,18 +1179,17 @@ axios({
 <!-- views/DogView.vue -->
 
 <script>
-axios({
-  method: "get",
-  url: dogImageSearchUrl,
-})
-  .then((response) => {
-    const imgSrc = response.data.message
-    this.imgSrc = imgSrc
+  axios({
+    method: "get",
+    url: dogImageUrl,
   })
-  .catch((error) => {
-    this.$router.push("/404")
-    console.log(error)
-  })
+    .then((response) => {
+      const imgSrc = response.data.message
+      this.imgSrc = imgSrc
+    })
+    .catch((error) => {
+      this.$router.push("/404")
+    })
 </script>
 ```
 
@@ -1243,7 +1247,7 @@ state: {
   articles: [
     {
       id: 1,
-      title: "title1",
+      title: "title",
       content: "content",
       createdAt: new Date().getTime(),
     },
@@ -1302,6 +1306,7 @@ const routes = [
 <script>
 export default {
   name: "IndexView",
+  
   computed: {
     articles() {
       return this.$store.state.articles
@@ -1369,7 +1374,7 @@ export default {
 <template>
   <div>
     <p>글 번호 : {{ article.id }}</p>
-    <p>제목 : {{ article.title }}</p>
+    <p>글 제목 : {{ article.title }}</p>
     <hr />
   </div>
 </template>
@@ -1594,6 +1599,7 @@ mutations: {
 <!-- views/CreateView.vue -->
 
 <script>
+  
   methods: {
     createArticle() {
 
@@ -1612,14 +1618,13 @@ mutations: {
   <div>
     <h1>Articles</h1>
     <router-link :to="{ name: 'create' }">게시글 작성</router-link>
-    <hr />
     <ArticleItem
       v-for="article in articles"
       :key="article.id"
       :article="article"
     />
   </div>
-</template>
+</template>>
 ```
 
 ### Detail
@@ -1684,15 +1689,16 @@ export default {
 ```vue
 <!-- views/DetailView.vue -->
 <script>
-methods: {
-  getArticleById() {
-    const id = this.$route.params.id
-    for (const article of this.articles) {
-      if (article.id === Number(id)) {
-        this.article = article
-        break
+  
+  methods: {
+    getArticleById(id) {
+      const id = this.$route.params.id
+      for (const article of this.articles) {
+        if (article.id === Number(id)) {
+          this.article = article
+          break
+        }
       }
-    }
   }
 }
 </script>
@@ -1706,10 +1712,10 @@ methods: {
 <template>
   <div>
     <h1>Detail</h1>
-    <p>글 번호 : {{ article.id }}</p>
-    <p>제목 : {{ article.title }}</p>
-    <p>내용 : {{ article.content }}</p>
-    <p>작성시간 : {{ article.createdAt }}</p>
+    <p>글 번호 : {{ article?.id }}</p>
+    <p>글 제목 : {{ article?.title }}</p>
+    <p>글 내용 : {{ article?.content }}</p>
+    <p>작성시간 : {{ articleCreatedAt }}</p>
   </div>
 </template>
 ```
@@ -1721,19 +1727,21 @@ methods: {
 ```vue
 <!-- views/DetailView.vue -->
 <script>
-methods: {
-  getArticleById(id) {
-    for (const article of this.articles) {
-      if (article.id === Number(id)) {
-        this.article = article
-        break
+  methods: {
+    getArticleById(id) {
+      const id = this.$route.params.id
+      for (const article of this.articles) {
+        if (article.id === Number(id)) {
+          this.article = article
+          break
+        }
       }
-    }
-  }
-},
+    },
+  },
   created() {
     this.getArticleById(this.$route.params.id)
-  }
+  },
+}
 </script>
 ```
 
@@ -1765,18 +1773,20 @@ export default {
   <div>
     <h1>Detail</h1>
     <p>글 번호 : {{ article?.id }}</p>
-    <p>제목 : {{ article?.title }}</p>
-    <p>내용 : {{ article?.content }}</p>
+    <p>글 제목 : {{ article?.title }}</p>
+    <p>글 내용 : {{ article?.content }}</p>
     <p>글 작성시간 : {{ article?.createdAt }}</p>
   </div>
 </template>
 
 <script>
 export default {
+  
   created() {
     this.getArticleById(this.$route.params.id)
   },
 }
+</script>
 ```
 
 **[참고] [Optional Chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining)** 
@@ -1827,15 +1837,16 @@ userInfo.getInfo?.()
   <div>
     <h1>Detail</h1>
     <p>글 번호 : {{ article?.id }}</p>
-    <p>제목 : {{ article?.title }}</p>
-    <p>내용 : {{ article?.content }}</p>
-<!-- <p>글 작성시간 : {{ article?.createdAt }}</p> -->
-    <p>작성시간 : {{ articleCreatedAt }}</p>
+    <p>글 제목 : {{ article?.title }}</p>
+    <p>글 내용 : {{ article?.content }}</p>
+    <p>글 작성시간 : {{ article?.createdAt }}</p>
+<!-- <p>작성시간 : {{ articleCreatedAt }}</p> -->
   </div>
 </template>
 
 <script>
 export default {
+  
   computed: {
 
     articleCreatedAt() {
@@ -1869,13 +1880,14 @@ export default {
 <template>
   <div @click="goDetail(article.id)">
     <p>글 번호 : {{ article.id }}</p>
-    <p>제목 : {{ article.title }}</p>
+    <p>글 제목 : {{ article.title }}</p>
     <hr />
   </div>
 </template>
 
 <script>
 export default {
+  
   methods: {
     goDetail(id) {
       this.$router.push({ name: "detail", params: { id } })
@@ -1904,7 +1916,9 @@ export default {
 
 <script>
 export default {
+  
   methods: {
+    
     deleteArticle() {
       this.$store.commit("DELETE_ARTICLE", this.article.id)
     },
@@ -1919,11 +1933,11 @@ export default {
 // store/index.js
 
 mutations: {
-  DELETE_ARTICLE(state, id) {
+  DELETE_ARTICLE(state, article_id) {
     state.articles = state.articles.filter((article) => {
-      return !(article.id === id)
+      return !(article.id === article_id)
     })
-  }
+  },
 },
 ```
 
@@ -1934,7 +1948,9 @@ mutations: {
 
 <script>
 export default {
+  
   methods: {
+    
     deleteArticle() {
       this.$store.commit("DELETE_ARTICLE", this.article.id)
       this.$router.push({ name: "index" })
@@ -1993,15 +2009,17 @@ const routes = [
 
 <script>
 export default {
+  
   methods: {
     getArticleById(id) {
+      const id = this.$route.params.id
       for (const article of this.articles) {
         if (article.id === Number(id)) {
           this.article = article
           break
         }
       }
-      if (!this.article) {
+      if (this.article === null) {
         this.$router.push({ name: "NotFound404" })
       }
     },
@@ -2035,3 +2053,473 @@ const routes = [
 - [Vue Router](#2-vue-router)
 - [Navigation Guard](#3-navigation-guard)
 - [Articles app with Vue](#4-articles-app-with-vue)
+
+---
+
+```vue
+<!-- views/TheLunch.vue -->
+<template>
+  <div>
+    <h1>Lunch</h1>
+    <button @click="pickLunchMenu">Pick Lunch</button>
+    <div v-show="menu">
+      <p>{{ menu }}</p>
+      <button @click="goLottoPage">Lotto 뽑으러가기</button>
+    </div>
+    <button @click="sendData">Emit</button><!-- emit 발생용 -->
+  </div>
+</template>
+
+<script>
+import _ from "lodash"
+
+export default {
+  name: "TheLunch",
+  data() {
+    return {
+      menus: ["국밥", "비빔냉면"],
+      menu: null,
+    }
+  },
+  methods: {
+    pickLunchMenu() {
+      this.menu = _.sample(this.menus)
+    },
+    goLottoPage() {
+      this.$router.push({
+        name: "lotto",
+        params: {
+          lunchMenu: this.menu,
+        },
+      })
+    },
+    sendData() {
+      this.$emit("lunch-emit", this.menus)
+    },
+  },
+}
+</script>
+```
+
+```vue
+<!-- views/TheLotto.vue -->
+<template>
+  <div>
+    <h1>{{ lunchMenu }} 먹고<br />Lotto 추첨</h1>
+    <button @click="pickLottoNums">Pick Numbers</button>
+    <div v-show="lottoNums">
+      <p>{{ lottoNums }}</p>
+      <button @click="goLunchPage">처음으로</button>
+    </div>
+    <button @click="goApp">Emit</button>
+  </div>
+</template>
+
+<script>
+import _ from "lodash"
+
+export default {
+  name: "TheLotto",
+  data() {
+    return {
+      lottoNums: null,
+      lunchMenu: this.$route.params.lunchMenu,
+    }
+  },
+  methods: {
+    pickLottoNums() {
+      const numbers = _.range(1, 46)
+      this.lottoNums = _.sampleSize(numbers, 6)
+    },
+    goLunchPage() {
+      this.$router.push({
+        name: "lunch",
+      })
+    },
+    goApp() {
+      this.$emit("aaa", 10)
+    },
+  },
+}
+</script>
+```
+
+```vue
+<!-- App.vue -->
+<template>
+  <div id="app">
+    <nav>
+      <router-link to="/">처음으로..</router-link>
+    </nav>
+    <router-view
+      @lunch-emit="getLunchData"
+      @click.native="getConsole"
+      @aaa="getLunchData"
+    />
+    <h1 @click="getConsole">HTML TAG</h1>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "App",
+  methods: {
+    getLunchData(data) {
+      console.log(data)
+    },
+    getConsole() {
+      console.log("!!!!!!!!!!!!!!!!!!!")
+    },
+  },
+}
+</script>
+
+<style>
+#app {
+  font-family: D2Coding, Nanum Gothic Coding, Hack, Avenir, Helvetica, Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+nav {
+  padding: 30px;
+}
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
+```
+
+```js
+// router/index.js
+
+import TheLotto from "@/views/TheLotto"
+import TheLunch from "@/views/TheLunch"
+import Vue from "vue"
+import VueRouter from "vue-router"
+
+Vue.use(VueRouter)
+
+const routes = [
+  {
+    path: "/",
+    component: TheLunch,
+    name: "lunch",
+  },
+
+  {
+    path: "/lotto/:lunchMenu",
+    component: TheLotto,
+    name: "lotto",
+  },
+]
+
+const router = new VueRouter({
+  mode: "history",
+  base: process.env.BASE_URL,
+  routes,
+})
+
+export default router
+```
+
+---
+
+```vue
+<!-- components/TheSearchBar.vue -->
+<template>
+  <div class="search-bar" 
+       :style="{ margin: videoLength ? '0' : '40vh 0' }">
+    <input @keyup.enter="onInputKeyword" 
+           type="text" />
+  </div>
+</template>
+
+<script>
+export default {
+  name: "TheSearchBar",
+  props: {
+    videoLength: {
+      type: Number,
+    },
+  },
+  methods: { // 검색어 Emit Event => App.vue
+    onInputKeyword: function (event) {
+      this.$emit("input-change", event.target.value)
+    },
+  },
+}
+</script>
+
+<style>
+.search-bar > input {
+  width: 100%; /* 가로 너비 배치를 화면의 끝과 끝으로 배치 */
+  padding: 0.5rem; /* input 안쪽의 margin을 여유롭게 */
+  font-size: 2rem;
+}
+.search-bar {
+  transition-duration: 0.5s;
+}
+</style>
+```
+
+```vue
+<!-- components/VideoDetail.vue -->
+<template>
+  <div v-if="video"
+       class="video-detail">
+    <div class="video-container">
+      <!--중첩 브라우징 맥락-->
+      <iframe :src="videoURI" 
+              frameborder="0"></iframe>
+    </div>
+    <div class="detail">
+      <h2>{{ video.snippet.title | stringUnescape }}</h2>
+      <hr />
+      <p>{{ video.snippet.description | stringUnescape }}</p>
+    </div>
+  </div>
+</template>
+
+<script>
+import _ from "lodash"
+
+export default {
+  name: "VideoDetail",
+  props: {
+    video: {
+      type: Object, // Pass Props
+    },
+  },
+  computed: {
+    videoURI: function () {
+      const videoId = this.video.id.videoId // Pass Props
+      return `https://www.youtube.com/embed/${videoId}`
+    }, // 검색 쿼리에 일치하는 동영상을 식별
+  },
+  filters: {
+    stringUnescape: function (rawText) {
+      return _.unescape(rawText)
+    },
+  },
+}
+</script>
+
+<style>
+.video-detail {
+  width: 70%; /* Detail, List를 전체 가로 비율 대비 7:3으로 설정 */
+  padding-right: 1rem; /* Detail과 List 사이의 margin */
+}
+.video-container {
+  position: relative; /* iframe을 container를 기준으로 위치를 지정 */
+  padding-top: 56.25%; /* 유튜브 비디오 비율을 맞추기 위한 높이 설정 */
+}
+.video-container > iframe {
+  position: absolute; /* container를 기준으로 위치를 지정*/
+  top: 0; /* container의 가장 위쪽으로 위치를 지정 */
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.detail {
+  margin-top: 20px;
+  padding: 20px;
+  border: solid 1px lightgray;
+  border-radius: 10px;
+}
+</style>
+```
+
+```vue
+<!-- components/VideoList.vue -->
+<template>
+  <div>
+    <ul class="video-list list-group">
+      <VideoListItem
+        v-for="video in videos"
+        :key="video.id.videoId"
+        :video="video"
+        @select-video="onSelectVideo"
+      /><!-- 동영상을 식별, Pass Props -->
+    </ul>
+  </div>
+</template>
+
+<script>
+import VideoListItem from "@/components/VideoListItem"
+
+export default {
+  name: "VideoList",
+  components: {
+    VideoListItem,
+  },
+  props: {
+    videos: {
+      type: Array, // Pass Props
+      required: true,
+    },
+  },
+  methods: {
+    onSelectVideo: function (video) {
+      this.$emit("select-video", video)
+    }, // Emit Event
+  },
+}
+</script>
+```
+
+```vue
+<!-- components / VideoListItem.vue -->
+<template>
+  <li class="list-group-item" 
+      @click="selectVideo">
+    <img :src="youtubeImageSrc" 
+         alt="youtube-thumbnail-image" />
+    {{ video.snippet.title | stringUnescape }}
+  </li>
+</template>
+
+<script>
+import _ from "lodash"
+
+export default {
+  name: "VideoListItem",
+  props: {
+    video: {
+      type: Object, // Pass Props
+      required: true,
+    },
+  },
+  methods: {
+    selectVideo: function () {
+      this.$emit("select-video", this.video)
+    }, // Emit Event
+  },
+  computed: {
+    youtubeImageSrc: function () {
+      return this.video.snippet.thumbnails.default.url
+    },
+  },
+  filters: {
+    stringUnescape: function (rawText) {
+      return _.unescape(rawText)
+    },
+  },
+}
+</script>
+
+<style>
+.list-group-item {
+  display: flex; /* 가로 배치 및 flex의 CSS 적용 */
+  margin-bottom: 1rem; /* item의 상하 여백 */
+  cursor: pointer; /* 마우스를 포인터로 변경 */
+}
+.list-group-item:hover {
+  background: #eee;
+}
+.list-group-item img {
+  height: fit-content; /* 텍스트가 길어져도 이미지는 늘어나지 않게 설정 */
+  margin-right: 0.5rem; /* 이미지와 텍스트 사이의 여백 */
+}
+</style>
+```
+
+```vue
+<!-- App.vue -->
+<template>
+  <div id="app">
+    <h1>My First Vuetube Project</h1>
+    <header>
+      <TheSearchBar
+        @input-change="onInputChange"
+        :video-length="videos.length"
+      /><!-- Emit Event -->
+    </header>
+    <section>
+      <VideoDetail :video="selectedVideo" /><!-- Pass Props -->
+      <VideoList
+        :videos="videos"
+        @select-video="onSelectVideo"
+      /><!-- Pass Props -->
+    </section>
+  </div>
+</template>
+
+<script>
+import axios from "axios"
+import TheSearchBar from "@/components/TheSearchBar"
+import VideoList from "@/components/VideoList.vue"
+import VideoDetail from "@/components/VideoDetail.vue"
+
+const API_KEY = "입력 필요"
+const API_URL = "https://www.googleapis.com/youtube/v3/search"
+
+export default {
+  name: "App",
+  components: {
+    TheSearchBar, // Emit Event
+    VideoList,
+    VideoDetail, // Pass Props
+  },
+  data: function () {
+    return {
+      inputValue: null,
+      videos: [],
+      selectedVideo: null,
+    }
+  },
+  methods: {
+    onInputChange: function (inputText) {
+      this.inputValue = inputText
+      const params = {
+        key: API_KEY, // request => Youtube Data V3 API
+        part: "snippet", // 검색결과에 대한 기본 세부정보
+        type: "video",
+        q: this.inputValue,
+      }
+      axios({
+        method: "get",
+        url: API_URL, // request => Youtube Data V3 API
+        params,
+      }) // response <= Youtube Data V3 API
+        .then((res) => {
+          this.videos = res.data.items
+          this.selectedVideo = this.videos[0]
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    onSelectVideo: function (video) {
+      this.selectedVideo = video
+    },
+  },
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+section, header {
+  width: 80%; /* 전체 너비의 80% */
+  margin: 0 auto; /* 양 옆 margin을 균등하게 배분 */ 
+  padding: 1rem 0; /* 위, 아래 padding */
+}
+section {
+  display: flex; /* Detail, List를 가로 배치 */
+}
+</style>
+```
+
