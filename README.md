@@ -9,24 +9,48 @@
 ## [Full Stack](/Full_Stack/README.md) 정리
 
 1. [2022-08-01 월] [HTML CSS](./Full_Stack/0801_HTML_CSS.md) : 선택자, 박스모델, display, position
+
 2. [2022-08-03 수] [Flexbox Bootstrap](./Full_Stack/0803_Flexbox_Bootstrap.md) : Float, Spacing, Grid
+
+   
+
 3. [2022-08-30 화] [Django](./Full_Stack/0830_Django_Template_VariableRouting.md) : QuickStart, Template, form, URL
+
 4. [2022-08-31 수] [Model QuerySetAPI CRUD](./Full_Stack/0831_Django_Model_QuerySet_CRUD.md) : Migrations, AdminSite
+
 5. [2022-09-06 화] [Form Decorator](./Full_Stack/0906_Django_Form_ModelForm.md)
+
 6. [2022-09-07 수] [Auth User](./Full_Stack/0907_Django_Auth.md) : request, access
+
 7. [2022-10-04 화] [DB SQL DDL DML](./Full_Stack/1004_DB_SQL.md)
+
 8. [2022-10-05 수] [DB relationship N:1](./Full_Stack/1005_DB_relationship_N_1.md) : ForeignKey, model, RelatedManager
+
 9. [2022-10-11 화] [Static Media](./Full_Stack/1011_Django_Static_Media.md) : Image, QuerySetAPI
+
 10. [2022-10-12 수] [DB relationship N:N](./Full_Stack/1012_DB_relationship_N_N.md) : ManyToManyField
+
 11. [2022-07-31 일] [REST[ful] API](https://github.com/kimsixsue/CS-Study/blob/master/kimsixsue/RESTful_API.md) : 디자인 원칙, 작동 방식
+
 12. [2022-10-17 월] [Django REST API](./Full_Stack/1017_Django_REST_API.md) : JSON, DRF, ModelSerializer, 역참조, shortcuts
+
+    
+
 13. [2022-10-19 수] [JavaScript basic](./Full_Stack/1019_JavaScript_basic.md) : 문법, Function, ArrowFunction, Array, Object, Object 관련 ES6 문법
+
 14. [2022-10-24 월] [JS DOM Event this](./Full_Stack/1024_JS_DOM_Event_this.md) : addEventListener
+
 15. [2022-10-26 수] [Asynchronous JS](./Full_Stack/1026_Asynchronous_JS.md) : 비동기, Axios, Callback, Promise, AJAX
+
+    
+
 16. [2022-10-31 월] [Vue.js](./Full_Stack/1031_Vue.js.md) : instance, Syntax, Directives, StyleGuide
-17. [2022-11-02 수] [Vue CLI](./Full_Stack/1102_Vue_CLI.md) : SFC, PassProps, EmitEvents, Vue Devtools
-18. [2022-11-07 월] [Vuex](./Full_Stack/1107_Vuex.md) : 컴포넌트 간 데이터 통신, Lifecycle Hooks, Local Storage
-19. [2022-11-09 수] [Vue Router](./Full_Stack/1109_Vue_Router.md) : UX & UI, Navigation Guard
+
+17. [2022-11-02 수] [Vue CLI](./Full_Stack/1102_Vue_CLI.md) : Node.js, SFC, Data in components(Pass Props & Emit Events)
+
+18. [2022-11-07 월] [Vuex](./Full_Stack/1107_Vuex.md) : State Management(컴포넌트 간 데이터 통신), Lifecycle Hooks, Local Storage
+
+19. [2022-11-09 수] [Vue Router](./Full_Stack/1109_Vue_Router.md) : UX & UI, Routing, Navigation Guard
 
 ## [Algorithm](/Algorithm/README.md) 정리
 
