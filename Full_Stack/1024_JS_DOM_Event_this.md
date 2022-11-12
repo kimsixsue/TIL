@@ -98,7 +98,7 @@
 - 페이지 컨텐츠의 진입점 역할을 하며, `<body>` 등과 같은 수많은 다른 요소들을 포함하고 있음
 
   ```js
-  document.title = "JavaScript"
+  document.title = 'JavaScript'
   ```
 
 - [참고] document는 window의 속성이다.
@@ -127,11 +127,11 @@
   - 제공한 CSS `selector`를 만족하는 NodeList를 반환
 
 ```js
-console.log(document.querySelector("#title"))
-console.log(document.querySelectorAll(".text"))
-console.log(document.querySelector(".text"))
-console.log(document.querySelectorAll("body > ul > li"))
-liTags = document.querySelectorAll("body > ul > li")
+console.log(document.querySelector('#title'))
+console.log(document.querySelectorAll('.text'))
+console.log(document.querySelector('.text'))
+console.log(document.querySelectorAll('body > ul > li'))
+liTags = document.querySelectorAll('body > ul > li')
 liTags.forEach((element) => {
   console.log(element)
 })
@@ -179,9 +179,9 @@ liTags.forEach((element) => {
   - 제거된 Node를 반환
 
 ```js
-const title = document.createElement("h1")
-title.innerText = "DOM 조작"
-const div = document.querySelector("div")
+const title = document.createElement('h1')
+title.innerText = 'DOM 조작'
+const div = document.querySelector('div')
 div.appendChild(title)
 div.removeChild(title)
 ```
@@ -189,13 +189,13 @@ div.removeChild(title)
 ```html
 <div id="app"></div>
 <script>
-  const divApp = document.querySelector("#app")
-  const h1Tag = document.createElement("h1")
-  h1Tag.innerText = "오늘의 Todo"
-  const ulTag = document.createElement("ul")
-  const todoList = ["양치하기", "공부하기", "휴식하기"]
+  const divApp = document.querySelector('#app')
+  const h1Tag = document.createElement('h1')
+  h1Tag.innerText = '오늘의 Todo'
+  const ulTag = document.createElement('ul')
+  const todoList = ['양치하기', '공부하기', '휴식하기']
   todoList.forEach((todo) => {
-    const li = document.createElement("li")
+    const li = document.createElement('li')
     li.innerText = todo
     ulTag.appendChild(li)
   })
@@ -216,16 +216,16 @@ div.removeChild(title)
 > <https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Default_parameters>
 
 ```js
-const aTag = document.createElement("a")
-aTag.setAttribute("href", "https://google.com")
-aTag.innerText = "구글"
-const divTag = document.querySelector("div")
+const aTag = document.createElement('a')
+aTag.setAttribute('href', 'https://google.com')
+aTag.innerText = '구글'
+const divTag = document.querySelector('div')
 divTag.appendChild(aTag)
-console.log(aTag.getAttribute("href"))
+console.log(aTag.getAttribute('href'))
 
-const h1 = document.querySelector("h1")
+const h1 = document.querySelector('h1')
 console.log(h1.classList)
-h1.classList.toggle("blue")
+h1.classList.toggle('blue')
 console.log(h1.classList)
 ```
 
@@ -299,11 +299,11 @@ EventTarget.addEventListener(type, listener)
 ### Event 실습
 
 ```js
-const btn = document.querySelector("#btn")
+const btn = document.querySelector('#btn')
 let countNum = 0
 
-btn.addEventListener("click", function (event) {
-  const pTag = document.querySelector("#counter")
+btn.addEventListener('click', function (event) {
+  const pTag = document.querySelector('#counter')
   countNum += 1
   pTag.innerText = countNum
 })
@@ -322,28 +322,28 @@ btn.addEventListener("click", function () {
 ```
 
 ```js
-const textInput = document.querySelector("#text-input")
-textInput.addEventListener("input", function (event) {
+const textInput = document.querySelector('#text-input')
+textInput.addEventListener('input', function (event) {
   console.log(event)
   console.log(event.target) // == textInput
   console.log(event.target.value)
 
-  const pTag = document.querySelector("p")
+  const pTag = document.querySelector('p')
   pTag.innerText = event.target.value
 })
 ```
 
 ```js
-const input = document.querySelector("input")
-input.addEventListener("input", function (event) {
-  const h1Tag = document.querySelector("h1")
+const input = document.querySelector('input')
+input.addEventListener('input', function (event) {
+  const h1Tag = document.querySelector('h1')
   h1Tag.innerText = event.target.value
 })
 
-const btn = document.querySelector("#btn")
-btn.addEventListener("click", function (event) {
-  const h1 = document.querySelector("h1")
-  h1.classList.toggle("blue")
+const btn = document.querySelector('#btn')
+btn.addEventListener('click', function (event) {
+  const h1 = document.querySelector('h1')
+  h1.classList.toggle('blue')
 })
 ```
 
@@ -356,18 +356,18 @@ btn.addEventListener("click", function (event) {
 <h1>Theme Switcher</h1>
 <p>테마를 바꿔봅시다.</p>
 <script>
-  const bodyTag = document.querySelector("body")
-  const grayB = document.querySelector("#grayButton")
-  const whitB = document.querySelector("#whiteButton")
-  const navyB = document.querySelector("#navyButton")
-  grayB.addEventListener("click", function (event) {
-    bodyTag.setAttribute("style", "background-color:gray; color:white")
+  const bodyTag = document.querySelector('body')
+  const grayB = document.querySelector('#grayButton')
+  const whitB = document.querySelector('#whiteButton')
+  const navyB = document.querySelector('#navyButton')
+  grayB.addEventListener('click', function (event) {
+    bodyTag.setAttribute('style', 'background-color:gray; color:white')
   })
-  whitB.addEventListener("click", function (event) {
-    bodyTag.setAttribute("style", "background-color:white; color:black")
+  whitB.addEventListener('click', function (event) {
+    bodyTag.setAttribute('style', 'background-color:white; color:black')
   })
-  navyB.addEventListener("click", function (event) {
-    bodyTag.setAttribute("style", "background-color:navy; color:white")
+  navyB.addEventListener('click', function (event) {
+    bodyTag.setAttribute('style', 'background-color:navy; color:white')
   })
 </script>
 ```
@@ -389,22 +389,22 @@ btn.addEventListener("click", function (event) {
 ### Event 취소 실습
 
 ```js
-const h1 = document.querySelector("h1")
-h1.addEventListener("copy", function (event) {
+const h1 = document.querySelector('h1')
+h1.addEventListener('copy', function (event) {
   event.preventDefault()
-  alert("복사 할 수 없습니다.")
+  alert('복사 할 수 없습니다.')
 })
 ```
 
 ### Event 종합 실습
 
 ```js
-const aTag = document.createElement("a")
-aTag.setAttribute("href", "https://www.google.com/")
-aTag.innerText = "GOOGLE"
-const bodyTag = document.querySelector("body")
+const aTag = document.createElement('a')
+aTag.setAttribute('href', 'https://www.google.com/')
+aTag.innerText = 'GOOGLE'
+const bodyTag = document.querySelector('body')
 bodyTag.appendChild(aTag)
-aTag.addEventListener("click", function (event) {
+aTag.addEventListener('click', function (event) {
   event.preventDefault()
 })
 ```
@@ -437,64 +437,64 @@ aTag.addEventListener("click", function (event) {
 ```html
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 <script>
-  const button = document.querySelector("#lotto-btn")
-  button.addEventListener("click", function (event) {
+  const button = document.querySelector('#lotto-btn')
+  button.addEventListener('click', function (event) {
     // create container
-    const ballContainer = document.createElement("div")
-    ballContainer.classList.add("ball-container")
+    const ballContainer = document.createElement('div')
+    ballContainer.classList.add('ball-container')
     // random 6 numbers
     const numbers = _.sampleSize(_.range(1, 46), 6)
     // create ball
     numbers.forEach((number) => {
-      const ball = document.createElement("div")
+      const ball = document.createElement('div')
       ball.innerText = number
-      ball.classList.add("ball")
-      ball.style.backgroundColor = "crimson"
+      ball.classList.add('ball')
+      ball.style.backgroundColor = 'crimson'
       ballContainer.appendChild(ball)
     })
-    const resultDiv = document.querySelector("#result")
+    const resultDiv = document.querySelector('#result')
     resultDiv.appendChild(ballContainer)
   })
 </script>
 ```
 
 ```js
-const formTag = document.querySelector("form")
+const formTag = document.querySelector('form')
 
 const addTodo = function (event) {
   event.preventDefault()
 
-  const inputTag = document.querySelector(".inputData")
+  const inputTag = document.querySelector('.inputData')
   const data = inputTag.value
 
   if (data.trim()) {
-    const liTag = document.createElement("li")
+    const liTag = document.createElement('li')
     liTag.innerText = data
 
-    const ulTag = document.querySelector("ul")
+    const ulTag = document.querySelector('ul')
     ulTag.appendChild(liTag)
     event.target.reset()
   } else {
-    alert("할 일을 입력하세요.")
+    alert('할 일을 입력하세요.')
   }
 }
 
-formTag.addEventListener("submit", addTodo)
+formTag.addEventListener('submit', addTodo)
 ```
 
 > <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll>
 
 ```js
-const userInput = document.querySelector("#userInput")
-const output = document.querySelector("#output")
+const userInput = document.querySelector('#userInput')
+const output = document.querySelector('#output')
 function filterMessage(event) {
   let filteredInput = event.target.value
   for (i = 0; i < badWords.length; i++) {
-    filteredInput = filteredInput.replaceAll(badWords[i], "**")
+    filteredInput = filteredInput.replaceAll(badWords[i], '**')
   }
   output.innerText = filteredInput
 }
-userInput.addEventListener("input", filterMessage)
+userInput.addEventListener('input', filterMessage)
 ```
 
 ```html
@@ -653,14 +653,14 @@ userInput.addEventListener("input", filterMessage)
   - "addEventListener 의 콜백 함수는 `function` 키워드를 사용하기"
 
   ```js
-  const functionButton = document.querySelector("#function")
-  const arrowButton = document.querySelector("#arrow")
+  const functionButton = document.querySelector('#function')
+  const arrowButton = document.querySelector('#arrow')
   
-  functionButton.addEventListener("click", function (event) {
+  functionButton.addEventListener('click', function (event) {
     console.log(this) // <button id="function">function</button>
   })
   
-  arrowButton.addEventListener("click", (event) => {
+  arrowButton.addEventListener('click', (event) => {
     console.log(this) // window
   })
   ```

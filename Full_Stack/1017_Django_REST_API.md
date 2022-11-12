@@ -247,6 +247,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_seed',
     'django_extensions',
+  
 ]
 ```
 
@@ -280,10 +281,10 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/serializers.py
-  
   from rest_framework import serializers
   
   from .models import Article
+  
   
   # 여러 데이터의 정보를 보여줄 때 사용하는 serializer
   class ArticleListSerializer(serializers.ModelSerializer):
@@ -326,12 +327,12 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/views.py
-  
   from rest_framework.decorators import api_view
   from rest_framework.response import Response
   
   from .models import Article
   from .serializers import ArticleListSerializer
+  
 
   @api_view(['GET'])
   def article_list(request):
@@ -353,10 +354,10 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/serializers.py
-  
   from rest_framework import serializers
   
   from .models import Article
+  
   
   class ArticleSerializer(serializers.ModelSerializer):
   
@@ -386,6 +387,7 @@ admin.site.register(모델클래스)
   from .models import Article
   from .serializers import ArticleSerializer
   
+  
   @api_view(['GET'])
   def article_detail(request, article_pk):
       article = Article.objects.get(pk=article_pk)
@@ -401,13 +403,13 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/views.py
-  
   from rest_framework import status
   from rest_framework.decorators import api_view
   from rest_framework.response import Response
   
   from .models import Article
   from .serializers import ArticleListSerializer, ArticleSerializer
+  
   
   @api_view(['GET', 'POST'])
   def article_list(request):
@@ -436,16 +438,20 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/views.py
-  
   from rest_framework import status
   from rest_framework.decorators import api_view
   from rest_framework.response import Response
   
-  from .serializers import ArticleSerializer
+  from .models import Article
+  from .serializers import ArticleListSerializer, ArticleSerializer
+  
   
   @api_view(['GET', 'POST'])
   def article_list(request):
-  
+      if request.method == 'GET':
+          articles = Article.objects.all()
+          serializer = ArticleListSerializer(articles, many=True)
+          return Response(serializer.data)
       elif request.method == 'POST':
           serializer = ArticleSerializer(data=request.data)
           if serializer.is_valid(raise_exception=True):
@@ -461,7 +467,6 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/views.py
-  
   from rest_framework import status
   from rest_framework.decorators import api_view
   from rest_framework.response import Response
@@ -469,21 +474,16 @@ admin.site.register(모델클래스)
   from .models import Article
   from .serializers import ArticleSerializer
   
+  
   @api_view(['GET', 'DELETE'])
   def article_detail(request, article_pk):
       article = Article.objects.get(pk=article_pk)
       if request.method == 'GET':
-       serializer = ArticleSerializer(article)
-       return Response(serializer.data)
-  
+          serializer = ArticleSerializer(article)
+          return Response(serializer.data)
       elif request.method == 'DELETE':
           article.delete()
           return Response({'id': article_pk}, status=status.HTTP_204_NO_CONTENT)
-  
-      elif request.method == 'DELETE':
-          review.delete()
-          msg = f"review {review_pk} is deleted"
-          return Response({"delete": msg}, status=status.HTTP_204_NO_CONTENT)
   ```
 
 **PUT**
@@ -494,20 +494,28 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/views.py
-  
+  from rest_framework import status
   from rest_framework.decorators import api_view
   from rest_framework.response import Response
   
+  from .models import Article
   from .serializers import ArticleSerializer
   
-  @api_view(['GET', 'DELETE', 'PUT'])
-  def article_detail(request, article_pk):
   
+  @api_view(['GET', 'DELETE'])
+  def article_detail(request, article_pk):
+      article = Article.objects.get(pk=article_pk)
+      if request.method == 'GET':
+          serializer = ArticleSerializer(article)
+          return Response(serializer.data)
+      elif request.method == 'DELETE':
+          article.delete()
+          return Response({'id': article_pk}, status=status.HTTP_204_NO_CONTENT)
       elif request.method == 'PUT':
           serializer = ArticleSerializer(article, data=request.data)
-          if serializer.is_valid(raise_exception=True):
-              serializer.save()
-              return Response(serializer.data)
+      if serializer.is_valid(raise_exception=True):
+          serializer.save()
+          return Response(serializer.data)
   ```
 
 ## Django REST framework N-1 Relation
@@ -525,13 +533,14 @@ admin.site.register(모델클래스)
   
   from .models import Comment
   
+  
   class CommentSerializer(serializers.ModelSerializer):
   
       class Meta:
           model = Comment
           fields = '__all__'
   ```
-
+  
   ```python
   # articles/urls.py
   
@@ -544,15 +553,15 @@ admin.site.register(모델클래스)
       path('comments/', views.comment_list),
   ]
   ```
-
+  
   ```python
   # articles/views.py
-  
   from rest_framework.decorators import api_view
   from rest_framework.response import Response
   
   from .models import Comment
   from .serializers import CommentSerializer
+  
   
   @api_view(['GET'])
   def comment_list(request):
@@ -567,7 +576,6 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/urls.py
-  
   from django.urls import path
   
   from . import views
@@ -577,15 +585,15 @@ admin.site.register(모델클래스)
       path('comments/<int:comment_pk>/', views.comment_detail),
   ]
   ```
-
+  
   ```python
   # articles/views.py
-  
   from rest_framework.decorators import api_view
   from rest_framework.response import Response
   
   from .models import Comment
   from .serializers import CommentSerializer
+  
   
   @api_view(['GET'])
   def comment_detail(request, comment_pk):
@@ -600,7 +608,6 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/urls.py
-  
   from django.urls import path
   
   from . import views
@@ -610,16 +617,16 @@ admin.site.register(모델클래스)
       path('articles/<int:article_pk>/comments/', views.comment_create),
   ]
   ```
-
+  
   ```python
   # articles/views.py
-  
   from rest_framework import status
   from rest_framework.decorators import api_view
   from rest_framework.response import Response
   
   from .models import Article
   from .serializers import CommentSerializer
+  
   
   @api_view(['POST'])
   def comment_create(request, article_pk):
@@ -638,13 +645,13 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/views.py
-  
   from rest_framework import status
   from rest_framework.decorators import api_view
   from rest_framework.response import Response
   
   from .models import Article
   from .serializers import CommentSerializer
+  
   
   @api_view(['POST'])
   def comment_create(request, article_pk):
@@ -663,10 +670,10 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/serializers.py
-  
   from rest_framework import serializers
   
   from .models import Comment
+  
   
   class CommentSerializer(serializers.ModelSerializer):
   
@@ -682,7 +689,6 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/views.py
-  
   from rest_framework import status
   from rest_framework.decorators import api_view
   from rest_framework.response import Response
@@ -690,12 +696,13 @@ admin.site.register(모델클래스)
   from .models import Comment
   from .serializers import CommentSerializer
   
+  
   @api_view(['GET', 'DELETE', 'PUT'])
   def comment_detail(request, comment_pk):
       comment = Comment.objects.get(pk=comment_pk)
       if request.method == 'GET':
-       serializer = CommentSerializer(comment)
-       return Response(serializer.data)
+          serializer = CommentSerializer(comment)
+          return Response(serializer.data)
   
       elif request.method == 'DELETE':
           comment.delete()
@@ -706,11 +713,6 @@ admin.site.register(모델클래스)
           if serializer.is_valid(raise_exception=True):
               serializer.save()
               return Response(serializer.data)
-  
-      elif request.method == 'DELETE':
-          review.delete()
-          msg = f"review {review_pk} is deleted"
-          return Response({"delete": msg}, status=status.HTTP_204_NO_CONTENT)
   ```
 
 ### N-1 역참조 데이터 조회
@@ -734,10 +736,10 @@ admin.site.register(모델클래스)
 
      ```python
      # articles/serializers.py
-     
      from rest_framework import serializers
      
      from .models import Article
+     
      
      class ArticleSerializer(serializers.ModelSerializer):
          comment_set = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
@@ -759,36 +761,29 @@ admin.site.register(모델클래스)
 
     ```python
     # articles/models.py
-
+    
     from django.db import models
-
+    
     class Comment(models.Model):
         article = models.ForeignKey(
             Article, on_delete=models.CASCADE, related_name='comments')
         content = models.TextField()
         created_at = models.DateTimeField(auto_now_add=True)
         updated_at = models.DateTimeField(auto_now=True)
-
-    class Movie(models.Model):
-        actors = models.ManyToManyField(Actor, related_name='movies')
-
-    class Review(models.Model):
-        movie = models.ForeignKey(
-            Movie, on_delete=models.CASCADE, related_name='review_set')
     ```
-
+    
   - 작성 후 삭제(다시 원래 코드로 복구)
 
     - **위와 같이 변경 하면 기존 article.comment_set은 더 이상 사용할 수 없고, article.comments로 대체됨**
-
+  
   2. Nested relationships
-
+  
      ```python
      # articles/serializers.py
-     
      from rest_framework import serializers
      
      from .models import Article, Comment
+     
      
      # 역참조 할 때 댓글 정보를 보여주기 위해 Commentserializer 위치 이동
      class CommentSerializer(serializers.ModelSerializer):
@@ -798,14 +793,15 @@ admin.site.register(모델클래스)
              fields = '__all__'
              read_only_fields = ('article',)
      
+     
      class ArticleSerializer(serializers.ModelSerializer):
          comment_set = CommentSerializer(many=True, read_only=True)
-      
+     
          class Meta:
              model = Article
              fields = '__all__'
-     ```
-    
+    ```
+     
      - 모델 관계 상으로 참조 된 대상은 참조하는 대상의 표현에 포함되거나 nested 중첩 될 수 있음
      - 이러한 중첩된 관계는 serializers를 필드로 사용하여 표현 할 수 있음
      - 두 클래스의 상/하 위치를 변경해야 함
@@ -818,11 +814,19 @@ admin.site.register(모델클래스)
 
     ```python
     # articles/serializers.py
-    
     from rest_framework import serializers
     
-    from .models import Article
-
+    from .models import Article, Comment
+    
+    
+    class CommentSerializer(serializers.ModelSerializer):
+    
+        class Meta:
+            model = Comment
+            fields = '__all__'
+            read_only_fields = ('article',)
+    
+    
     # detail 한 내용을 보여주는 serializer 사용
     # 생성, 수정을 할 때 모든 필드의 유효성 검사를 위해 사용
     class ArticleSerializer(serializers.ModelSerializer):
@@ -836,9 +840,9 @@ admin.site.register(모델클래스)
             model = Article
             fields = '__all__'
     ```
-
+  
   - **source**
-
+  
     - serializers field’s argument
     - 필드를 채우는 데 사용할 속성의 이름
     - dotted notation 점 표기법을 사용하여 속성을 탐색 할 수 있음
@@ -865,8 +869,9 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/views.py
-  
   from django.shortcuts import get_object_or_404
+  
+  from .models import Article, Comment
   
   article = get_object_or_404(Article, pk=article_pk)
   comment = get_object_or_404(Comment, pk=comment_pk)
@@ -878,8 +883,9 @@ admin.site.register(모델클래스)
 
   ```python
   # articles/views.py
-  
   from django.shortcuts import get_list_or_404
+  
+  from .models import Article, Comment
   
   article = get_list_or_404(Article)
   comment = get_list_or_404(Comment)

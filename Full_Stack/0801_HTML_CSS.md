@@ -296,13 +296,12 @@ HTML 스타일 가이드
 - **CSS 구문 - 용어 정리**
 
   ```css
-  <!--Selector 선택-->
-  h1 {
-      color: blue; <!--Declaration 선언-->
-      font-size: 15px;
-  }<!--Property 속성 : Value 값-->
+  h1 { /* Selector 선택 */
+    color: blue; /* Declaration 선언 */
+    font-size: 15px;
+  } /* Property 속성 : Value 값 */
   ```
-
+  
 - CSS 구문은 선택자를 통해 스타일을 지정할 HTML 요소를 선택
 
 - 중괄호 안에서는 속성과 값, 하나의 쌍으로 이루어진 선언을 진행
@@ -685,7 +684,7 @@ HTML 스타일 가이드
          .parent {
            position: relative;
          }
-
+          
          .absolute-child {
            position: absolute;
          }

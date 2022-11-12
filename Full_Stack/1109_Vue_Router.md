@@ -328,24 +328,24 @@ setup for index fallback in production) (Y,n)
 - `routes` 에 URL과 컴포넌트를 매핑
 
 ``` js
-import Vue from "vue"
-import VueRouter from "vue-router"
-import HomeView from "@/views/HomeView"
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import HomeView from '@/views/HomeView'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/",
-    name: "home",
+    path: '/',
+    name: 'home',
     component: HomeView,
   },
   {
-    path: "/about",
-    name: "about",
+    path: '/about',
+    name: 'about',
     // lazy-loading 방식
     // 첫 로딩에 렌더링 하지않고 해당 라우터가 동작할 때 컴포넌트를 렌더링 한다.
-    component: () => import("@/views/AboutView"),
+    component: () => import('@/views/AboutView'),
   },
 ]
 ```
@@ -389,7 +389,6 @@ const routes = [
 
 ```vue
 <!-- App.vue -->
-
 <template>
   <div id="app">
     <nav>
@@ -405,11 +404,10 @@ const routes = [
 
 ```js
 // router/index.js
-
 const routes = [
   {
-    path: "/",
-    name: "home",
+    path: '/',
+    name: 'home',
     component: HomeView,
   },
 ]
@@ -419,7 +417,6 @@ const routes = [
 
 ```vue
 <!-- App.vue -->
-
 <template>
   <div id="app">
     <nav>
@@ -450,7 +447,6 @@ const routes = [
 
 ```vue
 <!-- AboutView.vue -->
-
 <template>
   <div class="about">
     <h1>This is an about page</h1>
@@ -461,10 +457,10 @@ const routes = [
 
 <script>
 export default {
-  name: "AboutView",
+  name: 'AboutView',
   methods: {
     toHome() {
-      this.$router.push({ name: "home" })
+      this.$router.push({ name: 'home' })
     },
   },
 }
@@ -480,14 +476,12 @@ export default {
 
 ```js
 // router/index.js
-
-import HelloView from "@/views/HelloView.vue"
+import HelloView from '@/views/HelloView.vue'
 
 const routes = [
-
   {
-    path: "/hello/:userName",
-    name: "hello",
+    path: '/hello/:userName',
+    name: 'hello',
     component: HelloView,
   },
 ]
@@ -495,15 +489,13 @@ const routes = [
 
 ```vue
 <!-- views/HelloView.vue -->
-
 <template>
-  <div>
-  </div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  name: "HelloView",
+  name: 'HelloView',
 }
 </script>
 ```
@@ -513,7 +505,6 @@ export default {
 
 ```vue
 <!-- views/HelloView.vue -->
-
 <template>
   <div>
     <h1>hello, {{ userName }}</h1>
@@ -522,7 +513,7 @@ export default {
 
 <script>
 export default {
-  name: "HelloView",
+  name: 'HelloView',
   data() {
     return {
       userName: this.$route.params.userName,
@@ -539,7 +530,6 @@ export default {
 
 ```vue
 <!-- App.vue -->
-
 <template>
   <div id="app">
     <nav>
@@ -562,31 +552,24 @@ export default {
 
 ```vue
 <!-- AboutView.vue -->
-
 <template>
   <div class="about">
-
-    <input 
-      type="text" 
-      v-model="inputData" 
-      @keyup.enter="goToHello" 
-    />
+    <input type="text" v-model="inputData" @keyup.enter="goToHello" />
   </div>
 </template>
 
 <script>
 export default {
-  name: "AboutView",
+  name: 'AboutView',
   data() {
     return {
       inputData: null,
     }
   },
   methods: {
-
     goToHello() {
       this.$router.push({
-        name: "hello",
+        name: 'hello',
         params: { userName: this.inputData },
       })
     },
@@ -601,13 +584,12 @@ export default {
 
 ```js
 // router/index.js
-
-import HomeView from "../views/HomeView.vue"
+import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
-    path: "/",
-    name: "home",
+    path: '/',
+    name: 'home',
     component: HomeView,
   }, // 기존 방식
 ]
@@ -615,14 +597,13 @@ const routes = [
 
 ```js
 // router/index.js
-
-  {
-    path: "/about",
-    name: "about",
-    // lazy-loading 방식
-    // 첫 로딩에 렌더링 하지않고 해당 라우터가 동작할 때 컴포넌트를 렌더링 한다.
-    component: () => import("@/views/AboutView"),
-  },
+{
+  path: "/about",
+  name: "about",
+  // lazy-loading 방식
+  // 첫 로딩에 렌더링 하지않고 해당 라우터가 동작할 때 컴포넌트를 렌더링 한다.
+  component: () => import("@/views/AboutView"),
+},
 ```
 
 **lazy-loading**
@@ -682,11 +663,10 @@ const routes = [
 
 ```js
 // router/index.js
-
 router.beforeEach((to, from, next) => {
-  console.log("to", to)
-  console.log("from", from)
-  console.log("next", next)
+  console.log('to', to)
+  console.log('from', from)
+  console.log('next', next)
 })
 ```
 
@@ -694,11 +674,10 @@ router.beforeEach((to, from, next) => {
 
 ```js
 // router/index.js
-
 router.beforeEach((to, from, next) => {
-  console.log("to", to)
-  console.log("from", from)
-  console.log("next", next)
+  console.log('to', to)
+  console.log('from', from)
+  console.log('next', next)
   next()
 })
 ```
@@ -713,7 +692,6 @@ router.beforeEach((to, from, next) => {
 
 ```vue
 <!-- views/LoginView.vue -->
-
 <template>
   <div>
     <h1>로그인 페이지</h1>
@@ -722,21 +700,19 @@ router.beforeEach((to, from, next) => {
 
 <script>
 export default {
-  name: "LoginView",
+  name: 'LoginView',
 }
 </script>
 ```
 
 ```js
 // router/index.js
-
-import LoginView from "@/views/LoginView"
+import LoginView from '@/views/LoginView'
 
 const routes = [
-  
   {
-    path: "/login",
-    name: "login",
+    path: '/login',
+    name: 'login',
     component: LoginView,
   },
 ]
@@ -746,13 +722,13 @@ const routes = [
 
 ```vue
 <!-- App.vue -->
-
 <template>
   <div id="app">
     <nav>
-      
       <router-link :to="{ name: 'login' }">Login</router-link>
     </nav>
+  </div>
+</template>
 ```
 
 - HelloView 에 로그인을 해야만 접근할 수 있도록 만들어 보기
@@ -763,14 +739,12 @@ const routes = [
 
 ```js
 // router/index.js
-
 router.beforeEach((to, from, next) => {
-
   // 로그인 여부
   const isLoggedIn = true
 
   // 로그인이 필요한 페이지
-  const authPages = ["hello"]
+  const authPages = ['hello']
 
   // 앞으로 이동할 페이지(to)가
   // 로그인이 필요한 사이트인지 확인
@@ -792,14 +766,12 @@ router.beforeEach((to, from, next) => {
 
 ```js
 // router/index.js
-
 router.beforeEach((to, from, next) => {
-  
   if (isAuthRequired && !isLoggedIn) {
-    console.log("Login으로 이동!")
-    next({ name: "login" })
+    console.log('Login으로 이동!')
+    next({ name: 'login' })
   } else {
-    console.log("to로 이동!")
+    console.log('to로 이동!')
     next()
   }
 })
@@ -831,9 +803,9 @@ router.beforeEach((to, from, next) => {
 // router/index.js
 
 router.beforeEach((to, from, next) => {
-
   // 로그인이 필요한 페이지
-  const authPages = ["hello", "home", "about"]
+  const authPages = ['hello', 'home', 'about']
+})
 ```
 
 - 만약 view 들이 여러 개라면 모두 추가해주어야 할까?
@@ -841,15 +813,12 @@ router.beforeEach((to, from, next) => {
 
 ```js
 // router/index.js
-
 router.beforeEach((to, from, next) => {
-
   // const authPages = ["hello", "home", "about"]
-  const allowAllPages = ["login"]
+  const allowAllPages = ['login']
 
   // const isAuthRequired = authPages.includes(to.name)
   const isAuthRequired = !allowAllPages.includes(to.name)
-
 })
 ```
 
@@ -882,19 +851,17 @@ router.beforeEach((to, from, next) => {
 
 ```js
 // router/index.js
-
 const isLoggedIn = true
 
 const routes = [
-  
   {
-    path: "/login",
-    name: "login",
+    path: '/login',
+    name: 'login',
     component: LoginView,
     beforeEnter(to, from, next) {
       if (isLoggedIn === true) {
-        console.log("이미 로그인함")
-        next({ name: "home" })
+        console.log('이미 로그인함')
+        next({ name: 'home' })
       } else {
         next()
       }
@@ -937,10 +904,9 @@ const routes = [
 
 ```vue
 <!-- views/HelloView.vue -->
-
 <script>
 export default {
-  name: "HelloView",
+  name: 'HelloView',
   data() {
     return {
       userName: this.$route.params.userName,
@@ -960,7 +926,6 @@ export default {
 
 ```vue
 <!-- views/NotFound404.vue -->
-
 <template>
   <div>
     <h1>404 Not Found</h1>
@@ -969,21 +934,19 @@ export default {
 
 <script>
 export default {
-  name: "NotFound404",
+  name: 'NotFound404',
 }
 </script>
 ```
 
 ```js
 // router/index.js
-
-import NotFound404 from "@/views/NotFound404"
+import NotFound404 from '@/views/NotFound404'
 
 const routes = [
-  
   {
-    path: "/404",
-    name: "NotFound404",
+    path: '/404',
+    name: 'NotFound404',
     component: NotFound404,
   },
 ]
@@ -1003,12 +966,10 @@ const routes = [
 
 ```js
 // router/index.js
-
 const routes = [
-  
   {
-    path: "*",
-    redirect: "/404",
+    path: '*',
+    redirect: '/404',
   },
 ]
 ```
@@ -1043,32 +1004,29 @@ $ npm i axios
 
 ```vue
 <!-- views/DogView.vue -->
-
 <template>
-  <div>
-  </div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  name: "DogView",
+  name: 'DogView',
 }
 </script>
+
 ```
 
 ```js
 // router/index.js
-
 const routes = [
-  
   {
-    path: "/dog/:breed",
-    name: "dog",
+    path: '/dog/:breed',
+    name: 'dog',
     component: DogView,
   },
   {
-    path: "*",
-    redirect: "/404",
+    path: '*',
+    redirect: '/404',
   },
 ]
 ```
@@ -1077,11 +1035,8 @@ const routes = [
 
 ```vue
 <!-- views/DogView.vue -->
-
 <template>
-  <div>
-    <img v-if="imgSrc" :src="imgSrc" alt="" /><br />
-  </div>
+  <div><img v-if="imgSrc" :src="imgSrc" alt="" /><br /></div>
 </template>
 
 <script>
@@ -1124,7 +1079,6 @@ export default {
 
 ```vue
 <!-- views/DogView.vue -->
-
 <template>
   <div>
     <p v-if="!imgSrc">{{ message }}</p>
@@ -1134,14 +1088,12 @@ export default {
 
 <script>
 export default {
-  
   data() {
     return {
       imgSrc: null,
-      message: "로딩중...",
+      message: '로딩중...',
     }
   },
-  
 }
 </script>
 ```
@@ -1150,20 +1102,19 @@ export default {
 
 ```vue
 <!-- views/DogView.vue -->
-
 <script>
-  axios({
-    method: "get",
-    url: dogImageUrl,
+axios({
+  method: 'get',
+  url: dogImageUrl,
+})
+  .then((response) => {
+    const imgSrc = response.data.message
+    this.imgSrc = imgSrc
   })
-    .then((response) => {
-      const imgSrc = response.data.message
-      this.imgSrc = imgSrc
-    })
-    .catch((error) => {
-      this.message = `${this.$route.params.breed}은 없는 품종입니다.`
-      console.log(error)
-    })
+  .catch((error) => {
+    this.message = `${this.$route.params.breed}은 없는 품종입니다.`
+    console.log(error)
+  })
 </script>
 ```
 
@@ -1177,19 +1128,18 @@ export default {
 
 ```vue
 <!-- views/DogView.vue -->
-
 <script>
-  axios({
-    method: "get",
-    url: dogImageUrl,
+axios({
+  method: 'get',
+  url: dogImageUrl,
+})
+  .then((response) => {
+    const imgSrc = response.data.message
+    this.imgSrc = imgSrc
   })
-    .then((response) => {
-      const imgSrc = response.data.message
-      this.imgSrc = imgSrc
-    })
-    .catch((error) => {
-      this.$router.push("/404")
-    })
+  .catch((error) => {
+    this.$router.push('/404')
+  })
 </script>
 ```
 
@@ -1217,7 +1167,6 @@ $ vue add router
 
 ```vue
 <!-- App.vue -->
-
 <template>
   <div id="app">
     <router-view />
@@ -1241,7 +1190,6 @@ $ vue add router
 
 ```js
 // store/index.js
-
 state: {
   article_id: 3,
   articles: [
@@ -1258,14 +1206,13 @@ state: {
       createdAt: new Date().getTime(),
     },
   ],
-},
+}
 ```
 
 - IndexView 컴포넌트 및 라우터 작성
 
 ```vue
 <!-- views/IndexView.vue -->
-
 <template>
   <div>
     <h1>Articles</h1>
@@ -1274,18 +1221,17 @@ state: {
 
 <script>
 export default {
-  name: "IndexView",
+  name: 'IndexView',
 }
 </script>
 ```
 
 ```js
 // router/index.js
-
 const routes = [
   {
-    path: "/",
-    name: "index",
+    path: '/',
+    name: 'index',
     component: IndexView,
   },
 ]
@@ -1295,7 +1241,6 @@ const routes = [
 
 ```vue
 <!-- views/IndexView.vue -->
-
 <template>
   <div>
     <h1>Articles</h1>
@@ -1305,8 +1250,8 @@ const routes = [
 
 <script>
 export default {
-  name: "IndexView",
-  
+  name: 'IndexView',
+
   computed: {
     articles() {
       return this.$store.state.articles
@@ -1320,15 +1265,13 @@ export default {
 
 ```vue
 <!-- components/ArticleItem.vue -->
-
 <template>
-  <div>
-  </div>
+  <div></div>
 </template>
 
 <script>
 export default {
-  name: "ArticleItem",
+  name: 'ArticleItem',
 }
 </script>
 ```
@@ -1337,23 +1280,21 @@ export default {
 
 ```vue
 <!-- views/IndexView.vue -->
-
 <template>
   <div>
     <h1>Articles</h1>
     <ArticleItem
       v-for="article in articles"
       :key="article.id"
-      :article="article"
-    />
+      :article="article" />
   </div>
 </template>
 
 <script>
-import ArticleItem from "@/components/ArticleItem"
+import ArticleItem from '@/components/ArticleItem'
 
 export default {
-  name: "IndexView",
+  name: 'IndexView',
   components: {
     ArticleItem,
   },
@@ -1370,7 +1311,6 @@ export default {
 
 ```vue
 <!-- components/ArticleItem.vue -->
-
 <template>
   <div>
     <p>글 번호 : {{ article.id }}</p>
@@ -1381,7 +1321,7 @@ export default {
 
 <script>
 export default {
-  name: "ArticleItem",
+  name: 'ArticleItem',
   props: {
     article: Object,
   },
@@ -1395,7 +1335,6 @@ export default {
 
 ```vue
 <!-- views/CreateView.vue -->
-
 <template>
   <div>
     <h1>게시글 작성</h1>
@@ -1404,19 +1343,17 @@ export default {
 
 <script>
 export default {
-  name: "CreateView",
+  name: 'CreateView',
 }
 </script>
 ```
 
 ```js
 // router/index.js
-
 const routes = [
-  
   {
-    path: "/create",
-    name: "create",
+    path: '/create',
+    name: 'create',
     component: CreateView,
   },
 ]
@@ -1426,7 +1363,6 @@ const routes = [
 
 ```vue
 <!-- views/CreateView.vue -->
-
 <template>
   <div>
     <h1>게시글 작성</h1>
@@ -1434,10 +1370,8 @@ const routes = [
       <label for="title">제목 : </label>
       <input type="text" id="title" v-model="title" /><br />
       <label for="content">내용 : </label>
-      <textarea 
-        id="content" cols="30" rows="10" 
-        v-model="content"
-      ></textarea><br />
+      <textarea id="content" cols="30" rows="10" v-model="content"></textarea
+      ><br />
       <input type="submit" />
     </form>
   </div>
@@ -1445,7 +1379,7 @@ const routes = [
 
 <script>
 export default {
-  name: "CreateView",
+  name: 'CreateView',
   data() {
     return {
       title: null,
@@ -1460,13 +1394,10 @@ export default {
 
 ```vue
 <!-- views/CreateView.vue -->
-
 <template>
   <div>
     <h1>게시글 작성</h1>
-    <form @submit.prevent="createArticle">
-      
-    </form>
+    <form @submit.prevent="createArticle"></form>
   </div>
 </template>
 ```
@@ -1475,10 +1406,8 @@ export default {
 
 ```vue
 <!-- views/CreateView.vue -->
-
 <script>
 export default {
-  
   methods: {
     createArticle() {
       const title = this.title
@@ -1487,7 +1416,7 @@ export default {
         title,
         content,
       }
-      this.$store.dispatch("createArticle", payload)
+      this.$store.dispatch('createArticle', payload)
     },
   },
 }
@@ -1498,7 +1427,6 @@ export default {
 
 ```vue
 <!-- views/CreateView.vue -->
-
 <template>
   <div>
     <h1>게시글 작성</h1>
@@ -1524,21 +1452,20 @@ export default {
 ```vue
 <script>
 export default {
-  
   methods: {
     createArticle() {
       const title = this.title
       const content = this.content
       if (!title) {
-        alert("제목을 입력해주세요")
+        alert('제목을 입력해주세요')
       } else if (!content) {
-        alert("내용을 입력해주세요")
+        alert('내용을 입력해주세요')
       } else {
         const payload = {
           title,
           content,
         }
-        this.$store.dispatch("createArticle", payload)
+        this.$store.dispatch('createArticle', payload)
       }
     },
   },
@@ -1551,7 +1478,6 @@ export default {
 
 ```js
 // store/index.js
-
 actions: {
   createArticle(context, payload) {
     const article = {
@@ -1570,7 +1496,6 @@ actions: {
 
 ```js
 // store/index.js
-
 mutations: {
   CREATE_ARTICLE(state, article) {
     state.articles.push(article)
@@ -1583,7 +1508,6 @@ mutations: {
 
 ```vue
 <!-- views/CreateView.vue -->
-
 <template>
   <div>
     <h1>게시글 작성</h1>
@@ -1597,7 +1521,6 @@ mutations: {
 
 ```js
 <!-- views/CreateView.vue -->
-
 <script>
   
   methods: {
@@ -1613,7 +1536,6 @@ mutations: {
 
 ```vue
 <!-- views/IndexView.vue -->
-
 <template>
   <div>
     <h1>Articles</h1>
@@ -1621,10 +1543,9 @@ mutations: {
     <ArticleItem
       v-for="article in articles"
       :key="article.id"
-      :article="article"
-    />
+      :article="article" />
   </div>
-</template>>
+</template>
 ```
 
 ### Detail
@@ -1636,7 +1557,6 @@ mutations: {
 
 ```vue
 <!-- views/DetailView.vue -->
-
 <template>
   <div>
     <h1>Detail</h1>
@@ -1645,19 +1565,17 @@ mutations: {
 
 <script>
 export default {
-  name: "DetailView",
+  name: 'DetailView',
 }
 </script>
 ```
 
 ```js
 // router/index.js
-
 const routes = [
-
   {
-    path: "/:id",
-    name: "detail",
+    path: '/:id',
+    name: 'detail',
     component: DetailView,
   },
 ]
@@ -1689,7 +1607,6 @@ export default {
 ```vue
 <!-- views/DetailView.vue -->
 <script>
-  
   methods: {
     getArticleById(id) {
       const id = this.$route.params.id
@@ -1708,7 +1625,6 @@ export default {
 
 ```vue
 <!-- views/DetailView.vue -->
-
 <template>
   <div>
     <h1>Detail</h1>
@@ -1741,7 +1657,6 @@ export default {
   created() {
     this.getArticleById(this.$route.params.id)
   },
-}
 </script>
 ```
 
@@ -1753,7 +1668,6 @@ export default {
 
 ```vue
 <!-- views/DetailView.vue -->
-
 <script>
 export default {
   // created() {
@@ -1768,7 +1682,6 @@ export default {
 
 ```vue
 <!-- views/DetailView.vue -->
-
 <template>
   <div>
     <h1>Detail</h1>
@@ -1781,7 +1694,6 @@ export default {
 
 <script>
 export default {
-  
   created() {
     this.getArticleById(this.$route.params.id)
   },
@@ -1799,10 +1711,10 @@ export default {
 <script>
 const userInfo = {
   name: {
-    last: "Stark",
+    last: 'Stark',
   },
   address: {
-    city: "Seoul",
+    city: 'Seoul',
   },
   getInfo() {
     console.log(this.name)
@@ -1832,7 +1744,6 @@ userInfo.getInfo?.()
 
 ```vue
 <!-- views/DetailView.vue -->
-
 <template>
   <div>
     <h1>Detail</h1>
@@ -1840,15 +1751,13 @@ userInfo.getInfo?.()
     <p>글 제목 : {{ article?.title }}</p>
     <p>글 내용 : {{ article?.content }}</p>
     <p>글 작성시간 : {{ article?.createdAt }}</p>
-<!-- <p>작성시간 : {{ articleCreatedAt }}</p> -->
+    <!-- <p>작성시간 : {{ articleCreatedAt }}</p> -->
   </div>
 </template>
 
 <script>
 export default {
-  
   computed: {
-
     articleCreatedAt() {
       const article = this.article
       const createdAt = new Date(article?.createdAt).toLocaleString()
@@ -1862,10 +1771,8 @@ export default {
 
 ```vue
 <!-- views/DetailView.vue -->
-
 <template>
   <div>
-    
     <router-link :to="{ name: 'index' }">뒤로가기</router-link>
   </div>
 </template>
@@ -1876,7 +1783,6 @@ export default {
 
 ```vue
 <!-- components/ArticleItem.vue -->
-
 <template>
   <div @click="goDetail(article.id)">
     <p>글 번호 : {{ article.id }}</p>
@@ -1887,10 +1793,9 @@ export default {
 
 <script>
 export default {
-  
   methods: {
     goDetail(id) {
-      this.$router.push({ name: "detail", params: { id } })
+      this.$router.push({ name: 'detail', params: { id } })
     },
   },
 }
@@ -1905,10 +1810,8 @@ export default {
 
 ```vue
 <!-- views/DetailView.vue -->
-
 <template>
   <div>
-    
     <button @click="deleteArticle">삭제</button><br />
     <router-link :to="{ name: 'index' }">뒤로가기</router-link>
   </div>
@@ -1916,11 +1819,9 @@ export default {
 
 <script>
 export default {
-  
   methods: {
-    
     deleteArticle() {
-      this.$store.commit("DELETE_ARTICLE", this.article.id)
+      this.$store.commit('DELETE_ARTICLE', this.article.id)
     },
   },
 }
@@ -1931,7 +1832,6 @@ export default {
 
 ```js
 // store/index.js
-
 mutations: {
   DELETE_ARTICLE(state, article_id) {
     state.articles = state.articles.filter((article) => {
@@ -1945,15 +1845,12 @@ mutations: {
 
 ```vue
 <!-- views/DetailView.vue -->
-
 <script>
 export default {
-  
   methods: {
-    
     deleteArticle() {
-      this.$store.commit("DELETE_ARTICLE", this.article.id)
-      this.$router.push({ name: "index" })
+      this.$store.commit('DELETE_ARTICLE', this.article.id)
+      this.$router.push({ name: 'index' })
     },
   },
 }
@@ -1970,7 +1867,6 @@ export default {
 
 ```vue
 <!-- views/NotFound404.vue -->
-
 <template>
   <div>
     <h1>404 Not Found</h1>
@@ -1979,24 +1875,22 @@ export default {
 
 <script>
 export default {
-  name: "NotFound404",
+  name: 'NotFound404',
 }
 </script>
 ```
 
 ```js
 // router/index.js
-
 const routes = [
-  
   {
-    path: "/404-not-found",
-    name: "NotFound404",
+    path: '/404-not-found',
+    name: 'NotFound404',
     component: NotFound404,
   },
   {
-    path: "/:id",
-    name: "detail",
+    path: '/:id',
+    name: 'detail',
     component: DetailView,
   },
 ]
@@ -2006,10 +1900,8 @@ const routes = [
 
 ```vue
 <!-- views/DetailView.vue -->
-
 <script>
 export default {
-  
   methods: {
     getArticleById(id) {
       const id = this.$route.params.id
@@ -2020,7 +1912,7 @@ export default {
         }
       }
       if (this.article === null) {
-        this.$router.push({ name: "NotFound404" })
+        this.$router.push({ name: 'NotFound404' })
       }
     },
   },
@@ -2037,12 +1929,10 @@ export default {
 
 ```js
 // router/index.js
-
 const routes = [
-
   {
-    path: "*",
-    redirect: { name: "NotFound404" },
+    path: '*',
+    redirect: { name: 'NotFound404' },
   },
 ]
 ```
@@ -2066,18 +1956,19 @@ const routes = [
       <p>{{ menu }}</p>
       <button @click="goLottoPage">Lotto 뽑으러가기</button>
     </div>
-    <button @click="sendData">Emit</button><!-- emit 발생용 -->
+    <button @click="sendData">Emit</button
+    ><!-- emit 발생용 -->
   </div>
 </template>
 
 <script>
-import _ from "lodash"
+import _ from 'lodash'
 
 export default {
-  name: "TheLunch",
+  name: 'TheLunch',
   data() {
     return {
-      menus: ["국밥", "비빔냉면"],
+      menus: ['국밥', '비빔냉면'],
       menu: null,
     }
   },
@@ -2087,14 +1978,14 @@ export default {
     },
     goLottoPage() {
       this.$router.push({
-        name: "lotto",
+        name: 'lotto',
         params: {
           lunchMenu: this.menu,
         },
       })
     },
     sendData() {
-      this.$emit("lunch-emit", this.menus)
+      this.$emit('lunch-emit', this.menus)
     },
   },
 }
@@ -2116,10 +2007,10 @@ export default {
 </template>
 
 <script>
-import _ from "lodash"
+import _ from 'lodash'
 
 export default {
-  name: "TheLotto",
+  name: 'TheLotto',
   data() {
     return {
       lottoNums: null,
@@ -2133,15 +2024,16 @@ export default {
     },
     goLunchPage() {
       this.$router.push({
-        name: "lunch",
+        name: 'lunch',
       })
     },
     goApp() {
-      this.$emit("aaa", 10)
+      this.$emit('aaa', 10)
     },
   },
 }
 </script>
+
 ```
 
 ```vue
@@ -2173,55 +2065,33 @@ export default {
   },
 }
 </script>
-
-<style>
-#app {
-  font-family: D2Coding, Nanum Gothic Coding, Hack, Avenir, Helvetica, Arial,
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-nav {
-  padding: 30px;
-}
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
 ```
 
 ```js
 // router/index.js
-
-import TheLotto from "@/views/TheLotto"
-import TheLunch from "@/views/TheLunch"
-import Vue from "vue"
-import VueRouter from "vue-router"
+import TheLotto from '@/views/TheLotto'
+import TheLunch from '@/views/TheLunch'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/",
+    path: '/',
     component: TheLunch,
-    name: "lunch",
+    name: 'lunch',
   },
 
   {
-    path: "/lotto/:lunchMenu",
+    path: '/lotto/:lunchMenu',
     component: TheLotto,
-    name: "lotto",
+    name: 'lotto',
   },
 ]
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   base: process.env.BASE_URL,
   routes,
 })
@@ -2234,24 +2104,23 @@ export default router
 ```vue
 <!-- components/TheSearchBar.vue -->
 <template>
-  <div class="search-bar" 
-       :style="{ margin: videoLength ? '0' : '40vh 0' }">
-    <input @keyup.enter="onInputKeyword" 
-           type="text" />
+  <div class="search-bar" :style="{ margin: videoLength ? '0' : '40vh 0' }">
+    <input @keyup.enter="onInputKeyword" type="text" />
   </div>
 </template>
 
 <script>
 export default {
-  name: "TheSearchBar",
+  name: 'TheSearchBar',
   props: {
     videoLength: {
       type: Number,
     },
   },
-  methods: { // 검색어 Emit Event => App.vue
+  methods: {
+    // 검색어 Emit Event => App.vue
     onInputKeyword: function (event) {
-      this.$emit("input-change", event.target.value)
+      this.$emit('input-change', event.target.value)
     },
   },
 }
@@ -2272,12 +2141,10 @@ export default {
 ```vue
 <!-- components/VideoDetail.vue -->
 <template>
-  <div v-if="video"
-       class="video-detail">
+  <div v-if="video" class="video-detail">
     <div class="video-container">
       <!--중첩 브라우징 맥락-->
-      <iframe :src="videoURI" 
-              frameborder="0"></iframe>
+      <iframe :src="videoURI" frameborder="0"></iframe>
     </div>
     <div class="detail">
       <h2>{{ video.snippet.title | stringUnescape }}</h2>
@@ -2288,10 +2155,10 @@ export default {
 </template>
 
 <script>
-import _ from "lodash"
+import _ from 'lodash'
 
 export default {
-  name: "VideoDetail",
+  name: 'VideoDetail',
   props: {
     video: {
       type: Object, // Pass Props
@@ -2310,30 +2177,6 @@ export default {
   },
 }
 </script>
-
-<style>
-.video-detail {
-  width: 70%; /* Detail, List를 전체 가로 비율 대비 7:3으로 설정 */
-  padding-right: 1rem; /* Detail과 List 사이의 margin */
-}
-.video-container {
-  position: relative; /* iframe을 container를 기준으로 위치를 지정 */
-  padding-top: 56.25%; /* 유튜브 비디오 비율을 맞추기 위한 높이 설정 */
-}
-.video-container > iframe {
-  position: absolute; /* container를 기준으로 위치를 지정*/
-  top: 0; /* container의 가장 위쪽으로 위치를 지정 */
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.detail {
-  margin-top: 20px;
-  padding: 20px;
-  border: solid 1px lightgray;
-  border-radius: 10px;
-}
-</style>
 ```
 
 ```vue
@@ -2345,17 +2188,16 @@ export default {
         v-for="video in videos"
         :key="video.id.videoId"
         :video="video"
-        @select-video="onSelectVideo"
-      /><!-- 동영상을 식별, Pass Props -->
+        @select-video="onSelectVideo" /><!-- 동영상을 식별, Pass Props -->
     </ul>
   </div>
 </template>
 
 <script>
-import VideoListItem from "@/components/VideoListItem"
+import VideoListItem from '@/components/VideoListItem'
 
 export default {
-  name: "VideoList",
+  name: 'VideoList',
   components: {
     VideoListItem,
   },
@@ -2367,7 +2209,7 @@ export default {
   },
   methods: {
     onSelectVideo: function (video) {
-      this.$emit("select-video", video)
+      this.$emit('select-video', video)
     }, // Emit Event
   },
 }
@@ -2377,19 +2219,17 @@ export default {
 ```vue
 <!-- components / VideoListItem.vue -->
 <template>
-  <li class="list-group-item" 
-      @click="selectVideo">
-    <img :src="youtubeImageSrc" 
-         alt="youtube-thumbnail-image" />
+  <li class="list-group-item" @click="selectVideo">
+    <img :src="youtubeImageSrc" alt="youtube-thumbnail-image" />
     {{ video.snippet.title | stringUnescape }}
   </li>
 </template>
 
 <script>
-import _ from "lodash"
+import _ from 'lodash'
 
 export default {
-  name: "VideoListItem",
+  name: 'VideoListItem',
   props: {
     video: {
       type: Object, // Pass Props
@@ -2398,7 +2238,7 @@ export default {
   },
   methods: {
     selectVideo: function () {
-      this.$emit("select-video", this.video)
+      this.$emit('select-video', this.video)
     }, // Emit Event
   },
   computed: {
@@ -2413,21 +2253,6 @@ export default {
   },
 }
 </script>
-
-<style>
-.list-group-item {
-  display: flex; /* 가로 배치 및 flex의 CSS 적용 */
-  margin-bottom: 1rem; /* item의 상하 여백 */
-  cursor: pointer; /* 마우스를 포인터로 변경 */
-}
-.list-group-item:hover {
-  background: #eee;
-}
-.list-group-item img {
-  height: fit-content; /* 텍스트가 길어져도 이미지는 늘어나지 않게 설정 */
-  margin-right: 0.5rem; /* 이미지와 텍스트 사이의 여백 */
-}
-</style>
 ```
 
 ```vue
@@ -2438,30 +2263,28 @@ export default {
     <header>
       <TheSearchBar
         @input-change="onInputChange"
-        :video-length="videos.length"
-      /><!-- Emit Event -->
+        :video-length="videos.length" /><!-- Emit Event -->
     </header>
     <section>
       <VideoDetail :video="selectedVideo" /><!-- Pass Props -->
       <VideoList
         :videos="videos"
-        @select-video="onSelectVideo"
-      /><!-- Pass Props -->
+        @select-video="onSelectVideo" /><!-- Pass Props -->
     </section>
   </div>
 </template>
 
 <script>
-import axios from "axios"
-import TheSearchBar from "@/components/TheSearchBar"
-import VideoList from "@/components/VideoList.vue"
-import VideoDetail from "@/components/VideoDetail.vue"
+import axios from 'axios'
+import TheSearchBar from '@/components/TheSearchBar'
+import VideoList from '@/components/VideoList.vue'
+import VideoDetail from '@/components/VideoDetail.vue'
 
-const API_KEY = "입력 필요"
-const API_URL = "https://www.googleapis.com/youtube/v3/search"
+const API_KEY = '입력 필요'
+const API_URL = 'https://www.googleapis.com/youtube/v3/search'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     TheSearchBar, // Emit Event
     VideoList,
@@ -2479,12 +2302,12 @@ export default {
       this.inputValue = inputText
       const params = {
         key: API_KEY, // request => Youtube Data V3 API
-        part: "snippet", // 검색결과에 대한 기본 세부정보
-        type: "video",
+        part: 'snippet', // 검색결과에 대한 기본 세부정보
+        type: 'video',
         q: this.inputValue,
       }
       axios({
-        method: "get",
+        method: 'get',
         url: API_URL, // request => Youtube Data V3 API
         params,
       }) // response <= Youtube Data V3 API
@@ -2502,24 +2325,5 @@ export default {
   },
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-section, header {
-  width: 80%; /* 전체 너비의 80% */
-  margin: 0 auto; /* 양 옆 margin을 균등하게 배분 */ 
-  padding: 1rem 0; /* 위, 아래 padding */
-}
-section {
-  display: flex; /* Detail, List를 가로 배치 */
-}
-</style>
 ```
 

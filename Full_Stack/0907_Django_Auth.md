@@ -54,6 +54,7 @@ python manage.py startapp accounts
 INSTALLED_APPS = [
     'articles',
     'accounts',
+  
 ]
 ```
 
@@ -100,8 +101,7 @@ Django는 기본적인 인증 시스템과 여러 가지 필드가 포함된 Use
 
   ```python
   # 프로젝트/settings.py
-  # 기본 값
-  AUTH_USER_MODEL = 'auth.User'
+  AUTH_USER_MODEL = 'auth.User' # 기본 값
   ```
 
 **[참고] settings의 로드 구조**
@@ -128,7 +128,8 @@ settings.py는 사실 **global_settings.py**를 상속받아 재정의하는 파
   # 앱/models.py
   # User 모델을 정의한다
   from django.contrib.auth.models import AbstractUser
-
+  
+  
   class User(AbstractUser):
       pass  # 비워두게 되면 에러가 발생하므로 pass 를 작성해둠
   ```
@@ -148,13 +149,12 @@ settings.py는 사실 **global_settings.py**를 상속받아 재정의하는 파
     ```python
     # 앱/admin.py
     from django.contrib import admin
-    # admin 페이지에 등록
     from django.contrib.auth.admin import UserAdmin  # 기존에 사용하는 User 관리 인터페이스
     
-    # Admin page 에서 user 관리 page의 인터페이스를 설정.
     from .models import User  # 새롭게 정의한 User 모델
     
-    admin.site.register(User, UserAdmin)
+    # Admin page 에서 user 관리 page의 인터페이스를 설정.
+    admin.site.register(User, UserAdmin)  # admin 페이지에 등록
     ```
 
 **[참고] User 모델 상속 관계**
@@ -378,27 +378,24 @@ def login(request):
 
 ```django
 <!-- 앱/templates/앱/login.html -->
-{% extends 'base.html' %}
-{% block content %}
-<h1>LOGIN</h1> <!-- LOGIN을 Base.html에 만들기 권장 -->
+{% extends 'base.html' %} {% block content %}
+<h1>LOGIN</h1>
+<!-- LOGIN을 Base.html에 만들기 권장 -->
 {% comment %}action 의 값이 비어있으면 현재 페이지로 요청을 보냄{% endcomment %}
 <form action="{% url 'accounts:login' %}" method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}1
-  <input type="submit">
+  {% csrf_token %} {{ form.as_p }}1
+  <input type="submit" />
 </form>
 {% endblock content %}
 ```
 
 ```django
 <!-- templates/base.html -->
-
 <body>
   <div class="container">
     <a href="{% url 'accounts:login' %}">Login</a>
-    <hr>
-    {% block content %}
-    {% endblock content %}
+    <hr/>
+    {% block content %}{% endblock content %}
   </div>
 </body>
 ```
@@ -430,7 +427,8 @@ def login(request):
 ```django
 <!-- templates/base.html -->
 {{ user }}
-{{ user.username }} <!-- 로그인 시만 출력 -->
+{{ user.username }}
+<!-- 로그인 시만 출력 -->
 ```
 
 - 어떻게 base 템플릿에서 context 데이터 없이 user 변수를 사용할 수 있는 걸까?
@@ -451,7 +449,6 @@ def login(request):
 > <https://docs.djangoproject.com/en/3.2/ref/templates/api/#built-in-template-context-processors>
 
 ```python
-# 프로젝트/settings.py
 TEMPLATE = [
     {
         'OPTIONS': {
@@ -526,11 +523,10 @@ def logout(request):
   <a href="{% url 'accounts:login' %}">Login</a>
   <form action="{% url 'accounts:logout' %}" method="POST">
     {% csrf_token %}
-    <input type="submit" value="Logout">
+    <input type="submit" value="Logout" />
   </form>
-  <hr>
-  {% block content %}
-  {% endblock content %}
+  <hr />
+  {% block content %}{% endblock content %}
 </div>
 ```
 
@@ -565,6 +561,7 @@ from . import views
 
 app_name = 'accounts'
 urlpatterns = [
+
     path('signup/', views.signup, name='signup'),
 ]
 ```
@@ -591,32 +588,32 @@ def signup(request):
 
 ```django
 <!-- 앱/templates/앱/signup.html -->
-
 {% extends 'base.html' %}
-
 {% block content %}
-<h1>회원가입</h1>
-<form action="{% url 'accounts:signup' %}" method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit">
-</form>
+  <h1>회원가입</h1>
+  <form action="{% url 'accounts:signup' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit"/>
+  </form>
 {% endblock content %}
 ```
 
 **회원가입 링크 작성**
 
 ```django
-<!-- 앱/templates/앱/signup.html -->
-{% extends 'base.html' %}
-{% block content %}
-<h1>회원가입</h1>
-<form action="{% url 'accounts:signup' %}" method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit">
-</form>
-{% endblock content %}
+<!-- base.html -->
+<div class="container">
+  <h3>Hello, {{ user }}</h3>
+  <a href="{% url 'accounts:login'%}">Login</a>
+  <form action="{% url 'accounts:logout' %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Logut" />
+  </form>
+  <a href="{% url 'accounts:signup' %}">Signup</a>
+  <hr />
+  {% block content %}{% endblock content %}
+</div>
 ```
 
 **회원가입 진행 후 에러 페이지를 확인**
@@ -630,11 +627,11 @@ from django import forms
 
 
 class UserCreationForm(forms.ModelForm):
-# 실제 UserCreationForm 코드
+    # 실제 UserCreationForm 코드
     class Meta:
         model = User  # 상속 받아서 오버라이딩하기
         fields = ("username",)
-        field_classes ={"username": UsernameField}
+        field_classes = {"username": UsernameField}
 ```
 
 ### Custom user & Built-in auth forms
@@ -671,9 +668,10 @@ from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
-        # get_user_model => 현재 활성화된 User class를 반환
-        model = get_user_model()
+        model = get_user_model()  # 현재 활성화된 User class를 반환
         # fields = ('email', 'first_name', 'last_name',)
+
+
 class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = get_user_model()
@@ -723,8 +721,7 @@ def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            # 회원 가입 후 로그인 처리
+            user = form.save()  # 회원 가입 후 로그인 처리
             auth_login(request, user)
             return redirect('articles:index')
     else:
@@ -788,7 +785,7 @@ def delete(request):
 ...
 <form action="{% url 'accounts:delete' %}" method="POST">
   {% csrf_token %}
-  <input type="submit" value="회원탈퇴">
+  <input type="submit" value="회원탈퇴" />
 </form>
 ```
 
@@ -868,12 +865,12 @@ def update(request):
 <!-- 앱/templates/앱/update.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>회원정보수정</h1>
-<form action="{% url 'accounts:update' %}" method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit">
-</form>
+  <h1>회원정보수정</h1>
+  <form action="{% url 'accounts:update' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit"/>
+  </form>
 {% endblock content %}
 ```
 
@@ -886,13 +883,12 @@ def update(request):
   <a href="{% url 'accounts:login' %}">Login</a>
   <form action="{% url 'accounts:logout' %}" method="POST">
     {% csrf_token %}
-    <input type="submit" value="Logout">
+    <input type="submit" value="Logout" />
   </form>
   <a href="{% url 'accounts:signup' %}">Signup</a>
   <a href="{% url 'accounts:update' %}">회원정보 수정</a>
-  <hr>
-  {% block content %}
-  {% endblock content %}
+  <hr />
+  {% block content %}{% endblock content %}
 </div>
 ```
 
@@ -916,8 +912,7 @@ from django.contrib.auth.forms import UserChangeForm
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
-        # get_user_model => 현재 활성화된 User class를 반환
-        model = get_user_model()
+        model = get_user_model()  # 현재 활성화된 User class를 반환
         # fields 정보를 UserChangeForm 것을 그대로 사용하면
         # 유저 관련 모든 데이터를 수정할 수 있기 때문에 보안에 위험
         # 그래서 유저들이 접근 가능한 필드들을 제한해야 한다.
@@ -1002,12 +997,12 @@ def change_password(request):
 <!-- 앱/templates/앱/change_password.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>비밀번호 변경</h1>
-<form action="{% url 'accounts:change_password' %}" method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit">
-</form>
+  <h1>비밀번호 변경</h1>
+  <form action="{% url 'accounts:change_password' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit"/>
+  </form>
 {% endblock content %}
 ```
 
@@ -1094,7 +1089,6 @@ from django.db import models
 
 
 class AbstractBaseUser(models.Model):
-    ...
 
     def is_authenticated(self):
         """
@@ -1114,12 +1108,12 @@ class AbstractBaseUser(models.Model):
 <h3>Hello, {{ user }}</h3>
 <form action="{% url 'accounts:logout' %}" method="POST">
   {% csrf_token %}
-  <input type="submit" value="Logout">
+  <input type="submit" value="Logout" />
 </form>
 <a href="{% url 'accounts:update' %}">회원정보수정</a>
 <form action="{% url 'accounts:delete' %}" method="POST">
   {% csrf_token %}
-  <input type="submit" value="회원탈퇴">
+  <input type="submit" value="회원탈퇴" />
 </form>
 {% else %}
 <a href="{% url 'accounts:login' %}">Login</a>
@@ -1135,19 +1129,19 @@ class AbstractBaseUser(models.Model):
 <!-- 앱/templates/앱/index.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>Articles</h1>
-{% if request.user.is_authenticated %}
-<a href="{% url 'articles:create' %}">CREATE</a>
-{% else %}
-<a href="{% url 'accounts:login' %}">새 글을 작성하려면 로그인하세요</a>
-{% endif %}
+  <h1>Articles</h1>
+  {% if request.user.is_authenticated %}
+    <a href="{% url 'articles:create' %}">CREATE</a>
+  {% else %}
+    <a href="{% url 'accounts:login' %}">새 글을 작성하려면 로그인하세요</a>
+  {% endif %}
 {% endblock content %}
 ```
 
 - 인증된 사용자라면 로그인 로직을 수행할 수 없도록 처리
 
 ```python
-# 앱/views.py.
+# 앱/views.py
 from django.shortcuts import redirect
 
 
@@ -1172,15 +1166,20 @@ def login(request):
   # 앱/views.py
   from django.contrib.auth.decorators import login_required
   from django.views.decorators.http import require_http_methods, require_POST
-
+  
+  
   @login_required
   @require_http_methods(['GET', 'POST'])
   def create(request):
       pass
+  
+  
   @login_required
   @require_POST
   def delete(request, pk):
       pass
+  
+  
   @login_required
   @require_http_methods(['GET', 'POST'])
   def update(request, pk):
@@ -1239,13 +1238,14 @@ def login(request):
 ```django
 <!-- 앱/login.html -->
 {% block content %}
-<h1>로그인</h1> <!-- LOGIN을 Base.html에 만들기 권장 -->
-<!-- action 의 값이 비어있으면 현재 페이지로 요청을 보냄 -->
-<form action="" method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}1
-  <input type="submit">
-</form>
+  <h1>로그인</h1>
+  <!-- LOGIN을 Base.html에 만들기 권장 -->
+  <!-- action 의 값이 비어있으면 현재 페이지로 요청을 보냄 -->
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit"/>
+  </form>
 {% endblock content %}
 ```
 
@@ -1279,11 +1279,11 @@ def login(request):
 
   ```python
   # 앱/views.py
-  
   from django.shortcuts import redirect
   from django.views.decorators.http import require_POST
   
   from .models import Article
+  
   
   @require_POST
   def delete(request, pk):
@@ -1298,33 +1298,47 @@ def login(request):
 ```python
 # 앱/views.py
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_http_methods, require_POST
+from django.views.decorators.http import (require_http_methods, require_POST,
+                                          require_safe)
 
 
 @require_safe
 def index(request):
     pass
+
+
 @require_http_methods(['GET', 'POST'])
 def signup(request):
     pass
+
+
 @require_http_methods(['GET', 'POST'])
 def login(request):
     pass
+
+
 @require_POST
 def logout(request):
     if request.user.is_authenticated:
         pass
+
+
 @login_required
 @require_http_methods(['GET', 'POST'])
 def update(request):
     pass
+
+
 @require_POST
 def delete(request):
     pass
+
+
 @login_required
 @require_http_methods(['GET', 'POST'])
 def change_password(request):
     pass
+
 ```
 
 ## 마무리

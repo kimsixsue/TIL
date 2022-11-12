@@ -434,7 +434,8 @@
   # Application definition
   INSTALLED_APPS = [
       # 유저가 생성한 어플리케이션
-      'application_names',      # , 필수
+      'application_names',
+      # , 필수
   
       # 중간
       # 서드파티 앱
@@ -471,9 +472,9 @@
 
   ```python
   # 프로젝트/urls.py
-  from django.contrib import admin
-  
   from articles import views
+  from django.contrib import admin
+  from django.urls import path
   
   urlpatterns = [
       path('admin/', admin.site.urls),
@@ -493,14 +494,20 @@
   ```python
   # 앱/views.py
   from django.shortcuts import render
-    def index(request):
-        return render(request, 'index.html')
+  
+  
+  def index(request):
+      return render(request, 'index.html')
+  
   ```
 
 **render()**
 
   ```python
-render(request, template_name, context)
+from django.shortcuts import render
+
+
+return render(request, template_name, context)
   ```
 
 - 주어진 템플릿을 주어진 컨텍스트 데이터와 결합하고 렌더링 된 텍스트와 함께 `HttpResponse`(응답) 객체를 반환하는 함수
@@ -522,19 +529,17 @@ render(request, template_name, context)
   - `app_name/templates/`
 - 템플릿 폴더 이름은 반드시 **`templates`** 라고 지정해야 함
 
-  ```html
+  ```django
   <!-- 앱/templates/index.html -->
   <!DOCTYPE html>
   <html lang="en">
+    <head>
+      <!-- 생략 -->
+    </head>
   
-  <head>
-    <!-- 생략 -->
-  </head>
-  
-  <body>
-    <h1>Hello</h1>
-  </body>
-  
+    <body>
+      <h1>Hello</h1>
+    </body>
   </html>
   ```
 
@@ -634,38 +639,36 @@ render(request, template_name, context)
   import random
   
   from django.shortcuts import render
-    def dinner(request):
-        foods = ['족발', '햄버거', '치킨', '초밥',]
-        pick = random.choice(foods)
-        context = {
-            'pick': pick,
-            'foods': foods,
-        }
-        return render(request, 'dinner.html', context)
+  
+  
+  def dinner(request):
+      foods = ['족발', '햄버거', '치킨', '초밥', ]
+      pick = random.choice(foods)
+      context = {
+          'pick': pick,
+          'foods': foods,
+      }
+      return render(request, 'dinner.html', context)
 
-  ```django
+```django
 <!-- 앱/templates/dinner.html -->
 <!DOCTYPE html>
 <html lang="en">
+  <head></head>
 
-<head>
-
-</head>
-
-<body>
-<p>{{ pick }}은 {{ pick|length }}글자</p>
-<p>{{ foods|join:", "}}</p>
-<p>메뉴판</p>
-<ul>
-  {% for food in foods %}
-    <li>{{ food }}</li>
-  {% endfor %}
-</ul>
-<a href="/index/">뒤로</a>
-</body>
-
+  <body>
+    <p>{{ pick }}은 {{ pick|length }}글자</p>
+    <p>{{ foods|join:", "}}</p>
+    <p>메뉴판</p>
+    <ul>
+      {% for food in foods %}
+      <li>{{ food }}</li>
+      {% endfor %}
+    </ul>
+    <a href="/index/">뒤로</a>
+  </body>
 </html>
-  ```
+```
 
 **Tags**
 
@@ -732,20 +735,19 @@ render(request, template_name, context)
   <!-- 앱/templates/base.html -->
   <!DOCTYPE html>
   <html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- bootstrap CDN 작성 -->
-    <title>Document</title>
-  </head>
-
-  <body>
-    {% block content %}
-    {% endblock content %}
-    <!-- bootstrap CDN 작성 -->
-  </body>
-
+  
+    <head>
+      <meta charset="UTF-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!-- bootstrap CDN 작성 -->
+      <title>Document</title>
+    </head>
+  
+    <body>
+      {% block content %}{% endblock content %}
+      <!-- bootstrap CDN 작성 -->
+    </body>
+  
   </html>
   ```
 
@@ -757,7 +759,7 @@ render(request, template_name, context)
   <!-- 앱/templates/index.html -->
   {% extends 'base.html' %}
   {% block content %}
-  <h1>Hello</h1>
+    <h1>Hello</h1>
   {% endblock content %}
   ```
 
@@ -773,7 +775,7 @@ render(request, template_name, context)
   # 프로젝트/settings.py
   TEMPLATES = [
       {
-          'DIRS': [BASE_DIR / 'templates',],
+          'DIRS': [BASE_DIR / 'templates', ],
       }  # BASE_DIR은 전체 폴더 경로
   ]
   ```
@@ -854,25 +856,27 @@ urlpatterns = [
    from . import views
    
    urlpatterns = [
-       path('throw', view.throw),
+       path('throw', views.throw),
    ]
    ```
 
    ```python
    # 앱/views.py
    from django.shortcuts import render
-       def throw(request):
-           return render(request, 'throw.html')
+   
+   
+   def throw(request):
+       return render(request, 'throw.html')
+   
 
-   ```django
+```django
 <!-- 앱/templates/throw.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>Throw</h1>
-<form action="#" method="#">
-</form>
+  <h1>Throw</h1>
+  <form action="#" method="#"></form>
 {% endblock content %}
-   ```
+```
 
 **HTML `<input>` element**
 
@@ -896,12 +900,12 @@ urlpatterns = [
   <!-- 앱/templates/throw.html -->
   {% extends 'base.html' %}
   {% block content %}
-  <h1>Throw</h1>
-  <form action="#" method="#">
-    <label for="message">Throw</label>
-    <input type="text" id="message" name="message">
-    <input type="submit">
-  </form>
+    <h1>Throw</h1>
+    <form action="#" method="#">
+      <label for="message">Throw</label>
+      <input type="text" id="message" name="message"/>
+      <input type="submit"/>
+    </form>
   {% endblock content %}
   ```
 
@@ -946,8 +950,8 @@ urlpatterns = [
     <h1>Throw</h1>
     <form action="#" method="GET">
       <label for="message">Throw</label>
-      <input type="text" id="message" name="message">
-      <input type="submit">
+      <input type="text" id="message" name="message"/>
+      <input type="submit"/>
     </form>
   {% endblock content %}
   ```
@@ -1010,8 +1014,8 @@ def catch(request):
 <!-- 앱/templates/catch.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>Catch</h1>
-<a href="/throw/">다시 던지러</a>
+  <h1>Catch</h1>
+  <a href="/throw/">다시 던지러</a>
 {% endblock content %}
 ```
 
@@ -1021,13 +1025,13 @@ def catch(request):
 <!-- 앱/templates/throw.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>Throw</h1>
-<form action="/catch/" method="POST">
-  {% csrf_token %}
-  <label for="message">Throw</label>
-  <input type="text" id="message" name="message">
-  <input type="submit">
-</form>
+  <h1>Throw</h1>
+  <form action="/catch/" method="POST">
+    {% csrf_token %}
+    <label for="message">Throw</label>
+    <input type="text" id="message" name="message"/>
+    <input type="submit"/>
+  </form>
 {% endblock content %}
 ```
 
@@ -1035,7 +1039,7 @@ def catch(request):
 <!-- 앱/templates/index.html -->
 {% extends 'base.html' %}
 {% block content %}
-<a href="/throw/">throw</a>
+  <a href="/throw/">throw</a>
 {% endblock %}
 ```
 
@@ -1100,9 +1104,10 @@ def catch(request):
 <!-- 앱/templates/catch.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>Catch</h1>
-<h2>여기서 {{ message }}를 받았어!!</h2>
-<a href="/throw/">다시 던지러</a>
+  <h1>Catch</h1>
+  <h2>여기서
+    {{ message }}를 받았어!!</h2>
+  <a href="/throw/">다시 던지러</a>
 {% endblock content %}
 ```
 
@@ -1211,7 +1216,8 @@ def hello(request, name):
 <!-- 앱/templates/hello.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>Hello, {{ name }}</h1>
+  <h1>Hello,
+    {{ name }}</h1>
 {% endblock content %}
 ```
 
@@ -1305,9 +1311,10 @@ Django는 URL에 이름을 지정하는 방법을 제공함으로써 view 함수
 <!-- 앱/templates/catch.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>Catch</h1>
-<h2>여기서 {{ message }}를 받았어!!</h2>
-<a href="{% url 'throw' %}">다시 던지러</a>
+  <h1>Catch</h1>
+  <h2>여기서
+    {{ message }}를 받았어!!</h2>
+  <a href="{% url 'throw' %}">다시 던지러</a>
 {% endblock content %}
 ```
 
@@ -1315,10 +1322,8 @@ Django는 URL에 이름을 지정하는 방법을 제공함으로써 view 함수
 <!-- 앱/templates/throw.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>Throw</h1>
-<form action="% url 'catch' %" method="POST">
-  ...
-</form>
+  <h1>Throw</h1>
+  <form action="% url 'catch' %" method="POST"></form>
 {% endblock content %}
 ```
 
@@ -1326,12 +1331,8 @@ Django는 URL에 이름을 지정하는 방법을 제공함으로써 view 함수
 <!-- 앱/templates/index.html -->
 {% extends 'base.html' %}
 {% block content %}
-...
-<a href="{% url 'greeting' %}">greeting</a>
-<a href="{% url 'dinner' %}">dinner</a>
-<a href="{% url 'throw' %}">throw</a>
+  <a href="{% url 'greeting' %}">greeting</a>
+  <a href="{% url 'dinner' %}">dinner</a>
+  <a href="{% url 'throw' %}">throw</a>
 {% endblock content %}
-
-<!-- 앱/templates/dinner.html, 앱/templates/greeting.html -->
-<a href="{% url 'index' %}">뒤로</a>
 ```

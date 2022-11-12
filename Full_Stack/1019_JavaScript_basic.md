@@ -62,7 +62,7 @@
 ```html
 <body>
   <script>
-    console.log("hello, javascript")
+    console.log('hello, javascript')
   </script>
 </body>
 ```
@@ -127,8 +127,12 @@
 
     ```js
     let variableName
-    const userInfo = { a: "B", n: 10 }
-    function addNumber() { }
+    const userInfo = {
+      a: 'B',
+      n: 10,
+    }
+    
+    function addNumber() {}
     ```
 
 - **PascalCase** 파스칼 케이스 (upper-camel-case)
@@ -136,8 +140,8 @@
   - 클래스, 생성자에 사용
 
     ```js
-    class User { }
-    function User(options) { }
+    class User {}
+    function User(options) {}
     ```
 
 - **SNAKE_CASE** 대문자 스네이크 케이스
@@ -343,8 +347,8 @@
   - 조건 표현식의 결과값을 **boolean 타입을 변환 후 참/거짓을 판단**
 
     ```js
-    if (name === "admin") {
-    } else if (name === "manager") {
+    if (name === 'admin') {
+    } else if (name === 'manager') {
     } else {
     }
     ```
@@ -365,10 +369,10 @@
 
     ```js
     switch (expression) {
-      case "first": {
+      case 'first': {
         break // 선택적
       }
-      case "second": {
+      case 'second': {
         break // 선택적
       }
       default: {
@@ -407,7 +411,7 @@
   - 조건문이 참이기만 하면 문장을 계속해서 수행
 
     ```js
-    while (조건문) { }
+    while (조건문) {}
     ```
 
 - `for`
@@ -415,7 +419,7 @@
   - 특정한 조건이 거짓으로 판별될 때까지 반복
 
     ```js
-    for ([초기문]; [조건문]; [증감문]) { }
+    for ([초기문]; [조건문]; [증감문]) {}
     
     for (let i = 0; i < 6; i++) {
       console.log(i)
@@ -438,7 +442,7 @@
   for (variable in object) {
   }
 
-  const fruits = { a: "apple", b: "banana" }
+  const fruits = { a: 'apple', b: 'banana' }
 
   for (const key in fruits) {
     console.log(key)
@@ -481,25 +485,25 @@
       }
       return true
     }
-    console.log(palindrome("level"))
-    console.log(palindrome("hi"))
+    console.log(palindrome('level'))
+    console.log(palindrome('hi'))
     ```
 
     ```js
     let line = 5
-    let result = ""
+    let result = ''
     for (let i = 1; i < line * 2; i += 2) {
       for (let j = 1; j < (line * 2 - i) / 2; j++) {
-        result += " "
+        result += ' '
       }
       for (let k = 1; k <= i; k++) {
-        result += "*"
+        result += '*'
       }
-      result += "\n"
+      result += '\n'
     }
     console.log(result)
     for (let i = 1; i < 10; i += 2) {
-      console.log("".repeat((9 - 1) / 2) + "*".repeat(i))
+      console.log(''.repeat((9 - 1) / 2) + '*'.repeat(i))
     }
     ```
 
@@ -569,7 +573,7 @@ const sub = function (num1, num2) {
 - 인자 작성 시 `=` 문자 뒤 기본 인자 선언 가능
 
   ```js
-  const greeting = function (name = "Anonymous") {
+  const greeting = function (name = 'Anonymous') {
     return `Hi ${name}`
   }
   ```
@@ -603,8 +607,8 @@ const sub = function (num1, num2) {
   1. 배열과의 사용 (배열 복사)
 
      ```js
-     let parts = ["shoulders", "knees"]
-     let lyrics = ["head", ...parts, "and", "toes"]
+     let parts = ['shoulders', 'knees']
+     let lyrics = ['head', ...parts, 'and', 'toes']
      ```
 
   2. 함수와의 사용 (**Rest parameters**)
@@ -625,11 +629,11 @@ const sub = function (num1, num2) {
      }
      console.log(addNumbers(1, 2, 3, 4, 5))
      
-     const defaultColors = ["red", "green", "blue"]
-     const favoriteColors = ["navy", "black", "gold", "white"]
+     const defaultColors = ['red', 'green', 'blue']
+     const favoriteColors = ['navy', 'black', 'gold', 'white']
      const palette = [...defaultColors, ...favoriteColors]
      
-     const info1 = { name: "Tom", age: 30 }
+     const info1 = { name: 'Tom', age: 30 }
      const info2 = { isMarried: true, balance: 3000 }
      const fullInfo = { ...info1, ...info2 }
      ```
@@ -643,8 +647,8 @@ const sub = function (num1, num2) {
 - 선언식 함수와 표현식 함수 모두 타입은 `function`으로 동일
 
   ```js
-  function sub(args) { }
-  const add = function (args) { }
+  function sub(args) {}
+  const add = function (args) {}
   ```
 
 **hoisting - 선언식**
@@ -699,16 +703,16 @@ const sub = function (num1, num2) {
 
   ```js
   // 1. 인자가 없다면? () or _ 로 표시 가능.
-  let noArgs = () => "No args"
-  noArgs = (_) => "No args"
+  let noArgs = () => 'No args'
+  noArgs = (_) => 'No args'
   
   // 2-1. object 를 return 한다면, return 을 명시적으로 적어준다.
   let returnObject = () => {
-    return { key: "value" }
+    return { key: 'value' }
   }
   
   // 2-2. return 을 적지 않으려면 괄호를 붙여야 한다.
-  returnObject = () => ({ key: "value" })
+  returnObject = () => ({ key: 'value' })
   ```
 
 **즉시 실행 함수 (IIFE, Immediately Invoked Function Expression)**
@@ -726,9 +730,13 @@ const sub = function (num1, num2) {
 - 일회성 함수이므로 익명함수로 사용하는 것이 일반적
 
   ```js
-  (function (num) { return num ** 3 })(2)  // 8
+  (function (num) {
+    return num ** 3
+  })(2)
   
-  (num) => num ** 3)(2) // 8
+  ((num) => {
+    return num ** 3
+  })(2)
   ```
 
 ## 4. Array_Object
@@ -799,7 +807,8 @@ def index(request):
 **Array Helper Methods - forEach**
 
 ```js
-array.forEach((element, index, array) => { })
+array.forEach((element, index, array) => {})
+=
 ```
 
 - array`.forEach(`callback(element[, index[,array]])`)`
@@ -811,7 +820,7 @@ array.forEach((element, index, array) => { })
 - return 반환 값 없음
 
 ```js
-const colors = ["red", "blue", "green"]
+const colors = ['red', 'blue', 'green']
 
 printFunc = function (color) {
   console.log(color)
@@ -837,7 +846,7 @@ users.forEach((user) => {
 **Array Helper Methods - map**
 
 ```js
-array.map((element, index, array) => { })
+array.map((element, index, array) => {})
 ```
 
 - array`.map(`callback(element[, index[, array]])`)`
@@ -879,7 +888,7 @@ const newUsers = users.map((user) => {
 **Array Helper Methods - filter**
 
 ```js
-array.filter((element, index, array) => { })
+array.filter((element, index, array) => {})
 ```
 
 - array`.filter(`callback(element[, index[, array]])`)`
@@ -889,14 +898,14 @@ array.filter((element, index, array) => { })
 
 ```js
 const products = [
-  { name: "cucumber", type: "vegetable" },
-  { name: "banana", type: "fruit" },
-  { name: "carrot", type: "vegetable" },
-  { name: "apple", type: "fruit" },
+  { name: 'cucumber', type: 'vegetable' },
+  { name: 'banana', type: 'fruit' },
+  { name: 'carrot', type: 'vegetable' },
+  { name: 'apple', type: 'fruit' },
 ]
 
 const fruitFilter = function (product) {
-  return product.type === "fruit"
+  return product.type === 'fruit'
 }
 
 const fruits = products.filter(fruitFilter)
@@ -904,14 +913,14 @@ const fruits = products.filter(fruitFilter)
 console.log(fruits)
 
 const fruits = products.filter(function (product) {
-  return product.type === "fruit"
+  return product.type === 'fruit'
 })
 
 const fruits = products.filter((product) => {
-  return product.type === "fruit"
+  return product.type === 'fruit'
 })
 
-const fruits = products.filter((product) => product.type === "fruit")
+const fruits = products.filter((product) => product.type === 'fruit')
 
 const marriedUsers = users.filter((user) => user.isMarried)
 ```
@@ -919,7 +928,7 @@ const marriedUsers = users.filter((user) => user.isMarried)
 **Array Helper Methods - reduce**
 
 ```js
-array.reduce((acc, element, index, array) => { }, initialValue)
+array.reduce((acc, element, index, array) => {}, initialValue)
 ```
 
 - array`.reduce[`callback(`acc`, element, [index[, array]]](, initialValue)`)`
@@ -960,7 +969,7 @@ const totalBalance = users.reduce((total, user) => total + user.balance, 0)
 **Array Helper Methods - find**
 
 ```js
-array.find((element, index, array) => { })
+array.find((element, index, array) => {})
 ```
 
 - array`.find(`callback(element[, index[, array]])`)`
@@ -970,30 +979,30 @@ array.find((element, index, array) => { })
 
 ```js
 const avengers = [
-  { name: "Tony Stark", age: 45 },
-  { name: "Steve Rogers", age: 32 },
-  { name: "Thor", age: 40 },
+  { name: 'Tony Stark', age: 45 },
+  { name: 'Steve Rogers', age: 32 },
+  { name: 'Thor', age: 40 },
 ]
 
 const avenger = avengers.find(function (avenger) {
-  return avenger.name === "Tony Stark"
+  return avenger.name === 'Tony Stark'
 })
 
 const avenger = avengers.find((avenger) => {
-  return avenger.name === "Tony Stark"
+  return avenger.name === 'Tony Stark'
 })
 
 console.log(avenger)
 
-const avenger = avengers.find((avenger) => avenger.name === "Tony Stark")
+const avenger = avengers.find((avenger) => avenger.name === 'Tony Stark')
 
-const tom = users.find((user) => user.name === "Tom")
+const tom = users.find((user) => user.name === 'Tom')
 ```
 
 **Array Helper Methods - some**
 
 ```js
-array.some((element, index, array) => { })
+array.some((element, index, array) => {})
 ```
 
 - array`.some(`callback(element[, index[, array]])`)`
@@ -1016,7 +1025,7 @@ console.log(result)
 **Array Helper Methods - every**
 
 ```js
-array.every((element, index, array) => { })
+array.every((element, index, array) => {})
 ```
 
 - array`.every(`callback(element[, index[, array]])`)`
@@ -1039,7 +1048,7 @@ console.log(newResult)
 **배열 순회 비교**
 
 ```js
-const chars = ["A", "B", "C", "D"]
+const chars = ['A', 'B', 'C', 'D']
 
 // for loop
 for (let idx = 0; idx < chars.length; idx++) {
@@ -1086,18 +1095,18 @@ chars.forEach((char) => {
 
 ```js
 const myInfo = {
-  name: "jack",
-  phoneNumber: "123456",
-  "samsung product": {
-    buds: "Buds pro",
-    galaxy: "S99",
+  name: 'jack',
+  phoneNumber: '123456',
+  'samsung product': {
+    buds: 'Buds pro',
+    galaxy: 'S99',
   },
 }
 
 console.log(myInfo.name)
-console.log(myInfo["name"])
-console.log(myInfo["samsung product"])
-console.log(myInfo["samsung product"].galaxy)
+console.log(myInfo['name'])
+console.log(myInfo['samsung product'])
+console.log(myInfo['samsung product'].galaxy)
 ```
 
 ### Object 관련 문법
@@ -1116,8 +1125,8 @@ console.log(myInfo["samsung product"].galaxy)
 - 객체를 정의할 때 key와 할당하는 변수의 이름이 같으면 **축약** 가능
 
 ```js
-const books = ["Learning JavaScript", "Learning Python"]
-const magazines = ["Vogue", "Science"]
+const books = ['Learning JavaScript', 'Learning Python']
+const magazines = ['Vogue', 'Science']
 
 const bookShop = {
   books,
@@ -1125,9 +1134,9 @@ const bookShop = {
 }
 console.log(bookShop)
 
-const url = "https://test.com"
+const url = 'https://test.com'
 const data = {
-  message: "Hello World!",
+  message: 'Hello World!',
 }
 const request = {
   url,
@@ -1141,9 +1150,9 @@ const request = {
 
 ```js
 const obj = {
-  name: "jack",
+  name: 'jack',
   greeting() {
-    console.log("hi!")
+    console.log('hi!')
   },
 }
 
@@ -1151,9 +1160,9 @@ console.log(obj.name)
 console.log(obj.greeting())
 
 const tom = {
-  name: "Tom",
+  name: 'Tom',
   introduce() {
-    console.log("Hi, my name is" + this.name)
+    console.log('Hi, my name is' + this.name)
   },
 }
 ```
@@ -1163,8 +1172,8 @@ const tom = {
 - 객체를 정의할 때 key의 이름을 표현식을 이용하여 동적으로 생성 가능
 
 ```js
-const key = "country"
-const value = ["한국", "미국", "일본", "중국"]
+const key = 'country'
+const value = ['한국', '미국', '일본', '중국']
 
 const myObj = {
   [key]: value,
@@ -1180,18 +1189,18 @@ console.log(myObj.country)
 
 ```js
 const userInformation = {
-  name: "kim",
-  userId: "Student1234",
-  phoneNumber: "010-1234-1234",
-  email: "student@student.com",
+  name: 'kim',
+  userId: 'Student1234',
+  phoneNumber: '010-1234-1234',
+  email: 'student@student.com',
 }
 
 const { userId } = userInformation
 const { phoneNumber, email } = userInformation
 
 const savedFile = {
-  name: "profile",
-  extension: "jpg",
+  name: 'profile',
+  extension: 'jpg',
   size: 29930,
 }
 
@@ -1212,11 +1221,11 @@ const newObj = { a: 1, ...obj, e: 5 }
 
 console.log(newObj)
 
-const defaultColors = ["red", "green", "blue"]
-const favoriteColors = ["navy", "black", "gold", "white"]
+const defaultColors = ['red', 'green', 'blue']
+const favoriteColors = ['navy', 'black', 'gold', 'white']
 const palette = [...defaultColors, ...favoriteColors]
 
-const info1 = { name: "Tom", age: 30 }
+const info1 = { name: 'Tom', age: 30 }
 const info2 = { isMarried: true, balance: 3000 }
 const fullInfo = { ...info1, ...info2 }
 ```
@@ -1232,8 +1241,8 @@ const fullInfo = { ...info1, ...info2 }
 
 ```js
 const jsonData = {
-  coffee: "Americano",
-  iceCream: "Cookie and cream",
+  coffee: 'Americano',
+  iceCream: 'Cookie and cream',
 }
 ```
 

@@ -38,9 +38,9 @@
   ```
 
   ```django
-  # url 태그에서 반드시
+  <!--url 태그에서 반드시-->
   {% url 'app_name:url_name' %}
-  # 형태 안 맞으면 NoReverseMatch 에러 발생
+  <!--형태 안 맞으면 NoReverseMatch 에러 발생-->
   ```
 
 **URL 참조**
@@ -184,10 +184,12 @@ models.py 작성
   ```python
   # 앱/models.py
   from django.db import models
-      class Article(models.Model):
-          title = models.CharField(max_length=10)
-          content = models.TextField()
-          # id 컬럼은 테이블 생성시 Django가 자동으로 생성
+  
+  
+  class Article(models.Model):
+      title = models.CharField(max_length=10)
+      content = models.TextField()
+      # id 컬럼은 테이블 생성시 Django가 자동으로 생성
   ```
 
 **Model 이해하기**
@@ -462,6 +464,7 @@ pip install django-extensions
 INSTALLED_APPS = [
     'articles',
     'django_extensions',
+
 ]
 ```
 
@@ -611,7 +614,7 @@ Queryset API를 활용해 데이터를 생성하고, 읽고, 수정하고 삭제
 
      - save 메서드를 호출해야 비로소 DB에 데이터가 저장된다. (레코드 생성)
 
-```python
+```bash
 article = Article()
 article.title = '제목'
 article.content = '내용'
@@ -676,7 +679,7 @@ Article.objects.create(title='third',content='django!')
 
 - 전체 데이터 조회
 
-```python
+```bash
 Article.objects.all()
 ```
 
@@ -716,7 +719,7 @@ Article.objects.get(pk=1)
 
 > <https://docs.djangoproject.com/en/3.2/ref/models/querysets/#field-lookups>
 
-```python
+```bash
 Article.objects.filter(content__contains='ja')
 ```
 
@@ -784,30 +787,29 @@ QuerySet API를 통해 view 함수에서 직접 CRUD 구현하기
   <!DOCTYPE html>
   <html lang="en">
   
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- bootstrap CSS CDN -->
-    <title>Document</title>
-  </head>
+    <head>
+      <meta charset="UTF-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!-- bootstrap CSS CDN -->
+      <title>Document</title>
+    </head>
   
-  <body>
-    <div class="container">
-      {% block content %}
-      {% endblock content %}
-    </div>
-    <!-- bootstrap JS CDN -->
-  </body>
+    <body>
+      <div class="container">
+        {% block content %}{% endblock content %}
+      </div>
+      <!-- bootstrap JS CDN -->
+    </body>
   
   </html>
   ```
-
+  
   ```python
   # 프로젝트/settings.py
   TEMPLATES = [
       {
-    ...,
+          ...,
           'DIRS': [BASE_DIR / 'templates'],
           ...,
       },
@@ -864,7 +866,7 @@ def index(request):
 <!-- 앱/templates/앱/index.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>Articles</h1>
+  <h1>Articles</h1>
 {% endblock content %}
 ```
 
@@ -896,14 +898,17 @@ def index(request):
 <!-- 앱/templates/앱/index.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>Articles</h1>
-<hr>
-{% for article in articles %}
-<p>글 번호: {{ article.pk }}</p>
-<p>글 제목: {{ article.title }}</p>
-<p>글 내용: {{ article.content }}</p>
-<hr>
-{% endfor %}
+  <h1>Articles</h1>
+  <hr/>
+  {% for article in articles %}
+    <p>글 번호:
+      {{ article.pk }}</p>
+    <p>글 제목:
+      {{ article.title }}</p>
+    <p>글 내용:
+      {{ article.content }}</p>
+    <hr/>
+  {% endfor %}
 {% endblock content %}
 ```
 
@@ -937,13 +942,14 @@ def index(request):
   
   from .models import Article
   
+  
   # 글 내용 조회 (하나의 글 데이터 필요)
   def detail(request, pk):
       # query api 에서 get 메소드는 유일한 값을 이용해서 데이터를 찾음
       article = Article.objects.get(pk=pk)
       # 전달 받은 아이디로 데이터를 가져온다. (데이터 확보)
       context = {
-           'article': article,
+          'article': article,
       }
       return render(request, 'articles/detail.html', context)
   ```
@@ -954,15 +960,20 @@ def index(request):
 <!-- 앱/templates/앱/detail.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h2>DETAIL</h2>
-<h3>{{ article.pk }} 번째 글</h3>
-<hr>
-<p>제목: {{ article.title }}</p>
-<p>내용: {{ article.content }}</p>
-<p>작성 시각: {{ article.created_at }}</p>
-<p>수정 시각: {{ article.updated_at }}</p>
-<hr>
-<a href="{% url 'articles:index' %}">[back]</a>
+  <h2>DETAIL</h2>
+  <h3>{{ article.pk }}
+    번째 글</h3>
+  <hr/>
+  <p>제목:
+    {{ article.title }}</p>
+  <p>내용:
+    {{ article.content }}</p>
+  <p>작성 시각:
+    {{ article.created_at }}</p>
+  <p>수정 시각:
+    {{ article.updated_at }}</p>
+  <hr/>
+  <a href="{% url 'articles:index' %}">[back]</a>
 {% endblock content %}
 ```
 
@@ -970,14 +981,15 @@ def index(request):
 <!-- 앱/templates/앱/index.html -->
 {% extends 'base.html' %}
 {% block content %}
-<h1>Articles</h1>
-<a href="{% url 'articles:new' %}">NEW</a>
-<hr>
-{% for article in articles %}
-<a href="{% url 'articles:detail' article.pk %}">[detail]</a>
-<hr>
-{% endfor %}
+  <h1>Articles</h1>
+  <a href="{% url 'articles:new' %}">NEW</a>
+  <hr/>
+  {% for article in articles %}
+    <a href="{% url 'articles:detail' article.pk %}">[detail]</a>
+    <hr/>
+  {% endfor %}
 {% endblock content %}
+
 ```
 
 **redirect 인자 변경**
@@ -986,8 +998,11 @@ def index(request):
 # 앱/views.py
 from django.shortcuts import redirect
 
+from .models import Article
 
-def create(request):
+
+def create(request, pk):
+    article = Article.objects.get(pk=pk)
     # 글 작성을 완료하고 나면 다음 뜨는 페이지
     return redirect('articles:detail', article.pk)
 ```
@@ -1016,6 +1031,7 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   # 앱/views.py
   from django.shortcuts import render
   
+  
   # 글 쓰기 버튼을 눌렀을 때
   # 사용자 입력 페이지 (글쓰기 페이지) 응답으로 전달
   def new(request):
@@ -1026,31 +1042,32 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   <!-- 앱/templates/앱/new.html -->
   {% extends 'base.html' %}
   {% block content %}
-  <h1>NEW</h1>
-  <form action="#" method="GET">
-    <label for="title">Title: </label>
-    <input type="text" name="title">
-    <br>
-    <label for="content">Content: </label>
-    <textarea name="content"></textarea>
-    <br>
-    <input type="submit">
-  </form>
-  <hr>
-  <a href="{% url 'articles:index' %}">[back]</a>
+    <h1>NEW</h1>
+    <form action="#" method="GET">
+      <label for="title">Title:
+      </label>
+      <input type="text" name="title"/>
+      <br/>
+      <label for="content">Content:
+      </label>
+      <textarea name="content"></textarea>
+      <br/>
+      <input type="submit"/>
+    </form>
+    <hr/>
+    <a href="{% url 'articles:index' %}">[back]</a>
   {% endblock content %}
   ```
   
   - new 페이지로 이동할 수 있는 하이퍼 링크 작성
-
+  
   ```django
   <!-- 앱/templates/앱/index.html -->
   {% extends 'base.html' %}
   {% block content %}
-  <h1>Articles</h1>
-  <a href="{% url 'articles:new' %}">NEW</a>
-  <hr>
-  ...
+    <h1>Articles</h1>
+    <a href="{% url 'articles:new' %}">NEW</a>
+    <hr/>
   {% endblock content %}
   ```
   
@@ -1075,6 +1092,7 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
   
   from .models import Article
   
+  
   # 사용자가 작성한 데이터를 받아서 DB에 저장하는 역할
   def create(request):
       # 데이터 저장하기 위해서는 사용자의 데이터를 확보
@@ -1085,43 +1103,46 @@ CREATE 로직을 구현하기 위해서는 몇 개의 view 함수가 필요할�
       article.save()  # 확보한 데이터를 DB에 저장
       return render(request, 'articles/create.html')
   ```
-
+  
   - create 메서드가 더 간단해 보이지만 추후 데이터가 저장되기 전에 유효성 검사 과정을 거치게 될 예정
   - 유효성 검사가 진행된 후에 save 메서드가 호출되는 구조를 택하기 위함
   - 게시글 작성 후 확인
-
+  
   ```django
   <!-- 앱/templates/앱/create.html -->
   {% extends 'base.html' %}
   {% block content %}
-  <h1>성공적으로 글이 작성되었습니다.</h1>
+    <h1>성공적으로 글이 작성되었습니다.</h1>
   {% endblock content %}
   ```
-
+  
   ```django
   <!-- 앱/templates/앱/new.html -->
   {% extends 'base.html' %}
   {% block content %}
-  <h1>NEW</h1>
-  <form action="{% url 'articles:create' %}" method="GET">
-    <label for="title">Title: </label>
-    <input type="text" name="title">
-    <br>
-    <label for="content">Content: </label>
-    <textarea name="content"></textarea>
-    <br>
-    <input type="submit">
-  </form>
-  <hr>
-  <a href="{% url 'articles:index' %}">[back]</a>
+    <h1>NEW</h1>
+    <form action="{% url 'articles:create' %}" method="GET">
+      <label for="title">Title:
+      </label>
+      <input type="text" name="title"/>
+      <br/>
+      <label for="content">Content:
+      </label>
+      <textarea name="content"></textarea>
+      <br/>
+      <input type="submit"/>
+    </form>
+    <hr/>
+    <a href="{% url 'articles:index' %}">[back]</a>
   {% endblock content %}
   ```
-
+  
   - 게시글 작성 후 index 페이지로 돌아고도록 함
-
+  
   ```python
   # 앱/view.py
   from django.shortcuts import render
+  
   
   def create(request):
       return render(request, 'articles/index.html')
@@ -1140,7 +1161,7 @@ from django.shortcuts import redirect
 def create(request):
     # 글 작성을 완료하고 나면 다음 뜨는 페이지
     # index 페이지로 이동해서 전체 데이터 목록
-     return redirect('articles:index')
+    return redirect('articles:index')
 ```
 
 **redirect 동작 이해하기**
@@ -1308,11 +1329,11 @@ def delete(request, pk):
   <!-- 앱/templates/앱/detail.html -->
   {% extends 'base.html' %}
   {% block content %}
-  <form action="{% url 'articles:delete' article.pk %}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="DELETE">
-  </form>
-  <a href="{% url 'articles:index' %}">[back]</a>
+    <form action="{% url 'articles:delete' article.pk %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="DELETE"/>
+    </form>
+    <a href="{% url 'articles:index' %}">[back]</a>
   {% endblock content %}
   ```
 
@@ -1327,9 +1348,9 @@ def delete(request, pk):
     ```python
     # 앱/urls.py
     from django.urls import path
-
+    
     from . import views
-
+    
     urlpatterns = [
         path('<int:pk>/edit/', views.edit, name='edit'),
     ]
@@ -1337,7 +1358,11 @@ def delete(request, pk):
 
     ```python
     # 앱/views.py
-
+    from django.shortcuts import render
+    
+    from .models import Article
+    
+    
     def edit(request, pk):
         article = Article.objects.get(pk=pk)
         context = {
@@ -1354,42 +1379,49 @@ def delete(request, pk):
     <!-- 앱/templates/앱/edit.html -->
     {% extends 'base.html' %}
     {% block content %}
-    <h1>EDIT</h1>
-    <form action="{% url 'articles:update' article.pk %}" method="POST">
-      {% csrf_token %}
-      <label for="title">Title: </label>
-      <input type="text" name="title" value="{{ article.title }}">
-      <br>
-      <label for="content">Content: </label>
-      <textarea name="content" cols="30" rows="5">{{ article.content }}</textarea>
-      <br>
-      <input type="submit">
-    </form>
-    <a href="{% url 'articles:index' %}">[back]</a>
+      <h1>EDIT</h1>
+      <form action="{% url 'articles:update' article.pk %}" method="POST">
+        {% csrf_token %}
+        <label for="title">Title:
+        </label>
+        <input type="text" name="title" value="{{ article.title }}"/>
+        <br/>
+        <label for="content">Content:
+        </label>
+        <textarea name="content" cols="30" rows="5">{{ article.content }}</textarea>
+        <br/>
+        <input type="submit"/>
+      </form>
+      <a href="{% url 'articles:index' %}">[back]</a>
     {% endblock content %}
     ```
-
+    
   - Edit 페이지로 이동하기 위한 하이퍼 링크 작성
 
     ```django
     <!-- 앱/templates/앱/detail.html -->
     {% extends 'base.html' %}
     {% block content %}
-    <h2>DETAIL</h2>
-    <h3>{{ article.pk }} 번째 글</h3>
-    <hr>
-    <p>제목: {{ article.title }}</p>
-    <p>내용: {{ article.content }}</p>
-    <p>작성 시각: {{ article.created_at }}</p>
-    <p>수정 시각: {{ article.updated_at }}</p>
-    <hr>
-    <a href="{% url 'articles:edit' article.pk %}">EDIT</a>
-    <br>
-    <form action="{% url 'articles:edit' article.pk %}" method="POST">
-      {% csrf_token %}
-      <input type="submit" value="DELETE">
-    </form>
-    <a href="{% url 'articles:index' %}">[back]</a>
+      <h2>DETAIL</h2>
+      <h3>{{ article.pk }}
+        번째 글</h3>
+      <hr/>
+      <p>제목:
+        {{ article.title }}</p>
+      <p>내용:
+        {{ article.content }}</p>
+      <p>작성 시각:
+        {{ article.created_at }}</p>
+      <p>수정 시각:
+        {{ article.updated_at }}</p>
+      <hr/>
+      <a href="{% url 'articles:edit' article.pk %}">EDIT</a>
+      <br/>
+      <form action="{% url 'articles:edit' article.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="DELETE"/>
+      </form>
+      <a href="{% url 'articles:index' %}">[back]</a>
     {% endblock content %}
     ```
 
@@ -1413,7 +1445,8 @@ def delete(request, pk):
     from django.shortcuts import redirect
     
     from .models import Article
-
+    
+    
     def update(request, pk):
         # 1. 수정할 글 데이터를 찾아온다.
         article = Article.objects.get(pk=pk)
@@ -1430,11 +1463,11 @@ def delete(request, pk):
     <!-- 앱/edit.html -->
     {% extends 'base.html' %}
     {% block content %}
-    <h1>EDIT</h1>
-    <form action="{% url 'articles:update' article.pk %}" method="POST">
-      {% csrf_token %}
-    </form>
-    <a href="{% url 'articles:index' %}">[back]</a>
+      <h1>EDIT</h1>
+      <form action="{% url 'articles:update' article.pk %}" method="POST">
+        {% csrf_token %}
+      </form>
+      <a href="{% url 'articles:index' %}">[back]</a>
     {% endblock content %}
     ```
 

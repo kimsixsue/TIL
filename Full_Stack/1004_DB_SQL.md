@@ -370,12 +370,9 @@ FROM table_name;
    - **주의) INTEGER 타입에만 사용가능 (INT BIGINT 등 불가능)**
 
      ```sqlite
-     CREATE TABLE table_name (
-       id INTEGER PRIMARY KEY,
-       ..
-     );
+     CREATE TABLE table_name (id INTEGER PRIMARY KEY);
      ```
-
+   
 4. AUTOINCREMENT
 
    - 사용되지 않은 값이나 이전에 삭제된 행의 값을 재사용하는 것을 방지
@@ -385,12 +382,9 @@ FROM table_name;
    - Django에서 테이블 생성 시 id 컬럼에 기본적으로 사용하는 제약조건
 
      ```sqlite
-     CREATE TABLE table_name (
-       id INTEGER PRIMARY KEY AUTOINCREMENT,
-       ..
-     );
+     CREATE TABLE table_name (id INTEGER PRIMARY KEY AUTOINCREMENT,);
      ```
-
+   
 5. 그 외 기타 Constraints
 
 **rowid의 특징**
@@ -445,7 +439,7 @@ FROM table_name;
 
      - 현재 과정에서는 일어나지 않지만 만약 테이블에 기존 데이터가 있을 경우 다음과 같은 에러가 발생
 
-       ```sql
+       ```bash
        Cannot add NOT NULL column with default value NULL
        ```
 
@@ -499,7 +493,7 @@ FROM table_name;
 
 - 존재하지 않는 테이블을 제거하면 SQLite에서 오류가 발생
 
-  ```sql
+  ```bash
   no such table: table_name
   ```
 
@@ -608,7 +602,7 @@ FROM table_name;
 
 ```sqlite
 SELECT column1,
-  column2
+       column2
 FROM table_name;
 ```
 
@@ -643,15 +637,14 @@ FROM table_name;
 
   ```sqlite
   SELECT first_name,
-    age
+         age
   FROM users;
   ```
 
 - rowid 컬럼 조회
 
   ```sqlite
-  SELECT rowid,
-    first_name
+  SELECT rowid, first_name
   FROM users;
   ```
 
@@ -667,7 +660,7 @@ FROM table_name;
 SELECT select_list
 FROM table_name
 ORDER BY column_1 ASC,
-  column_2 DESC;
+         column_2 DESC;
 ```
 
 - “Sort a result set of a query”
@@ -685,7 +678,7 @@ ORDER BY column_1 ASC,
 
   ```sqlite
   SELECT first_name,
-    age
+         age
   FROM users
   ORDER BY age DESC;
   ```
@@ -694,11 +687,11 @@ ORDER BY column_1 ASC,
 
   ```sqlite
   SELECT first_name,
-    age,
-    balance
+         age,
+         balance
   FROM users
   ORDER BY age ASC,
-    balance DESC;
+           balance DESC;
   ```
 
 - ORDER BY절은 하나 이상의 컬럼을 정렬할 경우 첫 번째 열을 사용하여 행을 정렬하고, 그런 다음 두번째 컬럼을 사용하여 정렬 되어있는 행을 정렬하는 방식
@@ -763,7 +756,7 @@ FROM table_name;
 
   ```sqlite
   SELECT DISTINCT first_name,
-    country
+                  country
   FROM users;
   ```
 
@@ -771,7 +764,7 @@ FROM table_name;
 
   ```sqlite
   SELECT DISTINCT first_name,
-    country
+                  country
   FROM users
   ORDER BY country DESC;
   ```
@@ -818,8 +811,8 @@ left_expression COMPARISON_OPERATOR right_expression
 
   ```sqlite
   SELECT first_name,
-    age,
-    balance
+         age,
+         balance
   FROM users
   WHERE age >= 30;
   ```
@@ -828,8 +821,8 @@ left_expression COMPARISON_OPERATOR right_expression
 
   ```sqlite
   SELECT first_name,
-    age,
-    balance
+         age,
+         balance
   FROM users
   WHERE age >= 30
     AND balance > 500000;
@@ -876,7 +869,7 @@ left_expression COMPARISON_OPERATOR right_expression
 
 ```sqlite
 SELECT first_name,
-  last_name
+       last_name
 FROM users
 WHERE first_name LIKE '%호%';
 ```
@@ -893,7 +886,7 @@ WHERE first_name LIKE '%호%';
 
   ```sqlite
   SELECT first_name,
-    phone
+         phone
   FROM users
   WHERE phone LIKE '02-%';
   ```
@@ -902,7 +895,7 @@ WHERE first_name LIKE '%호%';
 
   ```sqlite
   SELECT first_name,
-    age
+         age
   FROM users
   WHERE age LIKE '2_';
   ```
@@ -911,7 +904,7 @@ WHERE first_name LIKE '%호%';
 
   ```sqlite
   SELECT first_name,
-    phone
+         phone
   FROM users
   WHERE phone LIKE '%-51__-%';
   ```
@@ -929,16 +922,17 @@ WHERE first_name LIKE '%호%';
 
   ```sqlite
   SELECT first_name,
-    country
+         country
   FROM users
-  WHERE country IN ('경기도', '강원도');
+  WHERE country IN ('경기도',
+                    '강원도');
   ```
 
 - IN 연산자 대신 OR 연산자를 사용하여 동일한 결과를 반환할 수 있음
 
   ```sqlite
   SELECT first_name,
-    country
+         country
   FROM users
   WHERE country = '경기도'
     OR country = '강원도';
@@ -948,9 +942,10 @@ WHERE first_name LIKE '%호%';
 
   ```sqlite
   SELECT first_name,
-    country
+         country
   FROM users
-  WHERE country NOT IN ('경기도', '강원도');
+  WHERE country NOT IN ('경기도',
+                        '강원도');
   ```
 
 **`BETWEEN` operator**
@@ -971,7 +966,7 @@ test_expression BETWEEN low_expression AND high_expression
 
   ```sqlite
   SELECT first_name,
-    age
+         age
   FROM users
   WHERE age BETWEEN 20 AND 30;
   ```
@@ -980,7 +975,7 @@ test_expression BETWEEN low_expression AND high_expression
 
   ```sqlite
   SELECT first_name,
-    age
+         age
   FROM users
   WHERE age >= 20
     AND <= 30;
@@ -990,7 +985,7 @@ test_expression BETWEEN low_expression AND high_expression
 
   ```sqlite
   SELECT first_name,
-    age
+         age
   FROM users
   WHERE age NOT BETWEEN 20 AND 30;
   ```
@@ -999,7 +994,7 @@ test_expression BETWEEN low_expression AND high_expression
 
   ```sqlite
   SELECT first_name,
-    age
+         age
   FROM users
   WHERE age < 20
     OR age > 30;
@@ -1023,12 +1018,11 @@ LIMIT row_count;
 - 첫 번째부터 열 번째 데이터까지 rowid와 이름 조회하기
 
   ```sqlite
-  SELECT rowid,
-    first_name
+  SELECT rowid, first_name
   FROM users
   LIMIT 10;
   ```
-
+  
 - 계좌 잔고가 가장 많은 10명의 이름과 계좌 잔고 조회하기
 
   - **ORDER BY 절과 함께 사용하여 지정된 순서로 여러 행을 가져올 수도 있음**
@@ -1036,7 +1030,7 @@ LIMIT row_count;
 
   ```sqlite
   SELECT first_name,
-    balance
+         balance
   FROM users
   ORDER BY balance DESC
   LIMIT 10;
@@ -1046,7 +1040,7 @@ LIMIT row_count;
 
   ```sqlite
   SELECT first_name,
-    age
+         age
   FROM users
   ORDER BY age
   LIMIT 5;
@@ -1059,10 +1053,11 @@ LIMIT row_count;
 - 11번째부터 20번째 데이터의 rowid와 이름 조회하기
 
   ```sqlite
-  SELECT rowid,
-    first_name
+  SELECT rowid, first_name
   FROM users
-  LIMIT 10 OFFSET 10;
+  LIMIT 10
+  OFFSET 10;
+  
   ```
 
 ### Grouping data
@@ -1071,10 +1066,10 @@ LIMIT row_count;
 
 ```sqlite
 SELECT column_1,
-  aggregate_function(column_2)
+       aggregate_function(column_2)
 FROM table_name
 GROUP BY column_1,
-  column_2;
+         column_2;
 ```
 
 - “Make a set of summary rows from a set of rows.”
@@ -1135,7 +1130,7 @@ GROUP BY column_1,
 
     ```sqlite
     SELECT country,
-      COUNT(*)
+           COUNT(*)
     FROM users
     GROUP BY country;
     ```
@@ -1148,7 +1143,7 @@ GROUP BY column_1,
 
   ```sqlite
   SELECT last_name,
-    COUNT(*) AS number_of_name
+         COUNT(*) AS number_of_name
   FROM users
   GROUP BY last_name;
   ```
@@ -1157,7 +1152,7 @@ GROUP BY column_1,
 
   ```sqlite
   SELECT last_name,
-    COUNT(*)
+         COUNT(*)
   FROM users
   GROUP BY last_name
   ORDER BY COUNT(*) DESC;
@@ -1167,7 +1162,7 @@ GROUP BY column_1,
 
   ```sqlite
   SELECT country,
-    AVG(age)
+         AVG(age)
   FROM users
   GROUP BY country;
   ```
@@ -1196,7 +1191,8 @@ GROUP BY column_1,
 **`INSERT` statement**
 
 ```sqlite
-INSERT INTO table_name (column1, column2,...)
+INSERT INTO table_name (column1,
+                        column2,...)
 VALUES (value1, value2,...);
 ```
 
@@ -1231,10 +1227,10 @@ VALUES (value1, value2,...);
   ```sqlite
   INSERT INTO classmates
   VALUES ('김철수', 30, '경기'),
-    ('이영미', 31, '강원'),
-    ('박진성', 26, '전라'),
-    ('최지수', 12, '충청'),
-    ('정요한', 28, '경상');
+         ('이영미', 31, '강원'),
+         ('박진성', 26, '전라'),
+         ('최지수', 12, '충청'),
+         ('정요한', 28, '경상');
   ```
 
 **`UPDATE` statement**
@@ -1242,7 +1238,7 @@ VALUES (value1, value2,...);
 ```sqlite
 UPDATE table_name
 SET column_1 = new_value_1,
-  column_2 = new_value_2
+    column_2 = new_value_2
 WHERE search_condition;
 ```
 
@@ -1262,14 +1258,15 @@ WHERE search_condition;
   ```sqlite
   UPDATE classmates
   SET name = '김철수한무두루미',
-    address = '제주도'
+      address = '제주도'
   WHERE rowid = 2;
   ```
 
 **`DELETE` statement**
 
 ```sqlite
-DELETE FROM table_name
+DELETE
+FROM table_name
 WHERE search_condition;
 ```
 
@@ -1287,15 +1284,15 @@ WHERE search_condition;
 - 5번 데이터 삭제하기
 
   ```sqlite
-  DELETE FROM classmates
+  DELETE
+  FROM classmates
   WHERE rowid = 5;
   ```
 
 - 삭제 된 것 확인하기
 
   ```sqlite
-  SELECT rowid,
-    *
+  SELECT rowid, *
   FROM classmates;
   ```
 
@@ -1304,14 +1301,16 @@ WHERE search_condition;
 - 이름에 ‘영’이 포함되는 데이터 삭제하기
 
   ```sqlite
-  DELETE FROM classmates
+  DELETE
+  FROM classmates
   WHERE name LIKE '%영%';
   ```
 
 - 테이블의 모든 데이터 삭제하기
 
   ```sqlite
-  DELETE FROM classmates;
+  DELETE
+  FROM classmates;
   ```
 
 ## 마무리

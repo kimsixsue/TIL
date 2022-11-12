@@ -106,11 +106,16 @@
 from django.db import models
 
 
+class Article(models.Model):
+    pass
+
+
 class Comment(models.Model):  # 댓글 N:1 글
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     content = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         return self.content
 ```
@@ -251,7 +256,7 @@ comment.article_id
 - N:1 관계에서는 1이 N을 참조하는 상황
   - 외래 키를 가지지 않은 1이 외래 키를 가진 N을 참조 (글 : 댓글)
 
-```python
+```bash
 article.comment_set.method()
 ```
 
@@ -297,7 +302,7 @@ article.comment_set.method()
 
 4. 1번 게시글에 작성된 모든 댓글 출력하기
 
-   ```python
+   ```bash
    comments = article.comment_set.all()
    
    for comment in comments:
@@ -309,6 +314,10 @@ article.comment_set.method()
 ```python
 # articles/models.py
 from django.db import models
+
+
+class Article(models.Model):
+    pass
 
 
 class Comment(models.Model):
@@ -348,9 +357,10 @@ class Comment(models.Model):
   from django import forms
   
   from .models import Comment
-
+  
+  
   class CommentForm(forms.ModelForm):
-
+  
       class Meta:
           model = Comment
           fields = '__all__'
@@ -361,10 +371,11 @@ class Comment(models.Model):
   ```python
   # articles/views.py
   from django.shortcuts import render
-
+  
   from .forms import CommentForm
   from .models import Article
-
+  
+  
   def detail(request, pk):
       article = Article.objects.get(pk=pk)
       comment_form = CommentForm()
@@ -383,16 +394,16 @@ class Comment(models.Model):
   <!-- articles/detail.html -->
   {% extends 'base.html' %}
   {% block content %}
-  <a href="{% url 'articles:index' %}">back</a>
-  <hr>
-  <form action="#" method="POST">
-    {% csrf_token %}
-    {{ comment_form }}
-    <input type="submit">
-  </form>
+    <a href="{% url 'articles:index' %}">back</a>
+    <hr/>
+    <form action="#" method="POST">
+      {% csrf_token %}
+      {{ comment_form }}
+      <input type="submit"/>
+    </form>
   {% endblock content %}
   ```
-
+  
 - detail 페이지에 출력된 CommentForm
 
 - 실 서비스에서는 댓글을 작성할 때 댓글을 어떤 게시글에 작성하는지 직접 게시글 번호를 선택하지 않음
@@ -410,7 +421,8 @@ class Comment(models.Model):
   from django import forms
   
   from .models import Comment
-
+  
+  
   class CommentForm(forms.ModelForm):
       class Meta:
           model = Comment
@@ -428,9 +440,9 @@ class Comment(models.Model):
   ```python
   # articles/urls.py
   from django.urls import path
-
+  
   from . import views
-
+  
   urlpatterns = [
       path('<int:pk>/comments/', views.comments_create, name='comments_create'),
   ]
@@ -439,10 +451,11 @@ class Comment(models.Model):
   ```python
   # articles/views.py
   from django.shortcuts import redirect
-
+  
   from .forms import CommentForm
   from .models import Article
-
+  
+  
   def comments_create(request, pk):
       article = Article.objects.get(pk=pk)
       comment_form = CommentForm(request.POST)
@@ -456,11 +469,11 @@ class Comment(models.Model):
   <!-- articles/detail.html -->
   {% extends 'base.html' %}
   {% block content %}
-  <form action="{% url 'articles:comments_create' article.pk %}" method="POST">
-    {% csrf_token %}
-    {{ comment_form }}
-    <input type="submit">
-  </form>
+    <form action="{% url 'articles:comments_create' article.pk %}" method="POST">
+      {% csrf_token %}
+      {{ comment_form }}
+      <input type="submit"/>
+    </form>
   {% endblock content %}
   ```
 
@@ -487,6 +500,7 @@ class Comment(models.Model):
   from .forms import CommentForm
   from .models import Article
   
+  
   def comments_create(request, pk):
       article = Article.objects.get(pk=pk)
       comment_form = CommentForm(request.POST)
@@ -506,10 +520,11 @@ class Comment(models.Model):
   ```python
   # articles/views.py
   from django.shortcuts import render
-
+  
   from .forms import CommentForm
   from .models import Article
-
+  
+  
   def detail(request, pk):
       article = Article.objects.get(pk=pk)
       comment_form = CommentForm()
@@ -528,15 +543,15 @@ class Comment(models.Model):
   <!-- articles/detail.html -->
   {% extends 'base.html' %}
   {% block content %}
-  <a href="{% url 'articles:index' %}">back</a>
-  <hr>
-  <h4>댓글 목록</h4>
-  <ul>
-    {% for comment in comments %}
-    <li>{{ comment.content }}</li>
-    {% endfor %}
-  </ul>
-  <hr>
+    <a href="{% url 'articles:index' %}">back</a>
+    <hr/>
+    <h4>댓글 목록</h4>
+    <ul>
+      {% for comment in comments %}
+        <li>{{ comment.content }}</li>
+      {% endfor %}
+    </ul>
+    <hr/>
   {% endblock content %}
   ```
 
@@ -561,7 +576,8 @@ class Comment(models.Model):
   from django.shortcuts import redirect
   
   from .models import Comment
-
+  
+  
   def comments_delete(request, article_pk, comment_pk):
       comment = Comment.objects.get(pk=comment_pk)
       comment.delete()
@@ -572,21 +588,22 @@ class Comment(models.Model):
 
   ```django
   <!-- articles/detail.html -->
-  {% extends 'base.html' %}
-  {% block content %}
+  {% extends 'base.html' %} {% block content %}
   <h4>댓글 목록</h4>
   <ul>
     {% for comment in comments %}
     <li>
       {{ comment.content }}
-      <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST">
+      <form
+        action="{% url 'articles:comments_delete' article.pk comment.pk %}"
+        method="POST">
         {% csrf_token %}
-        <input type="submit" value="DELETE">
+        <input type="submit" value="DELETE" />
       </form>
     </li>
     {% endfor %}
   </ul>
-  <hr>
+  <hr />
   {% endblock content %}
   ```
 
@@ -611,15 +628,13 @@ class Comment(models.Model):
 
    ```django
    {{ comments|length }}
-
    {{ article.comment_set.all|length }}
    ```
-
+   
 2. Queryset API - **count()** 사용
 
    ```django
    {{ comments.count }}
-   
    {{ article.comment_set.count }}
    ```
 
@@ -629,10 +644,12 @@ class Comment(models.Model):
   <!-- articles/detail.html -->
   {% extends 'base.html' %}
   {% block content %}
-  <h4>댓글 목록</h4>
-  {% if comments %}
-  <p><b>{{ comments|length }}개의 댓글이 있습니다.</b></p>
-  {% endif %}
+    <h4>댓글 목록</h4>
+    {% if comments %}
+      <p>
+        <b>{{ comments|length }}개의 댓글이 있습니다.</b>
+      </p>
+    {% endif %}
   {% endblock content %}
   ```
 
@@ -644,17 +661,17 @@ class Comment(models.Model):
   <!-- articles/detail.html -->
   {% extends 'base.html' %}
   {% block content %}
-  {% for comment in comments %}
-  <li>
-    {{ comment.content }}
-    <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST">
-      {% csrf_token %}
-      <input type="submit" value="DELETE">
-    </form>
-  </li>
-  {% empty %}
-  <p>댓글이 없어요..</p>
-  {% endfor %}
+    {% for comment in comments %}
+      <li>
+        {{ comment.content }}
+        <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST">
+          {% csrf_token %}
+          <input type="submit" value="DELETE"/>
+        </form>
+      </li>
+      {% empty %}
+      <p>댓글이 없어요..</p>
+    {% endfor %}
   {% endblock content %}
   ```
 
@@ -695,6 +712,7 @@ class Comment(models.Model):
   # articles/models.py
   from django.conf import settings
   from django.db import models
+  
   
   class Article(models.Model):
       user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -753,6 +771,7 @@ class Comment(models.Model):
   
   from .models import Article
   
+  
   class ArticleForm(forms.ModelForm):
       class Meta:
           model = Article
@@ -774,6 +793,7 @@ class Comment(models.Model):
   from django.views.decorators.http import require_http_methods
   
   from .forms import ArticleForm
+  
   
   @login_required
   @require_http_methods(['GET', 'POST'])
@@ -800,6 +820,7 @@ class Comment(models.Model):
   
   from .models import Article
   
+  
   @require_POST
   def delete(request, pk):
       article = Article.objects.get(pk=pk)
@@ -824,7 +845,8 @@ class Comment(models.Model):
   
   from .forms import ArticleForm
   from .models import Article
-
+  
+  
   @login_required
   @require_http_methods(['GET', 'POST'])
   def update(request, pk):
@@ -847,13 +869,14 @@ class Comment(models.Model):
   <!-- articles/detail.html -->
   {% extends 'base.html' %}
   {% block content %}
-  {% if request.user == article.user %}
-  <a href="{% url 'articles:update' article.pk %}">UPDATE</a>
-  <form action="{% url 'articles:delete' article.pk %}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="DELETE">
-  </form>
-  {% endif %}
+    {% if request.user == article.user
+   %}
+      <a href="{% url 'articles:update' article.pk %}">UPDATE</a>
+      <form action="{% url 'articles:delete' article.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="DELETE"/>
+      </form>
+    {% endif %}
   {% endblock content %}
   ```
 
@@ -867,30 +890,37 @@ class Comment(models.Model):
   <!-- articles/index.html -->
   {% extends 'base.html' %}
   {% block content %}
-  {% for article in articles %}
-  <p><b>작성자 : {{ articles.user }}</b></p>
-  <p>글 번호 : {{ article.pk }}</p>
-  <p>제목 : {{ article.title }}</p>
-  <p>내용 : {{ article.content }}</p>
-  <a href="{% url 'articles:detail' article.pk %}">DETAIL</a>
-  <hr>
-  {% endfor %}
+    {% for article in articles %}
+      <p>
+        <b>작성자 :
+          {{ articles.user }}</b>
+      </p>
+      <p>글 번호 :
+        {{ article.pk }}</p>
+      <p>제목 :
+        {{ article.title }}</p>
+      <p>내용 :
+        {{ article.content }}</p>
+      <a href="{% url 'articles:detail' article.pk %}">DETAIL</a>
+      <hr/>
+    {% endfor %}
   {% endblock content %}
   ```
-
+  
   ```django
   <!-- articles/detail.html -->
-  {% extends 'base.html' %}
-  {% block content %}
+  {% extends 'base.html' %} {% block content %}
   <h2>DETAIL</h2>
   <h3>{{ article.pk }} 번째 글</h3>
-  <hr>
-  <p><b>작성자 : {{ articles.user }}</b></p>
+  <hr />
+  <p>
+    <b>작성자 : {{ articles.user }}</b>
+  </p>
   <p>제목 : {{ article.title }}</p>
   <p>내용 : {{ article.content }}</p>
   <p>작성 시각 : {{ article.created_at }}</p>
   <p>수정 시각 : {{ article.updated_at }}</p>
-  <hr>
+  <hr />
   {% endblock content %}
   ```
 
@@ -910,6 +940,11 @@ class Comment(models.Model):
   # articles/models.py
   from django.conf import settings
   from django.db import models
+  
+  
+  class Article(models.Model):
+      pass
+  
   
   class Comment(models.Model):
       article = models.ForeignKey(Article, on_delete=models.CASCADE)
@@ -974,6 +1009,7 @@ class Comment(models.Model):
   
   from .models import Comment
   
+  
   class CommentForm(forms.ModelForm):
       class Meta:
           model = Comment
@@ -997,6 +1033,7 @@ class Comment(models.Model):
   from .forms import CommentForm
   from .models import Article
   
+  
   def comments_create(request, pk):
       article = Article.objects.get(pk=pk)
       comment_form = CommentForm(request.POST)
@@ -1016,16 +1053,17 @@ class Comment(models.Model):
 
   ```django
   <!-- articles/detail.html -->
-  {% extends 'base.html' %}
-  {% block content %}
+  {% extends 'base.html' %} {% block content %}
   <h4>댓글 목록</h4>
   <ul>
     {% for comment in comments %}
     <li>
       {{ comment.user }} - {{ comment.content }}
-      <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST">
+      <form
+        action="{% url 'articles:comments_delete' article.pk comment.pk %}"
+        method="POST">
         {% csrf_token %}
-        <input type="submit" value="DELETE">
+        <input type="submit" value="DELETE" />
       </form>
     </li>
     {% endfor %}
@@ -1044,7 +1082,8 @@ class Comment(models.Model):
   from django.shortcuts import redirect
   
   from .models import Comment
-
+  
+  
   def comments_delete(request, article_pk, comment_pk):
       comment = Comment.objects.get(pk=comment_pk)
       if request.user == comment.user:
@@ -1058,19 +1097,21 @@ class Comment(models.Model):
   <!-- articles/detail.html -->
   {% extends 'base.html' %}
   {% block content %}
-  <ul>
-    {% for comment in comments %}
-    <li>
-      {{ comment.user }} - {{ comment.content }}
-      {% if request.user == comment.user %}
-      <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST">
-        {% csrf_token %}
-        <input type="submit" value="DELETE">
-      </form>
-      {% endif %}
-    </li>
-    {% endfor %}
-  </ul>
+    <ul>
+      {% for comment in comments %}
+        <li>
+          {{ comment.user }}
+          -
+          {{ comment.content }}
+          {% if request.user == comment.user %}
+            <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST">
+              {% csrf_token %}
+              <input type="submit" value="DELETE"/>
+            </form>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
   {% endblock content %}
   ```
 
@@ -1118,16 +1159,16 @@ def comments_delete(request, article_pk, comment_pk):
 <!-- articles/detail.html -->
 {% extends 'base.html' %}
 {% block content %}
-<hr>
-{% if request.user.is_authenticated %}
-<form action="{% url 'articles:comments_create' article.pk %}" method="POST">
-  {% csrf_token %}
-  {{ comment_form }}
-  <input type="submit">
-</form>
-{% else %}
-<a href="{% url 'accounts:login' %}">[댓글을 작성하려면 로그인하세요.]</a>
-{% endif %}
+  <hr/>
+  {% if request.user.is_authenticated %}
+    <form action="{% url 'articles:comments_create' article.pk %}" method="POST">
+      {% csrf_token %}
+      {{ comment_form }}
+      <input type="submit"/>
+    </form>
+  {% else %}
+    <a href="{% url 'accounts:login' %}">[댓글을 작성하려면 로그인하세요.]</a>
+  {% endif %}
 {% endblock content %}
 ```
 

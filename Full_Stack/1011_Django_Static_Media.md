@@ -69,8 +69,8 @@
 
    ```django
    {% load static %}
-
-   <img src="{% static 'sample_img.jpg' %}" alt="sample image">
+   
+   <img src="{% static 'sample_img.jpg' %}" alt="sample image" />
    ```
 
 **Django template tag**
@@ -109,6 +109,7 @@
    - 추가 파일 디렉토리에 대한 전체 경로를 포함하는 문자열 목록으로 작성되어야 함
 
      ```python
+     # settings.py
      STATICFILES_DIRS = [
          BASE_DIR / 'static',
      ]
@@ -127,6 +128,7 @@
    - 비어 있지 않은 값으로 설정 한다면 반드시 slash(/) 로 끝나야 함
 
      ```python
+     # settings.py
      STATIC_URL = '/static/'
      ```
 
@@ -145,32 +147,29 @@
         ```django
         {% extends 'base.html' %}
         {% load static %}
-
         {% block content %}
-          <img src="{% static 'articles/sample_img_1.png' %}" alt="sample-img">
-        ```
-
+          <img src="{% static 'articles/sample_img_1.png' %}" alt="sample-img"/>
+     
   2. 추가 경로에 있는 static file 가져오기
-
+  
      1. 추가 경로 작성
-
+  
         ```python
+        # settings.py
         STATICFILES_DIRS = [
             BASE_DIR / 'static',
         ]
         ```
-
+     
      2. static/ 경로에 이미지 파일 배치하기
-
+     
      3. static tag를 사용해 이미지 파일 출력하기
-
+     
         ```django
         {% extends 'base.html' %}
         {% load static %}
-
         {% block content %}
-          <img src="{% static 'sample_img_2.png' %}" alt="sample-img">
-        ```
+          <img src="{% static 'sample_img_2.png' %}" alt="sample-img"/>
 
 **STATIC_URL 확인하기**
 
@@ -225,7 +224,6 @@ Django ImageField를 사용해 사용자가 업로드한 정적 파일(미디어
 
   ```python
   # settings.py
-
   MEDIA_ROOT = BASE_DIR / 'media'
   ```
 
@@ -245,7 +243,6 @@ Django ImageField를 사용해 사용자가 업로드한 정적 파일(미디어
 
   ```python
   # settings.py
-
   MEDIA_URL = '/media/'
   ```
 
@@ -273,6 +270,8 @@ urlpatterns = [
 
 ```python
 # articles/models.py
+from django.db import models
+
 
 class Article(models.Model):
     image = models.imageField(blank=True)
@@ -317,14 +316,13 @@ class Article(models.Model):
 
   ```django
   <!-- articles/create.html -->
-
+  
   {% extends 'base.html' %}
-
   {% block content %}
     <form action="{% url 'articles:create' %}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
-      <input type="submit">
+      <input type="submit"/>
     </form>
   ```
 
@@ -334,7 +332,12 @@ class Article(models.Model):
 
   ```python
   # articles/views.py
-
+  from django.contrib.auth.decorators import login_required
+  from django.views.decorators.http import require_http_methods
+  
+  from .forms import ArticleForm
+  
+  
   @login_required
   @require_http_methods(['GET', 'POST'])
   def create(request):
@@ -357,13 +360,12 @@ class Article(models.Model):
 
   ```django
   <!-- articles/detail.html -->
-
+  
   {% extends 'base.html' %}
-
   {% block content %}
-    <img src="{{ article.image.url }}" alt="{{ article.image }}">
+    <img src="{{ article.image.url }}" alt="{{ article.image }}"/>
   ```
-
+  
 - article.image.url - 업로드 파일의 경로
 
 - article.image - 업로드 파일의 파일 이름
@@ -374,12 +376,11 @@ class Article(models.Model):
 
     ```django
     <!-- articles/detail.html -->
-
+    
     {% extends 'base.html' %}
-
     {% block content %}
       {% if article.image %}
-        <img src="{{ article.image.url }}" alt="{{ article.image }}">
+        <img src="{{ article.image.url }}" alt="{{ article.image }}"/>
       {% endif %}
     ```
 
@@ -395,27 +396,33 @@ class Article(models.Model):
 
   ```django
   <!-- articles/update.html -->
-
-  {% extends 'base.html' %}
-
-  {% block content %}
-    <form action="{% url 'articles:update' article.pk %}" method="POST" enctype="multipart/form-data">
-    </form>
+  
+  {% extends 'base.html' %} {% block content %}
+  <form
+    action="{% url 'articles:update' article.pk %}"
+    method="POST"
+    enctype="multipart/form-data"></form>
   ```
 
-- 이미지 파일이 담겨있는 request.FILES 추가 작성
+```python
+# articles/views.py
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 
-  ```python
-  # articles/views.py
+from .forms import ArticleForm
+from .models import Article
 
-  @login_required
-  @require_http_methods(['GET', 'POST'])
-  def update(request, pk):
-      article = Article.objects.get(pk=pk)
-      if request.user == article.user:
-          if request.method == 'POST':
-              form = ArticleForm(request.POST, request.FILES, instance=article)
-  ```
+
+@login_required
+@require_http_methods(['GET', 'POST'])
+def update(request, pk):
+    article = Article.objects.get(pk=pk)
+    if request.user == article.user:
+        if request.method == 'POST':
+            form = ArticleForm(
+                request.POST, request.FILES, instance=article)
+            # 이미지 파일이 담겨있는 request.FILES 추가 작성
+```
 
 ### upload_to argument
 
@@ -429,11 +436,13 @@ class Article(models.Model):
 
        ```python
        # articles/models.py
-
+       from django.db import models
+       
+       
        class Article(models.Model):
-           image = models.ImageField(blank=True, upload_to='images/ ' )
+           image = models.ImageField(blank=True, upload_to='images/ ')
        ```
-
+  
        ```bash
        python manage.py makemigrations
        python manage.py migrate
@@ -442,42 +451,47 @@ class Article(models.Model):
      - MEDIA_ROOT 이후 경로가 추가 되는 것
 
      - 단순 문자열 뿐만 아니라 파이썬 time 모듈의 strftime() 형식도 포함될 수 있으며, 이는 파일 업로드 날짜/시간으로 대체 됨
-
+  
        ```python
        # articles/models.py
-
+       from django.db import models
+       
+       
        class Article(models.Model):
-           image = models.ImageField(blank=True, upload_to='%Y/%m/%d/ ' )
+           image = models.ImageField(blank=True, upload_to='%Y/%m/%d/ ')
        ```
-
+       
        ```bash
        python manage.py makemigrations
        python manage.py migrate
        ```
 
   2. 함수 호출 방법
-
+  
      - upload_to는 독특하게 함수처럼 호출이 가능하며 해당 함수가 호출되면서 반드시 2개의 인자를 받음
-
+  
        ```python
        # articles/models.py
-
+       from django.db import models
+       
+       
        def articles_image_path(instance, filename):
            return f'images/{instance.user.username}/{filename}'
-
+       
+       
        class Article(models.Model):
            image = models.ImageField(blank=True, upload_to=articles_image_path)
        ```
-
+     
      1. instance
 
         - FileField가 정의된 모델의 인스턴스
         - 대부분 이 객체는 아직 데이터베이스에 저장되기 전이므로 아직 PK 값이 없을 수 있으니 주의
-
+     
      2. filename
-
+     
         - 기존 파일 이름
-
+     
         ```bash
         python manage.py makemigrations
         python manage.py migrate
@@ -499,9 +513,11 @@ class Article(models.Model):
 
   ```python
   # settings.py
-
+  
   INSTALLED_APPS = [
+    
       'imagekit',
+    
   ]
   ```
 
@@ -515,64 +531,64 @@ class Article(models.Model):
 
      ```python
      # articles/models.py
-
-     from imagekit.processors import Thumbnail
+     from django.db import models
      from imagekit.models import ProcessedImageField
-
+     from imagekit.processors import Thumbnail
+     
+     
      class Article(models.Model):
          image = ProcessedImageField(
              blank=True,
              upload_to='thumbnails/',
-             processors=[Thumbnail(200,300)],
+             processors=[Thumbnail(200, 300)],
              format='JPEG',
              options={'quality': 80},
          )
      ```
-
+  
      ```bash
      python manage.py makemigrations
      python manage.py migrate
      ```
-
+  
   2. 원본 이미지 저장 O
-
+  
      ```python
      # articles/models.py
-
-     from imagekit.processors import Thumbnail
-     from imagekit.models import ProcessedImageField, ImageSpecField
      from django.db import models
-     from django.config import settings
-
+     from imagekit.models import ImageSpecField
+     from imagekit.processors import Thumbnail
+     
+     
      class Article(models.Model):
          image = models.ImageField(blank=True)
          image_thumbnail = ImageSpecField(
              source='image',
-             processors=[Thumbnail(200,300)],
+             processors=[Thumbnail(200, 300)],
              format='JPEG',
              options={'quality': 80},
          )
      ```
-
+     
      ```bash
      python manage.py makemigrations
      python manage.py migrate
      ```
-
+     
      - 기본적으로 원본 이미지가 업로드 되고 출력됨
-
+     
      ```django
      <!-- articles/detail.html -->
-
+     
      {% extends 'base.html' %}
-
      {% block content %}
-       {% if article. image %}
+       {% if article.image %}
          <img src="{{ article.image.url }}" alt=="{{ article.image }}">
-         <img src="{{ article.image_thumbnail.url }}" alt=="{{ article.image_thumbnail }}">
+         <img src="{{
+     article.image_thumbnail.url }}" alt=="{{ article.image_thumbnail }}">
        {% endif %}
      ```
-
+     
      - 썸네일이 사용되었을 때만 resizing한 이미지를 생성
 
 ## 4. QuerySet API Advanced
@@ -617,7 +633,7 @@ User.objects.all()
 
 user 레코드 생성
 
-```sql
+```bash
 User.objects.create(
     first_name='길동',
     last_name='홍',
@@ -741,7 +757,7 @@ User.objects.filter(age__gte=30).values('first_name')
 
   - 필드명 뒤에 “double_underscore” 이후 작성함
 
-    ```sql
+    ```bash
     field__lookuptype=value
     ```
 
@@ -811,7 +827,7 @@ User.objects.filter(Q(age=30) | Q(last_name='김')
 
 - 만약 더 복잡한 쿼리를 실행해야 하는 경우가 있다면 Q 객체가 필요함
 
-  ```python
+  ```sql
   from django.db.models import Q
 
   Q(question__startswith='What')
@@ -845,7 +861,7 @@ User.objects.filter(Q(age=30) | Q(last_name='김')
 
 나이가 30살 이상인 사람들의 평균 나이 조회하기
 
-```python
+```sql
 from django.db.models import Avg
 
 User.objects.filter(age__gte=30).aggregate(Avg('age'))
@@ -855,7 +871,7 @@ User.objects.filter(age__gte=30).aggregate(avg_value=Avg('age'))
 
 가장 높은 계좌 잔액 조회하기
 
-```python
+```sql
 from django.db.models import Max
 
 User.objects.aggregate(Max('balance'))
@@ -863,7 +879,7 @@ User.objects.aggregate(Max('balance'))
 
 모든 계좌 잔액 총액 조회하기
 
-```python
+```sql
 from django.db.models import Sum
 
 User.objects.aggregate(Sum('balance'))
@@ -877,7 +893,7 @@ User.objects.aggregate(Sum('balance'))
 
 각 성씨가 몇 명씩 있는지 조회하기
 
-```python
+```sql
 from django.db.models import Count
 
 User.objects.values('last_name').annotate(Count('last_name'))
@@ -885,7 +901,7 @@ User.objects.values('last_name').annotate(Count('last_name'))
 
 각 지역별로 몇 명씩 살고 있는지 조회하기
 
-```python
+```sql
 from django.db.models import Count
 
 User.objects.values('country').annotate(Count('country'))
