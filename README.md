@@ -12,7 +12,7 @@
 
 2. [2022-08-03 수] [Flexbox Bootstrap](./Full_Stack/0803_Flexbox_Bootstrap.md) : Float, Spacing, Grid
 
-   
+   ---
 
 3. [2022-08-30 화] [Django](./Full_Stack/0830_Django_Template_VariableRouting.md) : QuickStart, Template, form, URL
 
@@ -34,7 +34,7 @@
 
 12. [2022-10-17 월] [Django REST API](./Full_Stack/1017_Django_REST_API.md) : JSON, DRF, ModelSerializer, 역참조, shortcuts
 
-    
+    ---
 
 13. [2022-10-19 수] [JavaScript basic](./Full_Stack/1019_JavaScript_basic.md) : 문법, Function, ArrowFunction, Array, Object, Object 관련 ES6 문법
 
@@ -42,7 +42,7 @@
 
 15. [2022-10-26 수] [Asynchronous JS](./Full_Stack/1026_Asynchronous_JS.md) : 비동기, Axios, Callback, Promise, AJAX
 
-    
+    ---
 
 16. [2022-10-31 월] [Vue.js](./Full_Stack/1031_Vue.js.md) : instance, Syntax, Directives, StyleGuide
 
