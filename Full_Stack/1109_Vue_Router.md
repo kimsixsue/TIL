@@ -455,7 +455,7 @@ const routes = [
 export default {
   name: "AboutView",
   methods: {
-    toHome() {
+    toHome () {
       this.$router.push({ name: "home" })
     },
   },
@@ -507,7 +507,7 @@ export default {
 <script>
 export default {
   name: "HelloView",
-  data() {
+  data () {
     return {
       userName: this.$route.params.userName,
     }
@@ -547,19 +547,23 @@ export default {
 <!-- AboutView.vue -->
 <template>
   <div class="about">
-    <input type="text" v-model="inputData" @keyup.enter="goToHello" />
+    <input
+      type="text"
+      v-model="inputData"
+      @keyup.enter="goToHello"
+    />
   </div>
 </template>
 <script>
 export default {
   name: "AboutView",
-  data() {
+  data () {
     return {
       inputData: null,
     }
   },
   methods: {
-    goToHello() {
+    goToHello () {
       this.$router.push({
         name: "hello",
         params: { userName: this.inputData },
@@ -841,7 +845,7 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView,
-    beforeEnter(to, from, next) {
+    beforeEnter (to, from, next) {
       if (isLoggedIn === true) {
         console.log('이미 로그인함')
         next({ name: 'home' })
@@ -890,12 +894,12 @@ const routes = [
 <script>
 export default {
   name: "HelloView",
-  data() {
+  data () {
     return {
       userName: this.$route.params.userName,
     }
   },
-  beforeRouteUpdate(to, from, next) {
+  beforeRouteUpdate (to, from, next) {
     this.userName = to.params.userName
     next()
   },
@@ -1015,19 +1019,23 @@ const routes = [
 ```vue
 <!-- views/DogView.vue -->
 <template>
-  <div><img v-if="imgSrc" :src="imgSrc" alt="" /><br /></div>
+  <div><img
+      v-if="imgSrc"
+      :src="imgSrc"
+      alt=""
+    /><br /></div>
 </template>
 <script>
 import axios from "axios"
 export default {
   name: "DogView",
-  data() {
+  data () {
     return {
       imgSrc: null,
     }
   },
   methods: {
-    getDogImage() {
+    getDogImage () {
       const breed = this.$route.params.breed
       const dogImageUrl = `https://dog.ceo/api/breed/${breed}/images/random`
       axios({
@@ -1041,7 +1049,7 @@ export default {
       console.log(error)
     },
   },
-  created() {
+  created () {
     this.getDogImage()
   },
 }
@@ -1056,12 +1064,16 @@ export default {
 <template>
   <div>
     <p v-if="!imgSrc">{{ message }}</p>
-    <img v-if="imgSrc" :src="imgSrc" alt="" /><br />
+    <img
+      v-if="imgSrc"
+      :src="imgSrc"
+      alt=""
+    /><br />
   </div>
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       imgSrc: null,
       message: "로딩중...",
@@ -1223,7 +1235,7 @@ const routes = [
 export default {
   name: "IndexView",
   computed: {
-    articles() {
+    articles () {
       return this.$store.state.articles
     },
   },
@@ -1267,7 +1279,7 @@ export default {
     ArticleItem,
   },
   computed: {
-    articles() {
+    articles () {
       return this.$store.state.articles
     },
   },
@@ -1334,10 +1346,18 @@ const routes = [
     <h1>게시글 작성</h1>
     <form>
       <label for="title">제목 : </label>
-      <input type="text" id="title" v-model="title" /><br />
+      <input
+        type="text"
+        id="title"
+        v-model="title"
+      /><br />
       <label for="content">내용 : </label>
-      <textarea id="content" cols="30" rows="10" v-model="content"> </textarea
-      ><br />
+      <textarea
+        id="content"
+        cols="30"
+        rows="10"
+        v-model="content"
+      > </textarea><br />
       <input type="submit" />
     </form>
   </div>
@@ -1345,7 +1365,7 @@ const routes = [
 <script>
 export default {
   name: "CreateView",
-  data() {
+  data () {
     return {
       title: null,
       content: null,
@@ -1374,7 +1394,7 @@ export default {
 <script>
 export default {
   methods: {
-    createArticle() {
+    createArticle () {
       const title = this.title
       const content = this.content
       const payload = {
@@ -1397,15 +1417,18 @@ export default {
     <h1>게시글 작성</h1>
     <form>
       <label for="title">제목 : </label>
-      <input type="text" id="title" v-model.trim="title" /><br />
+      <input
+        type="text"
+        id="title"
+        v-model.trim="title"
+      /><br />
       <label for="content">내용 : </label>
       <textarea
         id="content"
         cols="30"
         rows="10"
         v-model.trim="content"
-      ></textarea
-      ><br />
+      ></textarea><br />
       <input type="submit" />
     </form>
   </div>
@@ -1418,7 +1441,7 @@ export default {
 <script>
 export default {
   methods: {
-    createArticle() {
+    createArticle () {
       const title = this.title
       const content = this.content
       if (!title) {
@@ -1486,12 +1509,12 @@ mutations: {
 ```js
 <!-- views/CreateView.vue -->
 <script>
-  methods: {
-    createArticle() {
-      this.$store.dispatch("createArticle", payload)
-      this.$router.push({ name: "index" })
-    },
+methods: {
+  createArticle() {
+    this.$store.dispatch("createArticle", payload)
+    this.$router.push({ name: "index" })
   },
+},
 ```
 
 - IndexView 컴포넌트에 게시글 작성 페이지로 이동하는 링크 추가
@@ -1549,13 +1572,13 @@ const routes = [
 <!-- views/DetailView.vue -->
 <script>
 export default {
-  data() {
+  data () {
     return {
       article: null,
     }
   },
   computed: {
-    articles() {
+    articles () {
       return this.$store.state.articles
     },
   },
@@ -1655,7 +1678,7 @@ export default {
 </template>
 <script>
 export default {
-  created() {
+  created () {
     this.getArticleById(this.$route.params.id)
   },
 }
@@ -1677,7 +1700,7 @@ const userInfo = {
   address: {
     city: "Seoul",
   },
-  getInfo() {
+  getInfo () {
     console.log(this.name)
   },
 }
@@ -1715,7 +1738,7 @@ userInfo.getInfo?.()
 <script>
 export default {
   computed: {
-    articleCreatedAt() {
+    articleCreatedAt () {
       const article = this.article
       const createdAt = new Date(article?.createdAt).toLocaleString()
       return createdAt
@@ -1750,7 +1773,7 @@ export default {
 <script>
 export default {
   methods: {
-    goDetail(id) {
+    goDetail (id) {
       this.$router.push({ name: "detail", params: { id } })
     },
   },
@@ -1775,7 +1798,7 @@ export default {
 <script>
 export default {
   methods: {
-    deleteArticle() {
+    deleteArticle () {
       this.$store.commit("DELETE_ARTICLE", this.article.id)
     },
   },
@@ -1803,7 +1826,7 @@ mutations: {
 <script>
 export default {
   methods: {
-    deleteArticle() {
+    deleteArticle () {
       this.$store.commit("DELETE_ARTICLE", this.article.id)
       this.$router.push({ name: "index" })
     },
@@ -1857,7 +1880,7 @@ const routes = [
 <script>
 export default {
   methods: {
-    getArticleById(id) {
+    getArticleById (id) {
       const id = this.$route.params.id
       for (const article of this.articles) {
         if (article.id === Number(id)) {
@@ -1910,24 +1933,24 @@ const routes = [
       <p>{{ menu }}</p>
       <button @click="goLottoPage">Lotto 뽑으러가기</button>
     </div>
-    <button @click="sendData">Emit<!-- emit 발생용 --></button>
+    <button @click="sendData">Emit</button><!-- emit 발생용 -->
   </div>
 </template>
 <script>
 import _ from "lodash"
 export default {
   name: "TheLunch",
-  data() {
+  data () {
     return {
       menus: ["국밥", "비빔냉면"],
       menu: null,
     }
   },
   methods: {
-    pickLunchMenu() {
+    pickLunchMenu () {
       this.menu = _.sample(this.menus)
     },
-    goLottoPage() {
+    goLottoPage () {
       this.$router.push({
         name: "lotto",
         params: {
@@ -1935,7 +1958,7 @@ export default {
         },
       })
     },
-    sendData() {
+    sendData () {
       this.$emit("lunch-emit", this.menus)
     },
   },
@@ -1960,23 +1983,23 @@ export default {
 import _ from "lodash"
 export default {
   name: "TheLotto",
-  data() {
+  data () {
     return {
       lottoNums: null,
       lunchMenu: this.$route.params.lunchMenu,
     }
   },
   methods: {
-    pickLottoNums() {
+    pickLottoNums () {
       const numbers = _.range(1, 46)
       this.lottoNums = _.sampleSize(numbers, 6)
     },
-    goLunchPage() {
+    goLunchPage () {
       this.$router.push({
         name: "lunch",
       })
     },
-    goApp() {
+    goApp () {
       this.$emit("aaa", 10)
     },
   },
@@ -2003,10 +2026,10 @@ export default {
 export default {
   name: "App",
   methods: {
-    getLunchData(data) {
+    getLunchData (data) {
       console.log(data)
     },
-    getConsole() {
+    getConsole () {
       console.log("!!!!!!!!!!!!!!!!!!!")
     },
   },
@@ -2046,8 +2069,14 @@ export default router
 ```vue
 <!-- components/TheSearchBar.vue -->
 <template>
-  <div class="search-bar" :style="{ margin: videoLength ? '0' : '40vh 0' }">
-    <input @keyup.enter="onInputKeyword" type="text" />
+  <div
+    class="search-bar"
+    :style="{ margin: videoLength ? '0' : '40vh 0' }"
+  >
+    <input
+      @keyup.enter="onInputKeyword"
+      type="text"
+    />
   </div>
 </template>
 <script>
@@ -2058,8 +2087,7 @@ export default {
       type: Number,
     },
   },
-  methods: {
-    // 검색어 Emit Event => App.vue
+  methods: {// 검색어 Emit Event => App.vue
     onInputKeyword: function (event) {
       this.$emit("input-change", event.target.value)
     },
@@ -2068,12 +2096,12 @@ export default {
 </script>
 <style>
 .search-bar > input {
-  width: 100% /* 가로 너비 배치를 화면의 끝과 끝으로 배치 */
-  padding: 0.5rem /* input 안쪽의 margin을 여유롭게 */
-  font-size: 2rem
+  width: 100%; /* 가로 너비 배치를 화면의 끝과 끝으로 배치 */
+  padding: 0.5rem; /* input 안쪽의 margin을 여유롭게 */
+  font-size: 2rem;
 }
 .search-bar {
-  transition-duration: 0.5s
+  transition-duration: 0.5s;
 }
 </style>
 ```
@@ -2081,10 +2109,16 @@ export default {
 ```vue
 <!-- components/VideoDetail.vue -->
 <template>
-  <div v-if="video" class="video-detail">
+  <div
+    v-if="video"
+    class="video-detail"
+  >
     <div class="video-container">
       <!--중첩 브라우징 맥락-->
-      <iframe :src="videoURI" frameborder="0"></iframe>
+      <iframe
+        :src="videoURI"
+        frameborder="0"
+      ></iframe>
     </div>
     <div class="detail">
       <h2>{{ video.snippet.title | stringUnescape }}</h2>
@@ -2156,8 +2190,14 @@ export default {
 ```vue
 <!-- components / VideoListItem.vue -->
 <template>
-  <li class="list-group-item" @click="selectVideo">
-    <img :src="youtubeImageSrc" alt="youtube-thumbnail-image" />
+  <li
+    class="list-group-item"
+    @click="selectVideo"
+  >
+    <img
+      :src="youtubeImageSrc"
+      alt="youtube-thumbnail-image"
+    />
     {{ video.snippet.title | stringUnescape }}
   </li>
 </template>
