@@ -1727,7 +1727,7 @@ const myCity = userInfo.address && userInfo.address.city
 // Optional chaining 사용
 const myCity = userInfo.address?.city
 
-// Optional chaining 사용 (메서드 호출 시)
+// Optional chaining 사용 (메소드 호출 시)
 userInfo.getInfo?.()
 </script>
 ```
