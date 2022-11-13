@@ -317,11 +317,10 @@
     <h1>This is my component</h1>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'MyComponent',
-}
+  name: "MyComponent",
+};
 </script>
 ```
 
@@ -343,13 +342,12 @@ export default {
     <HelloWorld msg="Welcome to Your Vue/js App" />
   </div>
 </template>
-
 <script>
 // 1. 불러오기
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./components/HelloWorld.vue"
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     // 2. 등록하기
     HelloWorld,
@@ -369,11 +367,10 @@ export default {
 ```vue
 <!-- App.vue -->
 <script>
-import HelloWorld from './components/HelloWorld'
-import MyComponent from '@/components/MyComponent' // 불러오기
-
+import HelloWorld from "./components/HelloWorld"
+import MyComponent from "@/components/MyComponent" // 불러오기
 export default {
-  name: 'App',
+  name: "App",
   components: {
     HelloWorld,
   },
@@ -394,11 +391,10 @@ export default {
 ```vue
 <!-- App.vue -->
 <script>
-import HelloWorld from './components/HelloWorld'
-import MyComponent from '@/components/MyComponent'
-
+import HelloWorld from "./components/HelloWorld"
+import MyComponent from "@/components/MyComponent"
 export default {
-  name: 'App',
+  name: "App",
   components: {
     HelloWorld,
     MyComponent, // 등록하기
@@ -435,7 +431,6 @@ export default {
     <h1>This is my component</h1>
   </div>
 </template>
-
 <style>
 .border {
   border: solid;
@@ -452,10 +447,9 @@ export default {
     <h3>This is Item component</h3>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'MyComponentItem',
+  name: "MyComponentItem",
 }
 </script>
 ```
@@ -470,12 +464,10 @@ export default {
     <MyComponentItem />
   </div>
 </template>
-
 <script>
-import MyComponentItem from '@/components/MyComponentItem'
-
+import MyComponentItem from "@/components/MyComponentItem"
 export default {
-  name: 'MyComponent',
+  name: "MyComponent",
   components: {
     MyComponentItem,
   },
@@ -605,7 +597,7 @@ export default {
 <!-- HelloWorld.vue -->
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
     msg: String,
   },
@@ -645,10 +637,9 @@ export default {
     <p>{{ staticProps }}</p>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'MyComponentItem',
+  name: "MyComponentItem",
   props: {
     staticProps: String,
   },
@@ -694,7 +685,6 @@ export default {
     />
   </div>
 </template>
-
 <script>
 export default {
   data: function () {
@@ -715,10 +705,9 @@ export default {
     <p>{{ dynamicProps }}</p>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'MyComponentItem',
+  name: "MyComponentItem",
   props: {
     staticProps: String,
     dynamicProps: String,
@@ -737,7 +726,7 @@ export default {
 data: function () {
   return {
     // component's data in here
-  }
+  };
 },
 ```
 
@@ -775,10 +764,9 @@ data: function () {
     <p>{{ myProps }}</p>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'MyComponentItem',
+  name: "MyComponentItem",
   props: {
     staticProps: String,
     myProps: String,
@@ -852,12 +840,11 @@ export default {
 <template>
   <div><button @click="childToParent">클릭</button><br /></div>
 </template>
-
 <script>
 export default {
   methods: {
     ChildToParent: function () {
-      this.$emit('child-to-parent')
+      this.$emit("child-to-parent")
     },
   },
 }
@@ -875,12 +862,11 @@ export default {
     <MyComponentItem @child-to-parent="parentGetEvent" />
   </div>
 </template>
-
 <script>
 export default {
   methods: {
     parentGetEvent: function () {
-      console.log('자식 컴포넌트에서 발생한 이벤트')
+      console.log("자식 컴포넌트에서 발생한 이벤트")
     },
   },
 }
@@ -908,12 +894,11 @@ export default {
 <template>
   <div><button @click="childToParent">클릭</button><br /></div>
 </template>
-
 <script>
 export default {
   methods: {
     ChildToParent: function () {
-      this.$emit('child-to-parent', 'child data')
+      this.$emit("child-to-parent", "child data")
     },
   },
 }
@@ -930,12 +915,11 @@ export default {
     <MyComponentItem @child-to-parent="parentGetEvent" />
   </div>
 </template>
-
 <script>
 export default {
   methods: {
     parentGetEvent: function (inputData) {
-      console.log('자식 컴포넌트에서 발생한 이벤트')
+      console.log("자식 컴포넌트에서 발생한 이벤트")
       console.log(`child component로부터 ${inputData}를 받음`)
     },
   },
@@ -974,19 +958,17 @@ export default {
     <button v-on:click="onClick">추가</button>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'TodoListInput',
+  name: "TodoListInput",
   data: function () {
     return {
-      inputData: '',
+      inputData: "",
     }
   },
   methods: {
     onClick: function () {
-      // (이벤트 발생 시 data의 text 값도 함께 전달한다.)
-      this.$emit('add-todo', this.inputData)
+      this.$emit("add-todo", this.inputData) // (이벤트 발생 시 data의 text 값도 함께 전달한다.)
     },
   },
 }
@@ -998,16 +980,14 @@ export default {
 <template>
   <div>
     <TodoListInput v-on:add-todo="onAddTodo" />
-    <!-- TodoList 컴포넌트에서 add-todo 이벤트를 청취하면,  -->
-    <!-- onAddTodo 메소드를 실행한다. -->
+    <!--TodoList 컴포넌트에서 add-todo 이벤트를 청취하면,
+        onAddTodo 메소드를 실행한다. -->
   </div>
 </template>
-
 <script>
-import TodoListInput from '@/components/TodoListInput'
-
+import TodoListInput from "@/components/TodoListInput"
 export default {
-  name: 'TodoList',
+  name: "TodoList",
   components: {
     TodoListInput,
   },
@@ -1015,10 +995,8 @@ export default {
     // onAddTodo 메소드에서는
     onAddTodo: function (inputData) {
       // TodoListInput 컴포넌트에서 전달받은 값을
-      console.log(
-        // console.log 함수를 통해 출력한다.
-        `TodoListInput 컴포넌트에서 전달받은 값은 ${inputData}`
-      )
+      console.log(`TodoListInput 컴포넌트에서 전달받은 값은 ${inputData}`)
+      // console.log 함수를 통해 출력한다.
     },
   },
 }
@@ -1032,12 +1010,10 @@ export default {
     <TodoList />
   </div>
 </template>
-
 <script>
-import TodoList from '@/components/TodoList'
-
+import TodoList from "@/components/TodoList"
 export default {
-  name: 'App',
+  name: "App",
   components: {
     TodoList,
   },
@@ -1057,7 +1033,6 @@ export default {
     <input type="text" v-model="childInputData" @keyup.enter="childInput" />
   </div>
 </template>
-
 <script>
 export default {
   data: function () {
@@ -1067,7 +1042,7 @@ export default {
   },
   methods: {
     childInput: function () {
-      this.$emit('child-input', this.childInputData)
+      this.$emit("child-input", this.childInputData)
       this.childInputData = null
     },
   },
@@ -1077,18 +1052,18 @@ export default {
 
 ```vue
 <!-- MyComponent.vue -->
-
 <template>
   <div class="border">
     <h1>This is my component</h1>
     <MyComponentItem @child-input="getDynamicData" />
   </div>
 </template>
-
 <script>
-import MyComponentItem from '@/components/MyComponentItem'
-
+import MyComponentItem from "@/components/MyComponentItem"
 export default {
+  components: {
+    MyComponentItem,
+  },
   methods: {
     getDynamicData: function (inputData) {
       console.log(`child component로부터 ${inputData}를 입력받음`)
@@ -1166,21 +1141,18 @@ export default {
 <template>
   <div>
     <h1>App Child</h1>
-    <!-- 
-      1. 입력한 TEXT를 childData와 v-model로 양방향 바인딩하여 사용자가 입력한 값을 저장한다.
-      2. 입력할 때마다 emit으로 데이터를 전달하기 위해 input 이벤트를 이용하여 sendData 메소드를 실행한다.
-        - 엔터 칠 때마다 데이터를 전달하고 싶으면 @keyup.enter 이벤트를 사용하면 됨
-     -->
+    <!--1. 입력한 TEXT를 childData와 v-model로 양방향 바인딩하여 사용자가 입력한 값을 저장한다.
+        2. 입력할 때마다 emit으로 데이터를 전달하기 위해 input 이벤트를 이용하여 sendData 메소드를 실행한다.
+           - 엔터 칠 때마다 데이터를 전달하고 싶으면 @keyup.enter 이벤트를 사용하면 됨 -->
     <input type="text" v-model="childData" v-on:input="sendData" />
     <p>App Data : {{ appData }}</p>
     <p>Parent Data : {{ parentData }}</p>
     <p>Child Data : {{ childData }}</p>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'AppChild',
+  name: "AppChild",
   // Parent가 전달해주는 데이터를 받기 위해 props에 선언한다.
   // 이름은 부모 컴포넌트가 전달해주는 케밥 케이스 이름을 카멜 케이스 형태로 작성해준다. (html -> js)
   // 그리고 어떤 타입의 값인지 명시해준다.
@@ -1190,15 +1162,14 @@ export default {
   },
   data: function () {
     return {
-      // 입력 데이터를 저장하기 위해 선언
-      childData: null,
+      childData: null, // 입력 데이터를 저장하기 위해 선언
     }
   },
   methods: {
     // 입력 데이터를 부모 컴포넌트에 전달하기 위해 emit 이벤트 사용
     // 첫 번째 인자는 '발생하는 이벤트 이름', 두 번째 인자는 '전달하고 싶은 데이터'
     sendData: function () {
-      this.$emit('child-data', this.childData)
+      this.$emit("child-data", this.childData)
       // emit 이벤트를 발생시켰다면 이제 부모 컴포넌트에서 이벤트 처리를 해줘야 함
     },
   },
@@ -1211,30 +1182,26 @@ export default {
 <template>
   <div>
     <h1>App Parent</h1>
-    <!-- 
-      1. 입력한 TEXT를 childData와 v-model로 양방향 바인딩하여 사용자가 입력한 값을 저장한다.
-      2. 입력할 때마다 emit으로 데이터를 전달하기 위해 input 이벤트를 이용하여 sendData 메소드를 실행한다.
-        - 엔터 칠 때마다 데이터를 전달하고 싶으면 @keyup.enter 이벤트를 사용하면 됨
-     -->
+    <!--1. 입력한 TEXT를 childData와 v-model로 양방향 바인딩하여 사용자가 입력한 값을 저장한다.
+        2. 입력할 때마다 emit으로 데이터를 전달하기 위해 input 이벤트를 이용하여 sendData 메소드를 실행한다.
+           - 엔터 칠 때마다 데이터를 전달하고 싶으면 @keyup.enter 이벤트를 사용하면 됨-->
     <input type="text" v-model="parentData" v-on:input="sendData" />
     <p>AppData : {{ appData }}</p>
     <p>ChildData : {{ childData }}</p>
-    <!-- 
-      App.vue 에서 전달한 데이터와
-      parent 컴포넌트에서 입력한 데이터를 자식 컴포넌트에 전달(prop)하고
-      자식 컴포넌트에서 발생하는 이벤트를 처리한다.
-     -->
+    <!--App.vue 에서 전달한 데이터와
+        parent 컴포넌트에서 입력한 데이터를 자식 컴포넌트에 전달(prop)하고
+        자식 컴포넌트에서 발생하는 이벤트를 처리한다.-->
     <AppChild
       v-bind:app-data="appData"
       v-bind:parent-data="parentData"
-      v-on:child-data="getChild" />
+      v-on:child-data="getChild"
+    />
   </div>
 </template>
-
 <script>
-import AppChild from '@/components/AppChild'
+import AppChild from "@/components/AppChild"
 export default {
-  name: 'AppParent',
+  name: "AppParent",
   data: function () {
     return {
       parentData: null, // 부모(App.vue)에서 전달되는 데이터 저장
@@ -1253,13 +1220,13 @@ export default {
   methods: {
     // 현재 컴포넌트(AppParent.vue)에서 작성한 데이터를 App.vue로 전달해주기 위한 메소드
     sendData: function () {
-      this.$emit('parent-data', this.parentData)
+      this.$emit("parent-data", this.parentData)
     },
     // 자식 컴포넌트(AppChild.vue)에서 전달되는 데이터를 App.vue로 전달해주기 위한 메소드
     // 첫 번째 인자로 자식에서 전달되는 값이니 매개변수를 선언하여 해당 값을 받는다.
     getChild(data) {
       this.childData = data
-      this.$emit('send-child', data)
+      this.$emit("send-child", data)
     },
   },
 }
@@ -1271,29 +1238,24 @@ export default {
 <template>
   <div id="app">
     <h1>App</h1>
-    <!-- 
-      입력한 TEXT를 childData와 v-model로 양방향 바인딩하여 사용자가 입력한 값을 저장한다.
-    -->
+    <!--입력한 TEXT를 childData와 v-model로 양방향 바인딩하여 사용자가 입력한 값을 저장한다.-->
     <input type="text" v-model="appData" />
     <p>Parent Data : {{ parentData }}</p>
     <p>Child Data : {{ childData }}</p>
-    <!-- 
-      App.vue에서 입력한 데이터를 자식 컴포넌트(AppParent.vue)에 전달(prop)하고
-      자식 컴포넌트에서 발생하는 이벤트를 처리한다.
-      현재 AppParent.vue에서는 2개의 이벤트가 발생한다. (Parent, Child data 전달)
-     -->
+    <!--App.vue에서 입력한 데이터를 자식 컴포넌트(AppParent.vue)에 전달(prop)하고
+        자식 컴포넌트에서 발생하는 이벤트를 처리한다.
+        현재 AppParent.vue에서는 2개의 이벤트가 발생한다. (Parent, Child data 전달)-->
     <AppParent
       v-bind:app-data="appData"
       v-on:parent-data="getParent"
-      v-on:send-child="getChild" />
+      v-on:send-child="getChild"
+    />
   </div>
 </template>
-
 <script>
-import AppParent from '@/components/AppParent'
-
+import AppParent from "@/components/AppParent"
 export default {
-  name: 'App',
+  name: "App",
   data: function () {
     return {
       appData: null,
@@ -1305,15 +1267,13 @@ export default {
     AppParent,
   },
   methods: {
-    // AppParent.vue 에서 전달되는 데이터 저장
     getParent: function (data) {
-      this.parentData = data
+      this.parentData = data // AppParent.vue 에서 전달되는 데이터 저장
     },
-    // AppChild.vue 에서 전달되는 데이터 저장
-    // (AppParent.vue가 다시 App.vue로 전달하는 형태)
-    // (AppChild => AppParent.vue => App.vue)
     getChild(data) {
-      this.childData = data
+      this.childData = data // AppChild.vue 에서 전달되는 데이터 저장
+      // (AppParent.vue가 다시 App.vue로 전달하는 형태)
+      // (AppChild => AppParent.vue => App.vue)
     },
   },
 }
@@ -1330,13 +1290,11 @@ export default {
     <TodoForm @create-todo="createTodo" />
   </div>
 </template>
-
 <script>
-import TodoForm from '@/components/TodoForm'
-import TodoList from '@/components/TodoList'
-
+import TodoForm from "@/components/TodoForm"
+import TodoList from "@/components/TodoList"
 export default {
-  name: 'App',
+  name: "App",
   components: {
     TodoForm,
     TodoList,
@@ -1376,10 +1334,8 @@ export default {
     </ul>
   </div>
 </template>
-
 <script>
 import TodoListItem from "@/components/TodoListItem"
-
 export default {
   name: "TodoList",
   components: {
@@ -1405,16 +1361,15 @@ export default {
     <button @click="deleteTodo">X</button>
   </li>
 </template>
-
 <script>
 export default {
-  name: 'TodoListItem',
+  name: "TodoListItem",
   props: {
     todo: Object,
   },
   methods: {
     deleteTodo: function () {
-      this.$emit('delete-todo', this.todo)
+      this.$emit("delete-todo", this.todo)
     },
   },
 }
@@ -1428,10 +1383,9 @@ export default {
     <input type="text" v-model="todoTitle" @keyup.enter="createTodo" />
   </div>
 </template>
-
 <script>
 export default {
-  name: 'TodoForm',
+  name: "TodoForm",
   data: function () {
     return {
       todoTitle: null,
@@ -1439,7 +1393,7 @@ export default {
   },
   methods: {
     createTodo: function () {
-      this.$emit('create-todo', this.todoTitle)
+      this.$emit("create-todo", this.todoTitle)
       this.todoTitle = null
     },
   },
