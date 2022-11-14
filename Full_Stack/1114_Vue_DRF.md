@@ -270,7 +270,7 @@ $ pip freeze >requirements.txt
 #### Article Read
 
 - 응답 받은 데이터 구조 확인
-  - **`data Array`**에 각 게시글 객체
+  - **data Array**에 각 게시글 객체
   - 각 게시글 객체는 다음으로 구성
     1. id
     2. title
@@ -768,7 +768,7 @@ def some_view_func(request):  # Token 발급 방법
   - **주의)** Token 문자열과 발급받은 실제 token 사이를 `' '(공백)`으로 구분
 - Authorization HTTP headers 작성 방법
 
-```css
+```
 Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b
 ```
 
@@ -875,6 +875,7 @@ urlpatterns = [
   - 상세 옵션은 공식 문서를 참고하도록 안내
 
     **Documentation**
+    
     View the full documentation here: https://dj-rest-auth.readthedocs.io/en/latest/index.html
 
 - 공식 문서로 이동
