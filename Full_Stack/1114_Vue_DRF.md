@@ -22,7 +22,7 @@
    - [LogIn Request](#login-request)
    - [IsAuthenticated in Vue](#isauthenticated-in-vue)
    - [Request with Token](#request-with-Token)
-5. [DRF-spectacular](#5-DRF-spectacular)
+5. [drf-spectacular](#5-drf-spectacular)
    - [finish](#finish)
 
 # Vue_DRF
@@ -118,10 +118,10 @@ export default new Vuex.Store({
         method: 'get', // 요청 보낼 경로 확인 필수
         url: `${API_URL}/api/v1/articles/`,
       }) // 성공 시 .then
-        .then(res =>
+        .then((res) =>
           console.log(res, context)
         ) // 실패 시 .catch
-        .catch(err => console.log(err))
+        .catch((err) => console.log(err))
     },
   },
 })
@@ -297,11 +297,11 @@ export default new Vuex.Store({
         method: 'get', // 요청 보낼 경로 확인 필수
         url: `${API_URL}/api/v1/articles/`,
       }) // 성공 시 .then
-        .then(res =>
+        .then((res) =>
           // console.log(res, context)
           context.commit('GET_ARTICLES', res.data)
         ) // 실패 시 .catch
-        .catch(err => console.log(err))
+        .catch((err) => console.log(err))
     },
   },
 })
@@ -351,7 +351,7 @@ export default {
         .then((res) => {
           console.log(res)
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
     } // actions를 사용하지 않나요?
   } // state를 변화 시키는 것이 아닌 DB에 게시글 생성 후,
 } // ArticleView로 이동할 것이므로 methods에서 직접 처리
@@ -449,7 +449,7 @@ export default {
         .then(() => {
           this.$router.push({name: 'ArticleView'})
       }) // 게시글 생성 완료 후, ArticleView로 이동
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
     } // actions를 사용하지 않나요?
   } // state를 변화 시키는 것이 아닌 DB에 게시글 생성 후,
 } // ArticleView로 이동할 것이므로 methods에서 직접 처리
@@ -559,7 +559,7 @@ export default {
       .then((res) => {
         console.log(res)
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
     }
   }
 }
@@ -606,7 +606,7 @@ export default {
       }) // 넘겨받은 id로 상세 정보 AJAX 요청
       .then((res) => { this.article = res.data }}
       }) // 응답 받은 정보를 data에 저장
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
     }
   }
 }
@@ -1217,11 +1217,11 @@ export default new Vuex.Store({
         method: 'get', // 요청 보낼 경로 확인 필수
         url: `${API_URL}/api/v1/articles/`,
       }) // 성공 시 .then
-        .then(res =>
+        .then((res) =>
           // console.log(res, context)
           context.commit('GET_ARTICLES', res.data)
         ) // 실패 시 .catch
-        .catch(err => console.log(err))
+        .catch((err) => console.log(err))
     },
     signUp (context, payload) {
       const username = payload.username,
@@ -1238,7 +1238,7 @@ export default new Vuex.Store({
         .then((res) => { // state에 저장할 것
           context.commit('SIGN_UP', res.data.key)
         })
-        .catch(err => console.log(err))
+        .catch((err) => console.log(err))
     },
   },
 })
@@ -1288,11 +1288,11 @@ export default new Vuex.Store({
         method: 'get', // 요청 보낼 경로 확인 필수
         url: `${API_URL}/api/v1/articles/`,
       }) // 성공 시 .then
-        .then(res =>
+        .then((res) =>
           // console.log(res, context)
           context.commit('GET_ARTICLES', res.data)
         ) // 실패 시 .catch
-        .catch(err => console.log(err))
+        .catch((err) => console.log(err))
     },
     signUp (context, payload) {
       const username = payload.username,
@@ -1309,7 +1309,7 @@ export default new Vuex.Store({
         .then((res) => { // state에 저장할 것
           context.commit('SIGN_UP', res.data.key)
         })
-        .catch(err => console.log(err))
+        .catch((err) => console.log(err))
     },
   },
 })
@@ -1402,12 +1402,749 @@ const routes = [
   - mutations가 처리 해야 하는 업무가 동일
   - SIGN_UP mutations를 `SAVE_TOKEN mutations`로 대체 가능
 
-146p
+```vue
+<!-- views/LoginView.vue -->
+<template>
+  <di>
+    <h1>LogIn Page</h1> <!-- 회원가입 로직과 동일 -->
+    <form @submit.prevent="logIn">
+      <label for="username">username : </label>
+      <input type="text" id="username" v-model="username">
+      <!-- Server에서 정의한 field명 확인 -->
+      <label for="password"> password : </label>
+      <input type="password" id="password" v-model="password">
+      <!-- Server에서 정의한 field명 확인 -->
+      <input type="submit" value="logIn">
+    </form>
+  </div>
+</template>
+<script>
+export default {
+  ...
+  methods: {
+    logIn () {
+      const username = this.username
+      const password = this.password
+      // 사용자 입력 값을 하나의 객체 payload에 담아 전달
+      const payload = {
+        username, password
+      }
+      this.$store.dispatch('logIn', payload)
+    }
+  }
+}
+</script>
+```
+
+```js
+// store/index.js
+import axios from 'axios'
+import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+// 요청 보낼 API server 도메인 변수에 담기
+const API_URL = 'http://127.0.0.1:8000'
+
+export default new Vuex.Store({
+  plugins: [
+    createPersistedState()
+  ],
+  state: { // 기존 articles 데이터 삭제
+    articles: [],
+    token: null, // token을 저장할 위치 확인
+  },
+  mutations: { // Mutations 정의
+    GET_ARTICLES (state, articles) {
+      state.articles = articles
+    }, // 응답 받아온 데이터를 state에 저장
+    // auth
+    SIGN_UP (state, token) {
+      state.token = token
+    }, // mutations를 통해 state 변화
+    // sign up && login
+    SAVE_TOKEN (state, token) {
+      state.token = token
+    }
+  },
+  actions: { // 메소드 정의
+    getArticles (context) {
+      axios({
+        method: 'get', // 요청 보낼 경로 확인 필수
+        url: `${API_URL}/api/v1/articles/`,
+      }) // 성공 시 .then
+        .then((res) =>
+          // console.log(res, context)
+          context.commit('GET_ARTICLES', res.data)
+        ) // 실패 시 .catch
+        .catch((err) => console.log(err))
+    },
+    // auth
+    signUp (context, payload) {
+      const username = payload.username,
+      const password1 = payload.password1,
+      const password2 = payload.password2
+      // payload가 가진 값을 각각 할당
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/signup/`,
+        data: {
+          username, password1, password2
+        }
+      }) // AJAX 요청으로 응답 받은 데이터는 다수의 컴포넌트에서 사용해야 함
+        .then((res) => { // state에 저장할 것
+          // context.commit('SIGN_UP', res.data.key)
+          // 확인) signUp이 호출할 mutations도 함께 변경
+          context.commit('SAVE_TOKEN', res.data.key)
+        })
+        .catch((err) => console.log(err))
+    },
+    logIn (context, payload) { // payload가 가진 값을 각각 할당
+      const username = payload.username
+      const password = payload.password
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/login/`,
+        data: {
+          username, password
+        }
+      }) // AJAX 요청으로 응답 받은 데이터는 다수의 컴포넌트에서 사용해야 함
+        .then((res) => { // state에 저장할 것
+          context.commit('SAVE_TOKEN', res.data.key)
+        }) // 이 때, mutations는 SAVE_TOKEN 호출 확인
+        .catch((err) => console.log(err))
+    },
+  },
+})
+```
+
+- 최종 결과 확인
+  - 정확한 결과 확인을 위해 기존 토큰 삭제 추천
+  - 정상 작동 확인
 
 ### IsAuthenticated in Vue
 
+- 회원가입, 로그인 요청에 대한 처리 후
+
+  state에 저장된 Token을 직접 확인하기 전까지 인증 여부 확인 불가
+
+- 인증 되지 않았을 시 게시글 정보를 확인할 수 없으나 이유를 알 수 없음
+
+  - 로그인 여부를 확인 할 수 있는 수단이 없음
+
+```js
+// store/index.js
+import axios from 'axios'
+import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+// 요청 보낼 API server 도메인 변수에 담기
+const API_URL = 'http://127.0.0.1:8000'
+
+export default new Vuex.Store({
+  plugins: [
+    createPersistedState()
+  ],
+  state: { // 기존 articles 데이터 삭제
+    articles: [],
+    token: null, // token을 저장할 위치 확인
+  },
+  getters: { // 로그인 여부 판별 코드 확인
+    isLogin (state) {
+      return state.token ? true : false
+    } // Toke이 있으면 true 없으면 false 반환
+  },
+  mutations: { // Mutations 정의
+    GET_ARTICLES (state, articles) {
+      state.articles = articles
+    }, // 응답 받아온 데이터를 state에 저장
+    // auth
+    SIGN_UP (state, token) {
+      state.token = token
+    }, // mutations를 통해 state 변화
+    // sign up && login
+    SAVE_TOKEN (state, token) {
+      state.token = token
+    }
+  },
+  actions: { // 메소드 정의
+    getArticles (context) {
+      axios({
+        method: 'get', // 요청 보낼 경로 확인 필수
+        url: `${API_URL}/api/v1/articles/`,
+      }) // 성공 시 .then
+        .then((res) =>
+          // console.log(res, context)
+          context.commit('GET_ARTICLES', res.data)
+        ) // 실패 시 .catch
+        .catch((err) => console.log(err))
+    },
+    // auth
+    signUp (context, payload) {
+      const username = payload.username,
+      const password1 = payload.password1,
+      const password2 = payload.password2
+      // payload가 가진 값을 각각 할당
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/signup/`,
+        data: {
+          username, password1, password2
+        }
+      }) // AJAX 요청으로 응답 받은 데이터는 다수의 컴포넌트에서 사용해야 함
+        .then((res) => { // state에 저장할 것
+          // context.commit('SIGN_UP', res.data.key)
+          // 확인) signUp이 호출할 mutations도 함께 변경
+          context.commit('SAVE_TOKEN', res.data.key)
+        })
+        .catch((err) => console.log(err))
+    },
+    logIn (context, payload) { // payload가 가진 값을 각각 할당
+      const username = payload.username
+      const password = payload.password
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/login/`,
+        data: {
+          username, password
+        }
+      }) // AJAX 요청으로 응답 받은 데이터는 다수의 컴포넌트에서 사용해야 함
+        .then((res) => { // state에 저장할 것
+          context.commit('SAVE_TOKEN', res.data.key)
+        }) // 이 때, mutations는 SAVE_TOKEN 호출 확인
+        .catch((err) => console.log(err))
+    },
+  },
+})
+```
+
+```vue
+<!-- views/ArticleView.vue -->
+<template>
+  <div>
+    <h1>Article Page</h1>
+    <router-link :to="{ name: 'CreateView' }">
+      [CREATE] <!--router-link를 통해 CreateView로 이동-->
+    </router-link>
+    <hr>
+    <ArticleList/>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ArticleView',
+  components: {
+    ArticleList
+  }, // 인스턴스가 생성된 직후 요청을 보내기 위해
+  created() { // created() hook 사용
+    this.getArticles()
+  },
+  computed: {
+    isLogin () {
+      return this.$store.getters.isLogin
+    }
+  },
+  methods: { // actions 호출
+    getArticles () { // isLogin 정보를 토대로
+      if (this.isLogin) { // 게시글 정보를 요청할 것인지,
+        this.$store.dispatch('getArticles')
+      } else {
+        alert('로그인이 필요한 서비스 입니다.')
+        this.$router.push({ name: 'LogInView' })
+      } // LoginView로 이동시킬 것인지 결정
+    }
+  }
+}
+</script>
+```
+
+```js
+// store/index.js 에서는 $router에 접근할 수 없음
+import router from '@/router' // router를 import 해야 함
+import axios from 'axios'
+import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+// 요청 보낼 API server 도메인 변수에 담기
+const API_URL = 'http://127.0.0.1:8000'
+
+export default new Vuex.Store({
+  plugins: [
+    createPersistedState()
+  ],
+  state: { // 기존 articles 데이터 삭제
+    articles: [],
+    token: null, // token을 저장할 위치 확인
+  },
+  getters: { // 로그인 여부 판별 코드 확인
+    isLogin (state) {
+      return state.token ? true : false
+    } // Toke이 있으면 true 없으면 false 반환
+  },
+  mutations: { // Mutations 정의
+    GET_ARTICLES (state, articles) {
+      state.articles = articles
+    }, // 응답 받아온 데이터를 state에 저장
+    // auth
+    SIGN_UP (state, token) {
+      state.token = token
+    }, // mutations를 통해 state 변화
+    // sign up && login
+    SAVE_TOKEN (state, token) {
+      state.token = token
+      router.push({ name: 'ArticleView' })
+    } // 단, store/index.js에서는 $router에 접근할 수 없음
+  },    // router를 import 해야 함
+  actions: { // 메소드 정의
+    getArticles (context) {
+      axios({
+        method: 'get', // 요청 보낼 경로 확인 필수
+        url: `${API_URL}/api/v1/articles/`,
+      }) // 성공 시 .then
+        .then((res) =>
+          // console.log(res, context)
+          context.commit('GET_ARTICLES', res.data)
+        ) // 실패 시 .catch
+        .catch((err) => console.log(err))
+    },
+    // auth
+    signUp (context, payload) {
+      const username = payload.username,
+      const password1 = payload.password1,
+      const password2 = payload.password2
+      // payload가 가진 값을 각각 할당
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/signup/`,
+        data: {
+          username, password1, password2
+        }
+      }) // AJAX 요청으로 응답 받은 데이터는 다수의 컴포넌트에서 사용해야 함
+        .then((res) => { // state에 저장할 것
+          // context.commit('SIGN_UP', res.data.key)
+          // 확인) signUp이 호출할 mutations도 함께 변경
+          context.commit('SAVE_TOKEN', res.data.key)
+        })
+        .catch((err) => console.log(err))
+    },
+    logIn (context, payload) { // payload가 가진 값을 각각 할당
+      const username = payload.username
+      const password = payload.password
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/login/`,
+        data: {
+          username, password
+        }
+      }) // AJAX 요청으로 응답 받은 데이터는 다수의 컴포넌트에서 사용해야 함
+        .then((res) => { // state에 저장할 것
+          context.commit('SAVE_TOKEN', res.data.key)
+        }) // 이 때, mutations는 SAVE_TOKEN 호출 확인
+        .catch((err) => console.log(err))
+    },
+  },
+})
+```
+
+- 결과 확인
+
+1. localStorage에서 token 삭제 후, 새로 고침
+2. Articles 링크 클릭 시 LoginPage로 이동
+   - 인증 되지 않은 사용자를 LogInPage로 이동 시키는데 성공
+
+**로그인 후, Articles에서는**
+
+- 인증은 받았지만 게시글 조회 시 인증 정보를 담아 보내고 있지 않음
+- 원인
+  - 로그인은 했으나 Django에서는 로그인 한 것으로 인식하지 못함
+  - 발급 받은 token을 요청으로 보내지 않았기 때문
+
 ### Request with Token
 
-## 5. DRF-spectacular
+- 인증 여부를 확인하기 위한 Token 이 준비되었으니,
+- headers HTTP에 Token을 담아 요청을 보내면 된다.
+
+**Article List Read with Token**
+
+```js
+// store/index.js 에서는 $router에 접근할 수 없음
+import router from '@/router' // router를 import 해야 함
+import axios from 'axios'
+import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+// 요청 보낼 API server 도메인 변수에 담기
+const API_URL = 'http://127.0.0.1:8000'
+
+export default new Vuex.Store({
+  plugins: [
+    createPersistedState()
+  ],
+  state: { // 기존 articles 데이터 삭제
+    articles: [],
+    token: null, // token을 저장할 위치 확인
+  },
+  getters: { // 로그인 여부 판별 코드 확인
+    isLogin (state) {
+      return state.token ? true : false
+    } // Toke이 있으면 true 없으면 false 반환
+  },
+  mutations: { // Mutations 정의
+    GET_ARTICLES (state, articles) {
+      state.articles = articles
+    }, // 응답 받아온 데이터를 state에 저장
+    // auth
+    SIGN_UP (state, token) {
+      state.token = token
+    }, // mutations를 통해 state 변화
+    // sign up && login
+    SAVE_TOKEN (state, token) {
+      state.token = token
+      router.push({ name: 'ArticleView' })
+    } // 단, store/index.js에서는 $router에 접근할 수 없음
+  },    // router를 import 해야 함
+  actions: { // 메소드 정의
+    getArticles (context) {
+      axios({
+        method: 'get', // 요청 보낼 경로 확인 필수
+        url: `${API_URL}/api/v1/articles/`,
+        headers: { // headers에 Authorizations 와 token 추가
+          Authorization: `Token ${context.state.token}`
+        }
+      }) // 성공 시 .then
+        .then((res) => {
+          context.commit('GET_ARTICLES', res.data)
+        }) // 실패 시 .catch
+        .catch((err) => { console.log(err) })
+    },
+    // auth
+    signUp (context, payload) {
+      const username = payload.username,
+      const password1 = payload.password1,
+      const password2 = payload.password2
+      // payload가 가진 값을 각각 할당
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/signup/`,
+        data: {
+          username, password1, password2
+        }
+      }) // AJAX 요청으로 응답 받은 데이터는 다수의 컴포넌트에서 사용해야 함
+        .then((res) => { // state에 저장할 것
+          // context.commit('SIGN_UP', res.data.key)
+          // 확인) signUp이 호출할 mutations도 함께 변경
+          context.commit('SAVE_TOKEN', res.data.key)
+        })
+        .catch((err) => console.log(err))
+    },
+    logIn (context, payload) { // payload가 가진 값을 각각 할당
+      const username = payload.username
+      const password = payload.password
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/login/`,
+        data: {
+          username, password
+        }
+      }) // AJAX 요청으로 응답 받은 데이터는 다수의 컴포넌트에서 사용해야 함
+        .then((res) => { // state에 저장할 것
+          context.commit('SAVE_TOKEN', res.data.key)
+        }) // 이 때, mutations는 SAVE_TOKEN 호출 확인
+        .catch((err) => console.log(err))
+    },
+  },
+})
+```
+
+- 결과 확인
+
+```python
+# articles/views.py
+from django.shortcuts import get_list_or_404
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
+from .models import Article
+from .serializers import ArticleListSerializer
+
+
+# 게시글 조회 및 생성 요청 시 인증된 경우만 허용하도록 권한 부여
+@api_view(["GET", "POST"])  # decorator를 활용
+@permission_classes([IsAuthenticated])
+def article_list(request):
+    if request.method == "GET":
+        # 404 발생 원인은 view 함수가 그렇게 처리하기로 하였기 때문
+        articles = get_list_or_404(Article)
+        serializer = ArticleListSerializer(articles, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+    ...
+```
+
+- 게시글 생성 기능 완성 후, 다시 결과 확인
+
+**Article Create with Token**
+
+```vue
+<!-- views/CreateView.vue -->
+<template>
+  <div>
+    <h1>게시글 작성</h1>
+    <!--.prevent를 활용해 form의 기본 이벤트 동작 막기-->
+    <form @submit.prevent="createArticle">
+      <!--게시글 생성을 위한 form을 제공-->
+      <label for="title">제목 : </label>
+      <input
+        type="text"
+        id="title"
+        v-model.trim="title"
+      ><br>
+      <label for="content">내용 : </label>
+      <textarea
+        id="content"
+        cols="30"
+        rows="10"
+        v-model.trim="content"
+      > <!--v-model.trim을 활용해 사용자 입력 데이터에서 공백 제거-->
+      </textarea><br>
+      <input
+        type="submit"
+        id="submit"
+      >
+    </form>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+const API_URL = 'http://127.0.0.1:8000'
+export default {
+  methods: {
+    createArticle () {
+      const title = this.title
+      const content = this.content
+      if (!title) {
+        alert('제목을 입력해주세요')
+        return // title, content가 비었다면 alert를 통해 경고창을 띄우고
+      } else if (!content) {
+        alert('내용을 입력해주세요')
+        return
+      } // AJAX 요청을 보내지 않도록 return 시켜 함수를 종료
+      axios({ // axios를 사용해 server에 게시글 생성 요청
+        method: 'post',
+        url: `${API_URL}/api/v1/articles/`,
+        data: { title, content },
+        headers: { // headers에 Authorization 과 token 추가
+          Authorization: `Token ${this.$store.state.token}`
+        }
+      }) // 응답 확인을 위해 정의한 인자 res 제거
+        .then(() => {
+          this.$router.push({ name: 'ArticleView' })
+        }) // 게시글 생성 완료 후, ArticleView로 이동
+        .catch((err) => console.log(err))
+    } // actions를 사용하지 않나요?
+  } // state를 변화 시키는 것이 아닌 DB에 게시글 생성 후,
+} // ArticleView로 이동할 것이므로 methods에서 직접 처리
+</script>
+```
+
+- 결과 확인
+  - 정상 작동 확인
+
+**Create Article with User**
+
+```python
+# articles/models.py
+from django.conf import settings
+from django.db import models
+
+
+# Create your models here.
+class Article(models.Model): # 게시글을 작성시 User 정보를 포함하여 작성하도록 수정
+    user = models.ForeignKey(  # User정보를 Vue에서도 확인 가능하도록 정보 제공
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+```
+
+```bash
+$ python manage.py makemigrations
+# Please select a fix:
+ ...
+Select an option: 1
+# 기존 게시글에 대한 User 정보 default 값 설정
+Please enter the default value now, as valid Python
+...
+Type 'exit' to exit this prompt
+>>> 1
+
+$ python manage.py migrate # 
+```
+
+```python
+# articles/serializers.py
+from rest_framework import serializers
+
+from .models import Article
+
+
+class ArticleListSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source="user.username", read_only=True)
+    # username을 확인 할 수 있도록 username field 정의 필요
+    # comment_count field 정의 방법 참고
+
+    class Meta:
+        model = Article
+        fields = ("id", "title", "content", "user", "username")
+
+    # ArticleListSerializer에서 user는 사용자가 작성 하지 않음 -> fields에 추가
+
+
+class ArticleSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source="user.username", read_only=True)
+    # username을 확인 할 수 있도록 username field 정의 필요
+    # comment_count field 정의 방법 참고
+
+    class Meta:
+        model = Article
+        fields = "__all__"  # ArticleSerializer에서 user는 읽기 전용으로 제공
+        read_only_fields = ("user",)
+
+```
+
+```python
+# articles/views.py
+from django.shortcuts import get_list_or_404
+from rest_framework import status
+# permission Decorators
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
+from .models import Article
+from .serializers import ArticleListSerializer, ArticleSerializer
+
+
+# 게시글 조회 및 생성 요청 시 인증된 경우만 허용하도록 권한 부여
+@api_view(["GET", "POST"])  # decorator를 활용
+@permission_classes([IsAuthenticated])
+def article_list(request):
+    if request.method == "GET":
+        # 404 발생 원인은 view 함수가 그렇게 처리하기로 하였기 때문
+        articles = get_list_or_404(Article)
+        serializer = ArticleListSerializer(articles, many=True)
+        return Response(serializer.data)
+
+    elif request.method == "POST":
+        ...
+        serializer = ArticleSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=request.user)  # 게시글 생성시 user 정보 저장
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+```
+
+```vue
+<!-- components/ArticleListItem.vue -->
+<template>
+  <div> <!--article이 가지고 있을 user 정보 표현-->
+    <h5>{{ article.id }}</h5>
+    <p>작성자 : {{ article.username }}</p>
+    <p>{{ article.title }}</p>
+    <!--router-link를 통해 특정 게시글의 id 값을 동적 인자로 전달-->
+    <router-link
+      :to="{
+        name: 'DetailView',
+        params: { id: article.id }
+      }"
+    > <!-- 게시글 상세 정보를 Server에 요청 -->
+      [DETAIL]
+    </router-link>
+    <hr>
+  </div>
+</template>
+```
+
+- 결과 확인
+  - 작성자 정보 확인 가능
+
+## 5. drf-spectacular
+
+**swagger**
+
+- Swagger 스웨거는 개발자가 REST 웹 서비스를 설계, 빌드, 문서화, 소비하는
+
+  일을 도와주는 오픈 소스 소프트웨어 프레임워크
+
+  - 즉, API를 설계하고 문서화 하는데 도움을 주는 라이브러리
+
+ **다양한 DRF API**
+
+- Swagger 스웨거를 생성할 수 있도록 도움을 주는 라이브러리
+
+  - **drf-spectacular**
+  - https://github.com/tfranzel/drf-spectacular
+
+- 과거에는 다양한 라이브러리가 있었으나 OpenAPI Specification이 3.0으로
+
+  업데이트 되며 새 버전을 지원하지 않는 라이브러리들이 있으니 사용시 유의
+
+**drf-spectacular**
+
+- Open API 3.0을 지원하는 DRF API OpenAPI 생성기
+- 지속적인 업데이트와 관리로 최신 Django, DRF 버전 지원
+- **Requirements**
+  - Python >= 3.6
+  - Django (2.2, 3.2, 4.0, 4.1)
+  - Django REST Framework (3.10.3, 3.11, 3.12, 3.13, 3.14)
+
+```bash
+$ pip install drf-spectacular
+# 설치
+$ pip freeze > requirements.txt
+```
+
+```python
+# my_api/settings.py
+INSTALLED_APPS = [ # 등록
+  'drf_seectacular',
+]
+
+REST_FRAMEWORK = {  
+    ...
+    # YOUR SETTINGS
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+# 기본 설정
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Your Project API',
+    'DESCRIPTION': 'Your project description',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+```
+
+```python
+# articles/urls.py
+from django.urls import path
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+
+urlpatterns = [  # URL 설정
+    # 필수 작성
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
+    # Optional UI:
+    path(
+        "swagger/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
+]
+```
+
+- **/api/v1/swagger/** 결과 확인
+  - 정상 작동 확인
 
 ## finish
+
+1. [Vue with DRF](#1-vue-with-DRF)
+2. [CORS](#2-cors)
+3. [DRF Auth System](#3-DRF-auth-system)
+4. [DRF Auth with Vue](#4-DRF-auth-with-vue)
+5. [drf-spectacular](#5-drf-spectacular)

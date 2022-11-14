@@ -45,3 +45,5 @@
 18. [2022-11-07 월] [Vuex](./1107_Vuex.md) : State Management(컴포넌트 간 데이터 통신), Lifecycle Hooks, Local Storage
 
 19. [2022-11-09 수] [Vue Router](./1109_Vue_Router.md) : UX & UI, Routing, Navigation Guard
+
+20. [2022-11-14 월] [Vue DRF](./1114_Vue_DRF.md) : CORS, Auth, drf-spectacular

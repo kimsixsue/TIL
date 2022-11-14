@@ -52,6 +52,8 @@
 
 19. [2022-11-09 수] [Vue Router](./Full_Stack/1109_Vue_Router.md) : UX & UI, Routing, Navigation Guard
 
+20. [2022-11-14 월] [Vue DRF](./Full_Stack/1114_Vue_DRF.md) : CORS, Auth, drf-spectacular
+
 ## [Algorithm](/Algorithm/README.md) 정리
 
 1. [2022-08-08 월] [Array Sort](./Algorithm/0808_Array_Sort.md) : 버블, 카운팅, 완전검색, 그리디
