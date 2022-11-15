@@ -51,9 +51,8 @@
 **Django를 배워야 하는 이유**
 
 - Python으로 작성된 프레임워크
-
   - Python이라는 언어의 강력함과 거대한 커뮤니티
-
+  
 - 수많은 여러 유용한 기능들
 
 - 검증된 웹 프레임워크
@@ -170,7 +169,12 @@
 
   파일을 처리하고 데이터베이스와의 상호작용이 이루어짐
 
-- 이 중에서 Python을 이용해서 개발할 수 있는 프레임워크인 Django를 학습하는 것
+- 이 중에서 22-05-17 기준 [Python 3.9.13](https://www.python.org/downloads/release/python-3913/)을 이용해서 개발할 수 있는 프레임워크인 Django를 학습하는 것
+
+  - **https://docs.djangoproject.com/en/3.2/internals/contributing/writing-code/coding-style/**
+
+    **https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style/**
+
 
 ## 2. Django 구조 이해하기 (MTV Design Pattern)
 
@@ -321,6 +325,9 @@
   ```
 
 - Django 4.0 릴리즈로 인해 3.2(Long Term Support) 버전을 명시해서 설치
+
+  - 22-10-04 기준: [**Django 3.2.16**](https://pypi.org/project/Django/3.2.16/)
+
 
   ```bash
   $ pip install django==3.2

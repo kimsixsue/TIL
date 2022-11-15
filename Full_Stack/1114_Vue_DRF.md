@@ -1252,7 +1252,7 @@ export default new Vuex.Store({
 
 - 게시물 전체 조회와 달리, 인증 요청의 응답으로 받은 Token은 매번 요청하기 힘듦
   - 비밀번호를 항상 보관하고 있을 수는 없음
-  - localStorage에 token 저장을 위해 `vuex-persistedstate` 활용
+  - localStorage에 token 저장을 위해 [vuex-persistedstate](https://github.com/robinvdvleuten/vuex-persistedstate) 활용
 
 ```bash
 $ npm install vuex-persistedstate # 설치

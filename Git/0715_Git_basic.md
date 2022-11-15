@@ -16,7 +16,13 @@
 
 ## Markdown
 
+22-08-30 기준 [GitLab Flavored Markdown (GLFM) (GitLab 15.2.4)](https://docs.gitlab.com/ee/development/gitlab_flavored_markd)
+
+19-04-06 기준 [GitHub Flavored Markdown 0.29-gfm](https://github.github.com/gfm/)
+
 다양한 에디터가 지원함
+
+22-10-26 기준 [Typora 1.4.8](https://typora.io/releases/all) 
 
 > https://www.markdownguide.org/cheat-sheet/
 
@@ -29,7 +35,7 @@
 
 ## Git 기본기
 
-Git은 분산 **버전 관리** 프로그램
+[Git 2.38.1](https://git-scm.com/downloads) (22-10-07)은 분산 **버전 관리** 프로그램
 
 - 특정 상태들을 관리하는 것
 
@@ -60,9 +66,14 @@ Repository : 특정 디렉토리를 버전 관리하는 **저장소**
 
 `README.md` 는 프로젝트에서 가장 먼저 보는 Markdown 문서
 
+https://github.com/matiassingers/awesome-readme
+
 `.gitignore` 파일은 일종의 블랙리스트를 작성
 
 * 그러나 이미 git에서 관리중인 경우, 해당 파일에 작동하지 않음
+* https://www.gitignore.io/
+  * https://www.toptal.com/developers/gitignore/api/git,node,venv,macos,vuejs,django,python,pycharm,windows,visualstudiocode
+
 
 ## Git bash 기본 명령어
 

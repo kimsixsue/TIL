@@ -172,6 +172,7 @@
 - JavaScript의 표기법을 따른 단순 문자열
 - 파이썬의 dictionary, 자바스크립트의 object처럼 C 계열의 언어가 갖고 있는 자료구조로 쉽게 변환할 수 있는 **key-value 형태의 구조**를 갖고 있음
 - 사람이 읽고 쓰기 쉽고 기계가 파싱(해석 & 분석)하고 만들어내기 쉽기 때문에 현재 API에서 가장 많이 사용하는 데이터 타입
+- *https://google.github.io/styleguide/jsoncstyleguide.xml*
 
 ## Response JSON
 
@@ -223,6 +224,8 @@
      - DRF의 serializer는 Django의 Form 및 ModelForm 클래스와 매우 유사하게 작동
 
        > <https://www.django-rest-framework.org/>
+       >
+       > **https://github.com/linnify/drf-styleguide**
 
 ## Django REST framework Single Model
 

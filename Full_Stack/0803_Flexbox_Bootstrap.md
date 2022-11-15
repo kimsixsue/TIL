@@ -4,7 +4,7 @@
   - [Float](#float)
   - [Flexbox](#Flexbox)
     - [CSS Flexible Box Layout](#CSS-Flexible-Box-Layout)
-- [Bootstrap v5.2](#bootstrap-v52)
+- [Bootstrap v5.2.2](#bootstrap-v522)
   - [Bootstrap 기본 원리](#Bootstrap-기본-원리)
     - [Spacing](#Spacing)
     - [기타](#기타)
@@ -20,6 +20,8 @@ CSS layout techniques
 - [display](https://developer.mozilla.org/ko/docs/Web/CSS/display), Position, Float, [Flexbox](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Flexible_Box_Layout), [Grid](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Grid_Layout)**, Responsive Web Design, [Media Queries](https://developer.mozilla.org/ko/docs/Web/CSS/Media_Queries)**
 
 ### Float
+
+**Avoid using `float`. Floats lead to fragile CSS that is easy to break if one aspect of the layout changes.**
 
 CSS 원칙
 
@@ -174,7 +176,9 @@ Float
       <div class="flex_item order-2">4</div>
       ```
 
-## [Bootstrap v5.2](https://getbootstrap.com/docs/5.2/getting-started/introduction/)
+## [Bootstrap v5.2.2](https://getbootstrap.com/)
+
+>  22-10-03 기준
 
 - Quickly, responsive, the world's most popular, responsive grid system, prebuilt components
 

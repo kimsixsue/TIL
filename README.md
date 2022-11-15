@@ -10,7 +10,7 @@
 
 1. [2022-08-01 월] [HTML CSS](./Full_Stack/0801_HTML_CSS.md) : 선택자, 박스모델, display, position
 
-2. [2022-08-03 수] [Flexbox Bootstrap](./Full_Stack/0803_Flexbox_Bootstrap.md) : Float, Spacing, Grid
+2. [2022-08-03 수] [Flexbox Bootstrap](./Full_Stack/0803_Flexbox_Bootstrap.md) : ~~Float~~, Spacing, Grid
 
    ---
 

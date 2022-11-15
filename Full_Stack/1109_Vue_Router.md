@@ -120,7 +120,7 @@
   - UI: 유저가 보거나 듣는 등 비시각적인 부분까지 포함한 디자인
   - UX: 유저가 겪는 모든 경험(컴퓨터와 관련이 없는 부분까지도 포함)
   - HCI(Human Computer Interaction): 인간과 컴퓨터 사이의 상호작용에 대한 학문
-  
+
 - 점점 더 복잡해지는 기술과 반대로 점점 더 단순하고 대중화 되어야하는
 
   유저에 대한 경험으로 인해 계속해서 연구되는 중요한 분야
@@ -129,7 +129,18 @@
 
 - 전세계의 많은 디자이너 또는 연구자들이 데이터에 기반해서 연구한 다양한 가이드 존재
 
-- 예시) Apple의 UI 디자인 원칙 (https://developer.apple.com/kr/design/tips/)
+- 예시) Apple의 UI 디자인 원칙
+
+  - https://developer.apple.com/kr/design/tips/
+
+  - https://css-tricks.com/re-pleasing-color-palettes/
+
+  - https://www.miricanvas.com/templates
+
+  - https://component.gallery/
+  
+  - https://infinite-scroll.com/
+
 
 ### Prototyping
 
@@ -148,8 +159,10 @@
 - 이전까지는 Sketch 라는 툴이 굉장히 많이 사용되었지만,
 
   현재에는 **Figma** 라는 툴이 약 70%의 시장 점유율을 보이고 있음
+  
+  https://ovenapp.io/
 
-**Figma**
+[Figma](**https://www.figma.com/**)
 
 - 인터페이스 디자인을 위한 협업 웹 애플리케이션 (2012년 출시)
 - **협업**에 중점을 두면서 UI/UX 설계에 초점을 맞춤

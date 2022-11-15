@@ -423,6 +423,8 @@ python manage.py migrate
 
 - Django는 내장 Django ORM을 사용
 
+- https://django-orm-cookbook-ko.readthedocs.io/en/latest/
+
 **ORM 장단점**
 
 - 장점

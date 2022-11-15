@@ -48,6 +48,8 @@
 
 - 웹 페이지를 브라우저로 불러오면, 브라우저는 코드(HTML, CSS, JavaScript)를 실행 환경(브라우저 탭)에서 실행
 - JavaScript는 **DOM API** 를 통해 HTML과 CSS를 동적으로 수정, 사용자 인터페이스를 업데이트하는 일에 가장 많이 쓰임
+  - https://htmldom.dev/
+
 
 **DOM**
 

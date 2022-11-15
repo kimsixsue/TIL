@@ -42,9 +42,15 @@
 
 W3C, WHATWG
 
+|      LTS |                                                              |
+| -------: | :----------------------------------------------------------- |
+| 22-11-10 | [HTML5 (HTML Living Standard)](https://html.spec.whatwg.org/multipage/) |
+| 22-11-10 | [**JavaScript(ECMAScript® 2023)(Draft ECMA-262)**](https://tc39.es/ecma262/multipage/) |
+| 21-12-31 | [CSS Snapshot 2021](https://www.w3.org/TR/css-2021/)         |
+
 ### 개발 환경 설정
 
-Visual Studio Code
+[Visual Studio Code 1.73.1](https://code.visualstudio.com/download) (22-11-10)
 
 - Open in browser
 
@@ -54,7 +60,7 @@ Visual Studio Code
 
 Chrome 개발자 도구
 
-- 웹 브라우저 크롬에서 제공하는 개발과 관련된 다양한 기능을 제공
+- 웹 브라우저 [**Chrome 107.0.5304.107**](https://www.google.com/intl/ko_kr/chrome/) (22-11-08)에서 제공하는 개발과 관련된 다양한 기능을 제공
 
 - Elements - DOM 탐색 및 CSS 확인 및 변경
 
@@ -87,6 +93,10 @@ Chrome 개발자 도구
 HTML 스타일 가이드
 
 - 마크업 스타일 가이드(**2 space**)
+
+- **https://developers.google.com/style/html-formatting**
+
+  **https://google.github.io/styleguide/htmlcssguide.html**
 
 ### HTML 기본구조
 
@@ -293,6 +303,8 @@ HTML 스타일 가이드
 
 - 선택하고, 스타일을 지정한다.
 
+- **https://google.github.io/styleguide/htmlcssguide.html**
+
 - **CSS 구문 - 용어 정리**
 
   ```css
@@ -304,6 +316,8 @@ HTML 스타일 가이드
   
 - CSS 구문은 선택자를 통해 스타일을 지정할 HTML 요소를 선택
 
+- **Import statements do not load in parallel.**
+
 - 중괄호 안에서는 속성과 값, 하나의 쌍으로 이루어진 선언을 진행
 
 - 각 쌍은 선택한 요소의 속성, 속성에 부여할 값을 의미
@@ -311,6 +325,7 @@ HTML 스타일 가이드
   - Property(속성) : 어떤 스타일 기능을 변경할지 결정
 
   - Value(값) : 어떻게 스타일 기능을 변경할지 결정
+    - **No unit for zero needed.**
 
 - CSS 정의 방법
 
@@ -344,23 +359,22 @@ HTML 스타일 가이드
   - **기본 선택자**
 
     - 전체 선택자, **요소 선택자**
-
+    - **The universal selector (`*`) is known to be slow.**
       - **요소 선택자**: HTML **태그를 직접 선택**
 
     - **클래스 선택자, 아이디 선택자**, 속성 선택자
+  - `class` 클래스 선택자: .(마침표) 문자로 시작하며, 해당 클래스가 적용된 항목을 선택
+    
+  - `id` 아이디 선택자
+    - **`#` 문자로 시작**하며, 해당 아이디가 적용된 항목을 선택
 
-      - `class` 클래스 선택자: .(마침표) 문자로 시작하며, 해당 클래스가 적용된 항목을 선택
+    - **일반적으로 하나의 문서에 1번만 사용**
 
-      - `id` 아이디 선택자
+    - 여러 번 사용해도 동작하지만, 단일 id를 사용하는 것을 권장
 
-        - **\# 문자로 시작**하며, 해당 아이디가 적용된 항목을 선택
-
-        - **일반적으로 하나의 문서에 1번만 사용**
-
-        - 여러 번 사용해도 동작하지만, 단일 id를 사용하는 것을 권장
+    - **Selectors should not contain IDs because these rules are too tightly coupled with the HTML.**
 
   - **Combinators 결합자**
-
     - 자손 결합자, 자식 결합자
 
     - 일반 형제 결합자, 인접 형제 결합자
@@ -379,6 +393,7 @@ HTML 스타일 가이드
 
     1. Importance **중요도** - 사용시 주의
        - `!important`
+       - **Avoid using `!important`. It is an indication that the specificity of the entire CSS has gotten out of control and needs to be refactored.**
     2. Specificity 우선 순위
        - **Inline Style** > `id` 선택자 > `class` 선택자, 속성, pseudo-class > **요소 선택자**, pseudo-element
     3. **CSS 파일 로딩 순서, 소스 순서**
@@ -551,6 +566,7 @@ HTML 스타일 가이드
     - 테두리 안쪽의 **내부 여백** 요소에 적용된 배경색
 
     - 이미지는 padding 까지 적용
+  - **Do not use `width` or `height` when using `padding` or `border`.**
 
   - margin/padding **shorthand 표현**
 

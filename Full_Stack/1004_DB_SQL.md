@@ -139,7 +139,7 @@
 - 관계형 데이터베이스를 만들고 업데이트하고 관리하는 데 사용하는 프로그램
   - **SQLite**, MySQL, PostgreSQL, Microsoft SQL Server, Oracle Database 등
 
-**SQLite**
+**[SQLite 3.39.4](https://www.sqlite.org/download.html) (22-09-29)**
 
 - 응용 프로그램에 파일 형식으로 넣어 사용하는 비교적 가벼운 데이터베이스
 - 안드로이드, iOS, macOS에 기본적으로 탑재되어 있으며 임베디드 소프트웨어에서도 많이 활용됨
@@ -165,6 +165,9 @@
 - RDBMS에서 데이터베이스 스키마를 생성 및 수정할 수 있으며, 테이블에서의 자료 검색 및 관리도 할 수 있음
 - 데이터베이스 객체에 대한 처리를 관리하거나 접근 권한을 설정하여 허가된 사용자만 RDBMS를 관리할 수 있도록 할 수 있음
 - 많은 데이터베이스 관련 프로그램들이 SQL을 표준으로 채택하고 있음
+- *https://www.sqlstyle.guide/*
+
+  *https://about.gitlab.com/handbook/business-technology/data-team/platform/sql-style-guide/*
 
 **SQL 정리**
 

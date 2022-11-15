@@ -47,7 +47,7 @@
 **정리**
 
 - 웹 브라우저는 JavaScript를 해석하는 엔진을 가지고 있음
-- 현재의 JavaScript는 이제 시장에서 자리를 잡은 언어이며, 개발에서 큰 축을 담당하는 언어
+- 22-11-10 기준 [**JavaScript(ECMAScript® 2023)(Draft ECMA-262)**](https://tc39.es/ecma262/multipage/)는 이제 시장에서 자리를 잡은 언어이며, 개발에서 큰 축을 담당하는 언어
 - 더 이상 jQuery 등의 라이브러리를 사용할 필요가 없음(모든 웹 브라우저가 표준안을 따름)
 - 특히, Chrome의 V8의 경우 Javascript를 번역하는 속도가 매우 빠름
   - [node.JS](https://nodejs.org/ko/), react.JS, electron 등의 내부 엔진으로 사용
@@ -93,6 +93,8 @@
 **semicolon 세미콜론 `;`**
 
 - 자바스크립트는 세미콜론을 선택적으로 사용 가능
+- **Defines handling of optional semicolons. Requires using TypeScript 3.7 or newer in the workspace.**
+- When JavaScript encounters a line break without a semicolon, it uses a set of rules called [Automatic Semicolon Insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion) to determine whether it should regard that line break as the end of a statement, and (as the name implies) place a semicolon into your code before the line break if it thinks so. ASI contains a few eccentric behaviors, though, and your code will break if JavaScript misinterprets your line break. These rules will become more complicated as new features become a part of JavaScript. Explicitly terminating your statements and configuring your linter to catch missing semicolons will help prevent you from encountering issues.
 - 세미콜론이 없으면 ASI에 의해 자동으로 세미콜론이 삽입됨
   - ASI (Automatic Semicolon Insertion, 자동 세미콜론 삽입 규칙)
 
@@ -118,6 +120,7 @@
 - 식별자는 반드시 문자, `$` 달러 또는 `_` 밑줄로 시작
 - 대소문자를 구분하며, 클래스명 외에는 모두 소문자로 시작
 - 예약어 사용 불가능
+- **Only quote properties that are invalid identifiers**
 
 **식별자 정의와 특징**
 
@@ -237,6 +240,8 @@
 - 문자열을 표현하는 자료형
 
 - 작은 따옴표 또는 큰 따옴표 모두 가능
+
+- **Use single quotes `''` for strings**
 
 - 곱셈, 나눗셈, 뺄셈은 안되지만, 덧셈을 통해 문자열 붙일 수 있음
 

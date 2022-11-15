@@ -25,9 +25,11 @@
 - 자바스크립트는 브라우저를 조작하는 유일한 언어
   - 하지만 브라우저 밖에서는 구동할 수 없었음
 
-- 자바스크립트를 구동하기 위한 런타임 환경인 Node.js 로 인해 브라우저가 아닌
+- 자바스크립트를 구동하기 위한 런타임 환경인 [**Node.js 18.12.1**](https://nodejs.org/ko/download/) (22-11-03) 로 인해 브라우저가 아닌
   
   환경에서도 구동할 수 있게 됨
+  
+  *https://github.com/felixge/node-style-guide*
   
   - Chrome V8 엔진을 제공하여 여러 OS 환경에서 실행할 수 있는 환경을 제공
   - Browser만 조작할 수 있었으나, Server-Side-Programming 또한 가능해짐
