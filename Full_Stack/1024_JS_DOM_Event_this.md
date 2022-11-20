@@ -262,7 +262,7 @@ console.log(h1.classList)
 - DOM 요소는 Event를 받고("**수신**")
 
 - 받은 Event를 "**처리**"할 수 있음
-  - Event 처리는 주로 **`addEventListener()`**라는 Event handler 처리기를 다양한 html 요소에 "**부착**"하게 됨
+  - Event 처리는 주로 `addEventListener()`라는 Event handler 처리기를 다양한 html 요소에 "**부착**"하게 됨
 
 **Event handler - `addEventListener()`**
 
@@ -430,7 +430,7 @@ aTag.addEventListener('click', function (event) {
 </body>
 ```
 
-**[참고] lodash <https://lodash.com/> **  
+[참고] lodash <https://lodash.com/>
 
 - 모듈성, 성능 및 추가 기능을 제공하는 JavaScript 유틸리티 라이브러리
 - array, object 등 자료구조를 다룰 때 사용하는 유용하고 간편한 유틸리티 함수들을 제공

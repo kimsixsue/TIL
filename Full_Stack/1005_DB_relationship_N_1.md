@@ -83,7 +83,7 @@
 3. ManyToManyField()
    - A many-to-many relationship
 
-**`ForeignKey`(`to`, `on_delete`, `**options`)\*\*
+`ForeignKey`(`to`, `on_delete`, `**options`)
 
 - A many-to-one relationship을 담당하는 Django의 모델 필드 클래스
 
