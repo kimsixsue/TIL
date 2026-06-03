@@ -1,5 +1,9 @@
 # Today I Learned
 
+삼성 청년 SW 아카데미 과정과 개인 학습 과정에서 정리한 개발 학습 기록입니다.
+
+Python, Django, Django REST Framework, SQL, JavaScript, Vue.js, Git, 알고리즘, 자료구조, CS 기초 내용을 날짜별로 정리했습니다. 현재 실무 포트폴리오는 `backend-experience` 저장소에 별도로 정리하고 있으며, 이 저장소는 백엔드 개발자로 성장하는 과정에서 학습한 기초와 문제 해결 기록을 보관하는 용도로 관리하고 있습니다.
+
 ## [Git](/Git/README.md) 정리
 
 1. [2022-07-15 금] [Git Basic](./Git/0715_Git_basic.md) : Markdown, Bash
